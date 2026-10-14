@@ -18,10 +18,10 @@ La base del usuario es `Managua_Del_taller_al_lago(1).html`, almacenada en Git L
 
 - Plan y mediciones: [docs/RENDIMIENTO.md](docs/RENDIMIENTO.md).
 - Construcción: `python3 scripts/build_performance.py`.
-- Pruebas: `node --max-old-space-size=512 tests/performance-block01.cjs`.
+- Pruebas: `node --max-old-space-size=512 tests/performance-block01.cjs` y `node --max-old-space-size=512 tests/performance-block02.cjs`.
 - Resultado: `dist/Managua.html`, con todos los recursos integrados.
 
-El bloque 01 reduce buffers repetidos de animación. No modifica la historia ni la calidad visual. Las correcciones visuales de la sesión interrumpida no llegaron a guardarse y no se dan por recuperadas.
+El bloque 01 reduce buffers repetidos de animación. El bloque 02 evita registros y cálculos redundantes al planificar el streaming. No modifica la historia ni la calidad visual. Las correcciones visuales de la sesión interrumpida no llegaron a guardarse y no se dan por recuperadas.
 
 Las mediciones de buffers o de un navegador de pruebas no certifican los FPS en un teléfono físico.
 

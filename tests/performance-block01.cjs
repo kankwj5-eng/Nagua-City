@@ -1,6 +1,6 @@
 const fs=require('node:fs'),zlib=require('node:zlib'),path=require('node:path'),assert=require('node:assert/strict'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..'),source=process.argv[2]||path.join(root,'Managua_Del_taller_al_lago(1).html'),output=process.argv[3]||path.join(root,'dist/Managua.html');
-async function script(file,id){const start=new RegExp('<script[^>]*id="'+id+'"[^>]*>');let carry=Buffer.alloc(0),active=false;const chunks=[];for await(const chunk of fs.createReadStream(file,{highWaterMark:1024*1024})){carry=Buffer.concat([carry,chunk]);if(!active){const m=start.exec(carry.toString('latin1'));if(!m){carry=carry.subarray(Math.max(0,carry.length-512));continue;}carry=carry.subarray(m.index+m[0].length);active=true;}const end=carry.indexOf('</script>');if(end>=0){chunks.push(carry.subarray(0,end));return Buffer.concat(chunks).toString();}chunks.push(carry.subarray(0,Math.max(0,carry.length-16)));carry=carry.subarray(Math.max(0,carry.length-16));}throw Error('Missing '+id);}
+const script=require('./html-script.cjs');
 (async()=>{
  const original=await script(source,'appSource'),modified=await script(output,'appSource');new vm.Script(original);new vm.Script(modified);
  const moduleB={exports:{}};new Function('module','exports',zlib.gunzipSync(Buffer.from(await script(source,'asset-babylon'),'base64')).toString())(moduleB,moduleB.exports);const B=moduleB.exports;

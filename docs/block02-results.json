@@ -1,0 +1,54 @@
+{
+  "block": 2,
+  "source": "real zone metadata / deterministic planner and cache simulation",
+  "physicalAndroid": false,
+  "scenarios": [
+    {
+      "quality": "low",
+      "passes": 124,
+      "requests": 242,
+      "reads": 61,
+      "cacheHits": 138,
+      "workers": 1,
+      "hypotBefore": 21333,
+      "hypotAfter": 16064,
+      "planObjectsBefore": 14632,
+      "planObjectsAfter": 2280,
+      "traceIdentical": true
+    },
+    {
+      "quality": "medium",
+      "passes": 124,
+      "requests": 242,
+      "reads": 77,
+      "cacheHits": 202,
+      "workers": 1,
+      "hypotBefore": 26696,
+      "hypotAfter": 16716,
+      "planObjectsBefore": 14632,
+      "planObjectsAfter": 2995,
+      "traceIdentical": true
+    },
+    {
+      "quality": "high",
+      "passes": 124,
+      "requests": 242,
+      "reads": 90,
+      "cacheHits": 285,
+      "workers": 1,
+      "hypotBefore": 34213,
+      "hypotAfter": 17569,
+      "planObjectsBefore": 14632,
+      "planObjectsAfter": 4278,
+      "traceIdentical": true
+    }
+  ],
+  "cache": {
+    "coalescedRequests": 60,
+    "firstInflations": 1,
+    "namespaceIsolation": true,
+    "boundedEviction": true,
+    "retryAfterFailure": true
+  },
+  "passed": true
+}

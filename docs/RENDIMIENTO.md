@@ -38,3 +38,29 @@ El resultado es `dist/Managua.html`, un HTML independiente. GitHub Actions vuelv
 4. Medir render y llamadas de dibujo. Preservar la calidad; comprobar los FPS reales en el dispositivo antes de atribuir mejoras.
 
 Cada bloque tiene un cambio pequeño, comparación con la base, pruebas y un commit propio. No se mezclan aquí modificaciones de historia, modelos, conducción ni menú.
+
+## Bloque 02 — planificación del streaming
+
+La caché existente ya comparte la descompresión de una zona entre solicitudes simultáneas; se conserva ese comportamiento. El cambio se limita a `streamPass44`:
+
+- Crear candidatos solo después de comprobar el radio, evitando objetos para zonas lejanas.
+- Calcular la distancia de cada zona cargada una vez y reutilizarla al ordenar y decidir su descarga.
+- Separar las zonas permanentes durante el mismo recorrido y reutilizar esa lista.
+
+Se mantienen los radios, cantidades, presupuestos por pasada, orden de carga y descarga, caché, descompresión, errores y solicitudes forzadas. No se reducen zonas visibles ni se difiere su carga respecto a la base.
+
+Prueba determinista con metadatos reales de las 119 zonas del HTML, tres vueltas por la ruta, las tres calidades, cambios de posición durante una carga, menú, garaje y conducción. Son pruebas del planificador y de la caché con geometrías sustituidas, no mediciones de render ni de FPS.
+
+| Calidad | Cálculos de distancia antes / después | Registros candidatos antes / después |
+| --- | ---: | ---: |
+| Baja | 21.333 / 16.064 | 14.632 / 2.280 |
+| Media | 26.696 / 16.716 | 14.632 / 2.995 |
+| Alta | 34.213 / 17.569 | 14.632 / 4.278 |
+
+En los tres casos la secuencia completa de cargas, descargas y actualizaciones de sombras coincide con la base. Cada calidad ejecuta 242 solicitudes y 124 pasadas con un máximo de un trabajador. También se comprueban 60 solicitudes simultáneas de un buffer con una sola descompresión, separación de namespaces, límite de caché, evacuación LRU y reintento tras error. Estas protecciones ya existían; no se presentan como arreglos nuevos.
+
+```sh
+node --max-old-space-size=512 tests/performance-block02.cjs
+```
+
+El fixture contiene solo ID, posición y permanencia de las zonas originales. Está asociado al SHA-256 de la base oficial; una nueva base requiere actualizar la prueba. Informes: `block02-results.json` y `block02-build.json`. El control de integridad sigue confirmando los 16 bloques de recursos originales y todo el contenido externo a appSource, byte a byte.
