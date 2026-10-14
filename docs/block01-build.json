@@ -1,0 +1,12 @@
+{
+  "block": "animation-buffer-packing",
+  "baseSha256": "a6c43bcea9fe04e0f227496969dd713b226525b24b914b9bfe3d173683a06e2e",
+  "outputSha256": "2459b13834692f47fb82120dac03b7811c51e332dfc04c5b4ae540e3a5f6bce2",
+  "bytes": 183610163,
+  "allOutsideAppSourceIdentical": true,
+  "changedFunctions": [
+    "packKeys45",
+    "samplePacked45"
+  ],
+  "assetBlocks": 16
+}

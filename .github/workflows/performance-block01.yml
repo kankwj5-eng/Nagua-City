@@ -1,0 +1,33 @@
+name: Rendimiento — bloque 01
+on:
+  push:
+    branches: [main, 'perf/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: perf-block01-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          lfs: true
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Construir el HTML sin modificar recursos visuales
+        run: python3 scripts/build_performance.py
+      - name: Comparar animaciones con el motor original
+        run: node --max-old-space-size=512 tests/performance-block01.cjs
+      - name: Conservar HTML y pruebas
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: Managua-bloque-01
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
