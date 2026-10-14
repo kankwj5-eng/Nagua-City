@@ -1,0 +1,3 @@
+const fs=require('node:fs');
+async function script(file,id){const start=new RegExp('<script[^>]*id="'+id+'"[^>]*>');let carry=Buffer.alloc(0),active=false;const chunks=[];for await(const chunk of fs.createReadStream(file,{highWaterMark:1024*1024})){carry=Buffer.concat([carry,chunk]);if(!active){const m=start.exec(carry.toString('latin1'));if(!m){carry=carry.subarray(Math.max(0,carry.length-512));continue;}carry=carry.subarray(m.index+m[0].length);active=true;}const end=carry.indexOf('</script>');if(end>=0){chunks.push(carry.subarray(0,end));return Buffer.concat(chunks).toString();}chunks.push(carry.subarray(0,Math.max(0,carry.length-16)));carry=carry.subarray(Math.max(0,carry.length-16));}throw Error('Missing '+id);}
+module.exports=script;
