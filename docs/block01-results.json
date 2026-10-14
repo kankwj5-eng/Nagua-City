@@ -1,0 +1,30 @@
+{
+  "block": 1,
+  "engine": "9.29.0",
+  "libraries": [
+    {
+      "id": "asset-animation38",
+      "channels": 2544,
+      "constants": 176,
+      "before": 3490368,
+      "after": 3249488,
+      "saved": 240880
+    },
+    {
+      "id": "asset-actor-motion",
+      "channels": 8480,
+      "constants": 4754,
+      "before": 12097568,
+      "after": 6409144,
+      "saved": 5688424
+    }
+  ],
+  "maxSampleError": 0,
+  "valuesCompared": 1948492,
+  "samplesCompared": 154336,
+  "physicalAndroid": false,
+  "totalBefore": 15587936,
+  "totalAfter": 9658632,
+  "saved": 5929304,
+  "passed": true
+}

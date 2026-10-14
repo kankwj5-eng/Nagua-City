@@ -12,10 +12,17 @@ Repositorio oficial del juego de conducción y exploración de Managua.
 - Optimizar cargas, memoria y rendimiento con mediciones verificables.
 - Interfaz en español; entrega jugable en HTML independiente.
 
-## Estado de la recuperación
+## Archivo oficial y rendimiento
 
-Se está importando la última base guardada del proyecto anterior. Las correcciones realizadas en la sesión que se interrumpió no llegaron a guardarse y no deben darse por recuperadas ni terminadas.
+La base del usuario es `Managua_Del_taller_al_lago(1).html`, almacenada en Git LFS. Las mejoras de rendimiento se aplican por bloques pequeños; el original se conserva.
 
-Las mediciones en un navegador de pruebas no certifican los FPS en un teléfono físico. Cada cambio debe incluir qué se verificó y sus límites.
+- Plan y mediciones: [docs/RENDIMIENTO.md](docs/RENDIMIENTO.md).
+- Construcción: `python3 scripts/build_performance.py`.
+- Pruebas: `node --max-old-space-size=512 tests/performance-block01.cjs`.
+- Resultado: `dist/Managua.html`, con todos los recursos integrados.
+
+El bloque 01 reduce buffers repetidos de animación. No modifica la historia ni la calidad visual. Las correcciones visuales de la sesión interrumpida no llegaron a guardarse y no se dan por recuperadas.
+
+Las mediciones de buffers o de un navegador de pruebas no certifican los FPS en un teléfono físico.
 
 Este juego es independiente de DroidDeck y del proyecto de consola Linux gaming para Android.
