@@ -60,6 +60,18 @@ window.__naguaVisualQA={
      helmetMeshes:(player.helmet46||[]).map(m=>({name:m.name,enabled:m.isEnabled(),ownEnabled:m._isEnabled,
        parent:m.parent?.name,parentEnabled:m.parent?.isEnabled(),parentOwnEnabled:m.parent?._isEnabled,
        ancestors:(()=>{const parts=[];for(let n=m.parent,k=0;n&&k<8;n=n.parent,k++)parts.push({name:n.name,enabled:n.isEnabled(),own:n._isEnabled});return parts;})()}))};
+ },
+ rideRepeat(){
+   const fingers=player.rideNodes24.filter(n=>/(?:index|middle|ring|pinky)_0[123]_[lr]$/.test(n.name));
+   const capture=()=>fingers.map(n=>({
+     name:n.name,q:n.rotationQuaternion?[n.rotationQuaternion.x,n.rotationQuaternion.y,n.rotationQuaternion.z,n.rotationQuaternion.w]:null
+   }));
+   const first=capture();
+   humanRide(player,current);
+   const second=capture();
+   humanRide(player,current);
+   const third=capture();
+   return {count:fingers.length,first,second,third};
  }
 };
 `;
@@ -102,6 +114,17 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   console.log("STAGE1_RIDE "+JSON.stringify(bike));
   assert(bike.helmet,"Casco activo durante conducción");
   assert(bike.parent,"Personaje unido al vehículo");
+  const grip=await page.evaluate(()=>__naguaVisualQA.rideRepeat());
+  assert(grip.count>=6,"No se encontraron dedos del piloto en el esqueleto real");
+  const angleDelta=(a,b)=>{
+   assert(a&&b&&a.every(Number.isFinite)&&b.every(Number.isFinite));
+   const norm=q=>Math.hypot(...q),dot=Math.abs(a.reduce((sum,v,i)=>sum+v*b[i],0)/(norm(a)*norm(b)));
+   return 2*Math.acos(Math.max(-1,Math.min(1,dot)));
+  };
+  let maxDelta=0;
+  for(let i=0;i<grip.count;i++)maxDelta=Math.max(maxDelta,angleDelta(grip.second[i].q,grip.third[i].q));
+  console.log("STAGE1_RIDER_REPEAT "+JSON.stringify({fingers:grip.count,maxRepeatedPoseRadians:maxDelta}));
+  assert(maxDelta<.001,"Los dedos cambian de forma al volver a subir a la moto: "+maxDelta);
   assert.deepEqual(errors,[],"Errores JavaScript en el juego real");
   await page.screenshot({path:path.join(root,"dist/stage1-moto.png")});
   const report={passed:true,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
