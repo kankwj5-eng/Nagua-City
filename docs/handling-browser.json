@@ -1,0 +1,1544 @@
+{
+  "passed": true,
+  "environment": {
+    "browser": "131.0.6778.33",
+    "renderer": "Chromium SwiftShader, 640x360",
+    "physicalAndroid": false
+  },
+  "scope": "Full packaged city, player entry, straight acceleration, right turn, braking, pause and reverse; controlled road with other fleet moved away",
+  "cases": [
+    {
+      "name": "sedan",
+      "initial": {
+        "name": "sedan",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 90,
+          "heading": 0,
+          "speed": 0,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 0
+        },
+        "root": [
+          -37,
+          0.003,
+          90
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "body": [
+            0,
+            0,
+            0
+          ],
+          "wheel_front_L": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            0,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            0,
+            0,
+            0
+          ]
+        },
+        "spin": 0,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "sedan_14",
+        "meshes": 6995
+      },
+      "accelerate": {
+        "name": "sedan",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 80.35902893762457,
+          "heading": 0,
+          "speed": 8.342089201316657,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0.018045604242863073,
+          "pitchVelocity": -0.002652008343047874,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.9999996940976794,
+          "acceleration": 3.497699700526873,
+          "rpm": 3636.2510004640853,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 7.569456985473543
+        },
+        "root": [
+          -37,
+          0.003,
+          80.4277121387154
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "body": [
+            0.018067439111554163,
+            0,
+            0
+          ],
+          "wheel_front_L": [
+            -30.87834793962773,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            -30.87834793962773,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -30.87834793962773,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -30.87834793962773,
+            0,
+            0
+          ]
+        },
+        "spin": -31.099906652823964,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "sedan_14",
+        "meshes": 7008
+      },
+      "steer": {
+        "name": "sedan",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.98706243648042,
+          "z": 76.85879176686474,
+          "heading": -0.023338924817986224,
+          "speed": 8.976932079791053,
+          "steer": 0.05141592254283373,
+          "lean": 0.007235159936039814,
+          "longAcceleration": 0,
+          "yawRate": -0.11875405502480053,
+          "chassisPitch": 0.007882747812206301,
+          "pitchVelocity": -0.025601784901880642,
+          "sideSpeed40": -0.09463334674761062,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.31803843721622677,
+          "acceleration": 0.7932957855307876,
+          "rpm": 3934.7067782283525,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.300678529292595
+        },
+        "root": [
+          -36.98801981438687,
+          0.003,
+          76.93359756469052
+        ],
+        "rotation": [
+          0,
+          -0.022349307692778975,
+          0
+        ],
+        "parts": {
+          "body": [
+            0.008096096019722096,
+            0,
+            0.0070292186960815685
+          ],
+          "wheel_front_L": [
+            -42.14967697187764,
+            -0.05035351667373095,
+            0
+          ],
+          "wheel_rear_L": [
+            -42.14967697187764,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -42.14967697187764,
+            -0.05208692924508398,
+            0
+          ],
+          "wheel_rear_R": [
+            -42.14967697187764,
+            0,
+            0
+          ]
+        },
+        "spin": -42.39099235036679,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "sedan_14",
+        "meshes": 7013
+      },
+      "brake": {
+        "name": "sedan",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.80143205316925,
+          "z": 72.09576214341165,
+          "heading": -0.06526491555592644,
+          "speed": 0,
+          "steer": 1.9996908149782638e-13,
+          "lean": 2.8777138496490164e-16,
+          "longAcceleration": 0,
+          "yawRate": -6.283342015831981e-9,
+          "chassisPitch": 4.8258874895733895e-12,
+          "pitchVelocity": -1.6863494140382388e-10,
+          "sideSpeed40": -1.0954790115275965e-13,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 5.10073509220452e-29,
+          "acceleration": 0,
+          "rpm": 850,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.3385
+        },
+        "root": [
+          -36.80143205316925,
+          0.003,
+          72.09576214341165
+        ],
+        "rotation": [
+          0,
+          -0.06526491550356525,
+          0
+        ],
+        "parts": {
+          "body": [
+            6.231178667939406e-12,
+            0,
+            3.1105701704724725e-16
+          ],
+          "wheel_front_L": [
+            -57.768148055631414,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            -57.768148055631414,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -57.768148055631414,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -57.768148055631414,
+            0,
+            0
+          ]
+        },
+        "spin": -57.768148055631414,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "sedan_14",
+        "meshes": 7113
+      },
+      "reverse": {
+        "name": "sedan",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37.14982666584486,
+          "z": 77.42634134108899,
+          "heading": -0.06526491702460147,
+          "speed": -4.5,
+          "steer": 3.943623640489442e-19,
+          "lean": -1.1814598129327687e-13,
+          "longAcceleration": 0,
+          "yawRate": -1.6201599836054093e-12,
+          "chassisPitch": -0.00028196462048972676,
+          "pitchVelocity": 0.005002290620491755,
+          "sideSpeed40": 1.7920871814940066e-12,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": -0.9999938557876468,
+          "acceleration": 0,
+          "rpm": 1975.318204987314,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.3385
+        },
+        "root": [
+          -37.14743966529947,
+          0.003,
+          77.38981926244614
+        ],
+        "rotation": [
+          0,
+          -0.06526491702458828,
+          0
+        ],
+        "parts": {
+          "body": [
+            -0.000322649917536359,
+            0,
+            -1.2219413824792495e-13
+          ],
+          "wheel_front_L": [
+            -40.654108676104585,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            -40.654108676104585,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -40.654108676104585,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -40.654108676104585,
+            0,
+            0
+          ]
+        },
+        "spin": -40.53604415997565,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "sedan_14",
+        "meshes": 7141
+      },
+      "pauseFrozen": true
+    },
+    {
+      "name": "pulsar",
+      "initial": {
+        "name": "pulsar",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 90,
+          "heading": 0,
+          "speed": 0,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 0,
+          "acceleration": 0,
+          "rpm": 1975.318204987314,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.3385
+        },
+        "root": [
+          -37,
+          0.003,
+          90
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "wheel_front": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear": [
+            0,
+            0,
+            0
+          ],
+          "body": [
+            0,
+            0,
+            0
+          ],
+          "steering": [
+            0,
+            0,
+            0
+          ]
+        },
+        "spin": 0,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "pulsar_12",
+        "meshes": 7147
+      },
+      "accelerate": {
+        "name": "pulsar",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 79.9981474220118,
+          "heading": 0,
+          "speed": 9.517211182811533,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0.0006517721207495537,
+          "motoPitch46": 0.011711597531732109,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.9999996940976794,
+          "acceleration": 5.126666485949372,
+          "rpm": 7767.355479843212,
+          "gripAcceleration13": 8.927100000000001,
+          "lateralBudget13": 6.287901492286439
+        },
+        "root": [
+          -37,
+          0.003,
+          80.07745751520194
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "wheel_front": [
+            -33.07514161599373,
+            0,
+            0
+          ],
+          "wheel_rear": [
+            -33.07514161599373,
+            0,
+            0
+          ],
+          "body": [
+            0.011706166097392525,
+            0,
+            0
+          ],
+          "steering": [
+            0,
+            0,
+            0
+          ]
+        },
+        "spin": -33.339508593294205,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "pulsar_12",
+        "meshes": 7152
+      },
+      "steer": {
+        "name": "pulsar",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.94585432103182,
+          "z": 75.94773582927695,
+          "heading": -0.037580479929997024,
+          "speed": 10.472172714801582,
+          "steer": 0.029142761628653865,
+          "lean": 0.13510688359496656,
+          "longAcceleration": 0,
+          "yawRate": -0.1771960216540527,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": -0.015581335501901486,
+          "motoPitch46": 0.005017855271660982,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.31803843721622677,
+          "acceleration": 1.2283576913612748,
+          "rpm": 8607.302551839342,
+          "gripAcceleration13": 8.927100000000001,
+          "lateralBudget13": 6.287901492286439
+        },
+        "root": [
+          -36.94909378077217,
+          0.005598979385815684,
+          76.03389584057138
+        ],
+        "rotation": [
+          0,
+          -0.03612156601837883,
+          -0.13168008948653392
+        ],
+        "parts": {
+          "wheel_front": [
+            -46.55563685250027,
+            0,
+            0
+          ],
+          "wheel_rear": [
+            -46.55563685250027,
+            0,
+            0
+          ],
+          "body": [
+            0.005146141600626622,
+            0,
+            0
+          ],
+          "steering": [
+            0,
+            -0.02906284448351096,
+            0
+          ]
+        },
+        "spin": -46.843039814784234,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "pulsar_12",
+        "meshes": 7154
+      },
+      "brake": {
+        "name": "pulsar",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.51018031928286,
+          "z": 69.88172331745635,
+          "heading": -0.08635732405000994,
+          "speed": 0,
+          "steer": 2.3708005508136734e-15,
+          "lean": 3.314457794455822e-13,
+          "longAcceleration": 0,
+          "yawRate": -8.614529893708961e-12,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 4.001078289021912e-13,
+          "motoPitch46": -4.411939512849644e-15,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 5.10073509220452e-29,
+          "acceleration": 0,
+          "rpm": 1250,
+          "gripAcceleration13": 8.927100000000001,
+          "lateralBudget13": 6.287901492286439
+        },
+        "root": [
+          -36.51018031928286,
+          0.003,
+          69.88172331745635
+        ],
+        "rotation": [
+          0,
+          -0.08635732404993815,
+          -3.536211011773865e-13
+        ],
+        "parts": {
+          "wheel_front": [
+            -67.11713725893883,
+            0,
+            0
+          ],
+          "wheel_rear": [
+            -67.11713725893883,
+            0,
+            0
+          ],
+          "body": [
+            -7.746171420369843e-15,
+            0,
+            0
+          ],
+          "steering": [
+            0,
+            -2.5294185457815764e-15,
+            0
+          ]
+        },
+        "spin": -67.11713725893883,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "pulsar_12",
+        "meshes": 7198
+      },
+      "reverse": {
+        "name": "pulsar",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.65246169216931,
+          "z": 71.52521455053007,
+          "heading": -0.08635732405137501,
+          "speed": -1.2,
+          "steer": 6.762031307703444e-22,
+          "lean": -1.2058991098965901e-17,
+          "longAcceleration": 0,
+          "yawRate": -5.2911956309266287e-17,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0.000003896859985930471,
+          "motoPitch46": 1.5329581984238748e-7,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": -0.9999938557876468,
+          "acceleration": 0,
+          "rpm": 1250,
+          "gripAcceleration13": 8.927100000000001,
+          "lateralBudget13": 6.287901492286439
+        },
+        "root": [
+          -36.65159919189079,
+          0.003,
+          71.51525181529973
+        ],
+        "rotation": [
+          0,
+          -0.08635732405137501,
+          1.2657938746432691e-17
+        ],
+        "parts": {
+          "wheel_front": [
+            -61.65167534819995,
+            0,
+            0
+          ],
+          "wheel_rear": [
+            -61.65167534819995,
+            0,
+            0
+          ],
+          "body": [
+            1.208219866262813e-7,
+            0,
+            0
+          ],
+          "steering": [
+            0,
+            -7.214443826154223e-22,
+            0
+          ]
+        },
+        "spin": -61.6183420148666,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "pulsar_12",
+        "meshes": 7216
+      },
+      "pauseFrozen": true
+    },
+    {
+      "name": "caponera",
+      "initial": {
+        "name": "caponera",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 90,
+          "heading": 0,
+          "speed": 0,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 0,
+          "acceleration": 0,
+          "rpm": 1250,
+          "gripAcceleration13": 8.927100000000001,
+          "lateralBudget13": 6.287901492286439
+        },
+        "root": [
+          -37,
+          0.003,
+          90
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "wheel_front": [
+            0,
+            0,
+            0
+          ],
+          "body": [
+            0,
+            0,
+            0
+          ],
+          "steering": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            0,
+            0,
+            0
+          ]
+        },
+        "spin": 0,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "caponera_31",
+        "meshes": 7216
+      },
+      "accelerate": {
+        "name": "caponera",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 86.32048282907506,
+          "heading": 0,
+          "speed": 3.3268036146699687,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0.008277886744226828,
+          "pitchVelocity": 0.0011231156152420542,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.9999996940976794,
+          "acceleration": 1.6974529998721266,
+          "rpm": 2716.4286015146613,
+          "gripAcceleration13": 6.376500000000001,
+          "lateralBudget13": 6.146414040985616
+        },
+        "root": [
+          -37,
+          0.003,
+          86.34820619253067
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "wheel_front": [
+            -12.172646024897377,
+            0,
+            0
+          ],
+          "body": [
+            0.008268527447433139,
+            0,
+            0
+          ],
+          "steering": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            -12.172646024897377,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -12.172646024897377,
+            0,
+            0
+          ]
+        },
+        "spin": -12.265057236416041,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "caponera_31",
+        "meshes": 7231
+      },
+      "steer": {
+        "name": "caponera",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.992866357469644,
+          "z": 84.91437434605942,
+          "heading": -0.029160326672252934,
+          "speed": 3.609867485867486,
+          "steer": 0.07233154378631872,
+          "lean": 0.003579604018013926,
+          "longAcceleration": 0,
+          "yawRate": -0.14355278804242913,
+          "chassisPitch": 0.0034911447603106355,
+          "pitchVelocity": -0.013248046210346611,
+          "sideSpeed40": -0.043352981995946435,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.31803843721622677,
+          "acceleration": 0.286005214249867,
+          "rpm": 2968.913428015602,
+          "gripAcceleration13": 6.376500000000001,
+          "lateralBudget13": 6.370082673515462
+        },
+        "root": [
+          -36.99338231952209,
+          0.003,
+          84.94445431958383
+        ],
+        "rotation": [
+          0,
+          -0.02796405343856533,
+          0
+        ],
+        "parts": {
+          "wheel_front": [
+            -16.85184313790274,
+            0,
+            0
+          ],
+          "body": [
+            0.0036015451453969213,
+            0,
+            0.003484560026228646
+          ],
+          "steering": [
+            0,
+            -0.07205903413354062,
+            0
+          ],
+          "wheel_rear_L": [
+            -16.85184313790274,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -16.85184313790274,
+            0,
+            0
+          ]
+        },
+        "spin": -16.95211723473245,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "caponera_31",
+        "meshes": 7231
+      },
+      "brake": {
+        "name": "caponera",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.95805052927736,
+          "z": 83.921768677324,
+          "heading": -0.07420395025024985,
+          "speed": 0,
+          "steer": 5.001292340912683e-14,
+          "lean": 1.2708065009508388e-17,
+          "longAcceleration": 0,
+          "yawRate": -6.47599771223705e-10,
+          "chassisPitch": -5.201363842140074e-13,
+          "pitchVelocity": 4.847412264303705e-12,
+          "sideSpeed40": -1.5390878733737918e-16,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 5.10073509220452e-29,
+          "acceleration": 0,
+          "rpm": 850,
+          "gripAcceleration13": 6.376500000000001,
+          "lateralBudget13": 6.376500000000001
+        },
+        "root": [
+          -36.95805052927736,
+          0.003,
+          83.921768677324
+        ],
+        "rotation": [
+          0,
+          -0.07420395024485318,
+          0
+        ],
+        "parts": {
+          "wheel_front": [
+            -20.262621089160923,
+            0,
+            0
+          ],
+          "body": [
+            -5.605314864165618e-13,
+            0,
+            1.3736365048186777e-17
+          ],
+          "steering": [
+            0,
+            -5.310734265282767e-14,
+            0
+          ],
+          "wheel_rear_L": [
+            -20.262621089160923,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -20.262621089160923,
+            0,
+            0
+          ]
+        },
+        "spin": -20.262621089160923,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "caponera_31",
+        "meshes": 7231
+      },
+      "reverse": {
+        "name": "caponera",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37.12241929866252,
+          "z": 86.13279617496684,
+          "heading": -0.07420395037444208,
+          "speed": -2.5048526414924597,
+          "steer": 4.1587182141015916e-20,
+          "lean": -1.2451447318931077e-15,
+          "longAcceleration": 0,
+          "yawRate": -2.9399294703725036e-14,
+          "chassisPitch": -0.007670181537798717,
+          "pitchVelocity": -0.0013025120833787232,
+          "sideSpeed40": 1.5080086197372084e-14,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": -0.9999938557876468,
+          "acceleration": -1.5830947344729651,
+          "rpm": 2041.0958441068753,
+          "gripAcceleration13": 6.376500000000001,
+          "lateralBudget13": 6.176857073923921
+        },
+        "root": [
+          -37.120871803376,
+          0.003,
+          86.11197984444568
+        ],
+        "rotation": [
+          0,
+          -0.07420395037444183,
+          0
+        ],
+        "parts": {
+          "wheel_front": [
+            -12.941771317687524,
+            0,
+            0
+          ],
+          "body": [
+            -0.007659327270437221,
+            0,
+            -1.2912302801667155e-15
+          ],
+          "steering": [
+            0,
+            -4.41602806110999e-20,
+            0
+          ],
+          "wheel_rear_L": [
+            -12.941771317687524,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -12.941771317687524,
+            0,
+            0
+          ]
+        },
+        "spin": -12.872192077646027,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "caponera_31",
+        "meshes": 7231
+      },
+      "pauseFrozen": true
+    },
+    {
+      "name": "bus",
+      "initial": {
+        "name": "bus",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 90,
+          "heading": 0,
+          "speed": 0,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0,
+          "pitchVelocity": 0,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 0,
+          "acceleration": -1.5830947344729651,
+          "rpm": 2041.0958441068753,
+          "gripAcceleration13": 6.376500000000001,
+          "lateralBudget13": 6.176857073923921
+        },
+        "root": [
+          -37,
+          0.003,
+          90
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "body": [
+            0,
+            0,
+            0
+          ],
+          "wheel_front_L": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            0,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            0,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            0,
+            0,
+            0
+          ]
+        },
+        "spin": 0,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "bus_16",
+        "meshes": 7231
+      },
+      "accelerate": {
+        "name": "bus",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37,
+          "z": 85.4634046190916,
+          "heading": 0,
+          "speed": 3.8887658504748175,
+          "steer": 0,
+          "lean": 0,
+          "longAcceleration": 0,
+          "yawRate": 0,
+          "chassisPitch": 0.005950830820934791,
+          "pitchVelocity": 0.00033859573343026505,
+          "sideSpeed40": 0,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.9999996940976794,
+          "acceleration": 1.7311290271779978,
+          "rpm": 1071.9332963325453,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.156823802268978
+        },
+        "root": [
+          -37,
+          0.003,
+          85.49542212459384
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "parts": {
+          "body": [
+            0.0059480430493962155,
+            0,
+            0
+          ],
+          "wheel_front_L": [
+            -9.193016072257238,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            -9.193016072257238,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -9.193016072257238,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -9.193016072257238,
+            0,
+            0
+          ]
+        },
+        "spin": -9.258357920220991,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "bus_16",
+        "meshes": 7240
+      },
+      "steer": {
+        "name": "bus",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.999524625467046,
+          "z": 83.83070507510556,
+          "heading": -0.0029254643375545295,
+          "speed": 4.17963988331467,
+          "steer": 0.055141362374130705,
+          "lean": 0.0004544400818313935,
+          "longAcceleration": 0,
+          "yawRate": -0.017382913739493834,
+          "chassisPitch": 0.003445669278230762,
+          "pitchVelocity": -0.00908134293325929,
+          "sideSpeed40": -0.007596943909228872,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": 0.31803843721622677,
+          "acceleration": 0.30191692429641037,
+          "rpm": 1159.3267601244925,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.333032366481207
+        },
+        "root": [
+          -36.99956321262189,
+          0.003,
+          83.86553544362633
+        ],
+        "rotation": [
+          0,
+          -0.002780606723058663,
+          0
+        ],
+        "parts": {
+          "body": [
+            0.003521347136007967,
+            0,
+            0.00043727648349883435
+          ],
+          "wheel_front_L": [
+            -12.519314632205113,
+            -0.05391959037843073,
+            0
+          ],
+          "wheel_rear_L": [
+            -12.519314632205113,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -12.519314632205113,
+            -0.05529693959980835,
+            0
+          ],
+          "wheel_rear_R": [
+            -12.519314632205113,
+            0,
+            0
+          ]
+        },
+        "spin": -12.59039694314588,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "bus_16",
+        "meshes": 7240
+      },
+      "brake": {
+        "name": "bus",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -36.99866128525275,
+          "z": 82.81790689735834,
+          "heading": -0.010807193719145049,
+          "speed": 0,
+          "steer": 6.491251677798773e-8,
+          "lean": 2.2943524940076916e-18,
+          "longAcceleration": 0,
+          "yawRate": -0.0000027049550385760554,
+          "chassisPitch": 1.0445244068294316e-9,
+          "pitchVelocity": -2.7479545285962575e-9,
+          "sideSpeed40": -2.8833799046008075e-10,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 0,
+          "throttle": 5.10073509220452e-29,
+          "acceleration": 0,
+          "rpm": 850,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.3385
+        },
+        "root": [
+          -36.99866128525035,
+          0.003,
+          82.81790689735837
+        ],
+        "rotation": [
+          0,
+          -0.01080717117785306,
+          0
+        ],
+        "parts": {
+          "body": [
+            1.0674240279010805e-9,
+            0,
+            2.480004893217541e-18
+          ],
+          "wheel_front_L": [
+            -14.65729632094752,
+            -6.68123084444153e-8,
+            0
+          ],
+          "wheel_rear_L": [
+            -14.65729632094752,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -14.65729632094752,
+            -6.681231051003077e-8,
+            0
+          ],
+          "wheel_rear_R": [
+            -14.65729632094752,
+            0,
+            0
+          ]
+        },
+        "spin": -14.65729632094752,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "bus_16",
+        "meshes": 7240
+      },
+      "reverse": {
+        "name": "bus",
+        "driving": true,
+        "playing": true,
+        "state": {
+          "x": -37.02890762459232,
+          "z": 85.61619917889112,
+          "heading": -0.010808624787935607,
+          "speed": -3,
+          "steer": 7.042938981726043e-11,
+          "lean": -2.2947948702910303e-9,
+          "longAcceleration": 0,
+          "yawRate": -7.208328276871342e-8,
+          "chassisPitch": -0.005788593899001106,
+          "pitchVelocity": 0.003824201045727429,
+          "sideSpeed40": 6.041970954969117e-8,
+          "shiftTimer41": 0,
+          "motoPitchVelocity46": 0,
+          "motoPitch46": 0,
+          "wheelie": 0,
+          "directionHold": 0,
+          "gear": 1,
+          "throttle": -0.9999938557876468,
+          "acceleration": 0,
+          "rpm": 850,
+          "gripAcceleration13": 8.3385,
+          "lateralBudget13": 8.3385
+        },
+        "root": [
+          -37.028637414737446,
+          0.003,
+          85.59120063920106
+        ],
+        "rotation": [
+          0,
+          -0.010808624187241583,
+          0
+        ],
+        "parts": {
+          "body": [
+            -0.005820462241048853,
+            0,
+            -2.319948063294495e-9
+          ],
+          "wheel_front_L": [
+            -8.997182563952652,
+            0,
+            0
+          ],
+          "wheel_rear_L": [
+            -8.997182563952652,
+            0,
+            0
+          ],
+          "wheel_front_R": [
+            -8.997182563952652,
+            0,
+            0
+          ],
+          "wheel_rear_R": [
+            -8.997182563952652,
+            0,
+            0
+          ]
+        },
+        "spin": -8.946162155789358,
+        "condition": 100,
+        "contacts": 0,
+        "playerParent": "bus_16",
+        "meshes": 7240
+      },
+      "pauseFrozen": true
+    }
+  ],
+  "traffic": {
+    "before": [
+      {
+        "id": 0,
+        "x": -135.80495833333336,
+        "z": 113.45
+      },
+      {
+        "id": 1,
+        "x": 61.80495833333334,
+        "z": 108.55
+      },
+      {
+        "id": 2,
+        "x": -39.45,
+        "z": -22.804958333333335
+      },
+      {
+        "id": 3,
+        "x": -34.55,
+        "z": 237.80495833333336
+      },
+      {
+        "id": 4,
+        "x": -165.80495833333336,
+        "z": 113.45
+      },
+      {
+        "id": 5,
+        "x": 91.80495833333336,
+        "z": 108.55
+      },
+      {
+        "id": 6,
+        "x": -39.45,
+        "z": -52.80495833333334
+      },
+      {
+        "id": 8,
+        "x": -195.80495833333336,
+        "z": 113.45
+      },
+      {
+        "id": 9,
+        "x": 121.80495833333336,
+        "z": 108.55
+      },
+      {
+        "id": 10,
+        "x": -39.45,
+        "z": -82.80495833333336
+      }
+    ],
+    "after": [
+      {
+        "id": 0,
+        "x": -135.38661197222225,
+        "z": 113.45
+      },
+      {
+        "id": 1,
+        "x": 61.38661197222223,
+        "z": 108.55
+      },
+      {
+        "id": 2,
+        "x": -39.45,
+        "z": -22.386611972222216
+      },
+      {
+        "id": 3,
+        "x": -34.55,
+        "z": 237.38661197222225
+      },
+      {
+        "id": 4,
+        "x": -165.38661197222225,
+        "z": 113.45
+      },
+      {
+        "id": 5,
+        "x": 91.38661197222223,
+        "z": 108.55
+      },
+      {
+        "id": 6,
+        "x": -39.45,
+        "z": -52.38661197222223
+      },
+      {
+        "id": 8,
+        "x": -34.55,
+        "z": 218.5064295833334
+      },
+      {
+        "id": 9,
+        "x": 121.38661197222223,
+        "z": 108.55
+      },
+      {
+        "id": 10,
+        "x": 34.96642958333334,
+        "z": 108.55
+      }
+    ],
+    "elapsed": 0.2499999999999991
+  },
+  "wall": {
+    "start": {
+      "x": 0,
+      "z": 8.65,
+      "wall": [
+        -6,
+        -6,
+        6,
+        6
+      ]
+    },
+    "contacts": 1,
+    "speed": -0.609280867881251,
+    "x": 0,
+    "z": 8.892179456100951,
+    "penetrating": false,
+    "condition": 95.29663539270786
+  },
+  "errors": []
+}
