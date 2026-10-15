@@ -1,0 +1,35 @@
+name: Inicio y menú ilustrado
+on:
+  push:
+    branches: [ui/illustrated-menu]
+    paths-ignore: ['docs/**', 'README.md']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: illustrated-menu-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          lfs: true
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: python3 scripts/build_performance.py
+      - run: npm install --no-save --package-lock=false playwright@1.49.1
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test_menu_browser.cjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: Nagua-menu-ilustrado
+          path: |
+            dist/menu-*.png
+            dist/menu-browser.json
+            dist/build-verification.json
+          retention-days: 14

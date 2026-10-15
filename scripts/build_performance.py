@@ -105,10 +105,13 @@ def build(source,output):
   old_hash=digest(source,[(0,start),(end,source.stat().st_size)])
   new_hash=digest(tmp,[(0,start),(start+len(code),tmp.stat().st_size)])
   if old_hash!=new_hash:raise ValueError('Cambió contenido fuera de appSource')
+  from build_presentation import replace as replace_presentation,stable_digest
+  presentation=replace_presentation(tmp)
+  if stable_digest(source)!=stable_digest(tmp):raise ValueError('Cambió contenido fuera de appSource y presentation46')
   tmp.replace(output)
  finally:
   tmp.unlink(missing_ok=True)
- report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage','vehicle-template-loading','static-geometry-sharing','progressive-gardens','moving-details','static-point-cache','runtime-diagnostics','stationary-vehicle-transforms','vehicle-body-batching','active-mesh-candidates','vehicle-handling'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':True,'changedFunctions':['packKeys45','samplePacked45','streamPass44','createTemplates','gardens46','meshData','updateFleet','Driving.advance','vehicleContact40','suspension40','stepFleet13','vehiclePresentation13'],'assetBlocks':asset_count(output)}
+ report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage','vehicle-template-loading','static-geometry-sharing','progressive-gardens','moving-details','static-point-cache','runtime-diagnostics','stationary-vehicle-transforms','vehicle-body-batching','active-mesh-candidates','vehicle-handling','illustrated-menu'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':False,'changedOutsideAppSource':['presentation46'],'allOutsideReviewedScriptsIdentical':True,'presentation':presentation,'changedFunctions':['packKeys45','samplePacked45','streamPass44','createTemplates','gardens46','meshData','updateFleet','Driving.advance','vehicleContact40','suspension40','stepFleet13','vehiclePresentation13'],'assetBlocks':asset_count(output)}
  (output.parent/'build-verification.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--source',type=Path,default=ROOT/'Managua_Del_taller_al_lago(1).html');p.add_argument('--output',type=Path,default=ROOT/'dist'/'Managua.html');a=p.parse_args();build(a.source,a.output)
