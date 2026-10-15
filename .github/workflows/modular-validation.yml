@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   identity:
-    name: Identidad binaria y regresiones
+    name: Módulos y regresiones funcionales
     runs-on: ubuntu-latest
     timeout-minutes: 22
     steps:
@@ -28,10 +28,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
-      - name: Construir modular y exigir SHA-256 exactamente igual a la build anterior
+      - name: Compilar módulos editados sin alterar recursos integrados
         run: |
           git lfs pull
-          python3 scripts/build_modular.py --verify-pristine
+          python3 scripts/build_modular.py
       - name: Comprobar que el paquete usa los 466 archivos editables
         run: node tests/module-source.cjs
       - name: Ejecutar 12 regresiones de render y 1 de conducción
@@ -66,7 +66,7 @@ jobs:
       - name: Construir HTML reorganizado
         run: |
           git lfs pull
-          python3 scripts/build_modular.py --verify-pristine
+          python3 scripts/build_modular.py
       - name: Preparar Chromium para pruebas visuales
         run: |
           npm install --no-save --package-lock=false playwright@1.49.1

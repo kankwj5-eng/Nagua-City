@@ -1,0 +1,50 @@
+name: Personaje y materiales — pruebas reales
+on:
+  push:
+    branches: ['fix/character-rig-materials-stage1']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: visual-stage1-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Construir juego desde fuentes modulares
+        run: |
+          git lfs pull
+          python3 scripts/build_modular.py
+          node tests/module-source.cjs
+      - name: Probar regresiones existentes
+        run: |
+          for n in $(seq -w 1 12); do
+            node --max-old-space-size=1536 "tests/performance-block${n}.cjs"
+          done
+          node --max-old-space-size=1536 tests/vehicle-handling.cjs
+      - name: Preparar Chromium
+        run: |
+          npm install --no-save --package-lock=false playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: Inspección de personaje, arma, moto y materiales
+        run: node scripts/test_visual_stage1.cjs
+      - name: Guardar resultados y capturas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nagua-etapa1-personaje
+          path: |
+            dist/stage1-visual.json
+            dist/stage1-moto.png
+            dist/module-verification.json
+          if-no-files-found: warn
+          retention-days: 14
