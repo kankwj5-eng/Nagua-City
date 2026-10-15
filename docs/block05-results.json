@@ -1,0 +1,18 @@
+{
+  "block": 5,
+  "engine": "9.29.0",
+  "scope": "real vehicle geometry with embedded engine; not whole-process RAM",
+  "models": 24,
+  "geometryBefore": 963,
+  "geometryAfter": 627,
+  "examined": 963,
+  "shared": 336,
+  "meshes": 336,
+  "duplicateBufferBytes": 6444424,
+  "skipped": 0,
+  "exactSceneSnapshot": true,
+  "cloneAndInstancePreserved": true,
+  "dynamicExclusions": true,
+  "collisionChecked": true,
+  "passed": true
+}

@@ -118,3 +118,16 @@ node --max-old-space-size=512 tests/performance-block04.cjs
 ```
 
 Informes: `block04-results.json`, `block04-build.json` y `block04-browser.json`. El cambio funcional de este bloque se limita a `createTemplates`. El perfil detectó además coste en construcción de materiales, preparación de personajes y primera imagen; quedan como bloques posteriores, sin alterar todas esas etapas a la vez.
+
+
+## Bloque 05 — compartir geometría estática de vehículos
+
+Se comparan los atributos y los índices, su disposición y sus bytes. Un hash agrupa candidatos, pero nunca autoriza compartir por sí solo: se comprueban todos los bytes para evitar colisiones. Materiales, transformaciones, objetos, índices de submalla y visibilidad permanecen separados. La integración solo examina geometrías de las plantillas de vehículos, antes de crear la flota. No toca cachés de cuerpos humanos, geometrías animadas, modificables, con morph targets, con varias submallas o con datos de construcción que puedan actualizarse.
+
+En las plantillas de la base oficial hay 336 geometrías repetidas, con 6.444.424 bytes de datos redundantes (6,14 MiB). La prueba con el motor Babylon 9.29.0 conserva exactamente una huella de atributos, índices, matrices, materiales y visibilidad, incluidos un clon y una instancia. También fuerza colisiones de hash y comprueba las exclusiones. En el navegador se examinaron 939 geometrías de piezas, sin las 24 geometrías LOD separadas; se compartieron las mismas 336.
+
+Las geometrías duplicadas sin usuarios se disponen explícitamente: cambiar su asociación sin disponerlas no liberaba los buffers del motor. El índice auxiliar de comparación se vacía al finalizar. Los bytes indican datos redundantes que dejan de requerir buffers separados; no una medición de RAM total ni una mejora demostrada de FPS.
+
+```sh
+node --max-old-space-size=768 tests/performance-block05.cjs
+```
