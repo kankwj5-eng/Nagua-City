@@ -42,3 +42,12 @@ Correcciones de agarre al frenar en curva, balanceo de carrocería, maniobras le
 ## Inicio y menú de referencia
 
 El menú usa exactamente el JPEG aportado por el usuario: logo grafiteado, letras, iconos y composición originales, con tres botones funcionales sobre sus zonas. Durante el arranque muestra la carga real sin dejar visible el 100 % impreso antes de tiempo. Detalles, proporciones y pruebas: [docs/INICIO_Y_MENU.md](docs/INICIO_Y_MENU.md).
+
+## Instalar Nagua City como aplicación web (Android)
+
+La versión PWA añade una portada ligera en español, un botón **Instalar app**, iconos de 192/512 píxeles y un modo independiente sin barra del navegador. No modifica la mecánica ni los gráficos del HTML original. El juego pesado sigue requiriendo internet: **no** se almacena automáticamente en la caché offline para no agotar la memoria del teléfono.
+
+- [Guía de instalación y despliegue en GitHub Pages](docs/PWA.md).
+- [Workflow de publicación](.github/workflows/pages-pwa.yml).
+- Sitio tras publicar y habilitar Pages: `https://kankwj5-eng.github.io/Nagua-City/`.
+
