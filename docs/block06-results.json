@@ -1,0 +1,22 @@
+{
+  "block": 6,
+  "scope": "real embedded Babylon / deterministic garden fixture, not physical Android RAM",
+  "totalPlacements": 245,
+  "initialResidents": 63,
+  "avoidedInitialResidents": 182,
+  "visits": 144,
+  "rootSnapshotsCompared": 3252,
+  "peakMeshes": 148,
+  "streaming": {
+    "placements": 245,
+    "built": 2479,
+    "disposed": 2435,
+    "maxResident": 72
+  },
+  "collisionPlacementsIdentical": true,
+  "visibleGardensIdentical": true,
+  "geometryAndTransformsIdentical": true,
+  "boundedResidents": true,
+  "warmBudgetAndCancellation": true,
+  "passed": true
+}

@@ -118,3 +118,52 @@ node --max-old-space-size=512 tests/performance-block04.cjs
 ```
 
 Informes: `block04-results.json`, `block04-build.json` y `block04-browser.json`. El cambio funcional de este bloque se limita a `createTemplates`. El perfil detectó además coste en construcción de materiales, preparación de personajes y primera imagen; quedan como bloques posteriores, sin alterar todas esas etapas a la vez.
+
+
+## Bloque 05 — compartir geometría estática de vehículos
+
+Se comparan los atributos y los índices, su disposición y sus bytes. Un hash agrupa candidatos, pero nunca autoriza compartir por sí solo: se comprueban todos los bytes para evitar colisiones. Materiales, transformaciones, objetos, índices de submalla y visibilidad permanecen separados. La integración solo examina geometrías de las plantillas de vehículos, antes de crear la flota. No toca cachés de cuerpos humanos, geometrías animadas, modificables, con morph targets, con varias submallas o con datos de construcción que puedan actualizarse.
+
+En las plantillas de la base oficial hay 336 geometrías repetidas, con 6.444.424 bytes de datos redundantes (6,14 MiB). La prueba con el motor Babylon 9.29.0 conserva exactamente una huella de atributos, índices, matrices, materiales y visibilidad, incluidos un clon y una instancia. También fuerza colisiones de hash y comprueba las exclusiones. En el navegador se examinaron 939 geometrías de piezas, sin las 24 geometrías LOD separadas; se compartieron las mismas 336.
+
+Las geometrías duplicadas sin usuarios se disponen explícitamente: cambiar su asociación sin disponerlas no liberaba los buffers del motor. El índice auxiliar de comparación se vacía al finalizar. Los bytes indican datos redundantes que dejan de requerir buffers separados; no una medición de RAM total ni una mejora demostrada de FPS.
+
+```sh
+node --max-old-space-size=768 tests/performance-block05.cjs
+```
+
+
+## Bloque 06 — jardines con residencia por proximidad
+
+Los jardines conservan exactamente sus fuentes, ubicaciones, escala, orientación, materiales y colisiones. Ahora se guardan ubicaciones ligeras y se crean primero las instancias cercanas al punto de inicio. Se prepara un margen adicional de 60 m; las instancias situadas a más de radio + 100 m se disponen. Las colisiones de todas las ubicaciones se registran una sola vez desde la preparación, aunque todavía no haya una instancia de dibujo.
+
+La precarga de instancias ocultas trabaja como máximo dos jardines por cuadro y comprueba un presupuesto de 8 ms entre trabajos. Los jardines ya visibles tienen prioridad: un cambio de radio o un salto de posición resuelve todos los necesarios antes del dibujo, para evitar sacrificar contenido visible. Esto puede producir una ráfaga de trabajo al teletransportarse; no se promete un límite absoluto de 8 ms para ese caso. El límite tampoco interrumpe a mitad una operación individual del motor.
+
+La prueba usa el motor real y un fixture de 245 ubicaciones. Crea inicialmente 63 jardines, en lugar de los 245, y recorre 144 visitas con tres calidades. Compara más de 3.200 huellas de geometría y transformaciones y los conjuntos visibles, con colisiones idénticas. El pico fue de 72 jardines residentes. Las instancias antiguas se eliminan tanto del planificador como de `art46.gardenRoots` y del motor.
+
+En el juego completo se encontraron 174 ubicaciones, de las cuales se construyeron 57 al abrir. La cifra de 245 pertenece al fixture de estrés, no al mapa real. Este bloque introduce carga progresiva para los jardines; no convierte todavía todos los edificios, personajes y materiales a residencia espacial.
+
+```sh
+node --max-old-space-size=768 tests/performance-block06.cjs
+```
+
+
+## Bloque 07 — matrices de detalles móviles
+
+El constructor `makeDetailGroup` congela matrices para detalles estáticos. Dos mallas de detalles de vehículos en el juego completo conservaban ese estado después de incorporarse a una jerarquía móvil. Ahora se descongelan únicamente los descendientes de vehículos que lo necesitan, al terminar la preparación. Las matrices de la ciudad estática permanecen congeladas.
+
+La prueba reproduce un panel que queda separado de su vehículo al trasladarlo o girarlo: falla en cinco de seis posiciones antes del cambio y sigue correctamente la jerarquía en las seis después. La tolerancia de 1e-6 admite la precisión de matrices Float32; el error observado fue menor de 3e-8. No se modifica la física, el paso de simulación ni la interpolación general. Este fallo de detalles móviles está demostrado; no demuestra por sí solo que explique todos los tirones descritos en el teléfono.
+
+```sh
+node --max-old-space-size=512 tests/performance-block07.cjs
+```
+
+### Comprobación acumulada y límites
+
+Se abrió el HTML acumulado en Chrome 131 con SwiftShader, contenedor de escritorio y ventana 320×180. Llegó a `ready` y permitió entrar. Se reprodujeron 30 cuadros a 8 cuadros/s simulados con la rasterización GPU desactivada solo en el banco de pruebas. Esto ejercita el bucle, sus poses y callbacks; **no mide FPS reales de conducción**. No había AnimationGroups del motor ejecutándose en paralelo. El vehículo se detuvo al encontrar una colisión en ese recorrido, por lo que no es una prueba de conducción prolongada libre de obstáculos.
+
+Después se hicieron tres ciclos de cinco destinos. Al terminar cada ciclo, los recursos se estabilizaron en 7.814 mallas, 3.420 geometrías, 705 materiales y 417 texturas; la caché de zonas quedó en 32.933.903 bytes, por debajo de su límite de 32 MiB, y la de casas tuvo ocho entradas. El contador de jardines mostró 466 construcciones y 415 disposiciones al final. No hubo errores JavaScript capturados. Esto verifica estabilidad de esos recuentos en ese recorrido, no ausencia universal de fugas. La lectura `performance.memory` fue cuantizada y se conserva como aproximación, sin certificar ahorro de RAM total.
+
+La apertura sigue incluyendo preparación global de personajes, materiales y arquitectura. Un HTML con todos los recursos integrados requiere además leer y analizar esos datos iniciales, aunque el dibujo sea progresivo. No se presenta esta entrega como solución completa de los 8–10 FPS ni del tiempo de carga en Android. El siguiente cuello de botella requiere aislar coste de dibujo, sombras y residencia de personajes, conservando calidad.
+
+Informes de estos bloques: `block05-results.json`, `block06-results.json`, `block07-results.json`, `block05-07-build.json` y `block05-07-browser.json`. La construcción mantiene idénticos los 16 bloques de recursos y todo el contenido fuera de appSource. Las siete pruebas se ejecutan en GitHub Actions.

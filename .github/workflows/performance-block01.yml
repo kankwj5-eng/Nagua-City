@@ -29,6 +29,12 @@ jobs:
         run: node --max-old-space-size=512 tests/performance-block03.cjs
       - name: Verificar piezas y pausas de carga de vehículos
         run: node --max-old-space-size=512 tests/performance-block04.cjs
+      - name: Verificar geometrías compartidas
+        run: node --max-old-space-size=768 tests/performance-block05.cjs
+      - name: Verificar residencia progresiva y recorridos repetidos
+        run: node --max-old-space-size=768 tests/performance-block06.cjs
+      - name: Verificar detalles móviles
+        run: node --max-old-space-size=512 tests/performance-block07.cjs
       - name: Conservar HTML y pruebas
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

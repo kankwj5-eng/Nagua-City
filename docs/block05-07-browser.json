@@ -1,0 +1,590 @@
+{
+  "environment": "Chrome 131 / desktop container / SwiftShader / 320x180, no physical Android FPS or total-RAM claim",
+  "boot": {
+    "ready": true,
+    "playing": true,
+    "boot": {
+      "done": true,
+      "failed": false,
+      "phase": "Todo listo. Entr\u00e1 a la ciudad.",
+      "zones": 9,
+      "ms": 130912,
+      "stages": [
+        {
+          "name": "Arranque",
+          "ms": 0
+        },
+        {
+          "name": "Encendiendo la ciudad\u2026",
+          "ms": 264
+        },
+        {
+          "name": "Abriendo las calles\u2026",
+          "ms": 3188
+        },
+        {
+          "name": "Preparando los colores de la ciudad\u2026",
+          "ms": 2746
+        },
+        {
+          "name": "La calle cobra vida\u2026",
+          "ms": 62
+        },
+        {
+          "name": "Preparando veh\u00edculos 1/24\u2026",
+          "ms": 45
+        },
+        {
+          "name": "Preparando veh\u00edculos 2/24\u2026",
+          "ms": 54
+        },
+        {
+          "name": "Preparando veh\u00edculos 3/24\u2026",
+          "ms": 143
+        },
+        {
+          "name": "Preparando veh\u00edculos 4/24\u2026",
+          "ms": 133
+        },
+        {
+          "name": "Preparando veh\u00edculos 5/24\u2026",
+          "ms": 186
+        },
+        {
+          "name": "Preparando veh\u00edculos 6/24\u2026",
+          "ms": 62
+        },
+        {
+          "name": "Preparando veh\u00edculos 7/24\u2026",
+          "ms": 52
+        },
+        {
+          "name": "Preparando veh\u00edculos 8/24\u2026",
+          "ms": 1439
+        },
+        {
+          "name": "Preparando veh\u00edculos 9/24\u2026",
+          "ms": 66
+        },
+        {
+          "name": "Preparando veh\u00edculos 10/24\u2026",
+          "ms": 68
+        },
+        {
+          "name": "Preparando veh\u00edculos 11/24\u2026",
+          "ms": 126
+        },
+        {
+          "name": "Preparando veh\u00edculos 12/24\u2026",
+          "ms": 86
+        },
+        {
+          "name": "Preparando veh\u00edculos 13/24\u2026",
+          "ms": 63
+        },
+        {
+          "name": "Preparando veh\u00edculos 14/24\u2026",
+          "ms": 183
+        },
+        {
+          "name": "Preparando veh\u00edculos 15/24\u2026",
+          "ms": 173
+        },
+        {
+          "name": "Preparando veh\u00edculos 16/24\u2026",
+          "ms": 596
+        },
+        {
+          "name": "Preparando veh\u00edculos 17/24\u2026",
+          "ms": 129
+        },
+        {
+          "name": "Preparando veh\u00edculos 18/24\u2026",
+          "ms": 54
+        },
+        {
+          "name": "Preparando veh\u00edculos 19/24\u2026",
+          "ms": 14
+        },
+        {
+          "name": "Preparando veh\u00edculos 20/24\u2026",
+          "ms": 55
+        },
+        {
+          "name": "Preparando veh\u00edculos 21/24\u2026",
+          "ms": 42
+        },
+        {
+          "name": "Preparando veh\u00edculos 22/24\u2026",
+          "ms": 48
+        },
+        {
+          "name": "Preparando veh\u00edculos 23/24\u2026",
+          "ms": 71
+        },
+        {
+          "name": "Preparando veh\u00edculos 24/24\u2026",
+          "ms": 49979
+        },
+        {
+          "name": "Preparando texturas de calles y viviendas\u2026",
+          "ms": 29343
+        },
+        {
+          "name": "Bloque uno \u00b7 preparando materiales y sombras\u2026",
+          "ms": 15609
+        },
+        {
+          "name": "Abriendo el barrio\u2026",
+          "ms": 2
+        },
+        {
+          "name": "Cargando calles \u00b7 1/9\u2026",
+          "ms": 28
+        },
+        {
+          "name": "Cargando calles \u00b7 2/9\u2026",
+          "ms": 305
+        },
+        {
+          "name": "Cargando calles \u00b7 3/9\u2026",
+          "ms": 143
+        },
+        {
+          "name": "Cargando calles \u00b7 4/9\u2026",
+          "ms": 63
+        },
+        {
+          "name": "Cargando calles \u00b7 5/9\u2026",
+          "ms": 690
+        },
+        {
+          "name": "Cargando calles \u00b7 6/9\u2026",
+          "ms": 157
+        },
+        {
+          "name": "Cargando calles \u00b7 7/9\u2026",
+          "ms": 130
+        },
+        {
+          "name": "Cargando calles \u00b7 8/9\u2026",
+          "ms": 161
+        },
+        {
+          "name": "Cargando calles \u00b7 9/9\u2026",
+          "ms": 192
+        },
+        {
+          "name": "Preparando la primera imagen\u2026",
+          "ms": 16896
+        },
+        {
+          "name": "Dibujando el barrio\u2026",
+          "ms": 2709
+        }
+      ]
+    },
+    "stats": {
+      "motor": "Babylon.js 9.29.0",
+      "zones": 9,
+      "fleet": 45,
+      "pedestrians": 62,
+      "active": 734
+    },
+    "sharing": {
+      "examined": 939,
+      "shared": 336,
+      "meshes": 336,
+      "duplicateBufferBytes": 6444424,
+      "skipped": 0
+    },
+    "gardens": {
+      "placements": 174,
+      "built": 57,
+      "disposed": 0,
+      "maxResident": 57
+    },
+    "moving": {
+      "unfrozenVehicleMeshes": 2
+    }
+  },
+  "driving": {
+    "trace": [
+      {
+        "z": 224.80891048910715,
+        "stateZ": 224.79180893669135,
+        "speed": 1.0260931449483344,
+        "animationGroups": 0
+      },
+      {
+        "z": 224.66828096117715,
+        "stateZ": 224.6582807523928,
+        "speed": 1.2000250541202606,
+        "animationGroups": 0
+      },
+      {
+        "z": 224.51571280856575,
+        "stateZ": 224.49529122630628,
+        "speed": 1.2252949355676896,
+        "animationGroups": 0
+      },
+      {
+        "z": 224.36398033380058,
+        "stateZ": 224.3540071762115,
+        "speed": 1.1967789106903362,
+        "animationGroups": 0
+      },
+      {
+        "z": 224.21723499197367,
+        "stateZ": 224.19813633297036,
+        "speed": 1.1459195401983864,
+        "animationGroups": 0
+      },
+      {
+        "z": 224.07704812327023,
+        "stateZ": 224.0679349258356,
+        "speed": 1.0935836921570046,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.94383833967257,
+        "stateZ": 223.92660850627192,
+        "speed": 1.0337900040396837,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.81766578614113,
+        "stateZ": 223.80948673552763,
+        "speed": 0.9814860736208894,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.69846616689617,
+        "stateZ": 223.68310405127744,
+        "speed": 0.921726937124217,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.58629981638302,
+        "stateZ": 223.57905438674703,
+        "speed": 0.8694515563203242,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.48110269816718,
+        "stateZ": 223.46760731272366,
+        "speed": 0.809723126610355,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.38293533969153,
+        "stateZ": 223.37662306523524,
+        "speed": 0.7574729347572534,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.2917339594022,
+        "stateZ": 223.28010443648725,
+        "speed": 0.6977713748967685,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.20755928130188,
+        "stateZ": 223.2021797561535,
+        "speed": 0.6455430178069664,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.13034777431827,
+        "stateZ": 223.12058336602215,
+        "speed": 0.5858644977667522,
+        "animationGroups": 0
+      },
+      {
+        "z": 223.06016036262685,
+        "stateZ": 223.0557132407363,
+        "speed": 0.5336546268659554,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.9969337613023,
+        "stateZ": 222.98903383925997,
+        "speed": 0.47399532253985494,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.9407290983573,
+        "stateZ": 222.93721409340725,
+        "speed": 0.42180059400661357,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.89148333074218,
+        "stateZ": 222.88544738597167,
+        "speed": 0.3621566862298154,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.84925779402346,
+        "stateZ": 222.84667467935566,
+        "speed": 0.3099737601377663,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8139896828177,
+        "stateZ": 222.80981732558922,
+        "speed": 0.25034143370778983,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      },
+      {
+        "z": 222.8018452946591,
+        "stateZ": 222.8018452946591,
+        "speed": 0,
+        "animationGroups": 0
+      }
+    ],
+    "driving": true,
+    "gardens": {
+      "placements": 174,
+      "built": 75,
+      "disposed": 41,
+      "maxResident": 57
+    },
+    "technical": {
+      "streamRequests": 14,
+      "streamPasses": 4,
+      "streamCoalesced": 11,
+      "stationarySkips": 0,
+      "zoneInflations": 20,
+      "zoneCacheHits": 0,
+      "zoneCacheBytes": 28458539,
+      "zoneCacheLimit": 33554432,
+      "zoneEvictions": 0,
+      "houseReuses": 0,
+      "houseBuilds": 28,
+      "houseCacheBytes": 803040,
+      "houseCacheLimit": 8388608,
+      "houseCacheCountLimit": 8,
+      "releasedAnimationGroups": 0,
+      "sharedRideTracks": 26076,
+      "releasedImageStrings": 13395162,
+      "shadowScans": 8,
+      "shadowCoalesced": 3,
+      "maxStreamWorkers": 1,
+      "errors": [],
+      "geometrySharing05": {
+        "examined": 939,
+        "shared": 336,
+        "meshes": 336,
+        "duplicateBufferBytes": 6444424,
+        "skipped": 0
+      },
+      "movingDetails07": {
+        "unfrozenVehicleMeshes": 2
+      },
+      "zoneCacheEntries": 19,
+      "zoneReads": 1,
+      "houseCacheEntries": 8
+    },
+    "scope": "CPU render-loop replay at 8 simulated frames/s with GPU rendering bypassed; not a measured FPS benchmark"
+  },
+  "cycles": [
+    {
+      "heap": 793000000,
+      "meshes": 7814,
+      "geometries": 3420,
+      "materials": 705,
+      "textures": 417,
+      "technical": {
+        "streamRequests": 20,
+        "streamPasses": 10,
+        "streamCoalesced": 12,
+        "stationarySkips": 0,
+        "zoneInflations": 63,
+        "zoneCacheHits": 6,
+        "zoneCacheBytes": 32933903,
+        "zoneCacheLimit": 33554432,
+        "zoneEvictions": 41,
+        "houseReuses": 2,
+        "houseBuilds": 95,
+        "houseCacheBytes": 794640,
+        "houseCacheLimit": 8388608,
+        "houseCacheCountLimit": 8,
+        "releasedAnimationGroups": 0,
+        "sharedRideTracks": 26076,
+        "releasedImageStrings": 13395162,
+        "shadowScans": 16,
+        "shadowCoalesced": 3,
+        "maxStreamWorkers": 1,
+        "errors": [],
+        "geometrySharing05": {
+          "examined": 939,
+          "shared": 336,
+          "meshes": 336,
+          "duplicateBufferBytes": 6444424,
+          "skipped": 0
+        },
+        "movingDetails07": {
+          "unfrozenVehicleMeshes": 2
+        },
+        "zoneCacheEntries": 22,
+        "zoneReads": 0,
+        "houseCacheEntries": 8
+      },
+      "gardens": {
+        "placements": 174,
+        "built": 222,
+        "disposed": 171,
+        "maxResident": 57
+      }
+    },
+    {
+      "heap": 793000000,
+      "meshes": 7814,
+      "geometries": 3420,
+      "materials": 705,
+      "textures": 417,
+      "technical": {
+        "streamRequests": 26,
+        "streamPasses": 16,
+        "streamCoalesced": 12,
+        "stationarySkips": 0,
+        "zoneInflations": 110,
+        "zoneCacheHits": 6,
+        "zoneCacheBytes": 32933903,
+        "zoneCacheLimit": 33554432,
+        "zoneEvictions": 88,
+        "houseReuses": 2,
+        "houseBuilds": 153,
+        "houseCacheBytes": 794640,
+        "houseCacheLimit": 8388608,
+        "houseCacheCountLimit": 8,
+        "releasedAnimationGroups": 0,
+        "sharedRideTracks": 26076,
+        "releasedImageStrings": 13395162,
+        "shadowScans": 22,
+        "shadowCoalesced": 3,
+        "maxStreamWorkers": 1,
+        "errors": [],
+        "geometrySharing05": {
+          "examined": 939,
+          "shared": 336,
+          "meshes": 336,
+          "duplicateBufferBytes": 6444424,
+          "skipped": 0
+        },
+        "movingDetails07": {
+          "unfrozenVehicleMeshes": 2
+        },
+        "zoneCacheEntries": 22,
+        "zoneReads": 0,
+        "houseCacheEntries": 8
+      },
+      "gardens": {
+        "placements": 174,
+        "built": 344,
+        "disposed": 293,
+        "maxResident": 57
+      }
+    },
+    {
+      "heap": 793000000,
+      "meshes": 7814,
+      "geometries": 3420,
+      "materials": 705,
+      "textures": 417,
+      "technical": {
+        "streamRequests": 32,
+        "streamPasses": 22,
+        "streamCoalesced": 12,
+        "stationarySkips": 0,
+        "zoneInflations": 157,
+        "zoneCacheHits": 6,
+        "zoneCacheBytes": 32933903,
+        "zoneCacheLimit": 33554432,
+        "zoneEvictions": 135,
+        "houseReuses": 2,
+        "houseBuilds": 211,
+        "houseCacheBytes": 794640,
+        "houseCacheLimit": 8388608,
+        "houseCacheCountLimit": 8,
+        "releasedAnimationGroups": 0,
+        "sharedRideTracks": 26076,
+        "releasedImageStrings": 13395162,
+        "shadowScans": 28,
+        "shadowCoalesced": 3,
+        "maxStreamWorkers": 1,
+        "errors": [],
+        "geometrySharing05": {
+          "examined": 939,
+          "shared": 336,
+          "meshes": 336,
+          "duplicateBufferBytes": 6444424,
+          "skipped": 0
+        },
+        "movingDetails07": {
+          "unfrozenVehicleMeshes": 2
+        },
+        "zoneCacheEntries": 22,
+        "zoneReads": 0,
+        "houseCacheEntries": 8
+      },
+      "gardens": {
+        "placements": 174,
+        "built": 466,
+        "disposed": 415,
+        "maxResident": 57
+      }
+    }
+  ],
+  "errors": [],
+  "scope": "CPU loop replay and resource-residency checks; not GPU FPS measurement and not proof that all leaks are absent"
+}
