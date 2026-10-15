@@ -1,0 +1,70 @@
+name: Publicar Nagua City PWA
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nagua-pwa-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Construir y verificar web instalable
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Descargar proyecto con Git LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Asegurar que el HTML pesado fue descargado
+        run: |
+          git lfs pull
+          test "$(wc -c < 'Managua_Del_taller_al_lago(1).html')" -gt 100000000
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar dependencia para iconos PNG
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Construir juego original optimizado (sin duplicarlo en el sitio)
+        run: python3 scripts/build_performance.py --output dist/site/Managua.html
+      - name: Preparar portada, manifiesto, iconos y service worker
+        run: python3 scripts/build_pwa.py --game dist/site/Managua.html --output dist/site
+      - name: Probar instalación y archivos PWA
+        run: python3 -m unittest discover -s tests -p 'test_pwa.py' -v
+      - name: Validar JavaScript del lanzador
+        run: |
+          node --check web/app.js
+          node --check web/sw.js
+      - name: Configurar Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
+      - name: Subir sitio estático a Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/site
+
+  deploy:
+    name: Publicar aplicación web
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Desplegar PWA
+        id: deployment
+        uses: actions/deploy-pages@v4
