@@ -1,0 +1,31 @@
+name: Control de vegetación compartida
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/core/0401-vegetation42.js'
+      - 'tests/tree-silhouette.cjs'
+      - '.github/workflows/vegetation-quality.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/core/0401-vegetation42.js'
+      - 'tests/tree-silhouette.cjs'
+      - '.github/workflows/vegetation-quality.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  morphology:
+    name: Variación y presupuesto de árboles
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verificar siluetas y que no aumenten geometrías
+        run: node tests/tree-silhouette.cjs
