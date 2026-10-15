@@ -13,7 +13,7 @@ const root=path.resolve(__dirname,'..');
   await page.waitForFunction(()=>document.getElementById('percent47').textContent==='58%');await page.screenshot({path:path.join(root,'dist/menu-loading.png')});
   await page.evaluate(()=>document.querySelector('#loadbar span').style.width='50%');await page.waitForFunction(()=>document.querySelector('#loadbar span').style.width==='58%');
   await page.evaluate(()=>{document.getElementById('status').textContent='Todo listo. Entrá a la ciudad.';document.getElementById('start').disabled=false;});await page.waitForFunction(()=>!document.getElementById('homeSettings').disabled);
-  await page.waitForFunction(()=>Math.abs(document.querySelector('#loadbar span').getBoundingClientRect().width-document.getElementById('loadbar').getBoundingClientRect().width)<.5);
+  await page.waitForFunction(()=>{const track=document.getElementById('loadbar'),style=getComputedStyle(track),inner=track.getBoundingClientRect().width-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth);return Math.abs(document.querySelector('#loadbar span').getBoundingClientRect().width-inner)<.5;});
   await page.setViewportSize({width:1536,height:867});await page.mouse.move(1535,0);
   const referenceShot=await page.screenshot({path:path.join(root,'dist/menu-reference-1536x867.png')});
   const pixelMatch=await page.evaluate(async b64=>{
