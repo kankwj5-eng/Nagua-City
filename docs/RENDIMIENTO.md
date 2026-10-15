@@ -228,3 +228,7 @@ El banco de navegador alterna lotes de evaluación nativa y filtrada dentro de l
 La construcción también aplica `scripts/build_handling.py`; ver [CONDUCCION.md](CONDUCCION.md). `updateFleet` queda dedicado a visibilidad y LOD. La simulación de tráfico, señales y colocación sobre el terreno pasa a `stepFleet13` en el reloj fijo. Se conserva la comparación `Object.is` del bloque 10 para evitar invalidaciones redundantes de altura. El diagnóstico de simulación del jugador sigue envolviendo `tick`; el trabajo fijo de tráfico se mide por separado como `trafficSimulation` y `vehicles` mide ahora presentación/LOD. No comparar sus tiempos aislados con informes anteriores sin considerar este cambio de alcance.
 
 El nuevo bloque modifica explícitamente el comportamiento físico para corregir fallos, a diferencia de los bloques de optimización que buscaban equivalencia. Conserva recursos integrados y no añade bibliotecas en ejecución. Las trece pruebas de regresión se ejecutan en CI. Las mediciones de FPS en Android continúan siendo necesarias.
+
+## Presentación ilustrada del inicio
+
+La revisión visual modifica también el script `presentation46`; las garantías históricas de igualdad fuera de `appSource` se refieren a los bloques anteriores. El constructor actual verifica por hash todo lo externo a los dos scripts revisados y conserva los 16 bloques de recursos. Se sustituye el carrusel por una imagen WebP estática y se conservan interfaces y eventos del arranque. Detalles y límites: [INICIO_Y_MENU.md](INICIO_Y_MENU.md).

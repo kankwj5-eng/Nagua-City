@@ -1,0 +1,617 @@
+{
+  "passed": true,
+  "browser": "131.0.6778.33",
+  "layouts": [
+    {
+      "label": "home-640x360",
+      "width": 640,
+      "height": 360,
+      "outer": {
+        "x": 0,
+        "y": 0,
+        "right": 640,
+        "bottom": 360
+      },
+      "controls": [
+        {
+          "id": "start",
+          "x": 32,
+          "y": 181,
+          "right": 312,
+          "bottom": 221,
+          "width": 280,
+          "height": 40
+        },
+        {
+          "id": "garageOpen",
+          "x": 32,
+          "y": 221,
+          "right": 312,
+          "bottom": 261,
+          "width": 280,
+          "height": 40
+        },
+        {
+          "id": "homeSettings",
+          "x": 32,
+          "y": 261,
+          "right": 312,
+          "bottom": 301,
+          "width": 280,
+          "height": 40
+        }
+      ],
+      "titleSize": "39px"
+    },
+    {
+      "label": "home-844x390",
+      "width": 844,
+      "height": 390,
+      "outer": {
+        "x": 0,
+        "y": 0,
+        "right": 844,
+        "bottom": 390
+      },
+      "controls": [
+        {
+          "id": "start",
+          "x": 42.1875,
+          "y": 196,
+          "right": 322.1875,
+          "bottom": 236,
+          "width": 280,
+          "height": 40
+        },
+        {
+          "id": "garageOpen",
+          "x": 42.1875,
+          "y": 236,
+          "right": 322.1875,
+          "bottom": 276,
+          "width": 280,
+          "height": 40
+        },
+        {
+          "id": "homeSettings",
+          "x": 42.1875,
+          "y": 276,
+          "right": 322.1875,
+          "bottom": 316,
+          "width": 280,
+          "height": 40
+        }
+      ],
+      "titleSize": "39px"
+    },
+    {
+      "label": "home-1280x720",
+      "width": 1280,
+      "height": 720,
+      "outer": {
+        "x": 0,
+        "y": 0,
+        "right": 1280,
+        "bottom": 720
+      },
+      "controls": [
+        {
+          "id": "start",
+          "x": 64,
+          "y": 386.796875,
+          "right": 344,
+          "bottom": 430.796875,
+          "width": 280,
+          "height": 44
+        },
+        {
+          "id": "garageOpen",
+          "x": 64,
+          "y": 430.796875,
+          "right": 344,
+          "bottom": 474.796875,
+          "width": 280,
+          "height": 44
+        },
+        {
+          "id": "homeSettings",
+          "x": 64,
+          "y": 474.796875,
+          "right": 344,
+          "bottom": 518.796875,
+          "width": 280,
+          "height": 44
+        }
+      ],
+      "titleSize": "64px"
+    },
+    {
+      "label": "home-390x844",
+      "width": 390,
+      "height": 844,
+      "outer": {
+        "x": 0,
+        "y": 0,
+        "right": 390,
+        "bottom": 844
+      },
+      "controls": [
+        {
+          "id": "start",
+          "x": 27.296875,
+          "y": 612,
+          "right": 362.703125,
+          "bottom": 656,
+          "width": 335.40625,
+          "height": 44
+        },
+        {
+          "id": "garageOpen",
+          "x": 27.296875,
+          "y": 656,
+          "right": 362.703125,
+          "bottom": 700,
+          "width": 335.40625,
+          "height": 44
+        },
+        {
+          "id": "homeSettings",
+          "x": 27.296875,
+          "y": 700,
+          "right": 362.703125,
+          "bottom": 744,
+          "width": 335.40625,
+          "height": 44
+        }
+      ],
+      "titleSize": "42.9px"
+    },
+    {
+      "label": "home-320x568",
+      "width": 320,
+      "height": 568,
+      "outer": {
+        "x": 0,
+        "y": 0,
+        "right": 320,
+        "bottom": 568
+      },
+      "controls": [
+        {
+          "id": "start",
+          "x": 22.390625,
+          "y": 348,
+          "right": 297.609375,
+          "bottom": 392,
+          "width": 275.21875,
+          "height": 44
+        },
+        {
+          "id": "garageOpen",
+          "x": 22.390625,
+          "y": 392,
+          "right": 297.609375,
+          "bottom": 436,
+          "width": 275.21875,
+          "height": 44
+        },
+        {
+          "id": "homeSettings",
+          "x": 22.390625,
+          "y": 436,
+          "right": 297.609375,
+          "bottom": 480,
+          "width": 275.21875,
+          "height": 44
+        }
+      ],
+      "titleSize": "37px"
+    },
+    {
+      "label": "settings-640x360",
+      "width": 640,
+      "height": 360,
+      "outer": {
+        "x": 20,
+        "y": 14.40625,
+        "right": 620,
+        "bottom": 345.59375
+      },
+      "controls": [
+        {
+          "id": "",
+          "x": 562,
+          "y": 24.40625,
+          "right": 606,
+          "bottom": 68.40625,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "id": "settings-tab47-0",
+          "x": 41,
+          "y": 88.40625,
+          "right": 75.859375,
+          "bottom": 126.40625,
+          "width": 34.859375,
+          "height": 38
+        },
+        {
+          "id": "settings-tab47-1",
+          "x": 95.859375,
+          "y": 88.40625,
+          "right": 176.578125,
+          "bottom": 126.40625,
+          "width": 80.71875,
+          "height": 38
+        },
+        {
+          "id": "settings-tab47-2",
+          "x": 196.578125,
+          "y": 88.40625,
+          "right": 243.65625,
+          "bottom": 126.40625,
+          "width": 47.078125,
+          "height": 38
+        },
+        {
+          "id": "optionsAudio",
+          "x": 41,
+          "y": 141.40625,
+          "right": 185.609375,
+          "bottom": 185.40625,
+          "width": 144.609375,
+          "height": 44
+        },
+        {
+          "id": "optionsLandscape",
+          "x": 193.609375,
+          "y": 141.40625,
+          "right": 310.125,
+          "bottom": 185.40625,
+          "width": 116.515625,
+          "height": 44
+        },
+        {
+          "id": "quality",
+          "x": 41,
+          "y": 234.59375,
+          "right": 308,
+          "bottom": 274.59375,
+          "width": 267,
+          "height": 40
+        },
+        {
+          "id": "lighting",
+          "x": 332,
+          "y": 234.59375,
+          "right": 599,
+          "bottom": 274.59375,
+          "width": 267,
+          "height": 40
+        },
+        {
+          "id": "volume",
+          "x": 43,
+          "y": 348.78125,
+          "right": 310,
+          "bottom": 372.78125,
+          "width": 267,
+          "height": 24
+        },
+        {
+          "id": "sensitivity",
+          "x": 334,
+          "y": 348.78125,
+          "right": 601,
+          "bottom": 372.78125,
+          "width": 267,
+          "height": 24
+        },
+        {
+          "id": "saveCity",
+          "x": 41,
+          "y": 296.59375,
+          "right": 140.046875,
+          "bottom": 334.59375,
+          "width": 99.046875,
+          "height": 38
+        },
+        {
+          "id": "fullscreen",
+          "x": 154.046875,
+          "y": 286.59375,
+          "right": 263.5,
+          "bottom": 334.59375,
+          "width": 109.453125,
+          "height": 48
+        },
+        {
+          "id": "resume",
+          "x": 474,
+          "y": 286.59375,
+          "right": 599,
+          "bottom": 334.59375,
+          "width": 125,
+          "height": 48
+        }
+      ],
+      "titleSize": "39px"
+    },
+    {
+      "label": "settings-390x844",
+      "width": 390,
+      "height": 844,
+      "outer": {
+        "x": 12,
+        "y": 44.953125,
+        "right": 378,
+        "bottom": 799.03125
+      },
+      "controls": [
+        {
+          "id": "",
+          "x": 315,
+          "y": 64.953125,
+          "right": 359,
+          "bottom": 108.953125,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "id": "settings-tab47-0",
+          "x": 33,
+          "y": 141.953125,
+          "right": 64.703125,
+          "bottom": 185.953125,
+          "width": 31.703125,
+          "height": 44
+        },
+        {
+          "id": "settings-tab47-1",
+          "x": 82.703125,
+          "y": 141.953125,
+          "right": 156.09375,
+          "bottom": 185.953125,
+          "width": 73.390625,
+          "height": 44
+        },
+        {
+          "id": "settings-tab47-2",
+          "x": 174.09375,
+          "y": 141.953125,
+          "right": 216.90625,
+          "bottom": 185.953125,
+          "width": 42.8125,
+          "height": 44
+        },
+        {
+          "id": "optionsAudio",
+          "x": 33,
+          "y": 204.953125,
+          "right": 177.609375,
+          "bottom": 248.953125,
+          "width": 144.609375,
+          "height": 44
+        },
+        {
+          "id": "optionsLandscape",
+          "x": 185.609375,
+          "y": 204.953125,
+          "right": 302.125,
+          "bottom": 248.953125,
+          "width": 116.515625,
+          "height": 44
+        },
+        {
+          "id": "quality",
+          "x": 33,
+          "y": 302.140625,
+          "right": 357,
+          "bottom": 342.140625,
+          "width": 324,
+          "height": 40
+        },
+        {
+          "id": "lighting",
+          "x": 33,
+          "y": 420.328125,
+          "right": 357,
+          "bottom": 460.328125,
+          "width": 324,
+          "height": 40
+        },
+        {
+          "id": "volume",
+          "x": 35,
+          "y": 542.515625,
+          "right": 359,
+          "bottom": 566.515625,
+          "width": 324,
+          "height": 24
+        },
+        {
+          "id": "sensitivity",
+          "x": 35,
+          "y": 654.890625,
+          "right": 359,
+          "bottom": 678.890625,
+          "width": 324,
+          "height": 24
+        },
+        {
+          "id": "saveCity",
+          "x": 29,
+          "y": 691.03125,
+          "right": 132.046875,
+          "bottom": 735.03125,
+          "width": 103.046875,
+          "height": 44
+        },
+        {
+          "id": "fullscreen",
+          "x": 146.046875,
+          "y": 681.03125,
+          "right": 259.5,
+          "bottom": 735.03125,
+          "width": 113.453125,
+          "height": 54
+        },
+        {
+          "id": "resume",
+          "x": 29,
+          "y": 742.03125,
+          "right": 361,
+          "bottom": 786.03125,
+          "width": 332,
+          "height": 44
+        }
+      ],
+      "titleSize": "42.9px"
+    },
+    {
+      "label": "settings-320x568",
+      "width": 320,
+      "height": 568,
+      "outer": {
+        "x": 12,
+        "y": 22.71875,
+        "right": 308,
+        "bottom": 545.265625
+      },
+      "controls": [
+        {
+          "id": "",
+          "x": 245,
+          "y": 42.71875,
+          "right": 289,
+          "bottom": 86.71875,
+          "width": 44,
+          "height": 44
+        },
+        {
+          "id": "settings-tab47-0",
+          "x": 33,
+          "y": 119.71875,
+          "right": 64.703125,
+          "bottom": 163.71875,
+          "width": 31.703125,
+          "height": 44
+        },
+        {
+          "id": "settings-tab47-1",
+          "x": 82.703125,
+          "y": 119.71875,
+          "right": 156.09375,
+          "bottom": 163.71875,
+          "width": 73.390625,
+          "height": 44
+        },
+        {
+          "id": "settings-tab47-2",
+          "x": 174.09375,
+          "y": 119.71875,
+          "right": 216.90625,
+          "bottom": 163.71875,
+          "width": 42.8125,
+          "height": 44
+        },
+        {
+          "id": "optionsAudio",
+          "x": 33,
+          "y": 182.71875,
+          "right": 177.609375,
+          "bottom": 226.71875,
+          "width": 144.609375,
+          "height": 44
+        },
+        {
+          "id": "optionsLandscape",
+          "x": 33,
+          "y": 234.71875,
+          "right": 149.515625,
+          "bottom": 278.71875,
+          "width": 116.515625,
+          "height": 44
+        },
+        {
+          "id": "quality",
+          "x": 33,
+          "y": 331.90625,
+          "right": 287,
+          "bottom": 371.90625,
+          "width": 254,
+          "height": 40
+        },
+        {
+          "id": "lighting",
+          "x": 33,
+          "y": 450.09375,
+          "right": 287,
+          "bottom": 490.09375,
+          "width": 254,
+          "height": 40
+        },
+        {
+          "id": "volume",
+          "x": 35,
+          "y": 572.28125,
+          "right": 289,
+          "bottom": 596.28125,
+          "width": 254,
+          "height": 24
+        },
+        {
+          "id": "sensitivity",
+          "x": 35,
+          "y": 684.65625,
+          "right": 289,
+          "bottom": 708.65625,
+          "width": 254,
+          "height": 24
+        },
+        {
+          "id": "saveCity",
+          "x": 29,
+          "y": 437.265625,
+          "right": 132.046875,
+          "bottom": 481.265625,
+          "width": 103.046875,
+          "height": 44
+        },
+        {
+          "id": "fullscreen",
+          "x": 146.046875,
+          "y": 427.265625,
+          "right": 259.5,
+          "bottom": 481.265625,
+          "width": 113.453125,
+          "height": 54
+        },
+        {
+          "id": "resume",
+          "x": 29,
+          "y": 488.265625,
+          "right": 291,
+          "bottom": 532.265625,
+          "width": 262,
+          "height": 44
+        }
+      ],
+      "titleSize": "37px"
+    }
+  ],
+  "monotonicProgress": true,
+  "disabledUntilReady": true,
+  "keyboardTabs": true,
+  "fullGame": {
+    "ready": true,
+    "homeSettings": true,
+    "garageSearch": true,
+    "entry": true,
+    "pauseAndResume": true,
+    "errors": []
+  },
+  "artBytes": 263174,
+  "scope": "Layout and functional browser checks; not Android frame-rate measurement"
+}

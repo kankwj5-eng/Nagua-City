@@ -1,7 +1,7 @@
 name: Rendimiento por bloques
 on:
   push:
-    branches: [main, 'perf/**']
+    branches: [main, 'perf/**', 'ui/**']
   workflow_dispatch:
 permissions:
   contents: read
