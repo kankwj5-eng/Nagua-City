@@ -16,8 +16,8 @@
     "illustrated-menu"
   ],
   "baseSha256": "a6c43bcea9fe04e0f227496969dd713b226525b24b914b9bfe3d173683a06e2e",
-  "outputSha256": "986c71d252940661326b806b337ccf0e5e056bbdbfe914e4390e339a67542f19",
-  "bytes": 182309589,
+  "outputSha256": "d8275994725f3878dda9b49ee28987ad83e488e6cbc4bc1f3c8e3b849e4e01f5",
+  "bytes": 182309722,
   "allOutsideAppSourceIdentical": false,
   "changedOutsideAppSource": [
     "presentation46"
@@ -27,7 +27,7 @@
     "artBytes": 354211,
     "artImages": 1,
     "previousPresentationBytes": 1820044,
-    "newPresentationBytes": 492062,
+    "newPresentationBytes": 492195,
     "networkRequests": 0,
     "artSource": "user-supplied-reference",
     "artSHA256": "55100b6c97eca0ef8830583735dd301ab2758957537ad8c633ea15e77b5c9854"

@@ -58,3 +58,5 @@
 
 /* Telemetry remains available in play, without covering the reference artwork. */
 body:has(#home.reference48:not([hidden])) #telemetry39{display:none!important}
+/* Author display rules must not override the game's native hidden attribute. */
+#home.reference48[hidden]{display:none!important}

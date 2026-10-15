@@ -24,7 +24,7 @@ python3 scripts/build_performance.py
 
 `scripts/build_presentation.py` integra la imagen como data URL JPEG dentro del script `presentation46`, sin peticiones de imágenes ni fuentes externas. Se conserva `Presentation46.readyLayout`, la interfaz usada por el arranque. El original de Git LFS permanece intacto. Los 16 bloques de recursos existentes se mantienen; el constructor verifica por hash todos los bytes externos a `appSource` y al script de presentación revisado.
 
-La presentación ocupa 492.062 bytes frente a 1.820.044 bytes de las tres postales fotográficas originales. Es algo mayor que la ilustración elegida en la revisión anterior porque ahora se conserva exactamente el JPEG aportado. HTML actual: 182.309.589 bytes. Estas cifras describen tamaño del archivo, no FPS ni tiempo de carga en un teléfono.
+La presentación ocupa 492.195 bytes frente a 1.820.044 bytes de las tres postales fotográficas originales. Es algo mayor que la ilustración elegida en la revisión anterior porque ahora se conserva exactamente el JPEG aportado. HTML actual: 182.309.722 bytes. Estas cifras describen tamaño del archivo, no FPS ni tiempo de carga en un teléfono.
 
 ## Pruebas
 
