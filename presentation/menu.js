@@ -2,15 +2,15 @@
 window.Presentation46=(()=>{
  const ART=__ART_DATA_URL__,STYLE=__STYLE_TEXT__,$=id=>document.getElementById(id),home=$('home');
  const css=document.createElement('style');css.id='presentation47-style';css.textContent=STYLE;document.head.append(css);
- const art=document.createElement('div');art.id='menu-art47';art.setAttribute('aria-hidden','true');const image=new Image();image.alt='';image.decoding='async';image.src=ART;art.append(image);home.prepend(art);
- const mast=document.createElement('header');mast.className='menu-top47';mast.innerHTML='<b>MANAGUA</b><span>NICARAGUA / EXPLORACIÓN LIBRE</span>';home.append(mast);
- const note=document.createElement('div');note.className='menu-note47';note.textContent='EL TALLER. EL BARRIO. EL LAGO.';home.append(note);
+ home.classList.add('reference48');
+ const stage=document.createElement('div');stage.id='reference-stage48';home.prepend(stage);
+ const art=document.createElement('div');art.id='menu-art47';art.setAttribute('aria-hidden','true');const image=new Image();image.alt='';image.decoding='async';image.src=ART;art.append(image);stage.append(art);
  const intro=home.querySelector('.intro'),nodes=['start','garageOpen','homeSettings','status','loadbar'].map($);
- const brand=document.createElement('div');brand.className='brand47';brand.innerHTML='<div class="eyebrow47">TU CIUDAD, A TU RITMO</div><h1>MANAGUA</h1><div class="subtitle47">DEL TALLER AL LAGO</div><p>Elegí tu vehículo.<br>Salí a recorrer el barrio.</p>';
+ const brand=document.createElement('div');brand.className='brand47 sr48';brand.innerHTML='<h1>Managua</h1><p>Tu ciudad, a tu ritmo. El taller. El barrio. El lago.</p>';
  const actions=document.createElement('nav');actions.className='menu-actions47';actions.setAttribute('aria-label','Menú principal');
- nodes.slice(0,3).forEach((button,i)=>{button.dataset.order='0'+(i+1);actions.append(button);});nodes[1].textContent='Elegir vehículo';nodes[2].textContent='Ajustes';
- intro.replaceChildren(brand,actions);
- const load=document.createElement('div');load.className='load47';load.append(nodes[3],nodes[4]);const percent=document.createElement('span');percent.id='percent47';percent.textContent='0%';load.append(percent);home.append(load);
+ ['Entrar a la ciudad','Elegir vehículo','Ajustes'].forEach((label,i)=>{nodes[i].setAttribute('aria-label',label);nodes[i].textContent=label;actions.append(nodes[i]);});
+ intro.replaceChildren(brand,actions);stage.append(intro);
+ const load=document.createElement('div');load.className='load47';const loadingTitle=document.createElement('b');loadingTitle.className='loading-title48';loadingTitle.textContent='Cargando la ciudad';load.append(loadingTitle,nodes[3],nodes[4]);const percent=document.createElement('span');percent.id='percent47';percent.textContent='0%';load.append(percent);stage.append(load);
  nodes[3].setAttribute('role','status');nodes[3].setAttribute('aria-live','polite');
  nodes[4].setAttribute('role','progressbar');nodes[4].setAttribute('aria-label','Preparación de la ciudad');nodes[4].setAttribute('aria-valuemin','0');nodes[4].setAttribute('aria-valuemax','100');
  let maximum=0,returnFocus=null,settingsBuilt=false;
@@ -33,5 +33,5 @@ window.Presentation46=(()=>{
   modal.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const controls=[...modal.querySelectorAll('button,input,select,summary,a[href],[tabindex="0"]')].filter(el=>!el.disabled&&el.tabIndex>=0&&el.getClientRects().length);const first=controls[0],last=controls.at(-1);if(!first)return;if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
  }
  function readyLayout(){settings();document.head.append(css);availability();}
- return {readyLayout,postals:1,artStyle:'original-urban-illustration',inspect(){return {ready:!nodes[0].disabled,progress:maximum,images:art.querySelectorAll('img').length};}};
+ return {readyLayout,postals:1,artStyle:'user-supplied-exact-reference',inspect(){return {ready:!nodes[0].disabled,progress:maximum,images:art.querySelectorAll('img').length};}};
 })();

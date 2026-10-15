@@ -1,7 +1,7 @@
 name: Inicio y menú ilustrado
 on:
   push:
-    branches: [ui/illustrated-menu]
+    branches: [ui/illustrated-menu, ui/reference-menu]
     paths-ignore: ['docs/**', 'README.md']
   workflow_dispatch:
 permissions:

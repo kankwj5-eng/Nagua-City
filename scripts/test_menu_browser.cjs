@@ -14,9 +14,17 @@ const root=path.resolve(__dirname,'..');
   await page.evaluate(()=>document.querySelector('#loadbar span').style.width='50%');await page.waitForFunction(()=>document.querySelector('#loadbar span').style.width==='58%');
   await page.evaluate(()=>{document.getElementById('status').textContent='Todo listo. Entrá a la ciudad.';document.getElementById('start').disabled=false;});await page.waitForFunction(()=>!document.getElementById('homeSettings').disabled);
   await page.waitForFunction(()=>Math.abs(document.querySelector('#loadbar span').getBoundingClientRect().width-document.getElementById('loadbar').getBoundingClientRect().width)<.5);
+  await page.setViewportSize({width:1536,height:867});await page.mouse.move(1535,0);
+  const referenceShot=await page.screenshot({path:path.join(root,'dist/menu-reference-1536x867.png')});
+  const pixelMatch=await page.evaluate(async b64=>{
+   const image=document.querySelector('#menu-art47 img'),canvas=document.createElement('canvas');canvas.width=1536;canvas.height=867;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);const expected=ctx.getImageData(0,0,1536,867).data;
+   const shot=new Image();shot.src='data:image/png;base64,'+b64;await shot.decode();ctx.clearRect(0,0,1536,867);ctx.drawImage(shot,0,0);const actual=ctx.getImageData(0,0,1536,867).data;let maxDelta=0,totalDelta=0,changedPixels=0;
+   for(let i=0;i<expected.length;i+=4){let changed=false;for(let c=0;c<3;c++){const d=Math.abs(actual[i+c]-expected[i+c]);maxDelta=Math.max(maxDelta,d);totalDelta+=d;changed||=d>0;}if(changed)changedPixels++;}
+   return {width:1536,height:867,maxDelta,meanDelta:totalDelta/(1536*867*3),changedPixels};
+  },referenceShot.toString('base64'));console.log('REFERENCE_PIXELS '+JSON.stringify(pixelMatch));assert(pixelMatch.maxDelta<=1&&pixelMatch.meanDelta<.01,'menu reproduces uploaded reference');
   const layouts=[];
   async function check(label,selector){
-   const data=await page.evaluate(selector=>{const outer=document.querySelector(selector),b=outer.getBoundingClientRect();const controls=[...outer.querySelectorAll('button,input,select')].filter(el=>el.getClientRects().length&&!el.hidden);return {width:innerWidth,height:innerHeight,outer:{x:b.x,y:b.y,right:b.right,bottom:b.bottom},controls:controls.map(el=>{const r=el.getBoundingClientRect();return {id:el.id,x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};}),titleSize:getComputedStyle(document.querySelector('#home h1')).fontSize};},selector);
+   const data=await page.evaluate(selector=>{const outer=document.querySelector(selector),b=outer.getBoundingClientRect();const controls=[...outer.querySelectorAll('button,input,select')].filter(el=>el.getClientRects().length&&!el.hidden);return {width:innerWidth,height:innerHeight,outer:{x:b.x,y:b.y,right:b.right,bottom:b.bottom},controls:controls.map(el=>{const r=el.getBoundingClientRect();return {id:el.id,x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};}),titleSource:'uploaded reference image'};},selector);
    assert(data.outer.x>=-1&&data.outer.y>=-1&&data.outer.right<=data.width+1&&data.outer.bottom<=data.height+1,label+' outer bounds');
    for(const c of data.controls)assert(c.x>=-1&&c.right<=data.width+1,label+' horizontal control '+c.id);
    layouts.push({label,...data});await page.screenshot({path:path.join(root,'dist/menu-'+label+'.png')});
@@ -35,7 +43,7 @@ const root=path.resolve(__dirname,'..');
   await page.locator('#garageOpen').click();assert(await page.locator('.garagecard').isVisible());await page.locator('#garageSearch').fill('Pulsar');assert.equal(await page.locator('#modelchoices button:visible').count(),1);await page.locator('#garageClose').click();
   await page.locator('#start').click();assert(await page.evaluate(()=>Nicaragua.playing));assert(await page.locator('#home').isHidden());await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
   await page.evaluate(()=>document.getElementById('pause').click());assert(await page.locator('#settings').isVisible());assert.equal(await page.locator('#resume').innerText(),'Continuar');await page.locator('#resume').click();assert(await page.evaluate(()=>Nicaragua.playing));
-  assert.deepEqual(errors,[]);const report={passed:true,browser:await browser.version(),layouts,monotonicProgress:true,disabledUntilReady:true,keyboardTabs:true,fullGame:{ready:true,homeSettings:true,garageSearch:true,entry:true,pauseAndResume:true,errors},artBytes:263174,scope:'Layout and functional browser checks; not Android frame-rate measurement'};
+  assert.deepEqual(errors,[]);const report={passed:true,browser:await browser.version(),layouts,pixelMatch,monotonicProgress:true,disabledUntilReady:true,keyboardTabs:true,fullGame:{ready:true,homeSettings:true,garageSearch:true,entry:true,pauseAndResume:true,errors},artBytes:354211,referenceSHA256:"55100b6c97eca0ef8830583735dd301ab2758957537ad8c633ea15e77b5c9854",scope:'Layout and functional browser checks; not Android frame-rate measurement'};
   fs.writeFileSync(path.join(root,'dist/menu-browser.json'),JSON.stringify(report,null,2));console.log('MENU_RESULT '+JSON.stringify(report));
  }finally{await browser.close();fs.unlinkSync(fixture);}
 })().catch(e=>{console.error(e);process.exitCode=1});
