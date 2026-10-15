@@ -51,6 +51,9 @@ window.__naguaVisualQA={
    if(!bike)throw Error("No existe la Pulsar");
    // Follow the exact entry path (enables the avatar and helmet) instead
    // of calling humanRide on a possibly disabled avatar from the start screen.
+   // A garage showcase vehicle starts disabled until selected by normal UI.
+   // Make this isolated test fixture resident, as a street motorcycle would be.
+   bike.root.setEnabled(true);
    nearest=bike;playing=true;driving=false;changeDrive(true);
    return {helmet:player.helmet.isEnabled(),parent:player.root.parent?.name,
      hip:player.visual.position.y,driving,rootEnabled:player.root.isEnabled(),
