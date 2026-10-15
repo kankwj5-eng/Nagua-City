@@ -167,3 +167,30 @@ Después se hicieron tres ciclos de cinco destinos. Al terminar cada ciclo, los 
 La apertura sigue incluyendo preparación global de personajes, materiales y arquitectura. Un HTML con todos los recursos integrados requiere además leer y analizar esos datos iniciales, aunque el dibujo sea progresivo. No se presenta esta entrega como solución completa de los 8–10 FPS ni del tiempo de carga en Android. El siguiente cuello de botella requiere aislar coste de dibujo, sombras y residencia de personajes, conservando calidad.
 
 Informes de estos bloques: `block05-results.json`, `block06-results.json`, `block07-results.json`, `block05-07-build.json` y `block05-07-browser.json`. La construcción mantiene idénticos los 16 bloques de recursos y todo el contenido fuera de appSource. Las siete pruebas se ejecutan en GitHub Actions.
+
+
+## Bloque 08 — copias de puntos de consulta, sin tocar el dibujo
+
+El muestreo del heap situó `_getData` del motor como principal origen de asignaciones vivas: aproximadamente 230,9 millones de bytes muestreados. Es una atribución estadística, no un recuento exacto de todas las copias. En Babylon 9.29, `refreshBoundingInfo` crea por defecto una lista de Vector3 por vértice, además de los buffers usados para dibujar. El código del juego deshabilita la selección sobre las mallas y utiliza colisionadores propios, por lo que muchas de esas copias son redundantes.
+
+La limpieza se limita a mallas sin selección, sin skeleton, sin morph targets y sin animación de vértices. Comprueba que cada Vector3 coincida exactamente con los vértices sin deformar antes de liberar su referencia. No modifica posiciones, índices, normales, UV, materiales, bounding boxes ni cachés geométricas compartidas. Las copias que difieren se conservan. No cambia el prototipo global de Babylon.
+
+Comparación antes/después en **la misma sesión**, con recolección completa de basura antes de cada lectura de `Runtime.getHeapUsage` del depurador de Chrome 131:
+
+| Heap V8 usado | Bytes | MiB |
+| --- | ---: | ---: |
+| Antes de limpiar | 475.170.396 | 453,16 |
+| Después | 368.774.888 | 351,69 |
+| Diferencia | 106.395.508 | 101,47 |
+
+Se retiraron 1.550.900 objetos de puntos en 1.824 mallas; 32 copias que diferían se mantuvieron. No es RAM total del proceso, memoria GPU ni una medida de Android. El contador `performance.memory` del HUD mostró una lectura cuantizada de 793 millones de bytes durante la investigación; no se usa para calcular ese ahorro. Los datos del perfil y los de esta comparación pertenecen a ejecuciones distintas y no se restan entre sí.
+
+La medición se realizó aplicando la limpieza al HTML de bloques 05–07 ya abierto. La integración del bloque 08 la instala al finalizar la preparación y observa nuevas mallas para limpiarlas después de completar su creación. La cola temporal se vacía al procesarse y al disponer la escena. Además, las mallas creadas por `meshData` usan la opción nativa `updatePositionsArray:false` para calcular sus límites sin crear esas copias por defecto. Se conserva el comportamiento nativo cuando se solicita explícitamente una copia o se calcula deformación. El prototipo global del motor permanece intacto.
+
+La prueba con el motor integrado comprueba buffers y límites idénticos, selección por rayos regenerada bajo demanda, exclusión de mallas seleccionables y skinned y copias distintas, nuevas mallas, y la prevención de copias en el `meshData` del HTML generado. La prueba de rayos conserva distancia y punto de impacto exactos. Las siete pruebas anteriores siguen formando parte de CI; ahora se ejecutan ocho. Esta optimización reduce memoria retenida y evita trabajo de preparación de puntos, pero no certifica FPS nuevos en el teléfono.
+
+```sh
+node --max-old-space-size=512 tests/performance-block08.cjs
+```
+
+Informes: `block08-results.json`, `block08-build.json`, `block08-memory.json` y `block08-profile.json`. Se siguen conservando íntegros los recursos y todo el contenido externo a appSource.
