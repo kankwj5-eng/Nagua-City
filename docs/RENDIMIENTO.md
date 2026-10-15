@@ -131,3 +131,18 @@ Las geometrías duplicadas sin usuarios se disponen explícitamente: cambiar su 
 ```sh
 node --max-old-space-size=768 tests/performance-block05.cjs
 ```
+
+
+## Bloque 06 — jardines con residencia por proximidad
+
+Los jardines conservan exactamente sus fuentes, ubicaciones, escala, orientación, materiales y colisiones. Ahora se guardan ubicaciones ligeras y se crean primero las instancias cercanas al punto de inicio. Se prepara un margen adicional de 60 m; las instancias situadas a más de radio + 100 m se disponen. Las colisiones de todas las ubicaciones se registran una sola vez desde la preparación, aunque todavía no haya una instancia de dibujo.
+
+La precarga de instancias ocultas trabaja como máximo dos jardines por cuadro y comprueba un presupuesto de 8 ms entre trabajos. Los jardines ya visibles tienen prioridad: un cambio de radio o un salto de posición resuelve todos los necesarios antes del dibujo, para evitar sacrificar contenido visible. Esto puede producir una ráfaga de trabajo al teletransportarse; no se promete un límite absoluto de 8 ms para ese caso. El límite tampoco interrumpe a mitad una operación individual del motor.
+
+La prueba usa el motor real y un fixture de 245 ubicaciones. Crea inicialmente 63 jardines, en lugar de los 245, y recorre 144 visitas con tres calidades. Compara más de 3.200 huellas de geometría y transformaciones y los conjuntos visibles, con colisiones idénticas. El pico fue de 72 jardines residentes. Las instancias antiguas se eliminan tanto del planificador como de `art46.gardenRoots` y del motor.
+
+En el juego completo se encontraron 174 ubicaciones, de las cuales se construyeron 57 al abrir. La cifra de 245 pertenece al fixture de estrés, no al mapa real. Este bloque introduce carga progresiva para los jardines; no convierte todavía todos los edificios, personajes y materiales a residencia espacial.
+
+```sh
+node --max-old-space-size=768 tests/performance-block06.cjs
+```
