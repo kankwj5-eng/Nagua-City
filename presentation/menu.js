@@ -32,6 +32,14 @@ window.Presentation46=(()=>{
   new MutationObserver(visible).observe(modal,{attributes:true,attributeFilter:['hidden']});
   modal.addEventListener('keydown',e=>{if(e.key!=='Tab')return;const controls=[...modal.querySelectorAll('button,input,select,summary,a[href],[tabindex="0"]')].filter(el=>!el.disabled&&el.tabIndex>=0&&el.getClientRects().length);const first=controls[0],last=controls.at(-1);if(!first)return;if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}});
  }
- function readyLayout(){settings();document.head.append(css);availability();}
+ function mount(){
+  // installIdentity42 rebuilds .intro near the end of boot. Reclaim the same
+  // native nodes after that pass; keep their handlers and the retry control.
+  const retry=$('bootRetry45');
+  ['Entrar a la ciudad','Elegir vehículo','Ajustes'].forEach((label,i)=>{nodes[i].textContent=label;nodes[i].setAttribute('aria-label',label);});
+  actions.replaceChildren(...nodes.slice(0,3));intro.replaceChildren(brand,actions);stage.append(intro);
+  load.replaceChildren(loadingTitle,nodes[3],...(retry?[retry]:[]),nodes[4],percent);
+ }
+ function readyLayout(){mount();settings();document.head.append(css);availability();}
  return {readyLayout,postals:1,artStyle:'user-supplied-exact-reference',inspect(){return {ready:!nodes[0].disabled,progress:maximum,images:art.querySelectorAll('img').length};}};
 })();

@@ -8,6 +8,9 @@ const root=path.resolve(__dirname,'..');
  try{
   const page=await browser.newPage({viewport:{width:640,height:360}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto('file://'+fixture);await page.locator('#menu-art47 img').evaluate(img=>img.decode());
+  // The real boot has a legacy identity pass that reparents these same nodes.
+  await page.evaluate(()=>{const intro=document.querySelector('#home .intro'),ids=['start','garageOpen','homeSettings','status','loadbar'],nodes=ids.map(id=>document.getElementById(id));intro.replaceChildren();const legacy=document.createElement('div');legacy.className='route-actions42';legacy.append(...nodes.slice(0,3));intro.append(legacy,nodes[3],nodes[4]);Presentation46.readyLayout();});
+  assert.equal(await page.locator('.menu-actions47 button').count(),3);
   assert(await page.locator('#garageOpen').isDisabled());assert(await page.locator('#homeSettings').isDisabled());
   await page.evaluate(()=>{const statusEl=document.getElementById('status');statusEl.textContent='Preparando vehículos…';document.querySelector('#loadbar span').style.width='58%';});
   await page.waitForFunction(()=>document.getElementById('percent47').textContent==='58%');await page.screenshot({path:path.join(root,'dist/menu-loading.png')});
@@ -16,12 +19,12 @@ const root=path.resolve(__dirname,'..');
   await page.waitForFunction(()=>{const track=document.getElementById('loadbar'),style=getComputedStyle(track),inner=track.getBoundingClientRect().width-parseFloat(style.borderLeftWidth)-parseFloat(style.borderRightWidth);return Math.abs(document.querySelector('#loadbar span').getBoundingClientRect().width-inner)<.5;});
   await page.setViewportSize({width:1536,height:867});await page.mouse.move(1535,0);
   const referenceShot=await page.screenshot({path:path.join(root,'dist/menu-reference-1536x867.png')});
-  const pixelMatch=await page.evaluate(async b64=>{
+  const comparePixels=async b64=>{
    const image=document.querySelector('#menu-art47 img'),canvas=document.createElement('canvas');canvas.width=1536;canvas.height=867;const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(image,0,0);const expected=ctx.getImageData(0,0,1536,867).data;
    const shot=new Image();shot.src='data:image/png;base64,'+b64;await shot.decode();ctx.clearRect(0,0,1536,867);ctx.drawImage(shot,0,0);const actual=ctx.getImageData(0,0,1536,867).data;let maxDelta=0,totalDelta=0,changedPixels=0;
    for(let i=0;i<expected.length;i+=4){let changed=false;for(let c=0;c<3;c++){const d=Math.abs(actual[i+c]-expected[i+c]);maxDelta=Math.max(maxDelta,d);totalDelta+=d;changed||=d>0;}if(changed)changedPixels++;}
    return {width:1536,height:867,maxDelta,meanDelta:totalDelta/(1536*867*3),changedPixels};
-  },referenceShot.toString('base64'));console.log('REFERENCE_PIXELS '+JSON.stringify(pixelMatch));assert(pixelMatch.maxDelta<=1,'reference pixels match within one 8-bit level of browser JPEG/canvas rounding');
+  };const pixelMatch=await page.evaluate(comparePixels,referenceShot.toString('base64'));console.log('REFERENCE_PIXELS '+JSON.stringify(pixelMatch));assert(pixelMatch.maxDelta<=1,'reference pixels match within one 8-bit level of browser JPEG/canvas rounding');
   const layouts=[];
   async function check(label,selector){
    const data=await page.evaluate(selector=>{const outer=document.querySelector(selector),b=outer.getBoundingClientRect();const controls=[...outer.querySelectorAll('button,input,select')].filter(el=>el.getClientRects().length&&!el.hidden);return {width:innerWidth,height:innerHeight,outer:{x:b.x,y:b.y,right:b.right,bottom:b.bottom},controls:controls.map(el=>{const r=el.getBoundingClientRect();return {id:el.id,x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};}),titleSource:'uploaded reference image'};},selector);
@@ -39,11 +42,13 @@ const root=path.resolve(__dirname,'..');
   assert.deepEqual(errors,[]);
   // Full packaged game: actual startup, controls and settings handlers.
   await page.setViewportSize({width:640,height:360});await page.goto('file://'+full,{timeout:240000,waitUntil:'load'});await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,null,{timeout:240000,polling:1000});assert(await page.evaluate(()=>Nicaragua.ready));await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
+  assert.equal(await page.locator('.menu-actions47 button').count(),3,'legacy boot keeps native controls inside their hotspots');
+  await page.setViewportSize({width:1536,height:867});await page.mouse.move(1535,0);const fullShot=await page.screenshot({path:path.join(root,'dist/menu-full-game-reference.png')});const fullGamePixelMatch=await page.evaluate(comparePixels,fullShot.toString('base64'));console.log('FULL_GAME_REFERENCE_PIXELS '+JSON.stringify(fullGamePixelMatch));assert(fullGamePixelMatch.maxDelta<=1,'full packaged game preserves reference after real boot');await page.setViewportSize({width:640,height:360});
   assert(await page.locator('#homeSettings').isEnabled());assert(await page.locator('#start').isEnabled());await page.locator('#homeSettings').click();assert(await page.locator('#settings').isVisible());assert(await page.locator('#optionsPanel').isVisible());assert.equal(await page.locator('#resume').innerText(),'Volver al inicio');await page.locator('#resume').click();assert(await page.locator('#settings').isHidden());
   await page.locator('#garageOpen').click();assert(await page.locator('.garagecard').isVisible());await page.locator('#garageSearch').fill('Pulsar');assert.equal(await page.locator('#modelchoices button:visible').count(),1);await page.locator('#garageClose').click();
   await page.locator('#start').click();assert(await page.evaluate(()=>Nicaragua.playing));assert(await page.locator('#home').isHidden());await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
   await page.evaluate(()=>document.getElementById('pause').click());assert(await page.locator('#settings').isVisible());assert.equal(await page.locator('#resume').innerText(),'Continuar');await page.locator('#resume').click();assert(await page.evaluate(()=>Nicaragua.playing));
-  assert.deepEqual(errors,[]);const report={passed:true,browser:await browser.version(),layouts,pixelMatch,monotonicProgress:true,disabledUntilReady:true,keyboardTabs:true,fullGame:{ready:true,homeSettings:true,garageSearch:true,entry:true,pauseAndResume:true,errors},artBytes:354211,referenceSHA256:"55100b6c97eca0ef8830583735dd301ab2758957537ad8c633ea15e77b5c9854",scope:'Layout and functional browser checks; not Android frame-rate measurement'};
+  assert.deepEqual(errors,[]);const report={passed:true,browser:await browser.version(),layouts,pixelMatch,fullGamePixelMatch,monotonicProgress:true,disabledUntilReady:true,keyboardTabs:true,fullGame:{ready:true,homeSettings:true,garageSearch:true,entry:true,pauseAndResume:true,errors},artBytes:354211,referenceSHA256:"55100b6c97eca0ef8830583735dd301ab2758957537ad8c633ea15e77b5c9854",scope:'Layout and functional browser checks; not Android frame-rate measurement'};
   fs.writeFileSync(path.join(root,'dist/menu-browser.json'),JSON.stringify(report,null,2));console.log('MENU_RESULT '+JSON.stringify(report));
  }finally{await browser.close();fs.unlinkSync(fixture);}
 })().catch(e=>{console.error(e);process.exitCode=1});
