@@ -1,0 +1,3803 @@
+{
+  "schemaVersion": 1,
+  "format": "ordered-lexical-fragments",
+  "engine": "Babylon.js",
+  "title": "Nagua City",
+  "source": "script#appSource dentro de la build optimizada",
+  "baselineAppSha256": "aec7c7758615cca70afa9cdee7003a814af99b1039f3a47f0d747ac62d9f8b0e",
+  "baselineAppBytes": 1112066,
+  "astTopLevel": 8,
+  "astRuntimeStatements": 456,
+  "segments": [
+    {
+      "path": "game/src/bootstrap/0000-header.js",
+      "group": "bootstrap",
+      "symbol": "header",
+      "type": "Header",
+      "utf8Bytes": 100,
+      "sha256": "34de5fc1226ed20af8c0fa1d2a40a63a0997b57cf6b88f3103c254dd2bd95257"
+    },
+    {
+      "path": "game/src/state/0001-physics40.js",
+      "group": "state",
+      "symbol": "Physics40",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 1201,
+      "sha256": "ce491f7c0a53e3a2d76ddc65a14d8b864b34179fc9981246b3a8cb351f7945ba"
+    },
+    {
+      "path": "game/src/state/0002-logic25.js",
+      "group": "state",
+      "symbol": "Logic25",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 4350,
+      "sha256": "9cd22c5d06e1c0d1d9e54837c1a197fe56993d397aee867b9b332dac309cd238"
+    },
+    {
+      "path": "game/src/core/0003-ifstatement.js",
+      "group": "core",
+      "symbol": "ifstatement",
+      "type": "IfStatement",
+      "utf8Bytes": 56,
+      "sha256": "0deb2a1ca95c8d5dfe48df9e04387d7b39a8343ffce6481b04917af39a69584d"
+    },
+    {
+      "path": "game/src/engine/0004-fixed-step-clock.js",
+      "group": "engine",
+      "symbol": "FixedStepClock",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 843,
+      "sha256": "49eb43c4951d7250b8721cf35b6aa03f389e8b27f8ff4cb772a306b970478920"
+    },
+    {
+      "path": "game/src/vehicles/0005-driving.js",
+      "group": "vehicles",
+      "symbol": "Driving",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 5728,
+      "sha256": "295499ea561fbd9f02c61e77118a7ad6c9604ebe779421a05f7af6b0064e0bfd"
+    },
+    {
+      "path": "game/src/vehicles/0006-vehicle-contact13.js",
+      "group": "vehicles",
+      "symbol": "VehicleContact13",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 1479,
+      "sha256": "5a34be1e6e11204dd1283e10a7ba12ba6abd90b1ba1b1234cee345dba70663b4"
+    },
+    {
+      "path": "game/src/core/0007-expressionstatement.js",
+      "group": "core",
+      "symbol": "expressionstatement",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 14,
+      "sha256": "e65f3cca9a4637c34593c5b4dc5698d6368b91ce43f6d26273a70c430a66b71f"
+    },
+    {
+      "path": "game/src/bootstrap/0008-open-runtime.js",
+      "group": "bootstrap",
+      "symbol": "open-runtime",
+      "type": "Open",
+      "utf8Bytes": 19,
+      "sha256": "2237068ee9230988a0104ca1b40c5b6e2024e39da8712db035be40d8e7507d73"
+    },
+    {
+      "path": "game/src/state/0009-b-and-3-others.js",
+      "group": "state",
+      "symbol": "B-and-3-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 109,
+      "sha256": "87577d3df6c2fdaa923fe22f91c5878c04bd538f4fa7a0b3c4d11ae6dc6efd14"
+    },
+    {
+      "path": "game/src/state/0010-stage40.js",
+      "group": "state",
+      "symbol": "stage40",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 68,
+      "sha256": "a912f23983015294d14dd9035d47bedf07264b83c5f63327b7a0044dad3fe431"
+    },
+    {
+      "path": "game/src/core/0011-contact40.js",
+      "group": "core",
+      "symbol": "contact40",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1639,
+      "sha256": "20c501516aa529df688cc80b34cc65ff5c8f4788638b84aa6a92dfef82875a06"
+    },
+    {
+      "path": "game/src/vehicles/0012-vehicle-contact40.js",
+      "group": "vehicles",
+      "symbol": "vehicleContact40",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1985,
+      "sha256": "2411f13f00fa3a9811da8c502d11c6bc69c7d7e78157cc4bf45bb1327c1d2ee8"
+    },
+    {
+      "path": "game/src/vehicles/0013-resolve-vehicle40.js",
+      "group": "vehicles",
+      "symbol": "resolveVehicle40",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 519,
+      "sha256": "02ae71e940f39ac2cbcb8f7a1da8b6abe665aa436618664a1a98888bc49142cb"
+    },
+    {
+      "path": "game/src/vehicles/0014-suspension40.js",
+      "group": "vehicles",
+      "symbol": "suspension40",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 239,
+      "sha256": "7edd6b3e79d72d8e238f56105f5e40a3ffe35aed977ec0ed1c5f289abfa6c46e"
+    },
+    {
+      "path": "game/src/core/0015-reset-body40.js",
+      "group": "core",
+      "symbol": "resetBody40",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 89,
+      "sha256": "dcf5eca6b671f3d968db9539825d912ffc0a770bffd3cc0d087c229077f71cf6"
+    },
+    {
+      "path": "game/src/state/0016-low-templates-and-5-others.js",
+      "group": "state",
+      "symbol": "lowTemplates-and-5-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 113,
+      "sha256": "40b5e7a9ee9d12d39742ab7b58dba47035c6ea7ddd7fdd80168952349852e227"
+    },
+    {
+      "path": "game/src/engine/0017-engine-and-38-others.js",
+      "group": "engine",
+      "symbol": "engine-and-38-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 489,
+      "sha256": "c175bbcfbe343b3223d708bf1c277d4508b385b0ec5acdb9efa58850a8ec342f"
+    },
+    {
+      "path": "game/src/state/0018-spawn-and-14-others.js",
+      "group": "state",
+      "symbol": "spawn-and-14-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 282,
+      "sha256": "27cad1940f34c5c88fe909e67c888dff0d6e63353ce315417e5f5e8b260504c6"
+    },
+    {
+      "path": "game/src/data/0019-descriptions.js",
+      "group": "data",
+      "symbol": "descriptions",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 2418,
+      "sha256": "afa207b2db44c977afe8d30e7ffe242b2a098e2897cf27a04805f6b7345c1e50"
+    },
+    {
+      "path": "game/src/interface/0020-status.js",
+      "group": "interface",
+      "symbol": "status",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 170,
+      "sha256": "95a3bcaf1cd9634220c8eeb44fa00d6008fb14b3f1fdfa2fafead6beed7b9ea4"
+    },
+    {
+      "path": "game/src/interface/0021-toast.js",
+      "group": "interface",
+      "symbol": "toast",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 158,
+      "sha256": "f5e19552980438eb7da6fdb34e78295b1abd1ece359b6826cf1958cbb4eb4d22"
+    },
+    {
+      "path": "game/src/core/0022-bytes.js",
+      "group": "core",
+      "symbol": "bytes",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 124,
+      "sha256": "3bf8450fa0db4789a339398810f13655cf64be11fd02750c8a0cac3740f91986"
+    },
+    {
+      "path": "game/src/core/0023-inflate.js",
+      "group": "core",
+      "symbol": "inflate",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 714,
+      "sha256": "b28c809a887a2cd49af168359d0d2722e69a625d4a06bc5bee61043c5f2676a0"
+    },
+    {
+      "path": "game/src/core/0024-typed.js",
+      "group": "core",
+      "symbol": "typed",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 108,
+      "sha256": "e7dcf58f0b6a5f309727fdbd567fc3be532bf07bcb79df959b01553f6d6d0876"
+    },
+    {
+      "path": "game/src/rendering/0025-load-asset.js",
+      "group": "rendering",
+      "symbol": "loadAsset",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 781,
+      "sha256": "671465cfd5a680f5028433e45a9978b6c37541637f8e8b873c5ec28bdef8330d"
+    },
+    {
+      "path": "game/src/rendering/0026-fabric.js",
+      "group": "rendering",
+      "symbol": "fabric",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 722,
+      "sha256": "cc3d6e7f22738be739056987a185262adbb94f1bfbdb0aaa4fed17d8eb8a3dd7"
+    },
+    {
+      "path": "game/src/rendering/0027-pbr.js",
+      "group": "rendering",
+      "symbol": "pbr",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 308,
+      "sha256": "3920a560f9d8c8797e1c3391d6850f37f98f767cc8241e2ea01706b327beb5c9"
+    },
+    {
+      "path": "game/src/rendering/0028-load-texture.js",
+      "group": "rendering",
+      "symbol": "loadTexture",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 665,
+      "sha256": "cc2affc1c7bc7d9978d3b81e031960c563ea6a227bfcf6f120f51809787951ed"
+    },
+    {
+      "path": "game/src/rendering/0029-materials.js",
+      "group": "rendering",
+      "symbol": "materials",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2036,
+      "sha256": "8e43b67f58c24c836607f9f68e207828dd88dd52b20ce7a7130f1aabff9b7bc5"
+    },
+    {
+      "path": "game/src/characters/0030-install-surfaces.js",
+      "group": "characters",
+      "symbol": "installSurfaces",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 991,
+      "sha256": "a3986aaff83d52900a348ee82100ac9e2f1a940a2cd7762521ad167f5a4355e3"
+    },
+    {
+      "path": "game/src/rendering/0031-mesh-data.js",
+      "group": "rendering",
+      "symbol": "meshData",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 896,
+      "sha256": "fc8cab625775470f6f48cd340df8ceca4fa4fbf2579466074acf876b5bea3b0d"
+    },
+    {
+      "path": "game/src/rendering/0032-decode-normals.js",
+      "group": "rendering",
+      "symbol": "decodeNormals",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 113,
+      "sha256": "a348cd878b2c484503620ef4b13d5741426ef779edecedf5b01649757b51a2a2"
+    },
+    {
+      "path": "game/src/core/0033-unpack.js",
+      "group": "core",
+      "symbol": "unpack",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1385,
+      "sha256": "a50e8041c18cf77b0df41ea905d2c0908e4cc762030245829edd08920497f354"
+    },
+    {
+      "path": "game/src/characters/0034-refresh-zones-legacy24.js",
+      "group": "characters",
+      "symbol": "refreshZonesLegacy24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1084,
+      "sha256": "15f40521766561a60321b7b09873ab3943fc789dbe84ccab6f3e4cdf62f3a2ea"
+    },
+    {
+      "path": "game/src/world/0035-house-details.js",
+      "group": "world",
+      "symbol": "houseDetails",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 29,
+      "sha256": "d524ba8b7fdda5319e27799021b4927fefa3d2860897f75ef415e3fcee28fb0e"
+    },
+    {
+      "path": "game/src/world/0036-next-house-update.js",
+      "group": "world",
+      "symbol": "nextHouseUpdate",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 22,
+      "sha256": "c8dcf513d9a2d3b400a546663ca3d5f3f5f9469d21c8409793194840ed6b8a14"
+    },
+    {
+      "path": "game/src/world/0037-city-landmarks.js",
+      "group": "world",
+      "symbol": "cityLandmarks",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 24,
+      "sha256": "d5b9af74b1e770215736cd3a75b7c7940312049452923cee3960072f88fe735e"
+    },
+    {
+      "path": "game/src/rendering/0038-make-detail-group.js",
+      "group": "rendering",
+      "symbol": "makeDetailGroup",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 898,
+      "sha256": "6bef3b824d32e1d28254918e3261862477f198cc04ee37be08efae2fdac6337a"
+    },
+    {
+      "path": "game/src/world/0039-build-house-details.js",
+      "group": "world",
+      "symbol": "buildHouseDetails",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1630,
+      "sha256": "436771e9eabeb99c36f1ab181f028bffddd5a9064ea57e7e23086ac8bae75de0"
+    },
+    {
+      "path": "game/src/world/0040-update-house-details.js",
+      "group": "world",
+      "symbol": "updateHouseDetails",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 574,
+      "sha256": "842ef4879670eb050add7cb283a0b83f9454c5a44d797321a821a2360431ecb2"
+    },
+    {
+      "path": "game/src/world/0041-add-world-box.js",
+      "group": "world",
+      "symbol": "addWorldBox",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 314,
+      "sha256": "fdbd2d9c78046e3b6d8b926e7b2c0479f2a064d799a495e7bef5aad7b604db35"
+    },
+    {
+      "path": "game/src/world/0042-install-city.js",
+      "group": "world",
+      "symbol": "installCity",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4958,
+      "sha256": "ab3656474272514135f03059c58a5b5438f487abc600fe1d032cc3a5ac232b62"
+    },
+    {
+      "path": "game/src/world/0043-install-environment.js",
+      "group": "world",
+      "symbol": "installEnvironment",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 409,
+      "sha256": "ddbba0d8ac07e8eafcd8f767395e2a0d1400db1b08ff13de55326fc1dc273f4a"
+    },
+    {
+      "path": "game/src/world/0044-enhanced-trees.js",
+      "group": "world",
+      "symbol": "enhancedTrees",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 24,
+      "sha256": "9963e0ad2a42cbfffcc1720b603e78358a13ae4083de456221115ad410b7970e"
+    },
+    {
+      "path": "game/src/world/0045-install-environment-details.js",
+      "group": "world",
+      "symbol": "installEnvironmentDetails",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3154,
+      "sha256": "b33f501e1e3c9ab2e8decd8febc0871ac05d4e3e5485c805f2dd5e5c8d541351"
+    },
+    {
+      "path": "game/src/world/0046-build-collision.js",
+      "group": "world",
+      "symbol": "buildCollision",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 306,
+      "sha256": "2f73493914d4b9f111e711b8f30448d34f54f348c7776e12fc525ef8cff5948d"
+    },
+    {
+      "path": "game/src/world/0047-in-world.js",
+      "group": "world",
+      "symbol": "inWorld",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 352,
+      "sha256": "0930e051b2197f7bf68ca181ac9e3cfb91d7b1e0434cf14cc5b450caa87bba6b"
+    },
+    {
+      "path": "game/src/characters/0048-surface-grid.js",
+      "group": "characters",
+      "symbol": "surfaceGrid",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 29,
+      "sha256": "cd890a59a7ae244f081ef5662a070d9da7c6c24b30a5b48b10504de3cc3a2b90"
+    },
+    {
+      "path": "game/src/world/0049-build-ground.js",
+      "group": "world",
+      "symbol": "buildGround",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 394,
+      "sha256": "cbd7712d55cae74bf921d32fd2a498d059d20e90f44b0e41080941c210a0021c"
+    },
+    {
+      "path": "game/src/world/0050-ground-at.js",
+      "group": "world",
+      "symbol": "groundAt",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 529,
+      "sha256": "90199ffcf83d742df6cc51d35ad5d647c10d2c9ef46ad92b3a83d620dcc9b93a"
+    },
+    {
+      "path": "game/src/core/0051-blocked.js",
+      "group": "core",
+      "symbol": "blocked",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 849,
+      "sha256": "d9ba253c1b1932f49d7858226ea7fd39ae1c47e3b538c5d7b8626a2ea2836c5e"
+    },
+    {
+      "path": "game/src/core/0052-slide.js",
+      "group": "core",
+      "symbol": "slide",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 229,
+      "sha256": "6e79e5ce5907aaf6a817039755bdfa9acbc88520fd170a433a1e6d2a88004fbd"
+    },
+    {
+      "path": "game/src/data/0053-vehicle-profiles.js",
+      "group": "data",
+      "symbol": "VEHICLE_PROFILES",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 12391,
+      "sha256": "d795f9c4967c23247d975107b43358bf458a95d746e9702556e038fa34b7c7ba"
+    },
+    {
+      "path": "game/src/engine/0054-gameplay-time.js",
+      "group": "engine",
+      "symbol": "gameplayTime",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 20,
+      "sha256": "911f7eb27987ace8914cac04a248442533845686f5e3c257ccab7c0135bfde81"
+    },
+    {
+      "path": "game/src/rendering/0055-gauge-textures-and-1-others.js",
+      "group": "rendering",
+      "symbol": "gaugeTextures-and-1-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 42,
+      "sha256": "5e4c445d95f984fa97cfb618b4d241227c36604940c6cf66e264bfd5756d0f9b"
+    },
+    {
+      "path": "game/src/vehicles/0056-apply-ride-details.js",
+      "group": "vehicles",
+      "symbol": "applyRideDetails",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1955,
+      "sha256": "53c46b6d7d5ba36e352934d06e5bfb3fb81739a0732db6a92d8488ee3ff85f54"
+    },
+    {
+      "path": "game/src/vehicles/0057-draw-ride-gauge.js",
+      "group": "vehicles",
+      "symbol": "drawRideGauge",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 589,
+      "sha256": "0a23a482b84a2f362cb16b87a1a7806e51e908cc8e4ee93c4d0ad8279cf98f13"
+    },
+    {
+      "path": "game/src/vehicles/0058-render-vehicle-facts.js",
+      "group": "vehicles",
+      "symbol": "renderVehicleFacts",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1019,
+      "sha256": "c384672c87fd0b4adb740b42501d33f3db5a46d328e57eeec08ed13f7c714dd7"
+    },
+    {
+      "path": "game/src/core/0059-bind-stage21.js",
+      "group": "core",
+      "symbol": "bindStage21",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1814,
+      "sha256": "d8567723051486a74cdf1ddc5691190d46b122641bdd9d866def3ec06bfedf27"
+    },
+    {
+      "path": "game/src/vehicles/0060-first-person-ride.js",
+      "group": "vehicles",
+      "symbol": "firstPersonRide",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 920,
+      "sha256": "b7d7ddd3da25f8931938b599e6827f290fc8f8f55f791d5266b5464452b5f010"
+    },
+    {
+      "path": "game/src/world/0061-install-sandino-district.js",
+      "group": "world",
+      "symbol": "installSandinoDistrict",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4982,
+      "sha256": "828045033be8d1d855e6f50a34c26264461c0bbf3f63a038431c832be1f24ca9"
+    },
+    {
+      "path": "game/src/world/0062-stage21-landmarks.js",
+      "group": "world",
+      "symbol": "stage21Landmarks",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 67,
+      "sha256": "6d2d0cf0e01a5dc897f6d22139a0a8d90b23177ded87d08aafd0a3c8d04b0e41"
+    },
+    {
+      "path": "game/src/world/0063-install-landmarks21.js",
+      "group": "world",
+      "symbol": "installLandmarks21",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4001,
+      "sha256": "f633c108ca588ccb2f0e50d48ae69b0dc9ad621fbe841c8f8d1c251477b62bed"
+    },
+    {
+      "path": "game/src/world/0064-city-rules.js",
+      "group": "world",
+      "symbol": "CityRules",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 1961,
+      "sha256": "a14b7d7f7f138887ba9aaba0e641943645c3544535bcfffb30b15b79a9a80599"
+    },
+    {
+      "path": "game/src/core/0065-ifstatement.js",
+      "group": "core",
+      "symbol": "ifstatement",
+      "type": "IfStatement",
+      "utf8Bytes": 58,
+      "sha256": "b94d78b3e4a036e41d3209a63b61d4b4d51a0f9aa4b95ad4ffd7652cac147cf0"
+    },
+    {
+      "path": "game/src/characters/0066-police-uniforms.js",
+      "group": "characters",
+      "symbol": "policeUniforms",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 25,
+      "sha256": "b1650b59a685ec4b91c5e569d74adbd2da4038e91de6dfac671bc9503218e52f"
+    },
+    {
+      "path": "game/src/characters/0067-prepare-police-uniforms.js",
+      "group": "characters",
+      "symbol": "preparePoliceUniforms",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 570,
+      "sha256": "011ed21bcc65ac40200a5669bd879207a1db30a0eae5db38829085d030882010"
+    },
+    {
+      "path": "game/src/world/0068-city.js",
+      "group": "world",
+      "symbol": "city",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 286,
+      "sha256": "add3a049a23371dd1fa7bd71885d5c233bb1a7eafc85940bc99d6f16ebc37ea1"
+    },
+    {
+      "path": "game/src/data/0069-city-goods.js",
+      "group": "data",
+      "symbol": "cityGoods",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 815,
+      "sha256": "b6133ca78aa7d5d6f97a08f785de10b9a23f243cfa38d335369f46d54a4ae3e7"
+    },
+    {
+      "path": "game/src/world/0070-city-sign.js",
+      "group": "world",
+      "symbol": "citySign",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 494,
+      "sha256": "d07b836e7d3b733f247ac97660ebcdd6feb7bffab4dcbe9a49aef3d80ba0f504"
+    },
+    {
+      "path": "game/src/characters/0071-apply-city-outfit.js",
+      "group": "characters",
+      "symbol": "applyCityOutfit",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 470,
+      "sha256": "886f8f7d0c581c5c1c1e8f16ad17788ade26f9d37da2d7685754a99121d3030a"
+    },
+    {
+      "path": "game/src/world/0072-save-city.js",
+      "group": "world",
+      "symbol": "saveCity",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 273,
+      "sha256": "20fdef58b9a63b6caadbee3a58a263bb0b589f7e9f9bb5d2720dbca23cb244c2"
+    },
+    {
+      "path": "game/src/characters/0073-city-actor.js",
+      "group": "characters",
+      "symbol": "cityActor",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1841,
+      "sha256": "8342ab1ebcc45551b5dbadba56fd24c96f7bcbaca0a598a534601e7e2e3e00e5"
+    },
+    {
+      "path": "game/src/world/0074-build-city-commerce.js",
+      "group": "world",
+      "symbol": "buildCityCommerce",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 987,
+      "sha256": "ebea3e64d8bb868b52e77480c891108725d9621fee5dab858407890e24c90353"
+    },
+    {
+      "path": "game/src/core/0075-vendor-cart.js",
+      "group": "core",
+      "symbol": "vendorCart",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 948,
+      "sha256": "90eeadac00e973d864f15f2d179db19d02a4db524285ce3962cc2671b2fe01c3"
+    },
+    {
+      "path": "game/src/core/0076-add-patrol.js",
+      "group": "core",
+      "symbol": "addPatrol",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 703,
+      "sha256": "8f074682bfd22baf9cebad08f41a27c33bd978a2066678f89442f8110d2fd9da"
+    },
+    {
+      "path": "game/src/world/0077-install-city-life.js",
+      "group": "world",
+      "symbol": "installCityLife",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1515,
+      "sha256": "ec0813a09de15c7e7ab687a6b47291154c7687976004491fef764c83592cd37b"
+    },
+    {
+      "path": "game/src/world/0078-open-city-shop.js",
+      "group": "world",
+      "symbol": "openCityShop",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 336,
+      "sha256": "e4b8923149212d9769cba2a88460d94cffb67a1019a43bad312dc486748a78bd"
+    },
+    {
+      "path": "game/src/world/0079-render-city-goods.js",
+      "group": "world",
+      "symbol": "renderCityGoods",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1098,
+      "sha256": "cea33b953e66d1d8230ee25312f4259267f94873e835b6c1f550e0885f4c67d9"
+    },
+    {
+      "path": "game/src/world/0080-close-city-shop.js",
+      "group": "world",
+      "symbol": "closeCityShop",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 102,
+      "sha256": "0664668b50c7ace332621a8c427bedb57a4aa001ff4de20641f4ff208feeb299"
+    },
+    {
+      "path": "game/src/characters/0081-city-hit-actor.js",
+      "group": "characters",
+      "symbol": "cityHitActor",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1407,
+      "sha256": "8f79df1cb2eee60036bd7ae30340e274731d333394755118eb2521652ffe4370"
+    },
+    {
+      "path": "game/src/world/0082-city-punch.js",
+      "group": "world",
+      "symbol": "cityPunch",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 451,
+      "sha256": "f0210a49c2dfd82ef824d90cc29bc4c199fae79f67a40983177d64f3f7ae04ce"
+    },
+    {
+      "path": "game/src/characters/0083-hurt-player.js",
+      "group": "characters",
+      "symbol": "hurtPlayer",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 388,
+      "sha256": "b0074eab3d6d9c95277a6fb09023fd60da04c73f05792d2ec0440c7d3f7ca439"
+    },
+    {
+      "path": "game/src/characters/0084-city-actor-tick.js",
+      "group": "characters",
+      "symbol": "cityActorTick",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2242,
+      "sha256": "2f66f1f7247437c07b69b1b298a0da22d33ec50f9035d6a42d8246bace0e00c5"
+    },
+    {
+      "path": "game/src/world/0085-tick-city.js",
+      "group": "world",
+      "symbol": "tickCity",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2074,
+      "sha256": "40b84a56904647be7434ca442f2d3457f1119f297e0f7bf64b2b407b1bbb43f3"
+    },
+    {
+      "path": "game/src/world/0086-install-neighborhoods22.js",
+      "group": "world",
+      "symbol": "installNeighborhoods22",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4974,
+      "sha256": "34af4a74c2fd286e873085a7441d315d5261c1e52fc213611d53e2c9d9578063"
+    },
+    {
+      "path": "game/src/vehicles/0087-home-garage.js",
+      "group": "vehicles",
+      "symbol": "homeGarage",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 22,
+      "sha256": "1f022c2778e85b9060d74b9b073165813296d3cf2e8edb50bca5b576ec0fc140"
+    },
+    {
+      "path": "game/src/rendering/0088-camera-rig.js",
+      "group": "rendering",
+      "symbol": "cameraRig",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 57,
+      "sha256": "d6e3fc387af7a4ed7ec1090570320f61dfc4b75dd4f7d70d6c7272e230c304d7"
+    },
+    {
+      "path": "game/src/rendering/0089-zoom-camera.js",
+      "group": "rendering",
+      "symbol": "zoomCamera",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 102,
+      "sha256": "2ee2f2c459841c7bd383d568ce3b6e466dbe5e546a7006a78c50cd5a6ad622e2"
+    },
+    {
+      "path": "game/src/core/0090-bind-polish23.js",
+      "group": "core",
+      "symbol": "bindPolish23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1080,
+      "sha256": "1d99b7dde7f38578dd4192c5abf29f9771cd011deacf271124b8e99cd7ec0ab9"
+    },
+    {
+      "path": "game/src/core/0091-bind-look23.js",
+      "group": "core",
+      "symbol": "bindLook23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 896,
+      "sha256": "0e08f4de350fbe9d21cbd9b68d238bea2990d3e5e6676f7bae2c721c6f230742"
+    },
+    {
+      "path": "game/src/interface/0092-polish-controls23.js",
+      "group": "interface",
+      "symbol": "polishControls23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 248,
+      "sha256": "d456e882dafc31e627060f8da8acefc79eab7b3e2eedd5a02146a8b43b24fcfc"
+    },
+    {
+      "path": "game/src/characters/0093-street-hero-texture.js",
+      "group": "characters",
+      "symbol": "streetHeroTexture",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 28,
+      "sha256": "6da83ceed481c30839ddeb5989413976b1526e0cd7bfdcf4a331f83c093e4449"
+    },
+    {
+      "path": "game/src/characters/0094-prepare-street-hero23.js",
+      "group": "characters",
+      "symbol": "prepareStreetHero23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 174,
+      "sha256": "c7a711cd08176818df9ae2be7601a652bf38a01da6b8eb90a2aafffa85c18cdd"
+    },
+    {
+      "path": "game/src/engine/0095-install-paint23.js",
+      "group": "engine",
+      "symbol": "installPaint23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 272,
+      "sha256": "bf7db22f8a1ddc489a99793f570337335ad28f93b4b9764f903e0dcbabcbd8fb"
+    },
+    {
+      "path": "game/src/vehicles/0096-traffic23.js",
+      "group": "vehicles",
+      "symbol": "traffic23",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 112,
+      "sha256": "61b39022ea90e6d4fff2f754870420c5749ef591455b582269c10ca1c4504ed0"
+    },
+    {
+      "path": "game/src/core/0097-signal-phase23.js",
+      "group": "core",
+      "symbol": "signalPhase23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 182,
+      "sha256": "7e6bf41afd5d82916bb2891757e7e15f307adadc4a52b21329f90c035c22c6fe"
+    },
+    {
+      "path": "game/src/vehicles/0098-setup-traffic23.js",
+      "group": "vehicles",
+      "symbol": "setupTraffic23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1785,
+      "sha256": "1cba893019c0c6ce2bdc7e65ea29ef7c24625c92be3cd0e297aa02773be5b1c8"
+    },
+    {
+      "path": "game/src/vehicles/0099-step-traffic23.js",
+      "group": "vehicles",
+      "symbol": "stepTraffic23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2270,
+      "sha256": "55f526038e0ca9e92c29ee0ef7ee67a4b64b468831ad3e20a2932eac65abfea9"
+    },
+    {
+      "path": "game/src/vehicles/0100-update-traffic-signals23.js",
+      "group": "vehicles",
+      "symbol": "updateTrafficSignals23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 474,
+      "sha256": "2164b510aeb01ab57820636fbeed642b4607f41fe9672127189098f7ecc6d770"
+    },
+    {
+      "path": "game/src/world/0101-waterfront23.js",
+      "group": "world",
+      "symbol": "waterfront23",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 49,
+      "sha256": "e76902ba329cfc71e2ff9df5d49d2c1ffeb0eeaae433aa03529592b5a1443d82"
+    },
+    {
+      "path": "game/src/rendering/0102-merge-detail23.js",
+      "group": "rendering",
+      "symbol": "mergeDetail23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 351,
+      "sha256": "189bb99b037ff2753fe98ef876bafe9d9151b8f5ae8d50e055f670f9194b52dc"
+    },
+    {
+      "path": "game/src/world/0103-install-waterfront23.js",
+      "group": "world",
+      "symbol": "installWaterfront23",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4871,
+      "sha256": "84cde40d75ec5ea55a7cc37d5bfc9eb010d8e6cdbec262af14534d77fc73b61e"
+    },
+    {
+      "path": "game/src/world/0104-city24.js",
+      "group": "world",
+      "symbol": "city24",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 103,
+      "sha256": "b03e1c2757e99d5a57c90938cd8c9cc0f82f1456bc8031cff99c00292dfbdd61"
+    },
+    {
+      "path": "game/src/engine/0105-install-signals24.js",
+      "group": "engine",
+      "symbol": "installSignals24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2162,
+      "sha256": "f5ad72081d7978248fffeb7f9a08cef94b4590e46202bda61acf129b096a390c"
+    },
+    {
+      "path": "game/src/characters/0106-install-arms24.js",
+      "group": "characters",
+      "symbol": "installArms24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1318,
+      "sha256": "523d0183234cfa6e840bdb6248945cd96116b2a0fe880858aad1458c2305e72c"
+    },
+    {
+      "path": "game/src/vehicles/0107-rider-visibility24.js",
+      "group": "vehicles",
+      "symbol": "riderVisibility24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 670,
+      "sha256": "3e709b7810453bf5bbaa68f7700bc7429e9bdfdd379a71130a5c29fc7d43530e"
+    },
+    {
+      "path": "game/src/world/0108-install-market24.js",
+      "group": "world",
+      "symbol": "installMarket24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2827,
+      "sha256": "ff156712521943d5a84f4b686ac23b2a39c25d7946fd97898b2d437cd3807afc"
+    },
+    {
+      "path": "game/src/engine/0109-install-roundabout24.js",
+      "group": "engine",
+      "symbol": "installRoundabout24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 744,
+      "sha256": "d5bbaf5bff18f7852dc3c339dcac28b0091b5869e1c03fe8747f5051dee9c9d4"
+    },
+    {
+      "path": "game/src/characters/0110-turn-actor24.js",
+      "group": "characters",
+      "symbol": "turnActor24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 203,
+      "sha256": "c6fe1cad10c824ed3dea1e19a28f55b2098450a18804c7e361d2f47df0538406"
+    },
+    {
+      "path": "game/src/characters/0111-move-actor24.js",
+      "group": "characters",
+      "symbol": "moveActor24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 508,
+      "sha256": "54c690887089ba6809ecf824db06ee2d3d2c7a63773ff7bafb6a5a8208f3a0ee"
+    },
+    {
+      "path": "game/src/vehicles/0112-solve-human-ride24.js",
+      "group": "vehicles",
+      "symbol": "solveHumanRide24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1761,
+      "sha256": "7dcd8733d32940bdbd292910c4138f80253d6fe9a0fcd1dc367eab22a5e05dc0"
+    },
+    {
+      "path": "game/src/characters/0113-update-forearms24.js",
+      "group": "characters",
+      "symbol": "updateForearms24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 666,
+      "sha256": "67f9d35f58fbe3192056ba7ac803964018007a78d663e422e0fcd1d2c5365708"
+    },
+    {
+      "path": "game/src/state/0114-simulation25.js",
+      "group": "state",
+      "symbol": "simulation25",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 170,
+      "sha256": "d7d721d00a000e36f2d8924cbbb70d0e8d2f5600a52b050c436874289618fd05"
+    },
+    {
+      "path": "game/src/vehicles/0115-fleet-snapshot25.js",
+      "group": "vehicles",
+      "symbol": "fleetSnapshot25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 364,
+      "sha256": "b050c15f69f4b814a4c7304b0117b0670ab7db943d5394272ec1096e2c710e1a"
+    },
+    {
+      "path": "game/src/vehicles/0116-step-traffic25.js",
+      "group": "vehicles",
+      "symbol": "stepTraffic25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1482,
+      "sha256": "5330e005282ad53dbf9b97862adf33eace1bb3d05a2414963d7c76feabf2b68c"
+    },
+    {
+      "path": "game/src/vehicles/0117-organize-parking25.js",
+      "group": "vehicles",
+      "symbol": "organizeParking25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 913,
+      "sha256": "366f4f0df1228149b2d48df4b70e40726fef57a017c58744acb5a97248e80f15"
+    },
+    {
+      "path": "game/src/state/0118-shape-geometries25.js",
+      "group": "state",
+      "symbol": "shapeGeometries25",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 34,
+      "sha256": "8f34cc9cb655ca7731368c3d258ac37b7e1c3fdbf5643078d553f5c33451fa4f"
+    },
+    {
+      "path": "game/src/world/0119-stream-definitions25.js",
+      "group": "world",
+      "symbol": "streamDefinitions25",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 30,
+      "sha256": "0e389d22e2098b312bcc0f6ff199fac6baaa1f926154d4366cac2c7cf205e5a1"
+    },
+    {
+      "path": "game/src/engine/0120-load-yield25.js",
+      "group": "engine",
+      "symbol": "loadYield25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 96,
+      "sha256": "933949f9d470e374308fbd36d2abc0c661127f0b7124065e814078ad0bb4bb15"
+    },
+    {
+      "path": "game/src/characters/0121-vary-human-shape.js",
+      "group": "characters",
+      "symbol": "varyHumanShape",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 421,
+      "sha256": "ddb5ba0cd5ce9abba307c0f0e47b9bb6109d6ca2c069d29334b5979eda0b6e71"
+    },
+    {
+      "path": "game/src/world/0122-refresh-zones-unused44.js",
+      "group": "world",
+      "symbol": "refreshZonesUnused44",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1796,
+      "sha256": "15af85e9206a44b8aeb6c53dd44c9b8bfb24ee78b57948226f8fa605bd502a84"
+    },
+    {
+      "path": "game/src/world/0123-refresh-zones25.js",
+      "group": "world",
+      "symbol": "refreshZones25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 68,
+      "sha256": "d672f7532ebbfaf5781862352d0733859808cfb777e7880071563506034049ed"
+    },
+    {
+      "path": "game/src/characters/0124-prepare-wardrobe25.js",
+      "group": "characters",
+      "symbol": "prepareWardrobe25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 887,
+      "sha256": "6fd92feeb911dcf7741b6bdf26505c445d301f26e06afbdb7bd2504c792372b0"
+    },
+    {
+      "path": "game/src/engine/0125-install-brains25.js",
+      "group": "engine",
+      "symbol": "installBrains25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 300,
+      "sha256": "e9c638ce60330f366ccd669cdf476d6d58a40b27ee35f31e0dd4b665812f2d7d"
+    },
+    {
+      "path": "game/src/characters/0126-update-people25.js",
+      "group": "characters",
+      "symbol": "updatePeople25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3376,
+      "sha256": "9e3ebeceb281b9094c92fc45dfec808847f32391d03bca7c9e8653f4c2fd3da6"
+    },
+    {
+      "path": "game/src/characters/0127-actor-shot25.js",
+      "group": "characters",
+      "symbol": "actorShot25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1094,
+      "sha256": "aac8361d0ed30f74eef3037e89bb56b898143501ce2d32ad4feea2ca71871d5d"
+    },
+    {
+      "path": "game/src/characters/0128-aim-actor25.js",
+      "group": "characters",
+      "symbol": "aimActor25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 359,
+      "sha256": "f24280b0e097a455a84a9db2ffd300bd7e7afbfdcc32fe3a21bd6f837b81a121"
+    },
+    {
+      "path": "game/src/characters/0129-city-actor-tick25.js",
+      "group": "characters",
+      "symbol": "cityActorTick25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3725,
+      "sha256": "eea741fe1550a4fa95f737fa3588fb3b1112ae52277d769e00d59a89f7a92a67"
+    },
+    {
+      "path": "game/src/rendering/0130-normal-grain25.js",
+      "group": "rendering",
+      "symbol": "normalGrain25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 542,
+      "sha256": "a83c0b98cca825ace0d660dd963b0fc08a2a9d6154da6d13efe7b9d7313f2b6a"
+    },
+    {
+      "path": "game/src/rendering/0131-install-texture25.js",
+      "group": "rendering",
+      "symbol": "installTexture25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 592,
+      "sha256": "559b44b821f3bb1936a841f8b7548fa1990ded2cfecea31319c404df85a6f279"
+    },
+    {
+      "path": "game/src/rendering/0132-ensure-details25.js",
+      "group": "rendering",
+      "symbol": "ensureDetails25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2812,
+      "sha256": "31d0bc4343e268724a7bd9ba1ae1d030a77eb775d0738e27e30495a1806e6d82"
+    },
+    {
+      "path": "game/src/rendering/0133-install-detail-queue25.js",
+      "group": "rendering",
+      "symbol": "installDetailQueue25",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 921,
+      "sha256": "f2c9767ca1224ca4f7823d1e33b0a01818a50349a991f4a5bf13e977f82964d2"
+    },
+    {
+      "path": "game/src/data/0134-mpfb-faces26.js",
+      "group": "data",
+      "symbol": "mpfbFaces26",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 472478,
+      "sha256": "f5e4866f32662086bc130b5362c2fd2c70ca935d7f4ae12cc3954dff39e67fba"
+    },
+    {
+      "path": "game/src/data/0135-grip-models26.js",
+      "group": "data",
+      "symbol": "gripModels26",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 145017,
+      "sha256": "23a1c06e6bcf6c35a047e77cd41e31268ab6e84829c6050054d3be1495e92218"
+    },
+    {
+      "path": "game/src/state/0136-polish26.js",
+      "group": "state",
+      "symbol": "polish26",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 120,
+      "sha256": "52c8021dfa0cbd881fdadf0d8ae4895875cc745909ad6c1c9ebd4431f3950ab9"
+    },
+    {
+      "path": "game/src/vehicles/0137-vehicle-footprint26.js",
+      "group": "vehicles",
+      "symbol": "vehicleFootprint26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 280,
+      "sha256": "e0b03d2d4b123f54ebea69adab2a2e9b444a97ef4ca075c97058578fe33dd353"
+    },
+    {
+      "path": "game/src/vehicles/0138-setup-traffic26.js",
+      "group": "vehicles",
+      "symbol": "setupTraffic26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1863,
+      "sha256": "129b4e44e5178400349e4273471eae04945912f76ca0013cf452a932431359c9"
+    },
+    {
+      "path": "game/src/characters/0139-pedestrian-crossing26.js",
+      "group": "characters",
+      "symbol": "pedestrianCrossing26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 510,
+      "sha256": "fea4d1abf6eb2d66a4e5bc1d7a527a1a1e7dc8c102cda2ad160348a769eb77c1"
+    },
+    {
+      "path": "game/src/vehicles/0140-install-riders26.js",
+      "group": "vehicles",
+      "symbol": "installRiders26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 612,
+      "sha256": "c2652cc5ef4e8682046f879bb9948299747257761864b77c7fbac73aea32320a"
+    },
+    {
+      "path": "game/src/characters/0141-organize-people26.js",
+      "group": "characters",
+      "symbol": "organizePeople26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 850,
+      "sha256": "d6c88cf183ffe59ddf1db5e56d1c908563c5fb1a317459d29359b8a77e756797"
+    },
+    {
+      "path": "game/src/engine/0142-install-storefronts26.js",
+      "group": "engine",
+      "symbol": "installStorefronts26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 944,
+      "sha256": "6dbf6d28999c9b7ea07d3fcd5158174bf7a1c647d934662825f4a6d5cbb4498b"
+    },
+    {
+      "path": "game/src/characters/0143-refine-human26.js",
+      "group": "characters",
+      "symbol": "refineHuman26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 791,
+      "sha256": "d5440df20388eb0f637dc5c85e69a15f1f31437ea4062992d81cfb3a034bcb1d"
+    },
+    {
+      "path": "game/src/characters/0144-install-humans26.js",
+      "group": "characters",
+      "symbol": "installHumans26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 131,
+      "sha256": "c16fc0e001d1a9293a09396f613fd1029d4acf1d2e4fd86a9bb99c3f976296f1"
+    },
+    {
+      "path": "game/src/vehicles/0145-refine-bike26.js",
+      "group": "vehicles",
+      "symbol": "refineBike26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 978,
+      "sha256": "dfa5f78111f8029b63ce733f45936fdec6183eb18db0fec39ff42ed0ce0e1fd6"
+    },
+    {
+      "path": "game/src/characters/0146-apply-mpfb-face26.js",
+      "group": "characters",
+      "symbol": "applyMpfbFace26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1490,
+      "sha256": "0b72ecaaa75bb258256d05ac9dd430052f5aed8899fcd2332a86cc0a7cc122d8"
+    },
+    {
+      "path": "game/src/engine/0147-install-grips26.js",
+      "group": "engine",
+      "symbol": "installGrips26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1090,
+      "sha256": "05bb3aabd7862f73c40cc4648d7aae1e4e562eff40c693e75a7082712ebcbc59"
+    },
+    {
+      "path": "game/src/engine/0148-update-grips26.js",
+      "group": "engine",
+      "symbol": "updateGrips26",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 394,
+      "sha256": "e08f1146f2316e7c2d6bbc96bad3f08d21a2e010c6fe755672f5ddf5b15b34ca"
+    },
+    {
+      "path": "game/src/characters/0149-pedestrian-crossing27.js",
+      "group": "characters",
+      "symbol": "pedestrianCrossing27",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 804,
+      "sha256": "c1db8401fe0927618f21c32d55856df151e343c14dd449cfe242860c596678dc"
+    },
+    {
+      "path": "game/src/vehicles/0150-vehicle-movement27.js",
+      "group": "vehicles",
+      "symbol": "vehicleMovement27",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 167,
+      "sha256": "4728a2241e842be7dbe063f1a12bedc681ab3427b92c2b3fe33c395262fa0000"
+    },
+    {
+      "path": "game/src/state/0151-stage28.js",
+      "group": "state",
+      "symbol": "stage28",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 123,
+      "sha256": "6c04a2c73f875d3c63a2e733bc7105d02e5ef467afc1332bfa74b3c497e9232f"
+    },
+    {
+      "path": "game/src/vehicles/0152-select-street-fleet28.js",
+      "group": "vehicles",
+      "symbol": "selectStreetFleet28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 310,
+      "sha256": "53c2aa9b267cf68431c30d660773d2eb40bf78f1978fd216591d89737d343be5"
+    },
+    {
+      "path": "game/src/world/0153-road-route28.js",
+      "group": "world",
+      "symbol": "roadRoute28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 365,
+      "sha256": "33985f135942081b21e473086548c953d94f3ee3e3bc708ea83e3db2380ed3c2"
+    },
+    {
+      "path": "game/src/vehicles/0154-place-traffic28.js",
+      "group": "vehicles",
+      "symbol": "placeTraffic28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 711,
+      "sha256": "700528660e77bcd13dc464915cda37b6ade0abe4fd1fd6183f937feeeb346e86"
+    },
+    {
+      "path": "game/src/core/0155-park-sparse28.js",
+      "group": "core",
+      "symbol": "parkSparse28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 890,
+      "sha256": "a42b6a6ddc11f545a610703beb74af5d69d725839e156e1e5d9bc164f8c1de49"
+    },
+    {
+      "path": "game/src/vehicles/0156-setup-traffic28.js",
+      "group": "vehicles",
+      "symbol": "setupTraffic28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1013,
+      "sha256": "65ea82c4d35a8fc24447511e972030ea0378f97537c27e76c17624b5f4385e21"
+    },
+    {
+      "path": "game/src/vehicles/0157-manage-traffic28.js",
+      "group": "vehicles",
+      "symbol": "manageTraffic28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 524,
+      "sha256": "28cd465dc86f33b3770a7ee5c73fcf9abc2b52465aa858aeda791215e666879f"
+    },
+    {
+      "path": "game/src/vehicles/0158-visible-vehicle28.js",
+      "group": "vehicles",
+      "symbol": "visibleVehicle28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 174,
+      "sha256": "b2014f1f5692e7546a54e8e73551dd0a05bcb01b69a8356602042167206040d5"
+    },
+    {
+      "path": "game/src/vehicles/0159-traffic-phase28.js",
+      "group": "vehicles",
+      "symbol": "trafficPhase28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 221,
+      "sha256": "02f5091ca75cec268c9912fafcf508c439f572f7b0f9e56f6bb882159c27eebd"
+    },
+    {
+      "path": "game/src/vehicles/0160-park-garage28.js",
+      "group": "vehicles",
+      "symbol": "parkGarage28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 316,
+      "sha256": "9a8d9bfe173dabdd8dd7bb7df7c8331bd1e5fd2a552a2bb855340da2e85d58b6"
+    },
+    {
+      "path": "game/src/characters/0161-outfit-mats28.js",
+      "group": "characters",
+      "symbol": "outfitMats28",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 30,
+      "sha256": "b70466ee3f4af7d6bb2d7e18bf216bd210da66d0425423883fdc9bb8d79b3d42"
+    },
+    {
+      "path": "game/src/core/0162-dress-clothes28.js",
+      "group": "core",
+      "symbol": "dressClothes28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1034,
+      "sha256": "8d43e4572381ef843857e1c5e889775149700657fb25cd958bcd1d8a81d1a3d2"
+    },
+    {
+      "path": "game/src/characters/0163-install-people28.js",
+      "group": "characters",
+      "symbol": "installPeople28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 632,
+      "sha256": "d3950e2ba2328ee62514a350b2b14ae0661b385292377a485de7f1b55b5b5ab8"
+    },
+    {
+      "path": "game/src/vehicles/0164-refine-vehicle28.js",
+      "group": "vehicles",
+      "symbol": "refineVehicle28",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1933,
+      "sha256": "2693fa2953a594dbc4a675961ce1f497a15a62fe0c9d12cdb59f583b06611beb"
+    },
+    {
+      "path": "game/src/world/0165-roads29.js",
+      "group": "world",
+      "symbol": "Roads29",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 1311,
+      "sha256": "6380b21bfe3595d5f26c8af14323fa80580329657ec8b8598ffba07841ab8d18"
+    },
+    {
+      "path": "game/src/core/0166-ifstatement.js",
+      "group": "core",
+      "symbol": "ifstatement",
+      "type": "IfStatement",
+      "utf8Bytes": 56,
+      "sha256": "2e3305caf66c6e331d2ece70e3a8881bb213b318e784106500acab367129a216"
+    },
+    {
+      "path": "game/src/vehicles/0167-traffic29.js",
+      "group": "vehicles",
+      "symbol": "traffic29",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 53,
+      "sha256": "82af070bc9a93231874dac872abd4ecd126aab4f9ecc829aa9f07daa68824bed"
+    },
+    {
+      "path": "game/src/vehicles/0168-step-traffic29.js",
+      "group": "vehicles",
+      "symbol": "stepTraffic29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2681,
+      "sha256": "b670d22dba32f05e5b7450385682f66b7c81f6539231d3292b977cbb0a3aecf9"
+    },
+    {
+      "path": "game/src/state/0169-combat29.js",
+      "group": "state",
+      "symbol": "Combat29",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 851,
+      "sha256": "b488e48db0a1b8c465b1c6ac7f92883a2bde00b0e7bd077ac5273631eb2082a9"
+    },
+    {
+      "path": "game/src/state/0170-commerce29.js",
+      "group": "state",
+      "symbol": "Commerce29",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 529,
+      "sha256": "305624fb84e848203fff67ecb0a26028e32b1f3bf44193051c7fff3e788728d5"
+    },
+    {
+      "path": "game/src/core/0171-ifstatement.js",
+      "group": "core",
+      "symbol": "ifstatement",
+      "type": "IfStatement",
+      "utf8Bytes": 70,
+      "sha256": "daa5e0044f0b5584d9ab46c9630594bff6c7bb92c151cbab3b461e0fdb295932"
+    },
+    {
+      "path": "game/src/state/0172-expansion29.js",
+      "group": "state",
+      "symbol": "expansion29",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 74,
+      "sha256": "1986cb9a68c6d007f1f745aede1201f126cdb404e9a8e1216d638959ec2f934c"
+    },
+    {
+      "path": "game/src/engine/0173-create-state29-and-2-others.js",
+      "group": "engine",
+      "symbol": "createState29-and-2-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 90,
+      "sha256": "0ff0d8e815478e57e7379042577fc791e0bc9c93518bf73291c122a00837bf5c"
+    },
+    {
+      "path": "game/src/engine/0174-create.js",
+      "group": "engine",
+      "symbol": "create",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 124,
+      "sha256": "1ace2cf74c577241bf8ad5115d6263ef37c9fe062e6f5a1d19da61feb2d2b5e7"
+    },
+    {
+      "path": "game/src/engine/0175-load.js",
+      "group": "engine",
+      "symbol": "load",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 268,
+      "sha256": "af134354931b21eeb0b7b90639387ceff864442c8ba07d8e06baac7cc4a47cba"
+    },
+    {
+      "path": "game/src/vehicles/0176-vehicle-at-shop29.js",
+      "group": "vehicles",
+      "symbol": "vehicleAtShop29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 154,
+      "sha256": "2d4e35c2c8ba72018f6630f6e2275fbf77b5bdefd6934278a91c3d4c62546510"
+    },
+    {
+      "path": "game/src/core/0177-buy.js",
+      "group": "core",
+      "symbol": "buy",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 229,
+      "sha256": "589ea3a169f90e909c7194f2eeee41966d5641546b199f3e3624c7f52128513f"
+    },
+    {
+      "path": "game/src/engine/0178-install-commerce29.js",
+      "group": "engine",
+      "symbol": "installCommerce29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2816,
+      "sha256": "f61ee6c2ae589772b18fdd9ec3d37990305da165dc4ba44775f363aa4b91a9e2"
+    },
+    {
+      "path": "game/src/engine/0179-update-combat29.js",
+      "group": "engine",
+      "symbol": "updateCombat29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 633,
+      "sha256": "24b4dbf4af3d7ac571323543695aac78eb12423082c425f0aeba2486307220a7"
+    },
+    {
+      "path": "game/src/core/0180-incoming-damage29.js",
+      "group": "core",
+      "symbol": "incomingDamage29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 291,
+      "sha256": "684aa2da8775cebd02b78132e5bfa6845b4bffb2da893c9194e61cd2ddc2c4e4"
+    },
+    {
+      "path": "game/src/engine/0181-install-combat29.js",
+      "group": "engine",
+      "symbol": "installCombat29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1351,
+      "sha256": "a8aee1f06991cfe2beeec0a823b402ec7db92e50842108f3b40ef3e45df19a8b"
+    },
+    {
+      "path": "game/src/characters/0182-install-combat-pose29.js",
+      "group": "characters",
+      "symbol": "installCombatPose29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1046,
+      "sha256": "1ca82c36a808ce66949dc276f867163bc88351e99fba11622c265d1508d06336"
+    },
+    {
+      "path": "game/src/characters/0183-surface-tile29.js",
+      "group": "characters",
+      "symbol": "surfaceTile29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1239,
+      "sha256": "2a62db60aeda9cc01432f34c72ac3f4e8d88e3f3def4bbf1abf3e45a58820cf2"
+    },
+    {
+      "path": "game/src/characters/0184-install-surfaces29.js",
+      "group": "characters",
+      "symbol": "installSurfaces29",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1729,
+      "sha256": "a5f3f0930c841f8e03e8518a6c54ef64c53fec445939caaec682b9825265ed6f"
+    },
+    {
+      "path": "game/src/state/0185-stage30.js",
+      "group": "state",
+      "symbol": "stage30",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 124,
+      "sha256": "d6adac3bee7508d0aa6d81868192786a5dd4046c21affe898fcb30e4fedd2c6e"
+    },
+    {
+      "path": "game/src/core/0186-map30-point.js",
+      "group": "core",
+      "symbol": "map30Point",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 166,
+      "sha256": "e99e5abcf6e0a567a8b658c287701b8a7bdf59ef6dd4bbb296272319b154c5f0"
+    },
+    {
+      "path": "game/src/core/0187-set-shop-destination30.js",
+      "group": "core",
+      "symbol": "setShopDestination30",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 162,
+      "sha256": "ee72e3082f05675bb6fca1c4b43c0ebc81974d626c867c3c8d72e50f113ded81"
+    },
+    {
+      "path": "game/src/engine/0188-install-map30.js",
+      "group": "engine",
+      "symbol": "installMap30",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1760,
+      "sha256": "c39765835583e9eab4004f5d172d95af98d67cd2a848e937673e3a0f803e3a7d"
+    },
+    {
+      "path": "game/src/world/0189-install-world30.js",
+      "group": "world",
+      "symbol": "installWorld30",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3668,
+      "sha256": "583cbb9d22a739f1e10450b433e5ec0848d130793fa0db1697e92f78af5cbebd"
+    },
+    {
+      "path": "game/src/core/0190-reset-inertia30.js",
+      "group": "core",
+      "symbol": "resetInertia30",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 287,
+      "sha256": "17abf0d7dd50c7a0984ce1ffc6514f0aad4de856c73505672a0b69f6faa3031e"
+    },
+    {
+      "path": "game/src/core/0191-solve-hand30.js",
+      "group": "core",
+      "symbol": "solveHand30",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1351,
+      "sha256": "122ec37b1a449a38ffbcbd898048c6b93c0edbe865abf7bb2ce809b97edcc2ae"
+    },
+    {
+      "path": "game/src/characters/0192-install-pose30.js",
+      "group": "characters",
+      "symbol": "installPose30",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 695,
+      "sha256": "9e8a232400988edc18549e5e2519ae9903926973af37c18ebc40496e512728c4"
+    },
+    {
+      "path": "game/src/core/0193-place-weapon30.js",
+      "group": "core",
+      "symbol": "placeWeapon30",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 640,
+      "sha256": "b1172fb4dd7a17bacafea91ad5668c374d658132b45dbb8e80bf12ae46cb4235"
+    },
+    {
+      "path": "game/src/state/0194-align-before30.js",
+      "group": "state",
+      "symbol": "alignBefore30",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 36,
+      "sha256": "3cf2bf722b59ddeffa60098e239402b76194f999a8b21fba7b641c7511f9e58a"
+    },
+    {
+      "path": "game/src/core/0195-align-held-weapon.js",
+      "group": "core",
+      "symbol": "alignHeldWeapon",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 334,
+      "sha256": "be63e7bea077ee9599feb5d728876f1cc41915dab39e810ce90ea5b1a25c2e37"
+    },
+    {
+      "path": "game/src/characters/0196-aim-actor25.js",
+      "group": "characters",
+      "symbol": "aimActor25",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 123,
+      "sha256": "8e882534fa4dfc56989dae5835b0b87e3b24b7b4078288013fd60ee4b7e6c340"
+    },
+    {
+      "path": "game/src/characters/0197-surface-textures31.js",
+      "group": "characters",
+      "symbol": "surfaceTextures31",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 28,
+      "sha256": "3a5e45aeb936297c21c9f9d7192c7d0a1428947c734bdc34f52c5b18d7d672f5"
+    },
+    {
+      "path": "game/src/world/0198-district31.js",
+      "group": "world",
+      "symbol": "district31",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 109,
+      "sha256": "3b7cb9bc673a9118d4db83e9fbf52f7e29bfc44ab53ff32fe96cf7e93dd97a4f"
+    },
+    {
+      "path": "game/src/rendering/0199-register-detail31.js",
+      "group": "rendering",
+      "symbol": "registerDetail31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 138,
+      "sha256": "a640d987a2f28b08a8464334435f6d1dcba981f2ef941b6802a159550371718e"
+    },
+    {
+      "path": "game/src/core/0200-tile31.js",
+      "group": "core",
+      "symbol": "tile31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1144,
+      "sha256": "a3cb199779905ae15fb5028148491308e54998a90a047ce1f4698cc41011e41f"
+    },
+    {
+      "path": "game/src/core/0201-banana31.js",
+      "group": "core",
+      "symbol": "banana31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1806,
+      "sha256": "4bd85f218e9365eb62595e72e9a9bf41d5ca8ad26b51f3c667f0811d632f0771"
+    },
+    {
+      "path": "game/src/core/0202-grass-patch31.js",
+      "group": "core",
+      "symbol": "grassPatch31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 749,
+      "sha256": "42aa371409199cf38c3c966330fa778416ec144334cf87c50c7b7ef4af9c32cf"
+    },
+    {
+      "path": "game/src/world/0203-install-district31.js",
+      "group": "world",
+      "symbol": "installDistrict31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2767,
+      "sha256": "f7b6950421c1813fca7839ec815cc99247ef4084418c8fd2ab69c66852f3fc26"
+    },
+    {
+      "path": "game/src/engine/0204-install-port31.js",
+      "group": "engine",
+      "symbol": "installPort31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3084,
+      "sha256": "4a7e5f62b3af64c697a0d278928d50342a64a5fcd8d3a47cdad210f03fe18620"
+    },
+    {
+      "path": "game/src/rendering/0205-pbr-shared-grass31.js",
+      "group": "rendering",
+      "symbol": "pbrSharedGrass31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 116,
+      "sha256": "60d67b8a103e3da7f6f9e37994a60c3f702f2f0520245db5c89298e2397338e8"
+    },
+    {
+      "path": "game/src/characters/0206-install-wardrobe31.js",
+      "group": "characters",
+      "symbol": "installWardrobe31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1310,
+      "sha256": "132a686ce096e255fbbc461d977e48bd091f9c89278e50ac3f3fbaf874a2c585"
+    },
+    {
+      "path": "game/src/vehicles/0207-install-vehicle-finish31.js",
+      "group": "vehicles",
+      "symbol": "installVehicleFinish31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 902,
+      "sha256": "29f9e53a2b75ee1812b025bdd8d066dd0ecd5ce5f7b670589e8cfffaefb72262"
+    },
+    {
+      "path": "game/src/engine/0208-install-gun-stores31.js",
+      "group": "engine",
+      "symbol": "installGunStores31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 548,
+      "sha256": "7532073137bfe457d785668c78d3c91f8c87c22fc669c45ed30ec3b8fb0f28af"
+    },
+    {
+      "path": "game/src/world/0209-install-world31.js",
+      "group": "world",
+      "symbol": "installWorld31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1021,
+      "sha256": "35058c40ac96f0d4b78dd839e9076c2e754811afd1ecd3d47be0085d256ac08b"
+    },
+    {
+      "path": "game/src/interface/0210-sign-panel31.js",
+      "group": "interface",
+      "symbol": "signPanel31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 756,
+      "sha256": "18a35285027b010cd2618c4851b5932f965dbbbc92782b44558514f97f17988d"
+    },
+    {
+      "path": "game/src/state/0211-arsenal31.js",
+      "group": "state",
+      "symbol": "arsenal31",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 85,
+      "sha256": "5ce1cca3483604c575f1b7a6ce3d0159e17656675a78374ab74c2ff83fbbaaa5"
+    },
+    {
+      "path": "game/src/characters/0212-actor-ray31.js",
+      "group": "characters",
+      "symbol": "actorRay31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 690,
+      "sha256": "99cdd3d78d25c26bf72f95e9741418cc8b2f4c68452af58023b034f62bdd850b"
+    },
+    {
+      "path": "game/src/core/0213-solid-ray31.js",
+      "group": "core",
+      "symbol": "solidRay31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 437,
+      "sha256": "503559321790106d3121639732f082b0de17cf7db80bf72be4d648a88079825f"
+    },
+    {
+      "path": "game/src/core/0214-shot-direction31.js",
+      "group": "core",
+      "symbol": "shotDirection31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 472,
+      "sha256": "0d708a7da216a7c78fe45972f33f0bea9021b513887a929ab3229f09cb5e5bed"
+    },
+    {
+      "path": "game/src/core/0215-muzzle31.js",
+      "group": "core",
+      "symbol": "muzzle31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 307,
+      "sha256": "591daa73586bc002ac9aca1852903fa1dfae16bc160857874e9b903051c4478d"
+    },
+    {
+      "path": "game/src/characters/0216-firearm31.js",
+      "group": "characters",
+      "symbol": "firearm31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2268,
+      "sha256": "bb183072cc30fd6b76e401b518fe4119bc92e373688a58a7cc04bee21f916448"
+    },
+    {
+      "path": "game/src/core/0217-effect-at31.js",
+      "group": "core",
+      "symbol": "effectAt31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 345,
+      "sha256": "ed035b1fba3c3de6f3033242348af0bb08118f06e4bdfc25b85a008520968103"
+    },
+    {
+      "path": "game/src/engine/0218-install-weapons31.js",
+      "group": "engine",
+      "symbol": "installWeapons31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3316,
+      "sha256": "51dc78800269fff996ef7310e4f613bd22542c4ad670d63663e36e1c12bdd09d"
+    },
+    {
+      "path": "game/src/characters/0219-install-walking31.js",
+      "group": "characters",
+      "symbol": "installWalking31",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 787,
+      "sha256": "74d35ac7f3caa268f27f00200296b7250ea5cdb0b49b514e225998cf719404e1"
+    },
+    {
+      "path": "game/src/state/0220-stage32.js",
+      "group": "state",
+      "symbol": "stage32",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 145,
+      "sha256": "a5438d6b9581baa5a8cae7756375ab1bdc0153785aa41c587dae4251b51f36c9"
+    },
+    {
+      "path": "game/src/interface/0221-controls32.js",
+      "group": "interface",
+      "symbol": "controls32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 6092,
+      "sha256": "11b4c1dcd838b28aa5ac5facaabcf96111934be2e957e41b9bbac74210f7dd2d"
+    },
+    {
+      "path": "game/src/state/0222-stage33.js",
+      "group": "state",
+      "symbol": "stage33",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 89,
+      "sha256": "230d8619731f0ee6c6ff6d402ab41227c78f89c4ea09bd495d5d2f719d77783a"
+    },
+    {
+      "path": "game/src/state/0223-prefs33.js",
+      "group": "state",
+      "symbol": "prefs33",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 59,
+      "sha256": "e7d3031c117b8b7cc68d452c2e8f3b7139285e14a93d67bcfe1ef786000e0c35"
+    },
+    {
+      "path": "game/src/core/0224-trystatement.js",
+      "group": "core",
+      "symbol": "trystatement",
+      "type": "TryStatement",
+      "utf8Bytes": 100,
+      "sha256": "fd7bcbf17d2e1d7813a80fb735c691fa61a2f9a18a4ccccd3995a6d71c7f7bee"
+    },
+    {
+      "path": "game/src/engine/0225-install-stage33.js",
+      "group": "engine",
+      "symbol": "installStage33",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4564,
+      "sha256": "2f2932195c586f336fe41489f554cd687d4277750baff9f526dd59efa41a31b1"
+    },
+    {
+      "path": "game/src/world/0226-install-road33.js",
+      "group": "world",
+      "symbol": "installRoad33",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1271,
+      "sha256": "94d483ec0e940c3a49a62cb3d6fb508f8780d95a35d0f0206622ca47f50c520b"
+    },
+    {
+      "path": "game/src/vehicles/0227-install-vehicle33.js",
+      "group": "vehicles",
+      "symbol": "installVehicle33",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1540,
+      "sha256": "9b4433d672b410eb7b8bc6d5716525d89e5e7cc50a664227f98b68fed998d82e"
+    },
+    {
+      "path": "game/src/core/0228-pavers33.js",
+      "group": "core",
+      "symbol": "pavers33",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 709,
+      "sha256": "e606e86e2aff4eebc148de46e679d865eed4128fd1ac8ff241ecd9cab9614524"
+    },
+    {
+      "path": "game/src/core/0229-canopy33.js",
+      "group": "core",
+      "symbol": "canopy33",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2028,
+      "sha256": "3c19a7be79b230d23b053c1dfacb4b330aae568b861ad7183719465ce7d9a064"
+    },
+    {
+      "path": "game/src/rendering/0230-install-visual33.js",
+      "group": "rendering",
+      "symbol": "installVisual33",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2124,
+      "sha256": "4faf0e1ecec35b6df5ea4e1b2c70e406f7aa21be894a1de2b2bab09380a40336"
+    },
+    {
+      "path": "game/src/state/0231-stage34.js",
+      "group": "state",
+      "symbol": "stage34",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 135,
+      "sha256": "5b4a7bb689229b0a9ff69353518e1895a4071733cc1a33542492180f34e83257"
+    },
+    {
+      "path": "game/src/rendering/0232-prepare-materials34.js",
+      "group": "rendering",
+      "symbol": "prepareMaterials34",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 556,
+      "sha256": "693932b9efe9496c75977860b7ced2fc9bc2999d789272e0971330617ee16651"
+    },
+    {
+      "path": "game/src/rendering/0233-material34.js",
+      "group": "rendering",
+      "symbol": "material34",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 819,
+      "sha256": "ab434ac7baec1a60f808b9b597d27b4d6cbad1d99032e1ba83bc014315aa1278"
+    },
+    {
+      "path": "game/src/core/0234-project-uv34.js",
+      "group": "core",
+      "symbol": "projectUV34",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 752,
+      "sha256": "069b4d6b6443073512c21b523fc827a52adde07fa5397fa48e5eeb3ebe2b60c7"
+    },
+    {
+      "path": "game/src/rendering/0235-finish-mesh-uv34.js",
+      "group": "rendering",
+      "symbol": "finishMeshUV34",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 314,
+      "sha256": "c372ee6176217d2deff80fcbfda4d11fc2f9a0f8b8c57f33f482d8dd4e9052cc"
+    },
+    {
+      "path": "game/src/rendering/0236-install-materials34.js",
+      "group": "rendering",
+      "symbol": "installMaterials34",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3262,
+      "sha256": "d997b6cc435458f7464fcfd3e8698fe6390205652827b9d27e6a68b7eb40bc38"
+    },
+    {
+      "path": "game/src/core/0237-add-facade34.js",
+      "group": "core",
+      "symbol": "addFacade34",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1277,
+      "sha256": "3b1acf0db8dc2b600327458c3ea051fcf8f543ec7c0fa3c8cde03ad7d17adc73"
+    },
+    {
+      "path": "game/src/engine/0238-install-architecture34.js",
+      "group": "engine",
+      "symbol": "installArchitecture34",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 5344,
+      "sha256": "f2f660167e7952e2091d93e058fde9ee5bc6dc2daf814dedb27a72d014de8ed7"
+    },
+    {
+      "path": "game/src/engine/0239-frame-budget35.js",
+      "group": "engine",
+      "symbol": "FrameBudget35",
+      "type": "ClassDeclaration",
+      "utf8Bytes": 1061,
+      "sha256": "7fe8c5fd338984bc56ecbb41282d1376790ca237063b8498398c59f6edc5e0c3"
+    },
+    {
+      "path": "game/src/state/0240-stage35.js",
+      "group": "state",
+      "symbol": "stage35",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 220,
+      "sha256": "3d4c77d90f9bdfc34e358f60654b57a1d6601642ab39d0358c5b079e07fcf1ad"
+    },
+    {
+      "path": "game/src/engine/0241-load-prefs35.js",
+      "group": "engine",
+      "symbol": "loadPrefs35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 264,
+      "sha256": "30e102f6e52fb982461fc8b8c8dbe8ecd7200735623a381893bacd7ff5000f72"
+    },
+    {
+      "path": "game/src/core/0242-save-prefs35.js",
+      "group": "core",
+      "symbol": "savePrefs35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 114,
+      "sha256": "d6da933d4d871395b199def5520a822f442676f503ed6fa225a59bdd20ecbfd2"
+    },
+    {
+      "path": "game/src/core/0243-reset-budget35.js",
+      "group": "core",
+      "symbol": "resetBudget35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 249,
+      "sha256": "bef7735328e7c1f359b1bc6feaf8dd3a16918676548f2c7711a0fdb7181f1376"
+    },
+    {
+      "path": "game/src/core/0244-apply-scale35.js",
+      "group": "core",
+      "symbol": "applyScale35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 189,
+      "sha256": "f673c48352203f62f353a97e4869375b60c248ec7eb7854c3a10c928cc6d3eca"
+    },
+    {
+      "path": "game/src/interface/0245-sharpen-settings35.js",
+      "group": "interface",
+      "symbol": "sharpenSettings35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 637,
+      "sha256": "5b0ca9577d84a79dfe7f2111a0d49d4be3ac83272286345716abe28129e10231"
+    },
+    {
+      "path": "game/src/engine/0246-budget-tick35.js",
+      "group": "engine",
+      "symbol": "budgetTick35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 600,
+      "sha256": "6bfcd60489986e82cf09919fb8740b18a5f923002446c9967856e71adeaf57c4"
+    },
+    {
+      "path": "game/src/engine/0247-prepare-soil35.js",
+      "group": "engine",
+      "symbol": "prepareSoil35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 451,
+      "sha256": "4f0fd9e33b0916bb59d0f1fcec4835ac4676c043a3fce6b95cb01ca14b935ccb"
+    },
+    {
+      "path": "game/src/engine/0248-install-image35.js",
+      "group": "engine",
+      "symbol": "installImage35",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2829,
+      "sha256": "6a785e3109790a6679b37b32ceca7ef07b1cf8a480549e77930ee11d69364cde"
+    },
+    {
+      "path": "game/src/state/0249-stage36.js",
+      "group": "state",
+      "symbol": "stage36",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 98,
+      "sha256": "6bd6b90c3a6e8a8f847811eea12b0505c8aeb0338e1f86c7e05d4497b8b9745d"
+    },
+    {
+      "path": "game/src/characters/0250-surface-variation36.js",
+      "group": "characters",
+      "symbol": "SurfaceVariation36",
+      "type": "ClassDeclaration",
+      "utf8Bytes": 1138,
+      "sha256": "0eee34b23632e42651a8a1874bd2ade34b8034e03779f6631694797e7d777830"
+    },
+    {
+      "path": "game/src/core/0251-leaf-wind36.js",
+      "group": "core",
+      "symbol": "LeafWind36",
+      "type": "ClassDeclaration",
+      "utf8Bytes": 841,
+      "sha256": "ea286e877d717a5506172774c4d987b1453c2b81f4c10961ed0eac7428cde467"
+    },
+    {
+      "path": "game/src/rendering/0252-sky36.js",
+      "group": "rendering",
+      "symbol": "sky36",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2163,
+      "sha256": "f1683bb384905c59172f0b6b4a86c15a301d21446aba96e0094a060828893c8f"
+    },
+    {
+      "path": "game/src/core/0253-water36.js",
+      "group": "core",
+      "symbol": "water36",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2874,
+      "sha256": "762adf60b077e391830dcbb51354a375a4370587de4dfdb9fca16ef3d714c280"
+    },
+    {
+      "path": "game/src/rendering/0254-details36.js",
+      "group": "rendering",
+      "symbol": "details36",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1689,
+      "sha256": "87d50fea0d7eda4dd8adce1750f3674593cc1cbbbc9035282ffd6478930b28c5"
+    },
+    {
+      "path": "game/src/engine/0255-install-realism36.js",
+      "group": "engine",
+      "symbol": "installRealism36",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 966,
+      "sha256": "8abcdd7e1c0561a353231c785ec35843255812c07b31166f88de14839601c72e"
+    },
+    {
+      "path": "game/src/state/0256-stage37.js",
+      "group": "state",
+      "symbol": "stage37",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 151,
+      "sha256": "de2be961deb6809ce777bf560dec2ccd8257e1f943d4812dd45e861a6cf919f9"
+    },
+    {
+      "path": "game/src/rendering/0257-materials37.js",
+      "group": "rendering",
+      "symbol": "materials37",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 843,
+      "sha256": "2316ed3fc4809b322f459ef1c6f800c1e2253328a8e7c2e2f1678c2313d15f63"
+    },
+    {
+      "path": "game/src/rendering/0258-leaf-texture37.js",
+      "group": "rendering",
+      "symbol": "leafTexture37",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 912,
+      "sha256": "30a082fdbcb3ee29f5d16cb32930d4cb10354c2c2ec6ecec3dfb2ea04c20fcad"
+    },
+    {
+      "path": "game/src/core/0259-plants37.js",
+      "group": "core",
+      "symbol": "plants37",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3246,
+      "sha256": "a33c877f36612bf16a4dc8b58d7d54afaea48e326e89b3fea5f2c72e6018cf50"
+    },
+    {
+      "path": "game/src/engine/0260-install37.js",
+      "group": "engine",
+      "symbol": "install37",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 480,
+      "sha256": "2cd30fc627c0dc7f05c1ca2c9c1f60833b83b9dddd00ab5a314969bfc28ed085"
+    },
+    {
+      "path": "game/src/state/0261-stage38.js",
+      "group": "state",
+      "symbol": "stage38",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 143,
+      "sha256": "117e121e87c87f2ade4c147385f20dc5761fd9a0ae25d733ef860c82f2a24418"
+    },
+    {
+      "path": "game/src/characters/0262-prepare-animations38.js",
+      "group": "characters",
+      "symbol": "prepareAnimations38",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1375,
+      "sha256": "9895b3a17cb76eb448f7643771c227c3f2e88b3862f54b964b462903a8a361e3"
+    },
+    {
+      "path": "game/src/core/0263-sole38.js",
+      "group": "core",
+      "symbol": "sole38",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 228,
+      "sha256": "d0e3043dac24c1c7e43d7e9a0553dfd79e830283d77613ad9d48e6094dfbfe8f"
+    },
+    {
+      "path": "game/src/engine/0264-install-combat38.js",
+      "group": "engine",
+      "symbol": "installCombat38",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1086,
+      "sha256": "ed192ac41be93a7767ec0f6143141d6d7f714bd6395e216f2cd9b56106cafb37"
+    },
+    {
+      "path": "game/src/core/0265-vegetation38.js",
+      "group": "core",
+      "symbol": "vegetation38",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2118,
+      "sha256": "1803338fc775f70131f95441cfdfb94f726dd90caea9d8b9401f3b248f108f28"
+    },
+    {
+      "path": "game/src/diagnostics/0266-stage39.js",
+      "group": "diagnostics",
+      "symbol": "stage39",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 254,
+      "sha256": "4e4c9b9e6c1b137f3603267cfc5b802ee9827c486754df21e7e23c4186a2de68"
+    },
+    {
+      "path": "game/src/characters/0267-sample-human39.js",
+      "group": "characters",
+      "symbol": "sampleHuman39",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1266,
+      "sha256": "3403231872e6e3f1ef38e38471e98872ed881946e222af3d78d394f29ca352ef"
+    },
+    {
+      "path": "game/src/diagnostics/0268-telemetry-frame39.js",
+      "group": "diagnostics",
+      "symbol": "telemetryFrame39",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 406,
+      "sha256": "b97a5e71061979a6af6a904ddaaf0e193f9215c479e3ccaf397ec85e26c69ae1"
+    },
+    {
+      "path": "game/src/engine/0269-update-telemetry39.js",
+      "group": "engine",
+      "symbol": "updateTelemetry39",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1446,
+      "sha256": "ded0a1b680b20ab0ec3c9df7c00f83afb13f0cb41fb184ecde928c19689d6758"
+    },
+    {
+      "path": "game/src/rendering/0270-camera-cells39.js",
+      "group": "rendering",
+      "symbol": "cameraCells39",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 407,
+      "sha256": "a11ab6c15eb53ad6e8141bdd884ea2ea3cddeae7f93be7c8379a4582b833453d"
+    },
+    {
+      "path": "game/src/engine/0271-install-performance39.js",
+      "group": "engine",
+      "symbol": "installPerformance39",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3404,
+      "sha256": "cbd6600d75bf4f67d09d37cbfe186d826b71ade7268f7dfd84bfcc793a039847"
+    },
+    {
+      "path": "game/src/rendering/0272-install-quality38.js",
+      "group": "rendering",
+      "symbol": "installQuality38",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 781,
+      "sha256": "6be27099329739e50dcdf3805969f0f0efc8a43f22d82754625b0bda9f6c88f7"
+    },
+    {
+      "path": "game/src/core/0273-crash32.js",
+      "group": "core",
+      "symbol": "crash32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 892,
+      "sha256": "e99a804c5287bebc3e5bff1358763b6961284ed3c120fbbd9c381b2a7d694cad"
+    },
+    {
+      "path": "game/src/engine/0274-install-stage32.js",
+      "group": "engine",
+      "symbol": "installStage32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 503,
+      "sha256": "72af2e533b10a18d9b7b4f8f4976b2618a45fa6261bdf5a061c0a9d2af70e0ac"
+    },
+    {
+      "path": "game/src/engine/0275-install-impacts32.js",
+      "group": "engine",
+      "symbol": "installImpacts32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1259,
+      "sha256": "332ae50e43491408d762eabc1aaf719dec22928b268c870a7affa6f64a2f98d1"
+    },
+    {
+      "path": "game/src/engine/0276-install-population32.js",
+      "group": "engine",
+      "symbol": "installPopulation32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1540,
+      "sha256": "9d7fb16a80dce7cc3cd484d5ce74fbe817c20bd9ef459558e4b980314ab6bdd4"
+    },
+    {
+      "path": "game/src/core/0277-canopy32.js",
+      "group": "core",
+      "symbol": "canopy32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1248,
+      "sha256": "dca61b3a4f712e81c70ccbe781ffe8a58def74f819ae0ba86db20622acbbbb7d"
+    },
+    {
+      "path": "game/src/core/0278-replace-canopies32.js",
+      "group": "core",
+      "symbol": "replaceCanopies32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1583,
+      "sha256": "2c91a41b636944aeb1cfe55da9748aded4eced3e62378cc01f240f98389f7308"
+    },
+    {
+      "path": "game/src/vehicles/0279-overlap-vehicle32.js",
+      "group": "vehicles",
+      "symbol": "overlapVehicle32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 585,
+      "sha256": "34f88145f915ff8cb180cd789e07db50f10c9db2851097a51dd2281c07b9c11c"
+    },
+    {
+      "path": "game/src/vehicles/0280-traffic-clear32.js",
+      "group": "vehicles",
+      "symbol": "trafficClear32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 90,
+      "sha256": "a72f1baed65b7c86fb147697be1d59d0e564520aa66a67fe74e3f3ee9fa674af"
+    },
+    {
+      "path": "game/src/vehicles/0281-install-traffic32.js",
+      "group": "vehicles",
+      "symbol": "installTraffic32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1335,
+      "sha256": "a33095bf6bf148ce10740cae56fc6d3ae9c2dccd0185facadf5b8e8b56063b08"
+    },
+    {
+      "path": "game/src/world/0282-install-district32.js",
+      "group": "world",
+      "symbol": "installDistrict32",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2516,
+      "sha256": "25397d506431c1058e8af641407ce92a73186944a7bb593c1df0269905651305"
+    },
+    {
+      "path": "game/src/engine/0283-create-templates.js",
+      "group": "engine",
+      "symbol": "createTemplates",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1870,
+      "sha256": "4bae898c62beb9c0cd54735b7c12bf96deaed9e0ce758789788438c741c1bf9e"
+    },
+    {
+      "path": "game/src/state/0284-contact-source.js",
+      "group": "state",
+      "symbol": "contactSource",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 24,
+      "sha256": "823181173e49d155e7d29e3c1209735f2988c48185e9b08f958d646a18715ac2"
+    },
+    {
+      "path": "game/src/rendering/0285-contact-shadow.js",
+      "group": "rendering",
+      "symbol": "contactShadow",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 943,
+      "sha256": "064d4e2f7e2875a52e715d2b9a3f7875182c83f1b4ab30f8043894f48b2e95d7"
+    },
+    {
+      "path": "game/src/core/0286-place-contact.js",
+      "group": "core",
+      "symbol": "placeContact",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 168,
+      "sha256": "cbe1e0123b0038a9464999d0aea80155f22de2041c9193f94485db9c6d16ab2e"
+    },
+    {
+      "path": "game/src/vehicles/0287-create-vehicle.js",
+      "group": "vehicles",
+      "symbol": "createVehicle",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1786,
+      "sha256": "ee51b6cdd03aeea4d918d595118dbb25afe66f28008d9ec30a85cfec077f815b"
+    },
+    {
+      "path": "game/src/core/0288-repaint.js",
+      "group": "core",
+      "symbol": "repaint",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 299,
+      "sha256": "1fc799d2223c721f921e41b557b0499b7d6860790a546732f8982c031a36eb12"
+    },
+    {
+      "path": "game/src/vehicles/0289-install-fleet.js",
+      "group": "vehicles",
+      "symbol": "installFleet",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1649,
+      "sha256": "e0a78d6ae12f93c3829616601492eeb1dd032e9402379b663a8d629da9285cfd"
+    },
+    {
+      "path": "game/src/core/0290-primitive.js",
+      "group": "core",
+      "symbol": "primitive",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 261,
+      "sha256": "0499b6342de2f98455774c884957828c5f55f1c44f41f21c98d70c0f23896580"
+    },
+    {
+      "path": "game/src/characters/0291-human-containers.js",
+      "group": "characters",
+      "symbol": "humanContainers",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 26,
+      "sha256": "6ae61d623cfc19c9523e9cfa072f66495b944a64b2693c2560b12306a9fc220a"
+    },
+    {
+      "path": "game/src/characters/0292-prepare-humans.js",
+      "group": "characters",
+      "symbol": "prepareHumans",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1033,
+      "sha256": "f696b24f691d407406e9783bb518590942fcb72c85cc25b0af39a2fd9dc75a84"
+    },
+    {
+      "path": "game/src/characters/0293-make-human.js",
+      "group": "characters",
+      "symbol": "makeHuman",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1796,
+      "sha256": "0b751d5f3a1ad621f8c50f0d28e4c79db7785d66192f78328e0fd8a900faf3b7"
+    },
+    {
+      "path": "game/src/characters/0294-sample-human.js",
+      "group": "characters",
+      "symbol": "sampleHuman",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 820,
+      "sha256": "9fc32808a4b9fb86dd5d047b684749d90e446cb565ca0b1b7c1c9110839bbc09"
+    },
+    {
+      "path": "game/src/vehicles/0295-human-ride.js",
+      "group": "vehicles",
+      "symbol": "humanRide",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 554,
+      "sha256": "73f99221392a94ecd5347f236511319e83b3b7b88d7f93ad3bbd6243d87e8817"
+    },
+    {
+      "path": "game/src/world/0296-add-street-variation.js",
+      "group": "world",
+      "symbol": "addStreetVariation",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2074,
+      "sha256": "1a6735986640e4e7936ea558c0f0d1201ab9a3c61819ef2e1956f4019aa38346"
+    },
+    {
+      "path": "game/src/characters/0297-vary-human-shape-source24.js",
+      "group": "characters",
+      "symbol": "varyHumanShapeSource24",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 939,
+      "sha256": "a5d1f1567c7d2b81e4fa143ca543d7a50289399931a5ad76f65273fb998a8a97"
+    },
+    {
+      "path": "game/src/characters/0298-create-person.js",
+      "group": "characters",
+      "symbol": "createPerson",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 95,
+      "sha256": "fce6ad09e76903193a4a8e4842d75966d10b5c2b7d275e5ae4666380d81f2050"
+    },
+    {
+      "path": "game/src/characters/0299-walk-pose.js",
+      "group": "characters",
+      "symbol": "walkPose",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 606,
+      "sha256": "706e86c8223cf34120f1a285d0b0f5088325c98e0c724b8e641009998a11049d"
+    },
+    {
+      "path": "game/src/core/0300-limb-ik.js",
+      "group": "core",
+      "symbol": "limbIK",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 389,
+      "sha256": "59cade626ca1fdec6171cd00f1eb6e4291828131f55349c8381b91348638cf35"
+    },
+    {
+      "path": "game/src/core/0301-orient-down.js",
+      "group": "core",
+      "symbol": "orientDown",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 136,
+      "sha256": "0a270d00a87b1b7c75018250071462fbdbe9a423118f6a84b036d318d4b26a89"
+    },
+    {
+      "path": "game/src/vehicles/0302-rider-pose.js",
+      "group": "vehicles",
+      "symbol": "riderPose",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1803,
+      "sha256": "f81cae18c19d7ba9dafd579cc43f8752ee5e705b63403560875d9d831fb2952d"
+    },
+    {
+      "path": "game/src/characters/0303-reset-pose.js",
+      "group": "characters",
+      "symbol": "resetPose",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 764,
+      "sha256": "efc264c26d8ed7631e017c037c64dcd8aafab0599efaaca3dda19fd2f51892ea"
+    },
+    {
+      "path": "game/src/characters/0304-distant-person.js",
+      "group": "characters",
+      "symbol": "distantPerson",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1724,
+      "sha256": "1300210d495640a4f257d8a6e7d8befe72e3020241250428fab63a8e95300622"
+    },
+    {
+      "path": "game/src/characters/0305-install-people.js",
+      "group": "characters",
+      "symbol": "installPeople",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 703,
+      "sha256": "3aff1f69917a0279ba65994b1c8e8db963ee76e10e4a760311b79cb5c012d1ee"
+    },
+    {
+      "path": "game/src/core/0306-expressionstatement.js",
+      "group": "core",
+      "symbol": "expressionstatement",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 2626,
+      "sha256": "30cc8ec4a6f689c4ee7d5932942aa087f31839edffbe10ec00af17c89c474523"
+    },
+    {
+      "path": "game/src/vehicles/0307-vehicle-variants.js",
+      "group": "vehicles",
+      "symbol": "vehicleVariants",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 132,
+      "sha256": "25d02ab7ee8e0bf79883323c7f4876e37fcb175f0e38b2a1af8c1c51490fe984"
+    },
+    {
+      "path": "game/src/vehicles/0308-expand-vehicle-variants.js",
+      "group": "vehicles",
+      "symbol": "expandVehicleVariants",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 715,
+      "sha256": "48cd47dbc31d7223438e72b85ca97f1b84c663e3d23f0c8801fd43ed47f111a3"
+    },
+    {
+      "path": "game/src/core/0309-label-taxi.js",
+      "group": "core",
+      "symbol": "labelTaxi",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 594,
+      "sha256": "d0ba088c0fad3b5c1676d8e30c7e8a712c60ca23bf31263ed3397268613161d6"
+    },
+    {
+      "path": "game/src/state/0310-gait.js",
+      "group": "state",
+      "symbol": "GAIT",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 75,
+      "sha256": "27a023a3e84c41bfc5c52f25780d8fbb5d899cda0a283d68a25107040b2adaaa"
+    },
+    {
+      "path": "game/src/characters/0311-human-walk.js",
+      "group": "characters",
+      "symbol": "humanWalk",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1570,
+      "sha256": "af0dfcac65015a73122a2d63a7992f5ee2339409a9c0ba394e0c7b60336e1f4e"
+    },
+    {
+      "path": "game/src/characters/0312-dress-human.js",
+      "group": "characters",
+      "symbol": "dressHuman",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1907,
+      "sha256": "9bf898c4777686825731d5dbf5de5e85f8193c788bffd474e0b2b7d93cd40ce9"
+    },
+    {
+      "path": "game/src/engine/0313-item-definitions.js",
+      "group": "engine",
+      "symbol": "itemDefinitions",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 486,
+      "sha256": "954b434a39816605537639c71907bc2235bf74aa7e9790d4ad8fb8e4c9293c89"
+    },
+    {
+      "path": "game/src/interface/0314-equipped-and-4-others.js",
+      "group": "interface",
+      "symbol": "equipped-and-4-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 102,
+      "sha256": "3cd9fa889f91d31a2ac93bedf9255971c57d06722959338fd57a47f25d2b4431"
+    },
+    {
+      "path": "game/src/state/0315-targets-and-1-others.js",
+      "group": "state",
+      "symbol": "targets-and-1-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 29,
+      "sha256": "164c58494d044a0147a4909b1310f6fde3733ce22b14a4af39fe9620720a8148"
+    },
+    {
+      "path": "game/src/engine/0316-reload-until-and-1-others.js",
+      "group": "engine",
+      "symbol": "reloadUntil-and-1-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 38,
+      "sha256": "50ecdae2534d6556663d153e36c37d6b3307f65b536ad469f72a9037a7c91937"
+    },
+    {
+      "path": "game/src/rendering/0317-install-material-polish.js",
+      "group": "rendering",
+      "symbol": "installMaterialPolish",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 947,
+      "sha256": "a0892ccbde3fa7d62c64a26c4c4f3e5a5b31d36a79126045ae6d51e970f02346"
+    },
+    {
+      "path": "game/src/core/0318-align-held-weapon.js",
+      "group": "core",
+      "symbol": "alignHeldWeapon",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 864,
+      "sha256": "3c2edefe57f61360b2ce91f3cd847d191497ce4a5b6aa96918ba339c089bbc1d"
+    },
+    {
+      "path": "game/src/engine/0319-update-reload.js",
+      "group": "engine",
+      "symbol": "updateReload",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 511,
+      "sha256": "9f2b99021c96e990ea8f265c7f37ff48f01f6a3b19a539ededaa38fc22672ca2"
+    },
+    {
+      "path": "game/src/characters/0320-equipment-model-legacy.js",
+      "group": "characters",
+      "symbol": "equipmentModelLegacy",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 998,
+      "sha256": "bd415a289c3d17bc5a0be0f35ac8d4a25b98c5de11667d1e4ac50b77e039a4a9"
+    },
+    {
+      "path": "game/src/interface/0321-equipment-model.js",
+      "group": "interface",
+      "symbol": "equipmentModel",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 622,
+      "sha256": "6cf3313e0d25091dc08075829dcf7aab0166afc9f3a347ae325c396db94447db"
+    },
+    {
+      "path": "game/src/interface/0322-equip-item.js",
+      "group": "interface",
+      "symbol": "equipItem",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 354,
+      "sha256": "f9b0361fccb28be155c4419f09da4926a5ccaee282184e37d57bdc52dda2ff1e"
+    },
+    {
+      "path": "game/src/interface/0323-refresh-equipment-ui.js",
+      "group": "interface",
+      "symbol": "refreshEquipmentUI",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 529,
+      "sha256": "0c405142c45f201a2fd2519fcd4365a315803be440b4fb4a8e071e799d0cfa6a"
+    },
+    {
+      "path": "game/src/interface/0324-open-inventory.js",
+      "group": "interface",
+      "symbol": "openInventory",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 157,
+      "sha256": "096b32645fe2ac49ab5e71dd65a0e722a709a7f4ae3c321127e46702c851cbc7"
+    },
+    {
+      "path": "game/src/interface/0325-close-inventory.js",
+      "group": "interface",
+      "symbol": "closeInventory",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 107,
+      "sha256": "68ff1e500699e87e8a3dc3d58332e350caeff8aa63dfec17a687f14f560247da"
+    },
+    {
+      "path": "game/src/engine/0326-reload-item.js",
+      "group": "engine",
+      "symbol": "reloadItem",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 265,
+      "sha256": "5d2f8050ad39828ca0101074d85c045418fe86fc2edbef966675e98007fb80e6"
+    },
+    {
+      "path": "game/src/core/0327-effect-at.js",
+      "group": "core",
+      "symbol": "effectAt",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 319,
+      "sha256": "061b143d3cc69006ed3ce40385f3752bb5250299e02c42d68a54fffef97f9823"
+    },
+    {
+      "path": "game/src/core/0328-blocked-shot.js",
+      "group": "core",
+      "symbol": "blockedShot",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 161,
+      "sha256": "9f075b23bdea3f2add2f956dd143dad0a4df07104a37a4f10df57c5317477a3f"
+    },
+    {
+      "path": "game/src/interface/0329-use-equipment.js",
+      "group": "interface",
+      "symbol": "useEquipment",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2179,
+      "sha256": "db367ce09799e9479aa060e061936195fd36a6d7744a0e958852989117c90d2d"
+    },
+    {
+      "path": "game/src/audio/0330-shot-sound.js",
+      "group": "audio",
+      "symbol": "shotSound",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 412,
+      "sha256": "d1499dbf4cb7f05b1bf089a823b3e4bf5b1ebcb22118fb8251459237501b4640"
+    },
+    {
+      "path": "game/src/characters/0331-update-equipment-pose.js",
+      "group": "characters",
+      "symbol": "updateEquipmentPose",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 979,
+      "sha256": "58408b5ecf32aaa0924a775faa46f519b8d7106a05df2b706ff19fe908deeb58"
+    },
+    {
+      "path": "game/src/engine/0332-install-workshop.js",
+      "group": "engine",
+      "symbol": "installWorkshop",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 612,
+      "sha256": "49201bf9cad899309f12f1dcd0d1aab021146ac7d86c527cc4cce17bb538cf77"
+    },
+    {
+      "path": "game/src/core/0333-bind-workshop.js",
+      "group": "core",
+      "symbol": "bindWorkshop",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 405,
+      "sha256": "2cdf5fb5403c74c2c79d513fd1cd742db579ea50830648ac0f3a3fe2c4b07b7b"
+    },
+    {
+      "path": "game/src/vehicles/0334-bind-garage-filters.js",
+      "group": "vehicles",
+      "symbol": "bindGarageFilters",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 658,
+      "sha256": "a012cb12198e030acecbc49aad12167f047e93f52330069445fac56ee7436d65"
+    },
+    {
+      "path": "game/src/rendering/0335-sky.js",
+      "group": "rendering",
+      "symbol": "sky",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 25,
+      "sha256": "521f5a767f4eb2ff64a1899f03e6ff77505167f60326ee87c50c17091816c6b3"
+    },
+    {
+      "path": "game/src/core/0336-water.js",
+      "group": "core",
+      "symbol": "water",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 29,
+      "sha256": "fee352e43b96e1876916faa5ab6120074c0f4b062c8957846cbb86929fbf9558"
+    },
+    {
+      "path": "game/src/rendering/0337-light-settings.js",
+      "group": "rendering",
+      "symbol": "lightSettings",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 395,
+      "sha256": "d19443dfba7d90a0d6d61a44483b085587d9ee011849ba8165a9660863b6d91c"
+    },
+    {
+      "path": "game/src/interface/0338-settings.js",
+      "group": "interface",
+      "symbol": "settings",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 374,
+      "sha256": "1cfeef5d3761049228e4cc2df52d67b2f7ed98348ae16f60d41964b30489fc6a"
+    },
+    {
+      "path": "game/src/rendering/0339-update-shadow-list.js",
+      "group": "rendering",
+      "symbol": "updateShadowList",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 863,
+      "sha256": "595fa72615f6feb5ff8b45d24fd7543c2757a3dcae622186d75564f8dfafa38a"
+    },
+    {
+      "path": "game/src/vehicles/0340-caponera.js",
+      "group": "vehicles",
+      "symbol": "caponera",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 143,
+      "sha256": "c8f0617adf5294b3e99ef3ca576e67dfd9524e2527de4b41d989d6531ac3f711"
+    },
+    {
+      "path": "game/src/core/0341-bicycle.js",
+      "group": "core",
+      "symbol": "bicycle",
+      "type": "ExpressionStatement",
+      "utf8Bytes": 150,
+      "sha256": "38b5dd061c93e1b4c4554f91ba87787c62e2a78eee930c3e9d1e63331912d572"
+    },
+    {
+      "path": "game/src/core/0342-select-model.js",
+      "group": "core",
+      "symbol": "selectModel",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 844,
+      "sha256": "45d048fdcf425eb22b675439325937205bf08c697c91d1fb33a87199eaf28073"
+    },
+    {
+      "path": "game/src/interface/0343-controls-ui.js",
+      "group": "interface",
+      "symbol": "controlsUI",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 776,
+      "sha256": "26886f7877ad81bcdd6403a996af7244f643fd9fcfc98b0c4b42a969dedfaeda"
+    },
+    {
+      "path": "game/src/interface/0344-clear-input.js",
+      "group": "interface",
+      "symbol": "clearInput",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 374,
+      "sha256": "79aed5638d82a46e9b7f215e28e176435576fb8a568602b7b836933b4db530ce"
+    },
+    {
+      "path": "game/src/interface/0345-pause.js",
+      "group": "interface",
+      "symbol": "pause",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 349,
+      "sha256": "880ce77edcc0a070587c77d3399153201161b2cb638b7f86af4078115006381f"
+    },
+    {
+      "path": "game/src/vehicles/0346-safe-vehicle-exit.js",
+      "group": "vehicles",
+      "symbol": "safeVehicleExit",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 324,
+      "sha256": "f70749ec3956fa29b74f951abba828167c242cc8b29bb455d3c7b8296ddff121"
+    },
+    {
+      "path": "game/src/vehicles/0347-change-drive.js",
+      "group": "vehicles",
+      "symbol": "changeDrive",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1355,
+      "sha256": "ac0946b2c5ed4bc0a51a389f7f6357d7da15c4b0ea1a9edca619716582a45a0d"
+    },
+    {
+      "path": "game/src/audio/0348-start-audio.js",
+      "group": "audio",
+      "symbol": "startAudio",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1840,
+      "sha256": "158fda9a7061e71bee46f360497cc43cf8f441ecd7a99e526f000d31935c46b0"
+    },
+    {
+      "path": "game/src/core/0349-tone.js",
+      "group": "core",
+      "symbol": "tone",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 584,
+      "sha256": "0d2921c1240cfab6896c663b0619d9cee5fa1df5fd9cb49e928cd6cab5e42a25"
+    },
+    {
+      "path": "game/src/engine/0350-footstep.js",
+      "group": "engine",
+      "symbol": "footstep",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 531,
+      "sha256": "665cbb6f8af2342d4dfbb2ac0940e062555c2dd40172633ab546dababbfb78a5"
+    },
+    {
+      "path": "game/src/audio/0351-horn.js",
+      "group": "audio",
+      "symbol": "horn",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 271,
+      "sha256": "d459e795a25b407133f7efd360256e1b89cd1455198a9e6b1b040daef2201f66"
+    },
+    {
+      "path": "game/src/audio/0352-sound.js",
+      "group": "audio",
+      "symbol": "sound",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1666,
+      "sha256": "133a54200d43abb6b7b03a810fd35f55bbaa9802acfc690450cac77a3d88c9a5"
+    },
+    {
+      "path": "game/src/core/0353-enter-landscape.js",
+      "group": "core",
+      "symbol": "enterLandscape",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 205,
+      "sha256": "01e91ccf262452f7c2ea70ae133e90e9205482b1e95c6288cffae2481b90a24a"
+    },
+    {
+      "path": "game/src/audio/0354-toggle-audio.js",
+      "group": "audio",
+      "symbol": "toggleAudio",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 240,
+      "sha256": "a061059f5407972960c0e60ae792b7dc4336096c9c158ab2be7e73af47678b03"
+    },
+    {
+      "path": "game/src/core/0355-jump.js",
+      "group": "core",
+      "symbol": "jump",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 90,
+      "sha256": "105c053e6d6a63b1eddcec605f06495e4de7ef629d2e9e29856bafa3734bcb01"
+    },
+    {
+      "path": "game/src/core/0356-bind.js",
+      "group": "core",
+      "symbol": "bind",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4897,
+      "sha256": "5859ec024b488dd6982b2da875ca296813b73c7c00dda2bedfe70ec8bcd1308c"
+    },
+    {
+      "path": "game/src/core/0357-open-map.js",
+      "group": "core",
+      "symbol": "openMap",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 101,
+      "sha256": "7a102c38d90eaf872c8030b9e5100dad84275dff4f425035e9b801ed83af909d"
+    },
+    {
+      "path": "game/src/characters/0358-update-people.js",
+      "group": "characters",
+      "symbol": "updatePeople",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2419,
+      "sha256": "f630e048a517054df6daaeb4ce896923c183fa209df105ae6ff05621e340ea36"
+    },
+    {
+      "path": "game/src/vehicles/0359-update-fleet.js",
+      "group": "vehicles",
+      "symbol": "updateFleet",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 686,
+      "sha256": "79b72d8afa56dae957d0096b83817b68bc469a8ea1d40768be028d41aed9adef"
+    },
+    {
+      "path": "game/src/vehicles/0360-wheel-angles13.js",
+      "group": "vehicles",
+      "symbol": "wheelAngles13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 360,
+      "sha256": "a59afd710d9de1cd8d7d16dcea4bf5b3c71b6d251e38adc1fb25ec9e99e95ed3"
+    },
+    {
+      "path": "game/src/vehicles/0361-apply-player-wheels13.js",
+      "group": "vehicles",
+      "symbol": "applyPlayerWheels13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 416,
+      "sha256": "3594c6e361086807dafcfa7907ebc56afadc52e02daf4142ded8f13810880200"
+    },
+    {
+      "path": "game/src/vehicles/0362-vehicle-snapshot13.js",
+      "group": "vehicles",
+      "symbol": "vehicleSnapshot13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 166,
+      "sha256": "10bc873a0ed0a79061bc85425f3dd68110df8fb201aca03b723321e00b285617"
+    },
+    {
+      "path": "game/src/core/0363-read-snapshot13.js",
+      "group": "core",
+      "symbol": "readSnapshot13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 153,
+      "sha256": "38ca138f6a1ffbbf641787358c09fac04b7e02000fde5010d055fec52bcb00e5"
+    },
+    {
+      "path": "game/src/vehicles/0364-tracked-vehicle13.js",
+      "group": "vehicles",
+      "symbol": "trackedVehicle13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 83,
+      "sha256": "a6162e41fd24061754566dc4670f9420ee4859d274edc6db594fe300ebfa8096"
+    },
+    {
+      "path": "game/src/vehicles/0365-begin-vehicle-poses13.js",
+      "group": "vehicles",
+      "symbol": "beginVehiclePoses13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 219,
+      "sha256": "fa5dbe13635400b2c28985529046412f0b1355c6049d73bdf0a845e4cf71247e"
+    },
+    {
+      "path": "game/src/vehicles/0366-end-vehicle-poses13.js",
+      "group": "vehicles",
+      "symbol": "endVehiclePoses13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 362,
+      "sha256": "25eb5f69286bb1dabc700a2b235ed348442080ae31a2ba3776e52a075b907862"
+    },
+    {
+      "path": "game/src/vehicles/0367-restore-vehicle-poses13.js",
+      "group": "vehicles",
+      "symbol": "restoreVehiclePoses13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 278,
+      "sha256": "923164ef36b8952d57efaf1067dee2ec7a31513e127716ead1ba595f1b0b7182"
+    },
+    {
+      "path": "game/src/vehicles/0368-present-vehicle-poses13.js",
+      "group": "vehicles",
+      "symbol": "presentVehiclePoses13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 683,
+      "sha256": "48589e32eead17964fcc52c35f913251cd10071936284e125cf915953f778919"
+    },
+    {
+      "path": "game/src/vehicles/0369-step-fleet13.js",
+      "group": "vehicles",
+      "symbol": "stepFleet13",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 341,
+      "sha256": "dae083abca78a3fe409da73e2e1465cb5be001c9482d0fc7322e9495d4c8cacb"
+    },
+    {
+      "path": "game/src/engine/0370-tick.js",
+      "group": "engine",
+      "symbol": "tick",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2719,
+      "sha256": "6f483bedde8281b7b26500b75ff9267bf2796da0f7392778a604f13a57688a38"
+    },
+    {
+      "path": "game/src/core/0371-follow.js",
+      "group": "core",
+      "symbol": "follow",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2550,
+      "sha256": "9a2c8ed151995c443d1f08baf7401d0d60396a63917b15accc75a7838dd968b4"
+    },
+    {
+      "path": "game/src/rendering/0372-map-draw.js",
+      "group": "rendering",
+      "symbol": "mapDraw",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1790,
+      "sha256": "ca1274da7872e8da1c80753b78cac430db26fa3bc7e96ee056ed605c4dd3cbc9"
+    },
+    {
+      "path": "game/src/rendering/0373-draw-atlas.js",
+      "group": "rendering",
+      "symbol": "drawAtlas",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 71,
+      "sha256": "2c45e96fb63f8d57607c21e757e992c49b425d1d34318a9b131d8186618e4c4a"
+    },
+    {
+      "path": "game/src/interface/0374-update-ui.js",
+      "group": "interface",
+      "symbol": "updateUI",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1269,
+      "sha256": "c8d0ca2c55174a959812a2d042ff910879ed0af35ae1b2e32096501472611e83"
+    },
+    {
+      "path": "game/src/state/0375-stage41.js",
+      "group": "state",
+      "symbol": "stage41",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 136,
+      "sha256": "be05937a4c27c3b3f036d765597515c5c39e986ef53fdbcad21d97ba0fab8965"
+    },
+    {
+      "path": "game/src/core/0376-smooth41.js",
+      "group": "core",
+      "symbol": "smooth41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 96,
+      "sha256": "ad87744117fc1af70aca183a4131a60f5ecf78fcbe2188ce0a935dd10d8bcd59"
+    },
+    {
+      "path": "game/src/engine/0377-smoothstep41.js",
+      "group": "engine",
+      "symbol": "smoothstep41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 81,
+      "sha256": "160273a2c728d6a535a7f028fbae74c7cacd3daf9a9c19331e7b8986aebf4f2a"
+    },
+    {
+      "path": "game/src/core/0378-cache-rig41.js",
+      "group": "core",
+      "symbol": "cacheRig41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 367,
+      "sha256": "30a5272a0e666abc530f3af64f81cfa5bb165a57598051738bf5a8702e45b4b9"
+    },
+    {
+      "path": "game/src/world/0379-rotate-world41.js",
+      "group": "world",
+      "symbol": "rotateWorld41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 582,
+      "sha256": "347350e9e0b7c5f861421baedf4a7a102b6c9f33d1e05e3f5c6cda7893a5072a"
+    },
+    {
+      "path": "game/src/characters/0380-feet41.js",
+      "group": "characters",
+      "symbol": "feet41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1346,
+      "sha256": "5766690ce8b9752ba197256ae0729280b2144101c1f03668ea15c885b8aba5c4"
+    },
+    {
+      "path": "game/src/core/0381-locomotion41.js",
+      "group": "core",
+      "symbol": "locomotion41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2819,
+      "sha256": "8492c9f5fe3a63ea14a7f1a3e8239cf65b56b56d5b7989643f50e5afb808eb3f"
+    },
+    {
+      "path": "game/src/rendering/0382-detail-normal41.js",
+      "group": "rendering",
+      "symbol": "detailNormal41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 668,
+      "sha256": "e2c1596c4710a9a7bfbd6f37394261c17d622623864c829ef473a5182d4da2ff"
+    },
+    {
+      "path": "game/src/characters/0383-finish-humans41.js",
+      "group": "characters",
+      "symbol": "finishHumans41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1174,
+      "sha256": "9b0d4db9dd7492bac4fc682f8c54db16b5e1cfb3bb3c4606451e0adbccca6d37"
+    },
+    {
+      "path": "game/src/core/0384-facade-atlas41.js",
+      "group": "core",
+      "symbol": "facadeAtlas41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 694,
+      "sha256": "dcd2a6ad4a28dcc3a7ceea11f2c6d5fb4a72bfb6d3e0d90d3766800d8ceebb4b"
+    },
+    {
+      "path": "game/src/world/0385-neighborhood41.js",
+      "group": "world",
+      "symbol": "neighborhood41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2666,
+      "sha256": "3569045f9cfed35336985598178518bafc0fc0530c89ffe0a10ab6f3c0c9e493"
+    },
+    {
+      "path": "game/src/core/0386-weapon-finish41.js",
+      "group": "core",
+      "symbol": "weaponFinish41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1006,
+      "sha256": "d90dba19ff452b8ef9559e4c74ba6fe7b350ecfce5cb7665ddd619549f46f2ce"
+    },
+    {
+      "path": "game/src/engine/0387-install41.js",
+      "group": "engine",
+      "symbol": "install41",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3096,
+      "sha256": "7aa9499d377e6880685ac0f54900489f6ae29a10a48ca92b07153b3cb78f6797"
+    },
+    {
+      "path": "game/src/state/0388-story-rules42.js",
+      "group": "state",
+      "symbol": "StoryRules42",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 7607,
+      "sha256": "736931a03858bf6af427678638727baf22d3ed2dd0fa35320cbee44a1d6b9c6d"
+    },
+    {
+      "path": "game/src/core/0389-ifstatement.js",
+      "group": "core",
+      "symbol": "ifstatement",
+      "type": "IfStatement",
+      "utf8Bytes": 143,
+      "sha256": "d4153b0a12e5a32a751b15156764ecfec1e80d6549cef4991b5d01ab80b5ae88"
+    },
+    {
+      "path": "game/src/state/0390-stage42.js",
+      "group": "state",
+      "symbol": "stage42",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 181,
+      "sha256": "0dbd772a1fe9f46df3830247508fd4de8fd84105daf9d25ab5656e2eb2eee966"
+    },
+    {
+      "path": "game/src/core/0391-maps42.js",
+      "group": "core",
+      "symbol": "maps42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 361,
+      "sha256": "e2359f9d60cd0624059d7dc941a0b84b22da12dbb2d093faa4ed4a8eb5ea0856"
+    },
+    {
+      "path": "game/src/characters/0392-surface42.js",
+      "group": "characters",
+      "symbol": "surface42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 844,
+      "sha256": "237071797611fef8864179bb30cec50997595d5c4c9b3c28f5b1a405741c750e"
+    },
+    {
+      "path": "game/src/characters/0393-finish-surfaces42.js",
+      "group": "characters",
+      "symbol": "finishSurfaces42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 946,
+      "sha256": "8531204966952749df179aa07e3cc9c54670a6db85e3416d40cc875f42fb4574"
+    },
+    {
+      "path": "game/src/rendering/0394-light42.js",
+      "group": "rendering",
+      "symbol": "light42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 711,
+      "sha256": "48e86b9cc0f2248de76db391cfe66e616f4f3450a218de1135d92f2a0d4090b7"
+    },
+    {
+      "path": "game/src/rendering/0395-shadow-settings42.js",
+      "group": "rendering",
+      "symbol": "shadowSettings42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 851,
+      "sha256": "390006eb0c10bf3c7b7595241ebefbfdcd294419df3ec652346c758a87e89e4b"
+    },
+    {
+      "path": "game/src/rendering/0396-shadow-list42.js",
+      "group": "rendering",
+      "symbol": "shadowList42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 996,
+      "sha256": "7d1da0993b0418d1a3ca3026e0b53b3d18ef0e4348ea6f0ef3a0134a5516d4b3"
+    },
+    {
+      "path": "game/src/rendering/0397-anchor-shadow42.js",
+      "group": "rendering",
+      "symbol": "anchorShadow42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 348,
+      "sha256": "c835fc3d9e9837ce064f4c241ce1e3d53f059073fe80becd5dc5bc475b2b1864"
+    },
+    {
+      "path": "game/src/core/0398-ao42.js",
+      "group": "core",
+      "symbol": "ao42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 431,
+      "sha256": "51afbe5ea50f76e714ac1cbe3f4f96862ccf15ed575dfc0dbc919fb2667cb567"
+    },
+    {
+      "path": "game/src/rendering/0399-leaf-material42.js",
+      "group": "rendering",
+      "symbol": "leafMaterial42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 893,
+      "sha256": "83b3172b74bd7a8402982abf17c512c489af62312ed7572d4b82d79c3b6e8579"
+    },
+    {
+      "path": "game/src/world/0400-tree-source42.js",
+      "group": "world",
+      "symbol": "treeSource42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2072,
+      "sha256": "d686fa6a210459ebab751102a1927fedfca38f8d2e043c1dfc275d13af4b2d3b"
+    },
+    {
+      "path": "game/src/core/0401-vegetation42.js",
+      "group": "core",
+      "symbol": "vegetation42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2678,
+      "sha256": "ba0f52efd510094e01a1d973be69157260437c272c1ce810d6d3242fc88afa4e"
+    },
+    {
+      "path": "game/src/vehicles/0402-vehicle-finish42.js",
+      "group": "vehicles",
+      "symbol": "vehicleFinish42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1454,
+      "sha256": "03a6ae17bc2f3635905da6d7ec6b901c497e53933a8c7b7b35864128f924079f"
+    },
+    {
+      "path": "game/src/core/0403-locomotion42.js",
+      "group": "core",
+      "symbol": "locomotion42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 603,
+      "sha256": "1aa54d0d7ba144d5d0aa87c615ecf7a3ea60dae807e26c2ffe9881fbde193574"
+    },
+    {
+      "path": "game/src/engine/0404-install42.js",
+      "group": "engine",
+      "symbol": "install42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1831,
+      "sha256": "c7fcaa30d672f6f733f1fdd4cda659661ffbb03ce425a2426078bbde0184b924"
+    },
+    {
+      "path": "game/src/state/0405-story42.js",
+      "group": "state",
+      "symbol": "story42",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 137,
+      "sha256": "2a51d986b96213ffb340c580ec3cb72c7571d52c15496f4626b57741066ff196"
+    },
+    {
+      "path": "game/src/core/0406-story-context42.js",
+      "group": "core",
+      "symbol": "storyContext42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 207,
+      "sha256": "0902dd8260658364c807ec9f3b3156f3b20cbc567122bcd1c6e59016dde3f0b9"
+    },
+    {
+      "path": "game/src/core/0407-save-story42.js",
+      "group": "core",
+      "symbol": "saveStory42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 113,
+      "sha256": "ed9db37940373e1953c3f3c29220118205949a51aae1a5e87636569c84ff3e0d"
+    },
+    {
+      "path": "game/src/core/0408-story-dialogue42.js",
+      "group": "core",
+      "symbol": "storyDialogue42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 448,
+      "sha256": "e350c7d9afac009c717d3bcb4c67812cbdf77e2dbfee09ab6abc166e2b070bab"
+    },
+    {
+      "path": "game/src/core/0409-story-route42.js",
+      "group": "core",
+      "symbol": "storyRoute42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 229,
+      "sha256": "04fbc477d270300aa53c73cb3805404c319b1badccbbd3c20641f3d16c8e02af"
+    },
+    {
+      "path": "game/src/core/0410-start-story42.js",
+      "group": "core",
+      "symbol": "startStory42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 377,
+      "sha256": "fe515a3cb8dc8c5f2231ade914be1f4c607235aeba90386761f2973050086acd"
+    },
+    {
+      "path": "game/src/core/0411-story-action42.js",
+      "group": "core",
+      "symbol": "storyAction42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 359,
+      "sha256": "632726109ef6243e4ac5c59aa022e4923341f7df1e0438d66b2d05e01cd33f82"
+    },
+    {
+      "path": "game/src/world/0412-lights-neighborhood42.js",
+      "group": "world",
+      "symbol": "lightsNeighborhood42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 552,
+      "sha256": "a00331d7bb01ac76edb41b5a15629a2325039518b44f42cf6e3c9579953fba97"
+    },
+    {
+      "path": "game/src/engine/0413-install-story42.js",
+      "group": "engine",
+      "symbol": "installStory42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 5625,
+      "sha256": "8d00e900440cd975a4d59535f3c35abfc9fd86e0dc0fc38325e6bda3046488da"
+    },
+    {
+      "path": "game/src/engine/0414-install-identity42.js",
+      "group": "engine",
+      "symbol": "installIdentity42",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 7246,
+      "sha256": "e521cfe5975e2b607d472e70b381314584e9cc928200c9fcc2655c5490046f40"
+    },
+    {
+      "path": "game/src/characters/0415-actors43.js",
+      "group": "characters",
+      "symbol": "actors43",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 98,
+      "sha256": "01cecfed03cf613a0e523a95404c335c3bdd9a729c24d32764ab37e4a6bb8cee"
+    },
+    {
+      "path": "game/src/core/0416-sample-layer43.js",
+      "group": "core",
+      "symbol": "sampleLayer43",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 394,
+      "sha256": "82dc4830968a27c1bcc682ed6d3871e25f31c5e4a18cdb1eb412845060e4011a"
+    },
+    {
+      "path": "game/src/world/0417-ground43.js",
+      "group": "world",
+      "symbol": "ground43",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 203,
+      "sha256": "80c21ed6ea8d75b0b6fa11b0e98a541ba32e6c8f7ad597716ec8cb4ef077a2de"
+    },
+    {
+      "path": "game/src/core/0418-reset-graph43.js",
+      "group": "core",
+      "symbol": "resetGraph43",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 273,
+      "sha256": "e9c939f425ca684f9f9c69d2f209954b54c2757d8c655cbd9f30fba1ad2f6483"
+    },
+    {
+      "path": "game/src/core/0419-hands43.js",
+      "group": "core",
+      "symbol": "hands43",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1933,
+      "sha256": "03f565841e8ca3351f8fbd727f68efefc4ac0081b0846b670469991a4fd2b7ae"
+    },
+    {
+      "path": "game/src/characters/0420-human43.js",
+      "group": "characters",
+      "symbol": "human43",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2780,
+      "sha256": "60e1f4459af89ae98c514bc26e2acd2d06214069b0247d3f73d8153bb9706207"
+    },
+    {
+      "path": "game/src/characters/0421-plant-feet43.js",
+      "group": "characters",
+      "symbol": "plantFeet43",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2130,
+      "sha256": "53b7ad9b7b7392bdcd7f8108e8a2cb10f58bcc6e0586a7a4c3fa4f94730d1d1d"
+    },
+    {
+      "path": "game/src/engine/0422-prepare43.js",
+      "group": "engine",
+      "symbol": "prepare43",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4092,
+      "sha256": "81322ebb5e1ef02b40bfc58f2ffb5088c421a3146724ea1fbcdfb3e13469ef38"
+    },
+    {
+      "path": "game/src/diagnostics/0423-technical44.js",
+      "group": "diagnostics",
+      "symbol": "technical44",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 409,
+      "sha256": "2501853c2cacfabb36782ab3b078d40c5f141bc15d0b2505ceca4ab44fd1e7fc"
+    },
+    {
+      "path": "game/src/world/0424-zone-cache44-and-2-others.js",
+      "group": "world",
+      "symbol": "zoneCache44-and-2-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 73,
+      "sha256": "1b7487945f92c19237edd76917c1bf200481ea3c5f2c23ddda23abfa7265046c"
+    },
+    {
+      "path": "game/src/world/0425-stream-job44-and-7-others.js",
+      "group": "world",
+      "symbol": "streamJob44-and-7-others",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 154,
+      "sha256": "c3e166ebabf53ae7f785c7f8136180afe23695b0f5eab28edfeb67cc0926e6d7"
+    },
+    {
+      "path": "game/src/world/0426-zone-buffer44.js",
+      "group": "world",
+      "symbol": "zoneBuffer44",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 911,
+      "sha256": "b704a7b09995cc507da59aa7e3571919d4b5c8be2e16f8714b150fbe5a910b32"
+    },
+    {
+      "path": "game/src/world/0427-refresh-zones44.js",
+      "group": "world",
+      "symbol": "refreshZones44",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 585,
+      "sha256": "5935e86f504cd680c26368707b358e8f28a4e162c2603aa22913f6de444d8cd8"
+    },
+    {
+      "path": "game/src/world/0428-stream-pass44.js",
+      "group": "world",
+      "symbol": "streamPass44",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2407,
+      "sha256": "85fdf754858f94e4d9220c084258c6de0dd206b0f45c9d735858d89217f508c3"
+    },
+    {
+      "path": "game/src/world/0429-house-bytes44.js",
+      "group": "world",
+      "symbol": "houseBytes44",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 348,
+      "sha256": "846648e135bb79f904a78229cd66a62a16f48c693b24a219977e6982c63d7818"
+    },
+    {
+      "path": "game/src/world/0430-update-houses44.js",
+      "group": "world",
+      "symbol": "updateHouses44",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1183,
+      "sha256": "341457d0afe5557280b5c42b2134a4b40d245f9a23a9c8fb6d286d21b243dfac"
+    },
+    {
+      "path": "game/src/engine/0431-install-technical44.js",
+      "group": "engine",
+      "symbol": "installTechnical44",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1605,
+      "sha256": "80017e8e5876af3633b72b033426bb983f0da0ec36cc59d92b7f83d5ae0ed472"
+    },
+    {
+      "path": "game/src/state/0432-art46.js",
+      "group": "state",
+      "symbol": "art46",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 126,
+      "sha256": "3241c4ca745154152d469a5b5b0e1a1e4c1675f996c53d7606657a0d55a58f2c"
+    },
+    {
+      "path": "game/src/core/0433-merge46.js",
+      "group": "core",
+      "symbol": "merge46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 555,
+      "sha256": "902c25ddedc0011c5756265165e0a1215d1ec5773544419fc6f111e041495cbf"
+    },
+    {
+      "path": "game/src/core/0434-shape46.js",
+      "group": "core",
+      "symbol": "shape46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 204,
+      "sha256": "494452ee18d65f2e19568ebe5255b00c5bcfb7371ced64ad0b57e6972a69787c"
+    },
+    {
+      "path": "game/src/core/0435-loft46.js",
+      "group": "core",
+      "symbol": "loft46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 517,
+      "sha256": "64c16eebafa5d640cc8e0c91099f638135e538d870d2787cac5c4207c746d51e"
+    },
+    {
+      "path": "game/src/characters/0436-skin-part46.js",
+      "group": "characters",
+      "symbol": "skinPart46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 752,
+      "sha256": "62047ae214c53c1160c2fa9ea548f7944530f4987a5ac4cbd3717d58ab3de936"
+    },
+    {
+      "path": "game/src/characters/0437-hero46.js",
+      "group": "characters",
+      "symbol": "hero46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 4952,
+      "sha256": "6f424b1e274bbc8d27acc88df408f3e48e11ec12c247b89c7d36e8392784b4aa"
+    },
+    {
+      "path": "game/src/core/0438-helmets46.js",
+      "group": "core",
+      "symbol": "helmets46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3261,
+      "sha256": "f4197e9d5ec134c449931e901ea2d134b24bf23d91e9889967a6cd9c2618026c"
+    },
+    {
+      "path": "game/src/vehicles/0439-bike-prototypes46.js",
+      "group": "vehicles",
+      "symbol": "bikePrototypes46",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 34,
+      "sha256": "29ee2ef5792518a03d208140e7e26c2a229f6eb649ed2da98a545e34b67ecbe7"
+    },
+    {
+      "path": "game/src/vehicles/0440-bike46.js",
+      "group": "vehicles",
+      "symbol": "bike46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 5934,
+      "sha256": "77439d5a00d914635c2e3e4c8ea5faed347bab43da625a92a00dd50ab2074e9b"
+    },
+    {
+      "path": "game/src/rendering/0441-materials46.js",
+      "group": "rendering",
+      "symbol": "materials46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1560,
+      "sha256": "55f294c2a8338d92cd64d7a66ef9c119aff18b1e75144e80f205e93fd2870f29"
+    },
+    {
+      "path": "game/src/world/0442-gardens46.js",
+      "group": "world",
+      "symbol": "gardens46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 5285,
+      "sha256": "b0917562c0c4fdde43106f8fc3d2ecf0e5f975f9ee8f39b8cff01a5837315054"
+    },
+    {
+      "path": "game/src/rendering/0443-compact-geometry46.js",
+      "group": "rendering",
+      "symbol": "compactGeometry46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 754,
+      "sha256": "3857d780539ff1fe5867a214553c592a058fdb3a2e76543a5fe6f56e50e082f1"
+    },
+    {
+      "path": "game/src/characters/0444-prune-legacy46.js",
+      "group": "characters",
+      "symbol": "pruneLegacy46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 726,
+      "sha256": "f2cdeaeec8aa1609aeaa8b9f0c784dc526f73f279598ef82635b15d282a77b04"
+    },
+    {
+      "path": "game/src/engine/0445-install46.js",
+      "group": "engine",
+      "symbol": "install46",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1774,
+      "sha256": "0e5537f283cb3a64a8de83d07d607260cc14b2cfc7ce404cedea6448f90d3a17"
+    },
+    {
+      "path": "game/src/characters/0446-instantiate-human45.js",
+      "group": "characters",
+      "symbol": "instantiateHuman45",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 641,
+      "sha256": "8771cf42066e96240fab5027214905732daf51a9c4fce3e12b16caf72b43e6e4"
+    },
+    {
+      "path": "game/src/core/0447-pack-keys45.js",
+      "group": "core",
+      "symbol": "packKeys45",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1165,
+      "sha256": "34dfff2495046d830e849683b3fdb40a5027963b0c867cd7cf5563c80ddbb508"
+    },
+    {
+      "path": "game/src/core/0448-sample-packed45.js",
+      "group": "core",
+      "symbol": "samplePacked45",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1072,
+      "sha256": "b97cbab538e9caabd3f0f7c8206eff7bb875db0e6f3c5b40818d746ce0dde9dc"
+    },
+    {
+      "path": "game/src/rendering/0449-share-static-geometry05.js",
+      "group": "rendering",
+      "symbol": "shareStaticGeometry05",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2585,
+      "sha256": "eb86fe9b872fe1ecc62e55d63c4582da6a428d6bfcab7e9f616cc16d7cac629b"
+    },
+    {
+      "path": "game/src/world/0450-spatial-residents06.js",
+      "group": "world",
+      "symbol": "spatialResidents06",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1421,
+      "sha256": "d39e2baa1c84a8c2dafe2ebc4d4d244904e39d14b3dbc6376aef32b5a7fea893"
+    },
+    {
+      "path": "game/src/rendering/0451-moving-details07.js",
+      "group": "rendering",
+      "symbol": "movingDetails07",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 405,
+      "sha256": "214e980581f618c978a1273555210f265f759f1b4a847aa2cdbd6cde16179cc9"
+    },
+    {
+      "path": "game/src/core/0452-static-point-cache08.js",
+      "group": "core",
+      "symbol": "staticPointCache08",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 1297,
+      "sha256": "f7258bc8f5271df74346f3b46d333bbcdf3ecbeff02ba1c5638d384148beb1f1"
+    },
+    {
+      "path": "game/src/core/0453-non-picking-bounds08.js",
+      "group": "core",
+      "symbol": "nonPickingBounds08",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 572,
+      "sha256": "6d4ccc88d65d78424b724081325c7303d70d60848e1af82bf423d0915272d8a9"
+    },
+    {
+      "path": "game/src/vehicles/0454-batch-vehicle-bodies11.js",
+      "group": "vehicles",
+      "symbol": "batchVehicleBodies11",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 3401,
+      "sha256": "dd4675e091981b003fbb642fc567a7edbdcd4561c6e2eb589b62a179cdcf68bf"
+    },
+    {
+      "path": "game/src/engine/0455-install-active-candidates12.js",
+      "group": "engine",
+      "symbol": "installActiveCandidates12",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 940,
+      "sha256": "de28214fdfe9e2a9ce1a4912edaf192bc027ac08aef99076494627ca13301c01"
+    },
+    {
+      "path": "game/src/engine/0456-create-frame-recorder09.js",
+      "group": "engine",
+      "symbol": "createFrameRecorder09",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2605,
+      "sha256": "8deb6811ed8810b55fa801fd59511bc0ec34e8b775aecb739dfd79d98588a985"
+    },
+    {
+      "path": "game/src/engine/0457-install-runtime-diagnostics09.js",
+      "group": "engine",
+      "symbol": "installRuntimeDiagnostics09",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 2421,
+      "sha256": "15dbb19ff48a9781ebbd77a8b956c943b571a02299f27f35aab5670cee5d672f"
+    },
+    {
+      "path": "game/src/engine/0458-startup48.js",
+      "group": "engine",
+      "symbol": "startup48",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 129,
+      "sha256": "ba822a3a9fa609eb476dd800b70b1f7e9ef9a6fe31ba3cfa611f3b72b6a7ad28"
+    },
+    {
+      "path": "game/src/core/0459-embedded48.js",
+      "group": "core",
+      "symbol": "embedded48",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 132,
+      "sha256": "2eccc100b50e12129d9d1dc829dbc4ef396b6e70c8267c8a9bb04cf4d81d698c"
+    },
+    {
+      "path": "game/src/core/0460-packed48.js",
+      "group": "core",
+      "symbol": "packed48",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 337,
+      "sha256": "865e9985abe861e91d7250b1f0a7eaec8d669a7b4085240f14ec813d9a4f77c0"
+    },
+    {
+      "path": "game/src/core/0461-prime-visible48.js",
+      "group": "core",
+      "symbol": "primeVisible48",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 938,
+      "sha256": "45972c8b12e314b84fbc351dbd5e536a1e45a6333518a3a4a78a646c14da538d"
+    },
+    {
+      "path": "game/src/core/0462-catalog48.js",
+      "group": "core",
+      "symbol": "catalog48",
+      "type": "FunctionDeclaration",
+      "utf8Bytes": 337,
+      "sha256": "3edb46d00f95c2fd6235c2ef8f8bf2e9ac73e1deb4c1615c6e355c7d86c3e61d"
+    },
+    {
+      "path": "game/src/engine/0463-boot45.js",
+      "group": "engine",
+      "symbol": "boot45",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 1781,
+      "sha256": "2234e49b11939d95a5ab6676ef7bbc169138d0b3dddd1b7b4d29eb54d3e88787"
+    },
+    {
+      "path": "game/src/core/0464-trystatement.js",
+      "group": "core",
+      "symbol": "trystatement",
+      "type": "TryStatement",
+      "utf8Bytes": 15053,
+      "sha256": "f88a5947a896cb218c4af2403f13c1c736ca23c004198d908aa1d540d1068b39"
+    },
+    {
+      "path": "game/src/bootstrap/0465-close-runtime.js",
+      "group": "bootstrap",
+      "symbol": "close-runtime",
+      "type": "Close",
+      "utf8Bytes": 7,
+      "sha256": "05f0d80d53f35f38174f7354716f20357089c94d02f0c882daa1787d92c98eba"
+    }
+  ],
+  "inlineStyles": [
+    {
+      "path": "game/styles/01-base.css",
+      "openTag": "<style>",
+      "sha256": "aebee31d7ba114dd5f1ad134e6603bdd468d856be818ed1ad401c0558c9b7e50",
+      "utf8Bytes": 14900
+    },
+    {
+      "path": "game/styles/02-base.css",
+      "openTag": "<style>",
+      "sha256": "ff4dbc93009768c66547ab05b527bd28be20a5df06a753bd1e6b9c07f4a2c782",
+      "utf8Bytes": 1574
+    },
+    {
+      "path": "game/styles/03-base.css",
+      "openTag": "<style>",
+      "sha256": "cd413a3faeb95a830e0c5c416e2aa00ff4fb1f9b96d21dbaa4023adc1009dc4c",
+      "utf8Bytes": 1334
+    },
+    {
+      "path": "game/styles/04-base.css",
+      "openTag": "<style id=\"polish23\">",
+      "sha256": "f86a18856d9d6de064999e1dca773168d934ded91525a1909ae9edd16553a6e5",
+      "utf8Bytes": 8584
+    },
+    {
+      "path": "game/styles/05-base.css",
+      "openTag": "<style id=\"interface24\">",
+      "sha256": "ba4b0f85e4a481007e1c4266e20c5a0e418b9707d185087ca4771355dc20d41f",
+      "utf8Bytes": 147
+    },
+    {
+      "path": "game/styles/06-base.css",
+      "openTag": "<style id=\"polish29\">",
+      "sha256": "320fbe3b690a3bffe9c1f77e55c03d351e9d526c230faef48d4766882ce21fd8",
+      "utf8Bytes": 877
+    },
+    {
+      "path": "game/styles/07-base.css",
+      "openTag": "<style id=\"polish30\">",
+      "sha256": "213a109612b3a2b8122c5332ca6aff061cecd13da8af2b58e463ee2cc8fa0c09",
+      "utf8Bytes": 248
+    },
+    {
+      "path": "game/styles/08-base.css",
+      "openTag": "<style id=\"polish31\">",
+      "sha256": "d9ec6a7de2077db17addab2c8058742d09a5e2092754a87d5b62d689d53dbdae",
+      "utf8Bytes": 351
+    },
+    {
+      "path": "game/styles/09-base.css",
+      "openTag": "<style id=\"polish32\">",
+      "sha256": "d687de59736624c06d60853f3be94166c28e4d99446a0bdd5ffd15312eb9a6d2",
+      "utf8Bytes": 4686
+    },
+    {
+      "path": "game/styles/10-base.css",
+      "openTag": "<style id=\"polish33\">",
+      "sha256": "9a54637e4bff284f93f822ada75f3b94409ab6655b323a4f6ddb90dfebce4927",
+      "utf8Bytes": 4684
+    }
+  ]
+}

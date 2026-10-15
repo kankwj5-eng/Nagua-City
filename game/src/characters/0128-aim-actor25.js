@@ -1,0 +1,1 @@
+function aimActor25(a,dir){if(!a.cityWeapon)return;const hand=a.cityWeapon.parent;hand.computeWorldMatrix(true);const matrix=B.Matrix.LookAtRH(V(),dir,V(0,1,0)).invert(),q=B.Quaternion.FromRotationMatrix(matrix),pq=new B.Quaternion(),scale=V(),pos=V();hand.getWorldMatrix().decompose(scale,pq,pos);a.cityWeapon.rotationQuaternion=pq.conjugate().multiply(q);}

@@ -1,0 +1,1 @@
+function saveCity(){city.state.magazines={...ammo};try{localStorage.setItem('managua-city-save-v1',JSON.stringify({schema:1,state:city.state}));$('citySaveStatus').textContent='Partida guardada';}catch{$('citySaveStatus').textContent='Este navegador no permite guardar';}}

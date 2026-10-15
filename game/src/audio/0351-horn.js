@@ -1,0 +1,1 @@
+function horn(){startAudio();if(current?.bicycle){tone(1500,1100,.32,.09,'triangle');return;}if(!audio)return;tone(current?.bike?490:310,current?.bike?480:300,.48,.20,'sawtooth');tone(current?.bike?730:390,current?.bike?720:380,.48,.06,'triangle');audio.events.horns++;}

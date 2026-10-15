@@ -1,0 +1,1 @@
+function restoreVehiclePoses13(fleet,current){for(const v of fleet)if(trackedVehicle13(v,current)&&v.motion13){const s=v.motion13.after;if(v!==current){v.root.position.copyFrom(s.p);v.root.rotation.copyFrom(s.r);}for(const part of s.parts)part.node.rotation.copyFrom(part.r);}}

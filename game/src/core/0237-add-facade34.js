@@ -1,0 +1,6 @@
+function addFacade34(root,b,i){
+ const nearRoad=[-185,-111,-37,37,111,185].reduce((a,v)=>Math.abs(v-b.y)<Math.abs(a-b.y)?v:a),sign=nearRoad<b.y?-1:1,front=b.y+sign*(b.d/2+.035),y=groundAt(b.x,b.y),a=assetMats;
+ const frame=assetMats.facade34||(assetMats.facade34=pbr('Moldura gruesa34','#dfd9c6',.96)),base=assetMats.plinth34||(assetMats.plinth34=pbr('Zócalo mineral34','#b3ac98',.96));if(!base.metadata?.surface34)material34(base,'concrete_wall_007',2.0);
+ const details=makeDetailGroup('Espesor de fachada34 '+i,({box})=>{for(const dx of [b.w*.12,b.w*.34]){const x=b.x+dx;for(const side of [-1,1]){box('Jamba de ventana34',x+side*.78,y+1.6,front+sign*.14,.16,1.28,.29,frame);box('Dintel y alféizar34',x,y+1.6+side*.65,front+sign*.14,1.72,.14,.32,frame);}const sill=box('Alféizar con goterón34',x,y+.92,front+sign*.21,1.86,.12,.44,base);sill.rotation.x=sign*.06;}
+ for(const side of [-1,1])box('Pilastra de esquina34',b.x+side*(b.w/2-.15),y+b.h/2,front+sign*.09,.30,b.h,.25,frame);box('Cornisa gruesa34',b.x,y+b.h-.12,front+sign*.1,b.w+.2,.17,.36,frame);box('Zócalo profundo34',b.x,y+.19,front+sign*.07,b.w,.37,.13,base);});details.parent=root;for(const m of details.getChildMeshes())m.unfreezeWorldMatrix();stage34.architectureMeshes+=details.getChildMeshes().length;
+}

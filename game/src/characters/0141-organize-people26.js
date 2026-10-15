@@ -1,0 +1,4 @@
+function organizePeople26(){const roads=[-185,-111,-37,37,111,185];for(const p of pedestrians){const q=p.brain25;const nearest=roads.reduce((a,b)=>Math.abs(q.lane-a)<Math.abs(q.lane-b)?a:b);if(Math.abs(q.lane-nearest)<8.5){const lane=nearest+(q.lane>=nearest?10.7:-10.7);if(!blocked(lane,p.root.position.z,.3)){p.root.position.x=lane;q.lane=lane;p.path.x=lane;}}}
+ for(let pass=0;pass<3;pass++)for(let i=0;i<pedestrians.length;i++){const p=pedestrians[i];for(const o of pedestrians.slice(0,i))if(Math.hypot(o.root.position.x-p.root.position.x,o.root.position.z-p.root.position.z)<.8){for(const dz of [.9,-.9,1.8,-1.8]){const z=clamp(p.root.position.z+dz,p.path.min,p.path.max);if(!blocked(p.root.position.x,z,.3)&&pedestrians.every(a=>a===p||Math.hypot(a.root.position.x-p.root.position.x,a.root.position.z-z)>.75)){p.root.position.z=z;break;}}}}
+}
+

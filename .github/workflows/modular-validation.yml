@@ -1,0 +1,90 @@
+name: Verificar arquitectura modular
+on:
+  push:
+    branches: ['refactor/modular-game-source']
+    paths:
+      - 'game/**'
+      - 'scripts/build_modular.py'
+      - 'tests/module-source.cjs'
+      - '.github/workflows/modular-validation.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: modular-validation-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  identity:
+    name: Identidad binaria y regresiones
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Construir modular y exigir SHA-256 exactamente igual a la build anterior
+        run: |
+          git lfs pull
+          python3 scripts/build_modular.py --verify-pristine
+      - name: Comprobar que el paquete usa los 466 archivos editables
+        run: node tests/module-source.cjs
+      - name: Ejecutar 12 regresiones de render y 1 de conducción
+        run: |
+          for n in $(seq -w 1 12); do
+            node --max-old-space-size=1536 "tests/performance-block${n}.cjs"
+          done
+          node --max-old-space-size=1536 tests/vehicle-handling.cjs
+      - name: Conservar evidencia del empaquetado
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-modulos-identicos
+          path: |
+            dist/module-verification.json
+            dist/.modular-base/build-verification.json
+          if-no-files-found: warn
+          retention-days: 14
+
+  browser:
+    name: Menú y conducción en juego completo
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Construir HTML reorganizado
+        run: |
+          git lfs pull
+          python3 scripts/build_modular.py --verify-pristine
+      - name: Preparar Chromium para pruebas visuales
+        run: |
+          npm install --no-save --package-lock=false playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: Probar menú real, diseño original, controles y pausa
+        run: node scripts/test_menu_browser.cjs
+      - name: Probar conducción real de cuatro vehículos
+        run: node scripts/test_driving_browser.cjs
+      - name: Conservar evidencia visual y registros
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidencia-modulos-nagua
+          path: |
+            dist/menu-browser.json
+            dist/vehicle-handling-browser.json
+            dist/menu-reference-1536x867.png
+            dist/menu-full-game-reference.png
+            dist/handling-*.png
+          if-no-files-found: warn
+          retention-days: 14

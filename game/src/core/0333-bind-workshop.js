@@ -1,0 +1,2 @@
+function bindWorkshop(){ $('inventoryButton').onclick=openInventory;$('openInventoryMenu').onclick=()=>{inventoryWasPlaying=false;$('inventory').hidden=false;refreshEquipmentUI();};$('closeInventory').onclick=closeInventory;$('useItem').onclick=useEquipment;$('reloadItem').onclick=$('reloadHUD').onclick=reloadItem;for(const b of $('inventoryChoices').children)b.onclick=()=>equipItem(b.dataset.item);}
+

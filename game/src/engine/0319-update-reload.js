@@ -1,0 +1,2 @@
+function updateReload(){if(reloadWeapon&&gameplayTime>=reloadUntil){const needed=(reloadWeapon==='pistol'?12:30)-ammo[reloadWeapon],fill=Math.min(needed,city.state.reserve[reloadWeapon]);ammo[reloadWeapon]+=fill;city.state.reserve[reloadWeapon]-=fill;reloadWeapon=null;reloadUntil=-1;refreshEquipmentUI();toast('Recarga completa');}if(reloadWeapon){const left=Math.max(0,reloadUntil-gameplayTime);$('reloadHUD').textContent='RECARGANDO '+left.toFixed(1)+' s';}else $('reloadHUD').textContent='RECARGAR · R';}
+

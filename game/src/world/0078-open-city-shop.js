@@ -1,0 +1,1 @@
+function openCityShop(){if(!playing||driving||!city.nearestShop)return;const shop=city.nearestShop;city.shopPlaying=playing;playing=false;clearInput();$('cityShop').hidden=false;$('cityShopTitle').textContent=shop.name;$('cityShopDialogue').textContent='¡Buenas! Pasá, mirá lo que tenemos. Precios de juego.';renderCityGoods(shop);}

@@ -1,0 +1,1 @@
+function polishControls23(){const h=$('hud');h.classList.toggle('unarmed',equipped==='hands');h.classList.toggle('riding',driving);if(driving)h.classList.remove('combat-open');$('combatToggle').hidden=driving;$('drive').hidden=!driving&&!nearest;}

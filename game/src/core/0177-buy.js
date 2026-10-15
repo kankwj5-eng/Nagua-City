@@ -1,0 +1,1 @@
+CityRules.buy=function(s,item){const special=Commerce29.purchase(s,item,vehicleAtShop29());if(special!==null)return special;if(item.type==='ammo'&&s.reserve[item.weapon]+item.amount>1000)return false;return buyState29(s,item);};

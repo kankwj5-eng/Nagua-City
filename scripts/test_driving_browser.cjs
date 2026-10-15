@@ -10,7 +10,10 @@ const root=path.resolve(__dirname,'..');
   const page=await browser.newPage({viewport:{width:640,height:360}}),errors=[];page.on('pageerror',e=>{errors.push(e.message);console.log('PAGE_ERROR '+e.message);});
   await page.goto('file://'+output,{timeout:240000,waitUntil:'load'});await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,null,{timeout:240000,polling:1000});
   assert(await page.evaluate(()=>Nicaragua.ready),JSON.stringify(await page.evaluate(()=>Nicaragua.boot45)));console.log('Driving test: full game ready');
-  await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());await page.locator('#start').click({force:true});await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
+  await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
+  // Si el arranque progresivo ya abrió el juego, no pulsar el botón oculto.
+  if(!await page.evaluate(()=>Nicaragua.playing)) await page.locator('#start').click({force:true});
+  await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
   const traffic=await page.evaluate(()=>__handling13.trafficProbe());assert(traffic.before.length>0);assert(Math.abs(traffic.elapsed-.25)<1e-8,'traffic advances full elapsed time');assert(traffic.after.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.z)));assert(traffic.after.some((p,i)=>Math.hypot(p.x-traffic.before[i].x,p.z-traffic.before[i].z)>0),'some traffic moves');
   const cases=[];
   for(const name of ['sedan','pulsar','caponera','bus']){

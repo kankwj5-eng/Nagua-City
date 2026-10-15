@@ -1,0 +1,1 @@
+const houseDetails=new Map();

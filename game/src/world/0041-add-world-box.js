@@ -1,0 +1,1 @@
+function addWorldBox(x,z,w,d){const box=[x-w/2,z-d/2,x+w/2,z+d/2];data.boxes.push(box);for(let xx=Math.floor(box[0]/12);xx<=Math.floor(box[2]/12);xx++)for(let zz=Math.floor(box[1]/12);zz<=Math.floor(box[3]/12);zz++){const k=xx+','+zz;if(!colliderGrid.has(k))colliderGrid.set(k,[]);colliderGrid.get(k).push(box);}}

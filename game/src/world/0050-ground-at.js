@@ -1,0 +1,2 @@
+function groundAt(x,z){if(Math.abs(x+222)<2.2&&z<-276&&z>-309)return .312;if(Math.abs(x+222)<4.5&&z<=-308&&z>-311)return .35;let h=-Infinity;for(const t of surfaceGrid.get(Math.floor(x/8)+','+Math.floor(z/8))||[]){const den=(t[5]-t[8])*(t[0]-t[6])+(t[6]-t[3])*(t[2]-t[8]);if(Math.abs(den)<1e-8)continue;const a=((t[5]-t[8])*(x-t[6])+(t[6]-t[3])*(z-t[8]))/den,b=((t[8]-t[2])*(x-t[6])+(t[0]-t[6])*(z-t[8]))/den,c=1-a-b;if(a>=-.0001&&b>=-.0001&&c>=-.0001)h=Math.max(h,a*t[1]+b*t[4]+c*t[7]+.003);}return Number.isFinite(h)?h:.003;}
+

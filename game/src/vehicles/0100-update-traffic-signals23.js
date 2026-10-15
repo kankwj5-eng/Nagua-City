@@ -1,0 +1,2 @@
+function updateTrafficSignals23(dt){if(playing||homeMode)traffic23.clock+=dt;for(const s of traffic23.signals){const phase=signalPhase23(s.axis),index=phase==='red'?0:phase==='yellow'?1:2;for(let n=0;n<3;n++)s.lights[n].material.emissiveColor=s.lights[n].material.albedoColor.scale(n===index?1.4:.03);const p=homeMode?current.root.position:driving?current.root.position:player.root.position;s.root.setEnabled(Math.hypot(p.x-s.root.position.x,p.z-s.root.position.z)<160);}}
+

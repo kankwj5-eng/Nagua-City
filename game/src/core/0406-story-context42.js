@@ -1,0 +1,1 @@
+function storyContext42(){const p=driving?current.root.position:player.root.position;return {x:p.x,z:p.z,driving,speed:driving?state.speed:frameMoveSpeed,wanted:city.state.wanted,health:city.state.health};}

@@ -1,0 +1,1 @@
+alignHeldWeapon=function(p){if(!(equipped in ammo)||!p.equipment?.parent)return;const dir=V(-Math.sin(p.root.rotation.y),0,-Math.cos(p.root.rotation.y)),grip=V(0,equipped==='pistol'?-.065:-.062,equipped==='pistol'?.044:.040),kick=Math.max(0,1-(time-lastAction)/.16)*.035;placeWeapon30(p.equipment,p.equipment.parent,dir,grip,kick);};

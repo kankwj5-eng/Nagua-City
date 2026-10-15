@@ -1,0 +1,14 @@
+function water36(){
+ B.Effect.ShadersStore.water36VertexShader=`precision highp float;attribute vec3 position;uniform mat4 worldViewProjection;uniform float time;varying vec3 p;void main(){vec3 q=position;float f=1.-smoothstep(-301.,-285.,q.z);q.y+=f*(sin(q.x*.14+time*.8)*.12+sin(q.z*.22-time*1.1)*.09+sin(q.x*.31+q.z*.17-time)*.06);p=q;gl_Position=worldViewProjection*vec4(q,1.);}`;
+ B.Effect.ShadersStore.water36FragmentShader=`precision highp float;varying vec3 p;uniform vec3 cameraPosition,sunDirection,sunColor,horizon36;uniform float time,fogStart36,fogEnd36;
+ void main(){float a=p.x*.14+time*.8,b=p.z*.22-time*1.1,c=p.x*.31+p.z*.17-time;float s=clamp((p.z+301.)/16.,0.,1.);float f=1.-s*s*(3.-2.*s);float dz=-6.*s*(1.-s)/16.;float w=sin(a)*.12+sin(b)*.09+sin(c)*.06;float dx=f*(cos(a)*.0168+cos(c)*.0186);float zz=f*(cos(b)*.0198+cos(c)*.0102)+dz*w;
+ // Small ripples are shading detail; the broad-wave derivatives match displaced geometry.
+ dx+=cos(p.x*2.2+p.z*.8+time*1.6)*.018;zz+=cos(p.z*2.5-p.x*.6-time*1.3)*.018;
+ vec3 n=normalize(vec3(-dx,1.,-zz)),v=normalize(cameraPosition-p);float nv=max(dot(n,v),.001);float fres=.0204+.9796*pow(1.-nv,5.);vec3 r=reflect(-v,n);vec3 reflected=mix(horizon36,vec3(.075,.30,.56),pow(max(r.y,0.),.4));vec3 color=mix(vec3(.07,.24,.23),reflected,fres);
+ vec3 halfv=normalize(v+sunDirection);float nh=max(dot(n,halfv),0.),nl=max(dot(n,sunDirection),0.);float rough=.19,alpha=rough*rough,alpha2=alpha*alpha;float denom=nh*nh*(alpha2-1.)+1.;float ggx=alpha2/(3.14159*denom*denom+.00001);float k=(rough+1.)*(rough+1.)*.125;float g=(nv/(nv*(1.-k)+k))*(nl/(nl*(1.-k)+k));float fh=.0204+.9796*pow(1.-max(dot(v,halfv),0.),5.);color+=sunColor*min(ggx*g*fh/(4.*nv*max(nl,.001)),2.)*nl*.30;
+ float shore=1.-smoothstep(0.,2.8,abs(p.z+289.));float foam=shore*smoothstep(.70,.94,sin(p.x*.6+p.z*1.2-time*.8)*.5+.5);color=mix(color,vec3(.65,.73,.64),foam*.22);
+ float haze=smoothstep(fogStart36,fogEnd36,length(cameraPosition-p));color=mix(color,horizon36,haze);gl_FragColor=vec4(color,1.);}`;
+ const mt=new B.ShaderMaterial('water36',scene,{vertex:'water36',fragment:'water36'},{attributes:['position'],uniforms:['worldViewProjection','time','cameraPosition','sunDirection','sunColor','horizon36','fogStart36','fogEnd36']});mt.backFaceCulling=false;
+ const mesh=B.MeshBuilder.CreateGround('Xolotlan',{width:750,height:300,subdivisions:100},scene);mesh.position.set(-30,-.18,-437);mesh.bakeCurrentTransformIntoVertices();mesh.position.set(0,0,0);mesh.material=mt;mesh.isPickable=false;stage36.water=mt;
+ scene.onBeforeRenderObservable.add(()=>{mt.setFloat('time',time);mt.setVector3('cameraPosition',camera.position);mt.setVector3('sunDirection',sun.direction.negate().normalize());mt.setColor3('sunColor',sun.diffuse);mt.setColor3('horizon36',scene.fogColor);mt.setFloat('fogStart36',scene.fogStart);mt.setFloat('fogEnd36',scene.fogEnd);});
+}

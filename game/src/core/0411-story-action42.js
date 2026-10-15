@@ -1,0 +1,1 @@
+function storyAction42(){const result=StoryRules42.complete(story42.state,storyContext42());if(!result)return;saveStory42();storyRoute42();if(result.completed)lightsNeighborhood42();storyDialogue42(result.dialogue,result.completed?'Fin · Cuando vuelve la luz':result.chapterComplete?'Misión completada':StoryRules42.missions[story42.state.chapter].title);}

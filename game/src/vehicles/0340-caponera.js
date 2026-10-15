@@ -1,0 +1,1 @@
+descriptions.caponera=['Caponera de tres ruedas','Diseño original con techo, banco y eje trasero. Parámetros de juego.','Mototaxi adaptada'];

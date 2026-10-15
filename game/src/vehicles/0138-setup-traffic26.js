@@ -1,0 +1,9 @@
+function setupTraffic26(){
+ const previous=traffic23.cars.slice(),bikes=fleet.filter(v=>v.bike&&!v.bicycle&&!v.garage&&!v.cityPatrol).slice(0,6),autos=previous.filter(v=>!v.bike).slice(0,6),cars=[];for(let i=0;i<6;i++){if(autos[i])cars.push(autos[i]);if(bikes[i])cars.push(bikes[i]);}for(const v of previous)v.traffic=false;traffic23.cars=[];simulation25.traffic.locks.clear();
+ const lanes=[{axis:'x',center:37,dir:1,lane:39.45},{axis:'x',center:-37,dir:-1,lane:-39.45},{axis:'x',center:111,dir:1,lane:113.45},{axis:'z',center:37,dir:-1,lane:39.45},{axis:'z',center:-37,dir:1,lane:-39.45},{axis:'z',center:111,dir:-1,lane:113.45}];
+ for(let i=0;i<cars.length;i++){const v=cars[i],r=lanes[i%lanes.length],coord=i<6?-165:-85;const x=r.axis==='x'?coord:r.lane,z=r.axis==='z'?coord:r.lane;v.heading=r.axis==='x'?-r.dir*Math.PI/2:r.dir>0?Math.PI:0;v.root.position.set(x,groundAt(x,z),z);v.root.rotation.set(0,v.heading,0);v.route={...r,min:-200,max:200};v.traffic=true;v.trafficSpeed=0;traffic23.cars.push(v);}
+ const roads=[-185,-111,-37,37,111,185];
+ for(const v of fleet){if(v.traffic||v.garage||v.cityPatrol)continue;const p=v.root.position,rx=roads.reduce((a,b)=>Math.abs(p.x-a)<Math.abs(p.x-b)?a:b),rz=roads.reduce((a,b)=>Math.abs(p.z-a)<Math.abs(p.z-b)?a:b);if(Math.min(Math.abs(p.x-rx),Math.abs(p.z-rz))>11)continue;const vertical=Math.abs(p.x-rx)<Math.abs(p.z-rz),heading=vertical?0:Math.PI/2,start=vertical?p.z:p.x;let found=false;
+ park:for(const offset of [0,8,-8,16,-16,24,-24,32,-32,48,-48])for(const sign of [-1,1]){const along=start+offset;if(roads.some(c=>Math.abs(along-c)<11+v.length/2))continue;const x=vertical?rx+sign*8.6:along,z=vertical?along:rz+sign*8.6;if(!vehicleFootprint26(v,x,z,heading))continue;p.set(x,groundAt(x,z),z);v.heading=heading;v.root.rotation.set(0,heading,0);polish26.parked++;found=true;break park;}v.parking26=found;
+ }
+}

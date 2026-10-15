@@ -1,0 +1,1 @@
+function mergeDetail23(root){const meshes=root.getChildMeshes().filter(m=>m.getTotalVertices()>0);if(meshes.length){root.computeWorldMatrix(true);for(const m of meshes)m.computeWorldMatrix(true);const joined=B.Mesh.MergeMeshes(meshes,true,true,undefined,false,true);if(joined){joined.parent=root;joined.isPickable=false;joined.receiveShadows=true;}}}

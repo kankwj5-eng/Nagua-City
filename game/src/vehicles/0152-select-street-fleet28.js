@@ -1,0 +1,1 @@
+function selectStreetFleet28(list){const bikes=list.filter(d=>d.bike&&inWorld(d.x,d.z)),cars=list.filter(d=>!d.bike&&inWorld(d.x,d.z)),chosen=[];for(let i=0;i<6;i++){if(cars.length)chosen.push(cars[Math.floor(i*cars.length/6)]);if(bikes.length)chosen.push(bikes[Math.floor(i*bikes.length/6)]);}return chosen;}

@@ -1,0 +1,9 @@
+var CityRules={
+ create(){return {health:100,cash:1000,wanted:0,lastCrime:-1000,hiddenTime:0,territoryTime:0,territory:null,block:false,outfit:0,reserve:{pistol:36,rifle:90},purchases:0,incidents:0,job:null,magazines:{pistol:12,rifle:30}};},
+ report(s,severity,t){Logic25.report(s,severity,t);},
+ advance(s,dt,seen,territory,t){if(s.wanted){s.hiddenTime=seen?0:s.hiddenTime+dt;if(t-s.lastCrime>12&&s.hiddenTime>=25){s.wanted--;s.hiddenTime=0;}}if(territory!==s.territory){s.territory=territory;s.territoryTime=0;}else s.territoryTime=territory?s.territoryTime+dt:0;return s;},
+ buy(s,item){if(item.type==='job'&&s.job||item.type==='delivery'&&!s.job)return false;if(!Number.isFinite(item.price)||item.price<0||s.cash<item.price)return false;if(item.type==='food'&&s.health===100)return false;s.cash-=item.price;s.purchases++;if(item.type==='job')s.job={id:'cacao',x:-26,z:90};if(item.type==='delivery'){s.cash+=140;s.job=null;}if(item.type==='food')s.health=Math.min(100,s.health+item.heal);if(item.type==='ammo')s.reserve[item.weapon]+=item.amount;if(item.type==='clothes')s.outfit=item.outfit;return true;},
+ damage(s,n){s.health=Math.max(0,s.health-Math.max(0,n));return s.health===0;},
+ recover(s){s.health=100;s.cash=Math.max(0,s.cash-150);s.wanted=0;s.hiddenTime=0;s.territory=null;s.territoryTime=0;},
+ load(raw){const s=this.create();if(!raw||raw.schema!==1)return s;const v=raw.state;if(!v||!Number.isFinite(v.cash)||!Number.isFinite(v.health))return s;s.cash=Math.max(0,Math.min(100000,v.cash));s.health=Math.max(1,Math.min(100,v.health));s.outfit=Math.max(0,Math.min(8,Math.floor(v.outfit||0)));for(const n of ['pistol','rifle'])if(Number.isFinite(v.reserve?.[n]))s.reserve[n]=Math.max(0,Math.min(1000,Math.floor(v.reserve[n])));for(const n of ['pistol','rifle'])if(Number.isFinite(v.magazines?.[n]))s.magazines[n]=Math.max(0,Math.min(n==='pistol'?12:30,Math.floor(v.magazines[n])));if(v.job?.id==='cacao')s.job={id:'cacao',x:-26,z:90};return s;}
+};

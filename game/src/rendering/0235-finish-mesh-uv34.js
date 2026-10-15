@@ -1,0 +1,1 @@
+function finishMeshUV34(mesh){if(mesh.material?.metadata?.surface34)projectUV34(mesh,mesh.material.metadata.worldScale);else if(mesh.material instanceof B.MultiMaterial){const mats=mesh.material.subMaterials;const scale=mats.find(m=>m?.metadata?.surface34)?.metadata.worldScale;if(scale)projectUV34(mesh,scale);}}

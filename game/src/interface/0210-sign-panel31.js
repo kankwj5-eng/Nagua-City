@@ -1,0 +1,3 @@
+function signPanel31(text,parent,x,y,z,width,height){const tex=new B.DynamicTexture(text+'31',{width:1024,height:64},scene,false),ctx=tex.getContext();ctx.fillStyle='#123d3b';ctx.fillRect(0,0,1024,64);ctx.font='bold 40px Arial';ctx.fillStyle='#fff1d4';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,512,33,980);tex.update();const mat=new B.StandardMaterial(text+'31',scene);mat.diffuseTexture=tex;mat.backFaceCulling=false;mat.emissiveColor=new B.Color3(.16,.16,.13);const mesh=B.MeshBuilder.CreatePlane(text+'31',{width,height},scene);mesh.parent=parent;mesh.position.set(x,y,z);mesh.material=mat;mesh.isPickable=false;return mesh;}
+
+// Camera aim and muzzle obstruction are separate: a third-person camera cannot shoot through cover.

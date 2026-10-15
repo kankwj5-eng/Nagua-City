@@ -1,0 +1,1 @@
+function sole38(p,name,phase){const a=(p.sole40||soleCurves[p.bodyType])?.[name];if(!a?.length)return 0;const f=clamp(phase,0,1)*(a.length-1),lo=Math.floor(f)%a.length,t=f-Math.floor(f);return a[lo]*(1-t)+a[(lo+1)%a.length]*t;}

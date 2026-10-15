@@ -1,0 +1,7 @@
+function installVehicle33(){
+ assetMats.tail33=pbr('Piloto trasero33','#761913',.35);assetMats.braking33=pbr('Freno encendido33','#f6371b',.3);assetMats.braking33.emissiveColor=new B.Color3(.9,.08,.025);
+ const chrome=assetMats.steel,black=assetMats.rubber||assetMats.toolMetal;
+ for(const v of fleet){const parent=v.parts.body||Object.values(v.parts).find(p=>!p.name.includes('wheel')&&!p.name.includes('steering'));if(!parent)continue;const root=makeDetailGroup('Acabado mecánico33 '+v.id,({box,tube})=>{if(v.bike&&!v.bicycle){for(let k=0;k<5;k++)box('Aleta del motor33',0,.49+k*.033,-.08,v.name==='pulsar'?.34:.29,.012,.23,chrome);tube('Latiguillo delantero33',[V(.16,.84,-v.wheelbase*.32),V(.19,.56,-v.wheelbase*.48),V(.12,.29,-v.wheelbase*.50)],.008,black);}else if(!v.bicycle){for(const side of [-1,1]){box('Estribo lateral33',side*v.width*.48,.32,0,.055,.045,v.wheelbase*.72,black);tube('Junta del capó33',[V(side*v.width*.31,.94,-v.wheelbase*.5),V(side*v.width*.35,.94,-v.wheelbase*.28)],.006,black);}}});root.parent=parent;root.position.copyFrom(parent.position.scale(-1));for(const m of root.getChildMeshes())m.unfreezeWorldMatrix();
+ v.lamps33=[];for(const side of v.bike?[0]:[-1,1]){const lamp=B.MeshBuilder.CreateBox('Freno funcional33',{width:v.bike?.10:.18,height:.045,depth:.025},scene);lamp.position.set(side*v.width*.35,v.bike?.69:.72,v.length*.46);lamp.parent=parent;lamp.position.subtractInPlace(parent.position);lamp.material=assetMats.tail33;lamp.isPickable=false;v.lamps33.push(lamp);}stage33.vehicleDetails++;}
+}
+

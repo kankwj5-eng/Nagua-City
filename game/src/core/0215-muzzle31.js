@@ -1,0 +1,1 @@
+function muzzle31(dir){if(player.equipment){player.equipment.computeWorldMatrix(true);const local=V(0,equipped==='pistol'?.05:.06,equipped==='pistol'?-.22:-.64);return B.Vector3.TransformCoordinates(local,player.equipment.getWorldMatrix());}return player.root.position.add(V(0,1.32,0)).add(dir.scale(.5));}

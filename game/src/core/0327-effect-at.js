@@ -1,0 +1,1 @@
+function effectAt(pos,color,size=.08,life=.3){const m=B.MeshBuilder.CreateSphere('Partículas de acción',{diameter:size,segments:6},scene);m.position.copyFrom(pos);m.material=assetMats['effect_'+color]||(assetMats['effect_'+color]=pbr('Efecto '+color,color,.95));m.isPickable=false;effects.push({m,until:time+life});}

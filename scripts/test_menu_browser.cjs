@@ -42,6 +42,14 @@ const root=path.resolve(__dirname,'..');
   assert.deepEqual(errors,[]);
   // Full packaged game: actual startup, controls and settings handlers.
   await page.setViewportSize({width:640,height:360});await page.goto('file://'+full,{timeout:240000,waitUntil:'load'});await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,null,{timeout:240000,polling:1000});assert(await page.evaluate(()=>Nicaragua.ready));await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
+  // El arranque progresivo actual entra automáticamente en la ciudad. Para
+  // probar el menú real, volver desde la partida antes de tomar su captura.
+  if(await page.evaluate(()=>Nicaragua.playing)){
+   await page.evaluate(()=>document.getElementById('pause').click());
+   await page.evaluate(()=>document.getElementById('backHome').click());
+   await page.waitForFunction(()=>!document.getElementById('home').hidden);
+   assert.equal(await page.evaluate(()=>Nicaragua.playing),false);
+  }
   assert.equal(await page.locator('.menu-actions47 button').count(),3,'legacy boot keeps native controls inside their hotspots');
   await page.setViewportSize({width:1536,height:867});await page.mouse.move(1535,0);const fullShot=await page.screenshot({path:path.join(root,'dist/menu-full-game-reference.png')});const fullGamePixelMatch=await page.evaluate(comparePixels,fullShot.toString('base64'));console.log('FULL_GAME_REFERENCE_PIXELS '+JSON.stringify(fullGamePixelMatch));assert(fullGamePixelMatch.maxDelta<=1,'full packaged game preserves reference after real boot');await page.setViewportSize({width:640,height:360});
   assert(await page.locator('#homeSettings').isEnabled());assert(await page.locator('#start').isEnabled());await page.locator('#homeSettings').click();assert(await page.locator('#settings').isVisible());assert(await page.locator('#optionsPanel').isVisible());assert.equal(await page.locator('#resume').innerText(),'Volver al inicio');await page.locator('#resume').click();assert(await page.locator('#settings').isHidden());

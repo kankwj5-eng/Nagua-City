@@ -1,0 +1,1 @@
+function settings(){quality=$('quality').value;engine.setHardwareScalingLevel(quality==='high'?1/Math.min(devicePixelRatio,2):quality==='low'?1.4:1/Math.min(devicePixelRatio,1.5));scene.fogStart=quality==='low'?90:quality==='high'?160:115;scene.fogEnd=quality==='low'?210:quality==='high'?350:280;shadow.setDarkness(.25);sun.shadowEnabled=quality!=='low';refreshZones25();}

@@ -1,0 +1,6 @@
+var Roads29=(()=>{
+ const point=(p,t)=>{const u=1-t,a=p.p0,b=p.p1,c=p.p2,d=p.p3;return {x:u*u*u*a.x+3*u*u*t*b.x+3*u*t*t*c.x+t*t*t*d.x,z:u*u*u*a.z+3*u*u*t*b.z+3*u*t*t*c.z+t*t*t*d.z,dx:3*u*u*(b.x-a.x)+6*u*t*(c.x-b.x)+3*t*t*(d.x-c.x),dz:3*u*u*(b.z-a.z)+6*u*t*(c.z-b.z)+3*t*t*(d.z-c.z)};};
+ function curve(v,c,nextDir){const r=v.route,axis=r.axis==='x'?'z':'x',center=c,lane=center+(axis==='x'?nextDir:-nextDir)*2.45,x=r.axis==='x'?c:r.center,z=r.axis==='x'?r.center:c,end=10.5+v.length/2,p0={x:v.x,z:v.z},p3={x:axis==='x'?x+nextDir*end:lane,z:axis==='z'?z+nextDir*end:lane},distance=Math.hypot(p3.x-p0.x,p3.z-p0.z),arm=Math.min(10,distance*.44),p={p0,p1:{x:p0.x+(r.axis==='x'?r.dir*arm:0),z:p0.z+(r.axis==='z'?r.dir*arm:0)},p2:{x:p3.x-(axis==='x'?nextDir*arm:0),z:p3.z-(axis==='z'?nextDir*arm:0)},p3,next:{axis,center,lane,dir:nextDir,min:center===37?(axis==='x'?-382:-249):-249,max:center===37?(axis==='x'?389:500):249},arc:[0],length:0};let last=p0;for(let i=1;i<=48;i++){const q=point(p,i/48);p.length+=Math.hypot(q.x-last.x,q.z-last.z);p.arc.push(p.length);last=q;}return p;}
+ function atDistance(p,d){d=Math.max(0,Math.min(d,p.length));let i=1;while(i<48&&p.arc[i]<d)i++;const span=p.arc[i]-p.arc[i-1],t=(i-1+(span?(d-p.arc[i-1])/span:0))/48;return {...point(p,t),t};}
+ return {curve,point,atDistance};
+})();

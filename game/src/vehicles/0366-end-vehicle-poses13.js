@@ -1,0 +1,1 @@
+function endVehiclePoses13(fleet,current){for(const v of fleet)if(trackedVehicle13(v,current)&&v.motion13){const h=v.motion13;readSnapshot13(v,h.after);if(B.Vector3.DistanceSquared(h.before.p,h.after.p)>16){h.before.p.copyFrom(h.after.p);h.before.r.copyFrom(h.after.r);for(let i=0;i<h.before.parts.length;i++)h.before.parts[i].r.copyFrom(h.after.parts[i].r);}}}

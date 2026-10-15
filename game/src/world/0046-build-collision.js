@@ -1,0 +1,1 @@
+function buildCollision(){for(const b of data.boxes){if(b.some(x=>!Number.isFinite(x)))continue;for(let x=Math.floor(b[0]/12);x<=Math.floor(b[2]/12);x++)for(let z=Math.floor(b[1]/12);z<=Math.floor(b[3]/12);z++){const k=x+','+z;if(!colliderGrid.has(k))colliderGrid.set(k,[]);colliderGrid.get(k).push(b);}}}

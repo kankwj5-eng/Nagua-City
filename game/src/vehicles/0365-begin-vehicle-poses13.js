@@ -1,0 +1,1 @@
+function beginVehiclePoses13(fleet,current){for(const v of fleet)if(trackedVehicle13(v,current)){if(!v.motion13)v.motion13={before:vehicleSnapshot13(v),after:vehicleSnapshot13(v)};readSnapshot13(v,v.motion13.before);}}

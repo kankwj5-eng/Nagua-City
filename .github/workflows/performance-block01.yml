@@ -19,8 +19,13 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '24'
-      - name: Construir el HTML sin modificar recursos visuales
-        run: python3 scripts/build_performance.py
+      - name: Construir juego desde módulos organizados (o referencia en ramas antiguas)
+        run: |
+          if test -f game/manifest.json; then
+            python3 scripts/build_modular.py
+          else
+            python3 scripts/build_performance.py
+          fi
       - name: Comparar animaciones con el motor original
         run: node --max-old-space-size=512 tests/performance-block01.cjs
       - name: Verificar streaming, concurrencia y caché
@@ -51,7 +56,9 @@ jobs:
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: Managua-optimizado
-          path: dist/
+          path: |
+            dist/Managua.html
+            dist/*.json
           if-no-files-found: error
           retention-days: 14
           compression-level: 0

@@ -1,0 +1,3 @@
+function updateFleet(dt){const p=homeMode&&!homeGarage?V(-18,0,94):homeMode?current.root.position:driving?current.root.position:player.root.position;for(const v of fleet){const distance=B.Vector3.DistanceSquared(v.root.position,p),visible=visibleVehicle28(v,distance)&&!(homeMode&&v.garage&&(!homeGarage||v!==current));v.root.setEnabled(visible);placeContact(v.contact,v.root.position,v.heading,visible);if(v.low){const detailed=v===current||distance<(quality==='high'?60:quality==='low'?30:45)**2;v.low.setEnabled(!detailed);for(const part of Object.values(v.parts))part.setEnabled(detailed);}}}
+
+// Ackermann geometry follows the existing wheel pivots. Steering input >0 means right.

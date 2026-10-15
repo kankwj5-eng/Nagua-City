@@ -1,0 +1,1 @@
+function pbr(name,c,r=.8,m=0){const mt=new B.PBRMaterial(name,scene);mt.albedoColor=typeof c==='string'?B.Color3.FromHexString(c):B.Color3.FromArray(c);mt.roughness=r;mt.metallic=m;mt.environmentIntensity=.65;mt.directIntensity=1;mt.forceIrradianceInFragment=true;mt.usePhysicalLightFalloff=true;return mt;}

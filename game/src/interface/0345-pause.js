@@ -1,0 +1,1 @@
+function pause(open=true){if(open&&renderRestore){renderRestore.node.position.copyFrom(renderRestore.p);renderRestore.node.rotation.copyFrom(renderRestore.r);renderRestore=null;renderPrevious=null;}playing=!open&&!homeMode;$('settings').hidden=!open;clearInput();if(audio)audio.master.gain.setTargetAtTime(open?0:volume,audio.ctx.currentTime,.08);}

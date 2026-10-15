@@ -1,0 +1,1 @@
+async function enterLandscape(){try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen?.();try{await screen.orientation?.lock?.('landscape');}catch{}}catch{}engine?.resize();}
