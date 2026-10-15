@@ -7,6 +7,7 @@ function make(app){
  const catalog={zones:fixture.world.map(z=>({...z,data:zlib.gzipSync(JSON.stringify(z)).toString('base64')}))},extensions={zones:fixture.extensions.map(z=>({...z,data:zlib.gzipSync(JSON.stringify(z)).toString('base64')}))};
  const ctx=vm.createContext({catalog,extensions,Math:math,counts,Buffer,console:{error(){}},setImmediate});
  const init=`let quality='high',homeMode=false,homeGarage=false,driving=false,streamDefinitions25=null,streamBusy=false,planObjects=0,failNext=false;
+ let bootDone48=true;const boot45={inspect:()=>({done:bootDone48})},startup48={zoneReads:[]};
  const V=(x,y,z)=>({x,y,z}),spawn=V(-37,0,111),player={root:{position:V(-37,0,111)}},current={root:{position:V(-37,0,111)}},zones=new Map(),pending=new Set(),shapeGeometries25=new Map(),simulation25={load:{zones:0,maxZoneBatch:0}};const trace=[];
  function bytes(s){return Buffer.from(s,'base64');}
  async function inflate(b){counts.inflate++;await new Promise(r=>setImmediate(r));if(failNext){failNext=false;throw Error('fixture inflate failed');}const x=Buffer.from(requireInflate(b));return x.buffer.slice(x.byteOffset,x.byteOffset+x.length);}
@@ -14,7 +15,7 @@ function make(app){
  async function loadYield25(){await new Promise(r=>setImmediate(r));}function updateShadowList(){trace.push('shadow');}function toast(){}
  `;
  ctx.requireInflate=b=>zlib.gunzipSync(b);
- vm.runInContext(init+code+`globalThis.api={stream:refreshZones44,buffer:zoneBuffer44,stats:technical44,trace,set(q,x,z,home=false,garage=false,drive=false){quality=q;homeMode=home;homeGarage=garage;driving=drive;Object.assign(player.root.position,{x,z});Object.assign(current.root.position,{x,z});},fail(){failNext=true;},snap(){return {zones:[...zones.keys()],pending:pending.size,reads:zoneReads44.size,workers:streamWorkers44,cacheBytes:technical44.zoneCacheBytes,cacheEntries:zoneCache44.size,planObjects,stats:{...technical44},counts:{...counts}};}};`,ctx);
+ vm.runInContext(init+code+`globalThis.api={initial(){bootDone48=false;},stream:refreshZones44,buffer:zoneBuffer44,stats:technical44,trace,set(q,x,z,home=false,garage=false,drive=false){quality=q;homeMode=home;homeGarage=garage;driving=drive;Object.assign(player.root.position,{x,z});Object.assign(current.root.position,{x,z});},fail(){failNext=true;},snap(){return {zones:[...zones.keys()],pending:pending.size,reads:zoneReads44.size,workers:streamWorkers44,cacheBytes:technical44.zoneCacheBytes,cacheEntries:zoneCache44.size,planObjects,stats:{...technical44},counts:{...counts}};}};`,ctx);
  return ctx.api;
 }
 async function replay(api,quality){
@@ -35,6 +36,7 @@ async function replay(api,quality){
   const old=make(a),next=make(b),x=await replay(old,quality),y=await replay(next,quality);assert.deepEqual(Array.from(next.trace),Array.from(old.trace));assert.deepEqual(Array.from(y.zones),Array.from(x.zones));assert.equal(JSON.stringify(y.stats),JSON.stringify(x.stats));assert.equal(y.counts.inflate,x.counts.inflate);assert(y.counts.hypot<x.counts.hypot);assert(y.planObjects<x.planObjects);
   report.scenarios.push({quality,passes:y.stats.streamPasses,requests:y.stats.streamRequests,reads:y.counts.inflate,cacheHits:y.stats.zoneCacheHits,workers:y.stats.maxStreamWorkers,hypotBefore:x.counts.hypot,hypotAfter:y.counts.hypot,planObjectsBefore:x.planObjects,planObjectsAfter:y.planObjects,traceIdentical:true});
  }
+ const starter=make(b);starter.initial();await starter.stream(true);assert(starter.snap().zones.length<=4,'only three nearby zones plus permanent at boot');report.initialZones=starter.snap().zones;
  const cacheCases=[];
  for(const code of [a,b]){
   const api=make(code),z={...fixture.world.find(z=>!z.permanent),data:zlib.gzipSync('exact buffer fixture').toString('base64')};

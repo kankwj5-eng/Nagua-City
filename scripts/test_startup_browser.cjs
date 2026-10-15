@@ -9,12 +9,12 @@ const fs=require('node:fs'),path=require('node:path'),assert=require('node:asser
    await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,null,{timeout:240000,polling:100});assert(await page.evaluate(()=>Nicaragua.ready),'boot '+label);
    if(label==='progressive'){
     await page.waitForFunction(()=>Nicaragua.playing&&document.getElementById('home').hidden,null,{timeout:15000});
-    const first=await page.evaluate(()=>({startup:Nicaragua.startup48,boot:Nicaragua.boot45,playing:Nicaragua.playing,homeHidden:document.getElementById('home').hidden,quality:document.getElementById('quality').value,adaptive:document.getElementById('adaptive35').value}));
+    const navigationToPlayableMs=Date.now()-start;const first=await page.evaluate(()=>({startup:Nicaragua.startup48,boot:Nicaragua.boot45,playing:Nicaragua.playing,homeHidden:document.getElementById('home').hidden,quality:document.getElementById('quality').value,adaptive:document.getElementById('adaptive35').value}));
     assert(first.playing&&first.homeHidden);assert(first.startup.zonesAtEntry<=4);assert(first.startup.catalogBytes<100000);assert.equal(first.quality,'medium');assert.equal(first.adaptive,'auto');
     await page.waitForFunction(()=>Nicaragua.zones.size>4,null,{timeout:60000});
     await page.evaluate(()=>document.getElementById('pause').click());assert(await page.locator('#settings').isVisible());await page.locator('#resume').click();assert(await page.evaluate(()=>Nicaragua.playing));
     await page.evaluate(()=>document.getElementById('pause').click());await page.locator('#backHome').click();assert(await page.locator('#home').isVisible());await page.locator('#start').click();assert(await page.evaluate(()=>Nicaragua.playing));
-    await page.screenshot({path:path.join(root,'dist/startup-playing.png')});results[label]={navigationToPlayableMs:Date.now()-start,first,...await page.evaluate(()=>({startup:Nicaragua.startup48,zones:Nicaragua.zones.size})),errors};
+    await page.screenshot({path:path.join(root,'dist/startup-playing.png')});results[label]={navigationToPlayableMs,first,...await page.evaluate(()=>({startup:Nicaragua.startup48,zones:Nicaragua.zones.size})),errors};
    }else results[label]={navigationToReadyMs:Date.now()-start,...await page.evaluate(()=>({boot:Nicaragua.boot45,zones:Nicaragua.zones.size})),errors};
    assert.deepEqual(errors,[]);await page.close();
   }
