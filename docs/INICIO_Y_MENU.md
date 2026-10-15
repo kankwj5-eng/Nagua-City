@@ -34,6 +34,6 @@ npx playwright install --with-deps chromium
 node scripts/test_menu_browser.cjs
 ```
 
-El banco compara una captura a resolución nativa de 1.536 × 867 con el JPEG decodificado por el mismo navegador. Esto verifica que, una vez listo, el menú reproduce la referencia sin letras añadidas, oscurecimiento, recortes ni deformaciones. Se registra diferencia de canales y píxeles.
+El banco compara una captura a resolución nativa de 1.536 × 867 con el JPEG decodificado por el mismo navegador. Esto verifica que, una vez listo, el menú reproduce la referencia sin letras añadidas, oscurecimiento, recortes ni deformaciones. Se registra diferencia de canales y píxeles. La comparación admite un máximo de 1 nivel por canal de 8 bits entre la composición JPEG del navegador y su lectura mediante Canvas; la identidad del archivo fuente se verifica por SHA-256.
 
 También comprueba progreso real no regresivo, botones desactivados hasta estar listo, barra completa, regiones visibles a 640×360, 844×390, 1280×720, 390×844 y 320×568, pestañas y navegación de teclado. Abre el HTML completo y verifica arranque, ajustes iniciales, búsqueda del garaje, entrada a la ciudad, pausa y reanudación. El fixture de capturas usa el HTML y la presentación reales, sin cargar el motor; no representa FPS ni una escena de conducción. Las trece regresiones anteriores continúan en CI. Workflow: `.github/workflows/illustrated-menu.yml`, rama `ui/reference-menu`.
