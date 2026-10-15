@@ -18,5 +18,10 @@ function human43(p,speed,dt){
  }
  // Blend from the final previous displayed pose so transitions include the action layer.
  const alpha=1-Math.exp(-dt*(p.far?18:30));for(const t of rig.tracks){const v=t.target[t.property];if(t.property==='rotationQuaternion')B.Quaternion.SlerpToRef(t.value,v,alpha,v);else B.Vector3.LerpToRef(t.value,v,alpha,v);t.value.copyFrom(v);}
- plantFeet43(p,g.walk,g.run);for(const prop of p.streetProps||[])if(!prop.isDisposed())prop.setEnabled(!p.far);
+ plantFeet43(p,g.walk,g.run);
+ // The animated bones are blended *after* hands43 solves both arm targets.
+ // Refresh the grip attachment against the displayed hand pose, not the
+ // pre-blend pose, or the weapon floats / cuts through the forearm in motion.
+ if(p.hero&&!driving&&(equipped==='pistol'||equipped==='rifle')&&p.equipment?.isEnabled())alignHeldWeapon(p);
+ for(const prop of p.streetProps||[])if(!prop.isDisposed())prop.setEnabled(!p.far);
 }
