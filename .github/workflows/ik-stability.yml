@@ -1,0 +1,30 @@
+name: Rig IK estabilidad
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/core/0300-limb-ik.js'
+      - 'tests/limb-ik-stability.cjs'
+      - '.github/workflows/ik-stability.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/core/0300-limb-ik.js'
+      - 'tests/limb-ik-stability.cjs'
+      - '.github/workflows/ik-stability.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  joint-stability:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Comparar poses y casos extremos de los brazos y rodillas
+        run: node tests/limb-ik-stability.cjs
