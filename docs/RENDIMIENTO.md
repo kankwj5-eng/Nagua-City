@@ -146,3 +146,24 @@ En el juego completo se encontraron 174 ubicaciones, de las cuales se construyer
 ```sh
 node --max-old-space-size=768 tests/performance-block06.cjs
 ```
+
+
+## Bloque 07 — matrices de detalles móviles
+
+El constructor `makeDetailGroup` congela matrices para detalles estáticos. Dos mallas de detalles de vehículos en el juego completo conservaban ese estado después de incorporarse a una jerarquía móvil. Ahora se descongelan únicamente los descendientes de vehículos que lo necesitan, al terminar la preparación. Las matrices de la ciudad estática permanecen congeladas.
+
+La prueba reproduce un panel que queda separado de su vehículo al trasladarlo o girarlo: falla en cinco de seis posiciones antes del cambio y sigue correctamente la jerarquía en las seis después. La tolerancia de 1e-6 admite la precisión de matrices Float32; el error observado fue menor de 3e-8. No se modifica la física, el paso de simulación ni la interpolación general. Este fallo de detalles móviles está demostrado; no demuestra por sí solo que explique todos los tirones descritos en el teléfono.
+
+```sh
+node --max-old-space-size=512 tests/performance-block07.cjs
+```
+
+### Comprobación acumulada y límites
+
+Se abrió el HTML acumulado en Chrome 131 con SwiftShader, contenedor de escritorio y ventana 320×180. Llegó a `ready` y permitió entrar. Se reprodujeron 30 cuadros a 8 cuadros/s simulados con la rasterización GPU desactivada solo en el banco de pruebas. Esto ejercita el bucle, sus poses y callbacks; **no mide FPS reales de conducción**. No había AnimationGroups del motor ejecutándose en paralelo. El vehículo se detuvo al encontrar una colisión en ese recorrido, por lo que no es una prueba de conducción prolongada libre de obstáculos.
+
+Después se hicieron tres ciclos de cinco destinos. Al terminar cada ciclo, los recursos se estabilizaron en 7.814 mallas, 3.420 geometrías, 705 materiales y 417 texturas; la caché de zonas quedó en 32.933.903 bytes, por debajo de su límite de 32 MiB, y la de casas tuvo ocho entradas. El contador de jardines mostró 466 construcciones y 415 disposiciones al final. No hubo errores JavaScript capturados. Esto verifica estabilidad de esos recuentos en ese recorrido, no ausencia universal de fugas. La lectura `performance.memory` fue cuantizada y se conserva como aproximación, sin certificar ahorro de RAM total.
+
+La apertura sigue incluyendo preparación global de personajes, materiales y arquitectura. Un HTML con todos los recursos integrados requiere además leer y analizar esos datos iniciales, aunque el dibujo sea progresivo. No se presenta esta entrega como solución completa de los 8–10 FPS ni del tiempo de carga en Android. El siguiente cuello de botella requiere aislar coste de dibujo, sombras y residencia de personajes, conservando calidad.
+
+Informes de estos bloques: `block05-results.json`, `block06-results.json`, `block07-results.json`, `block05-07-build.json` y `block05-07-browser.json`. La construcción mantiene idénticos los 16 bloques de recursos y todo el contenido fuera de appSource. Las siete pruebas se ejecutan en GitHub Actions.

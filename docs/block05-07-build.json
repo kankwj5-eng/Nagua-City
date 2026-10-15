@@ -1,0 +1,23 @@
+{
+  "blocks": [
+    "animation-buffer-packing",
+    "streaming-plan",
+    "exact-animation-storage",
+    "vehicle-template-loading",
+    "static-geometry-sharing",
+    "progressive-gardens",
+    "moving-details"
+  ],
+  "baseSha256": "a6c43bcea9fe04e0f227496969dd713b226525b24b914b9bfe3d173683a06e2e",
+  "outputSha256": "8870fe41697b51478fa1228d44942202770af463a0881804a66ce01ca4a763d3",
+  "bytes": 183616679,
+  "allOutsideAppSourceIdentical": true,
+  "changedFunctions": [
+    "packKeys45",
+    "samplePacked45",
+    "streamPass44",
+    "createTemplates",
+    "gardens46"
+  ],
+  "assetBlocks": 16
+}

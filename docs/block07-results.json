@@ -1,0 +1,47 @@
+{
+  "block": 7,
+  "engine": "9.29.0",
+  "oldDetachedSamples": 5,
+  "correctedSamples": 6,
+  "unfrozenVehicleMeshes": 1,
+  "stationaryMatricesPreserved": true,
+  "trace": [
+    {
+      "x": 0,
+      "z": 0,
+      "yaw": 0,
+      "error": 2.9200193204443322e-8
+    },
+    {
+      "x": 2,
+      "z": 0,
+      "yaw": 0,
+      "error": 2.9200193295092652e-8
+    },
+    {
+      "x": 4,
+      "z": 1,
+      "yaw": 0.2,
+      "error": 2.920019345943689e-8
+    },
+    {
+      "x": 8,
+      "z": 3,
+      "yaw": 0.6,
+      "error": 2.9200193157587312e-8
+    },
+    {
+      "x": 12,
+      "z": 8,
+      "yaw": 1,
+      "error": 2.9200192678074407e-8
+    },
+    {
+      "x": 4,
+      "z": -4,
+      "yaw": -0.5,
+      "error": 2.920019324584869e-8
+    }
+  ],
+  "passed": true
+}
