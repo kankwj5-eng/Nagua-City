@@ -19,8 +19,10 @@ window.__naguaVisualQA={
    const nodes=player.root.getDescendants();
    const rotations=nodes.filter(n=>/upperarm_|lowerarm_|hand_|pelvis$|spine_/i.test(n.name)&&n.rotationQuaternion)
      .map(n=>({name:n.name,q:[n.rotationQuaternion.x,n.rotationQuaternion.y,n.rotationQuaternion.z,n.rotationQuaternion.w]}));
-   const materialList=scene.materials.filter(m=>/(grass|grass|zacate|grama|pasto|césped|lawn|garden|jard|soil|tierra|terreno|lodo|solar|hierba|arena|suelo)/i.test(m.name))
-     .map(m=>({name:m.name,albedo:m.albedoTexture?.name||null,normal:m.bumpTexture?.name||null,scale:m.metadata?.worldScale??null,roughness:m.roughness,instances:scene.meshes.filter(x=>x.material===m).length}));
+   const materialList=scene.materials.filter(m=>/(grass|zacate|grama|pasto|césped|lawn|garden|jard|soil|tierra|terreno|lodo|solar|hierba|arena|suelo)/i.test(m.name))
+     .map(m=>({name:m.name,albedo:!!m.albedoTexture,normal:!!m.bumpTexture,
+       family:m.metadata?.surface42||m.metadata?.surface34||null,scale:m.metadata?.worldScale??null,
+       roughness:m.roughness,instances:scene.meshes.filter(x=>x.material===m).length}));
    return {ready,playing,driving,scaling:player.root.scaling.asArray(),hero:!!player.hero,
      nearMeshes:meshes.length,vertices:meshes.reduce((s,m)=>s+m.getTotalVertices(),0),
      equipped,weaponVisible:player.equipment?.isEnabled()||false,
@@ -28,12 +30,15 @@ window.__naguaVisualQA={
      textures:scene.textures.length,sceneMeshes:scene.meshes.length};
  },
  arm(){
-   equipItem('rifle');
-   if(!player.equipment){
-     const arms=player.root.getDescendants().filter(n=>/hand|arm|wrist|grip/i.test(n.name)).map(n=>n.name).slice(0,50);
-     throw Error("Falta arma tras equipItem; rigJointNames="+JSON.stringify(arms)+
-       " equipped="+equipped+" item="+Boolean(itemDefinitions.rifle));
-   }
+   // The inventory may not own a rifle on a new save. This isolated visual
+   // test creates one as a fixture, without unlocking anything in the game.
+   const handNode=player.root.getDescendants().find(n=>/hand_r$/.test(n.name));
+   if(!handNode)throw Error("Falta hueso hand_r en el rig real");
+   player.equipment?.dispose();
+   equipped='rifle';
+   player.equipment=equipmentModel('rifle',handNode);
+   if(!player.equipment)throw Error("No se pudo crear el modelo real de rifle");
+   player.equipment.rotation.set(Math.PI/2,0,Math.PI);
    for(let i=0;i<7;i++)human43(player,0,1/60);
    player.equipment.computeWorldMatrix(true);
    const hand=player.equipment.parent;
