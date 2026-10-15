@@ -1,0 +1,13 @@
+{
+  "block": 10,
+  "engine": "9.29.0",
+  "fixture": "12 vehicle hierarchies with 16 box meshes each; CPU matrix invalidation, not Android FPS",
+  "stationaryFrames": 120,
+  "matrixUpdates": {
+    "before": 25920,
+    "after": 0
+  },
+  "sceneSnapshotsCompared": 72,
+  "exactWorldMatrices": true,
+  "passed": true
+}

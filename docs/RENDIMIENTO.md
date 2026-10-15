@@ -194,3 +194,23 @@ node --max-old-space-size=512 tests/performance-block08.cjs
 ```
 
 Informes: `block08-results.json`, `block08-build.json`, `block08-memory.json` y `block08-profile.json`. Se siguen conservando íntegros los recursos y todo el contenido externo a appSource.
+
+## Bloque 09 — diagnóstico profundo optativo
+
+Se incluye un grabador de 15 segundos accesible desde ajustes y `Nicaragua.diagnostics09`. Separa etapas del bucle y activa temporalmente los contadores de Babylon para evaluación de mallas, render targets, dibujo CPU y animaciones. Reutiliza la consulta GPU existente cuando está disponible. Exporta JSON local, con series acotadas, intervalos P50/P95/P99 y cuadros lentos. Se detiene al ocultar la pestaña y restaura los indicadores de instrumentación. Los tiempos anidados no se suman. Las consultas GPU son asíncronas y pueden repetir el último resultado disponible. Sin captura no se leen relojes por etapa.
+
+La prueba 09 verifica almacenamiento acotado, percentiles, reloj inactivo, conservación de `this` y excepciones y sintaxis del código entregado. El banco de Chrome/CPU Profiler y las instrucciones de Android/Perfetto están en [PERFILADO.md](PERFILADO.md).
+
+## Bloque 10 — no invalidar vehículos estacionados
+
+`Vector3.y` del Babylon integrado marca el vector como cambiado incluso cuando se le asigna exactamente el mismo número. `updateFleet` escribía la altura de cada vehículo estacionado en cada cuadro, provocando recálculos de su jerarquía. Ahora se calcula la misma altura y se escribe solo si `Object.is` detecta un cambio. Se mantiene el signo de cero y no se cachea el terreno: cualquier altura nueva se aplica inmediatamente.
+
+La prueba con el motor integrado reproduce 12 jerarquías de vehículos con 16 mallas cada una. En 120 cuadros estacionados, los eventos de actualización de matrices pasan de 25.920 a cero después del calentamiento. Compara exactamente las matrices y realiza otras 72 comparaciones con cambios de posición, tráfico, calidades, garaje, conducción y vehículos retirados. El fixture aísla invalidación de matrices; no representa una ganancia de FPS medida en Android.
+
+## Bloque 11 — agrupar piezas opacas de carrocerías
+
+El perfil de escritorio sitúa el coste dominante en render y llamadas WebGL. Los modelos contienen numerosas piezas de una misma carrocería con idéntico nombre y material, que se dibujan por separado. El nuevo bloque concatena sus canales de vértices sin transformarlos ni redondearlos y ajusta únicamente los índices por el desplazamiento de vértices. Mantiene nombre, padre, material y banderas de dibujo. Se aplica antes de compartir buffers y antes de crear la flota.
+
+Se excluyen todas las motocicletas, ruedas, dirección, cristales, piezas transparentes o con alpha test y geometrías animadas, modificables o incompatibles. Los cristales se excluyen también por nombre porque el juego les activa transparencia en una etapa posterior. No se cambian texturas, iluminación, resolución, física ni cantidad de vehículos. Una malla agrupada tiene un límite espacial conjunto: puede evaluarse/dibujarse completa donde antes se descartaban algunas piezas individuales. No se afirma igualdad del conjunto de llamadas de dibujo ni de todos los píxeles de las sombras en los límites de distancia.
+
+La prueba 11 usa las geometrías reales y compara exactamente los valores de todos los atributos siguiendo sus índices, por nombre, padre y material. También conserva la identidad de ruedas, dirección, motocicletas y cristales y verifica idempotencia. La comparación de navegador debe considerarse aparte de esta prueba geométrica.

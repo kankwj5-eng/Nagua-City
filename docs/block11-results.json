@@ -1,0 +1,15 @@
+{
+  "block": 11,
+  "engine": "9.29.0",
+  "scope": "real automobile-template geometry; potential draws per detailed vehicle, not Android FPS",
+  "models": 14,
+  "batches": 44,
+  "removedMeshes": 240,
+  "beforeMeshes": 939,
+  "afterMeshes": 699,
+  "exactIndexedVertexChannels": true,
+  "motorcycleAndMovingPartObjectsPreserved": true,
+  "glassObjectsPreserved": true,
+  "idempotent": true,
+  "passed": true
+}

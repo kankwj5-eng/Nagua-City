@@ -16,12 +16,20 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           lfs: true
+          fetch-depth: 0
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: '24'
       - run: python3 scripts/build_performance.py
       - run: npm install --no-save --package-lock=false playwright@1.49.1
       - run: npx playwright install --with-deps chromium
+      - name: Construir referencia con el constructor original del bloque 08
+        run: |
+          git show a6d04b02a67699e95b4ea9d51730bac78602c9ee:scripts/build_performance.py > scripts/baseline_build.py
+          python3 scripts/baseline_build.py --output dist/Managua-before.html
+          rm scripts/baseline_build.py
+      - name: Perfilar referencia con el mismo banco
+        run: node scripts/profile_browser.cjs dist/Managua-before.html dist/before-profile
       - name: Perfilar CPU y render sin confundirlo con FPS en Android
         run: node scripts/profile_browser.cjs
       - name: Conservar perfil, captura e informe
@@ -30,6 +38,9 @@ jobs:
         with:
           name: Nagua-perfil-profundo
           path: |
+            dist/before-profile.json
+            dist/before-profile.cpuprofile
+            dist/before-profile.png
             dist/deep-profile.json
             dist/deep-profile.cpuprofile
             dist/deep-profile.png

@@ -17,15 +17,20 @@ const root=path.resolve(__dirname,'..');
   const cdp=await page.context().newCDPSession(page);
   await page.goto('file://'+output,{timeout:240000,waitUntil:'load'});
   await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,null,{timeout:240000,polling:1000});
-  assert(await page.evaluate(()=>Nicaragua.ready),JSON.stringify(await page.evaluate(()=>Nicaragua.boot45)));
+  console.log('Game loaded');assert(await page.evaluate(()=>Nicaragua.ready),JSON.stringify(await page.evaluate(()=>Nicaragua.boot45)));
   await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
   await page.locator('#start').click({force:true});await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
+  await page.evaluate(async()=>{for(let i=0;i<4;i++)await Nicaragua.stream(true);});
   // Warm shaders and data separately; fixed simulation delta makes each run reproducible.
-  await page.evaluate(async()=>{for(let i=0;i<12;i++){__bench09.setDt();__frame09();await new Promise(r=>setTimeout(r,0));}});
+  await page.evaluate(async()=>{for(let i=0;i<12;i++){__bench09.setDt();Nicaragua.engine.beginFrame();__frame09();Nicaragua.engine.endFrame();await new Promise(r=>setTimeout(r,0));}});
   await cdp.send('Profiler.enable');await cdp.send('Profiler.setSamplingInterval',{interval:1000});await cdp.send('Profiler.start');
-  await page.evaluate(async()=>{window.__cost={};window.__frameTimes=[];for(let i=0;i<60;i++){__bench09.setDt();const t=performance.now();__frame09();__frameTimes.push(performance.now()-t);await new Promise(r=>setTimeout(r,0));}});
+  await page.evaluate(async()=>{window.__cost={};window.__frameTimes=[];for(let i=0;i<60;i++){__bench09.setDt();const t=performance.now();Nicaragua.engine.beginFrame();__frame09();Nicaragua.engine.endFrame();__frameTimes.push(performance.now()-t);await new Promise(r=>setTimeout(r,0));}});
   const {profile}=await cdp.send('Profiler.stop');fs.writeFileSync(prefix+'.cpuprofile',JSON.stringify(profile));
-  const result=await page.evaluate(()=>({environment:{userAgent:navigator.userAgent,renderer:'SwiftShader software; desktop; 480x270; manual 1/60 simulation steps; instrumentation overhead included',physicalAndroid:false},cost:__cost,frames:__frameTimes,stats:Nicaragua.stats,metrics:Nicaragua.stage39.metrics,playing:Nicaragua.playing,boot:Nicaragua.boot45,meshes:Nicaragua.scene.meshes.length,materials:Nicaragua.scene.materials.length,callbacks:Nicaragua.scene.onBeforeRenderObservable.observers.length}));
+  const result=await page.evaluate(()=>({environment:{userAgent:navigator.userAgent,renderer:'SwiftShader software; desktop; 480x270; manual 1/60 simulation steps; instrumentation overhead included',physicalAndroid:false},cost:__cost,frames:__frameTimes,stats:Nicaragua.stats,metrics:Nicaragua.stage39.metrics,playing:Nicaragua.playing,boot:Nicaragua.boot45,meshes:Nicaragua.scene.meshes.length,materials:Nicaragua.scene.materials.length,callbacks:Nicaragua.scene.onBeforeRenderObservable.observers.length,technical:Nicaragua.technical44}));
+  if(await page.evaluate(()=>!!Nicaragua.diagnostics09)){
+   result.diagnosticProbe=await page.evaluate(()=>{const api=Nicaragua.diagnostics09;api.start(15);__bench09.setDt();Nicaragua.engine.beginFrame();__frame09();Nicaragua.engine.endFrame();const report=api.stop('browser-smoke');return {stages:Object.keys(report.stages),engineStages:Object.keys(report.engineStages),restored:!Nicaragua.stage39.sceneInstrument.captureActiveMeshesEvaluationTime};});
+   assert(result.diagnosticProbe.stages.includes('sceneRenderCPU'));assert(result.diagnosticProbe.restored);
+  }
   result.errors=errors;assert.equal(result.playing,true);assert.deepEqual(errors,[]);
   const counts=new Map(),nodes=new Map(profile.nodes.map(n=>[n.id,n]));
   for(let i=0;i<profile.samples.length;i++){const n=nodes.get(profile.samples[i]),name=n.callFrame.functionName||'(anonymous)',c=counts.get(name)||{name,selfMs:0,samples:0};c.selfMs+=(profile.timeDeltas[i]||0)/1000;c.samples++;counts.set(name,c);}
