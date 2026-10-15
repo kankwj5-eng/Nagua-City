@@ -35,3 +35,9 @@ node scripts/test_menu_browser.cjs
 El banco genera un fixture del HTML y script reales para comprobar límites y obtener capturas a 640×360, 844×390, 1280×720, 390×844 y 320×568. Revisa acciones visibles, porcentaje no regresivo, disponibilidad al terminar la carga y navegación de pestañas. Después abre el HTML completo y comprueba arranque real, ajustes desde inicio, búsqueda del garaje, entrada a la ciudad, pausa y reanudación. El fixture no es el juego que se entrega ni se usa como evidencia de rendimiento.
 
 CI: `.github/workflows/illustrated-menu.yml`. Capturas e informe se guardan en el artefacto `Nagua-menu-ilustrado`. Las trece regresiones anteriores siguen ejecutándose en el workflow de rendimiento para ramas `ui/**`.
+
+## Resultado verificado
+
+El código `c630fd207c39d762dacfac8b315e2f1bad14705d` pasó [las trece regresiones](https://github.com/kankwj5-eng/Nagua-City/actions/runs/38771733119) y [el banco de menú y arranque completo](https://github.com/kankwj5-eng/Nagua-City/actions/runs/38771732927). Ocho capturas/layouts verificados, títulos entre 37 y 64 px según pantalla y acciones del menú dentro del área visible. Pasan progreso no regresivo, barra completa al estar listo, disponibilidad de botones, pestañas de teclado, ajustes iniciales, búsqueda de vehículo, entrada, pausa y reanudación; cero errores JavaScript capturados. Informe: [menu-browser.json](menu-browser.json). Las capturas originales están en el artefacto `Nagua-menu-ilustrado` de esa ejecución.
+
+HTML final: 182.188.323 bytes, SHA-256 `07fbd2e97b1936a53587d8545b564ccc4ed93fb51990939889033f7c5aa5ef4a`. Arte integrado y tipografías del sistema; los 16 bloques de recursos permanecen intactos. Las adiciones posteriores solo conservan esta evidencia y no cambian el código probado.
