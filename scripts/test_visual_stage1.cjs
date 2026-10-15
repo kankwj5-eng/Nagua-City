@@ -29,7 +29,11 @@ window.__naguaVisualQA={
  },
  arm(){
    equipItem('rifle');
-   if(!player.equipment)throw Error("No fue posible equipar rifle al personaje real");
+   if(!player.equipment){
+     const arms=player.root.getDescendants().filter(n=>/hand|arm|wrist|grip/i.test(n.name)).map(n=>n.name).slice(0,50);
+     throw Error("Falta arma tras equipItem; rigJointNames="+JSON.stringify(arms)+
+       " equipped="+equipped+" item="+Boolean(itemDefinitions.rifle));
+   }
    for(let i=0;i<7;i++)human43(player,0,1/60);
    player.equipment.computeWorldMatrix(true);
    const hand=player.equipment.parent;
@@ -68,6 +72,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(idle.scaling.every(v=>Math.abs(v-1)<.00001),"Preservar escala de rig del personaje");
   assert(idle.rotations.length>5);
   assert(idle.rotations.every(r=>r.q.every(Number.isFinite)),"Huesos con rotaciones finitas");
+  console.log("STAGE1_MATERIALS "+JSON.stringify(idle.materials));
   const hand=await page.evaluate(()=>__naguaVisualQA.arm());
   assert.equal(hand.equipped,"rifle");
   assert(hand.offset<.90,"Arma exageradamente separada de la mano "+hand.offset);
