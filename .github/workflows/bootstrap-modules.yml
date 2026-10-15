@@ -1,0 +1,54 @@
+name: Extraer módulos sin alterar el juego
+on:
+  push:
+    branches: ['refactor/modular-game-source']
+    paths:
+      - '.github/workflows/bootstrap-modules.yml'
+      - 'scripts/extract_modules.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bootstrap-modules-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bootstrap:
+    name: Extraer, ensamblar y comparar SHA-256
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 1
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Instalar analizador de sintaxis JavaScript
+        run: npm install --no-save --package-lock=false acorn@8.15.0
+      - name: Construir juego de referencia desde Git LFS
+        run: |
+          git lfs pull
+          python3 scripts/build_performance.py
+      - name: Separar funciones y CSS en carpetas sin cambiar su código
+        run: node scripts/extract_modules.cjs
+      - name: Comprobar reconstrucción de todo el HTML, byte a byte
+        run: python3 scripts/build_modular.py --verify-pristine
+      - name: Verificar física, animación, geometría y rendimiento
+        run: |
+          for n in $(seq -w 1 12); do
+            node --max-old-space-size=1536 "tests/performance-block${n}.cjs"
+          done
+          node --max-old-space-size=1536 tests/vehicle-handling.cjs
+      - name: Guardar módulos en la rama de refactorización
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/src/ game/styles/ game/manifest.json
+          git diff --cached --quiet && exit 0
+          git commit -m "refactor: guardar funciones y estilos por subsistema"
+          git push origin HEAD:refactor/modular-game-source
