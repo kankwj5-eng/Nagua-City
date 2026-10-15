@@ -51,3 +51,20 @@ La versión PWA añade una portada ligera en español, un botón **Instalar app*
 - [Workflow de publicación](.github/workflows/pages-pwa.yml).
 - Sitio tras publicar y habilitar Pages: `https://kankwj5-eng.github.io/Nagua-City/`.
 
+
+## Código fuente organizado por sistemas
+
+El motor del juego se mantiene en `game/src/`, dividido por funciones y áreas (vehículos, ciudad, personajes, gráficos, interfaz, audio, herramientas y estado). Los diez estilos originales están ahora también en `game/styles/`. **El HTML original con los recursos permanece intacto en Git LFS.** El resultado sigue siendo un solo HTML optimizado para jugar y publicar.
+
+Para compilar la versión que debes usar a partir de ahora:
+
+```sh
+git lfs pull
+python3 scripts/build_modular.py
+node tests/module-source.cjs
+```
+
+- [Mapa de carpetas, pautas para editar y controles de seguridad](docs/ARQUITECTURA.md).
+- [Manifiesto de orden de ensamblado](game/manifest.json).
+
+La primera migración comprobó una **identidad SHA-256 completa** entre el HTML anterior y el reorganizado; las 13 regresiones existentes continuaron pasando. Para futuras mejoras, modificar los archivos en `game/src/` y `game/styles/` y ejecutar las pruebas correspondientes, no el bloque `appSource` a mano.
