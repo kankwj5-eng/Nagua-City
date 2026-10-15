@@ -1,0 +1,168 @@
+{
+  "passed": true,
+  "vehicles": 24,
+  "maneuvers": [
+    {
+      "name": "pulsar",
+      "speedAfter8sMps": 23.373939210988475,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.04049288854115518
+    },
+    {
+      "name": "boxer",
+      "speedAfter8sMps": 18.50050517699545,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.041810827917549975
+    },
+    {
+      "name": "discover",
+      "speedAfter8sMps": 17.57614079557218,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.041147918888740365
+    },
+    {
+      "name": "yamaha",
+      "speedAfter8sMps": 19.432627732648456,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.04042059038910051
+    },
+    {
+      "name": "taypan",
+      "speedAfter8sMps": 15.935303801053921,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.04202140594277848
+    },
+    {
+      "name": "pickup",
+      "speedAfter8sMps": 23.575756572006476,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04551740893291012
+    },
+    {
+      "name": "lc300",
+      "speedAfter8sMps": 29.356152530748588,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.045557047508807735
+    },
+    {
+      "name": "trail",
+      "speedAfter8sMps": 18.26565782558488,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.041239206191513
+    },
+    {
+      "name": "delivery",
+      "speedAfter8sMps": 17.63106903582772,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.041198807200510945
+    },
+    {
+      "name": "pickup4x4",
+      "speedAfter8sMps": 24.910494777651184,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04555874255786241
+    },
+    {
+      "name": "prado",
+      "speedAfter8sMps": 24.082849224112756,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04554941651963029
+    },
+    {
+      "name": "suv",
+      "speedAfter8sMps": 18.542550851423982,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04544522958271391
+    },
+    {
+      "name": "sedan",
+      "speedAfter8sMps": 18.187770334913782,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04545981890178408
+    },
+    {
+      "name": "hatch",
+      "speedAfter8sMps": 17.440192830869016,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04544028861985516
+    },
+    {
+      "name": "taxi",
+      "speedAfter8sMps": 18.037715407063903,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04545656618899807
+    },
+    {
+      "name": "alto",
+      "speedAfter8sMps": 17.779817264798314,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04545696056530979
+    },
+    {
+      "name": "bus",
+      "speedAfter8sMps": 12.251262858847674,
+      "reverseMps": -3,
+      "maxBrakingYawDrop": 0.04048275435888904
+    },
+    {
+      "name": "truck",
+      "speedAfter8sMps": 13.501783606864034,
+      "reverseMps": -3,
+      "maxBrakingYawDrop": 0.043162776913730605
+    },
+    {
+      "name": "caponera",
+      "speedAfter8sMps": 11.36489829581656,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.04603102522964653
+    },
+    {
+      "name": "bicycle",
+      "speedAfter8sMps": 3.268687904511426,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.04088932471462414
+    },
+    {
+      "name": "pickupwork",
+      "speedAfter8sMps": 23.24755389775554,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.0455127667913241
+    },
+    {
+      "name": "urban125",
+      "speedAfter8sMps": 17.393790683030538,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.04113725932299894
+    },
+    {
+      "name": "enduro",
+      "speedAfter8sMps": 17.970930049614164,
+      "reverseMps": -1.2,
+      "maxBrakingYawDrop": 0.041222920535020635
+    },
+    {
+      "name": "caponera_family",
+      "speedAfter8sMps": 10.86291592051617,
+      "reverseMps": -4.5,
+      "maxBrakingYawDrop": 0.0460226807734021
+    }
+  ],
+  "replayFrameRates": [
+    10,
+    15,
+    30,
+    60,
+    90,
+    120
+  ],
+  "identicalStateAt720Steps": true,
+  "brakingComparison": {
+    "beforeYaw": -0.6709778819098274,
+    "legacyYawAfterBrake": 0,
+    "newYawAfterBrake": -0.640475348911104
+  },
+  "contactSeparations": 200,
+  "sweepSpeedMps": 48,
+  "realBabylonPresentation": true,
+  "scope": "Numerical and transform regressions; not human handling assessment or Android FPS"
+}

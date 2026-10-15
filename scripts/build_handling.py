@@ -31,6 +31,7 @@ def apply(app):
  replace('function updateFleet(dt){manageTraffic28(dt);updateTrafficSignals23(dt);','function updateFleet(dt){')
  replace("if(v===current&&driving||v.retired28||v.garage&&v!==current)continue;if(v.traffic&&dt>0)stepTraffic29(v,dt);const ground10=groundAt(v.root.position.x,v.root.position.z);if(!Object.is(v.root.position.y,ground10))v.root.position.y=ground10;",'')
  replace('function tick(dt){',helper('vehicle-presentation.js')+'\nfunction tick(dt){')
+ replace("tick=diagnostics09.wrap('simulation',tick);","stepFleet13=diagnostics09.wrap('trafficSimulation',stepFleet13);tick=diagnostics09.wrap('simulation',tick);")
  replace('renderRestore=null;\nconst clockResult=frameClock.advance(dt,step=>{renderPrevious=', 'renderRestore=null;restoreVehiclePoses13(fleet,driving?current:null);\nconst clockResult=frameClock.advance(dt,step=>{beginVehiclePoses13(fleet,driving?current:null);renderPrevious=')
  replace('tick(step);});accumulator=clockResult.alpha/60;', 'tick(step);stepFleet13((playing||homeMode)?step:0);endVehiclePoses13(fleet,driving?current:null);});accumulator=clockResult.alpha/60;')
  replace('updateFleet((playing||homeMode)?Math.min(dt,.10):0);','updateFleet(0);')

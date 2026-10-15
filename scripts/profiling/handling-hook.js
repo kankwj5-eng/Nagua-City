@@ -2,6 +2,28 @@
 const loop13=engine.runRenderLoop.bind(engine);
 engine.runRenderLoop=fn=>{window.__handlingFrame13=fn;loop13(fn);};
 window.__handling13={
+ trafficProbe(){
+  restoreVehiclePoses13(fleet,driving?current:null);frameClock.reset();
+  const cars=fleet.filter(v=>v.traffic&&!v.retired28),before=cars.map(v=>({id:v.id,x:v.root.position.x,z:v.root.position.z})),clock=traffic23.clock;
+  this.frame(.25);
+  return {before,after:cars.map(v=>({id:v.id,x:v.root.position.x,z:v.root.position.z})),elapsed:traffic23.clock-clock};
+ },
+ wallProbe(){
+  const v=current;restoreVehiclePoses13(fleet,v);renderRestore=renderPrevious=null;frameClock.reset();clearInput();
+  let start=null;
+  for(const b of data.boxes){
+   if(b[2]-b[0]<8||b[3]-b[1]<8)continue;
+   const x=(b[0]+b[2])/2,z=b[3]+v.length/2+.5;
+   state.heading=0;
+   if(Math.abs(x)>180||Math.abs(z)>180||!inWorld(x,z)||vehicleContact40(x,z,v,.82))continue;
+   start={x,z,wall:b.slice()};break;
+  }
+  if(!start)throw Error('No clear wall fixture in real map');
+  v.motion13=null;v.root.position.set(start.x,groundAt(start.x,start.z),start.z);v.root.rotation.set(0,0,0);v.heading=0;
+  resetInertia30();state.x=start.x;state.z=start.z;state.heading=0;state.speed=12;state.steer=state.lean=state.throttle=0;
+  const contacts=stage40.contacts;this.simulate(60);
+  return {start,contacts:stage40.contacts-contacts,speed:state.speed,x:state.x,z:state.z,penetrating:!!vehicleContact40(state.x,state.z,v,.82),condition:v.condition32};
+ },
  prepare(name){
   restoreVehiclePoses13(fleet,driving?current:null);
   if(driving)changeDrive(true);

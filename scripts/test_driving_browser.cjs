@@ -11,6 +11,7 @@ const root=path.resolve(__dirname,'..');
   await page.goto('file://'+output,{timeout:240000,waitUntil:'load'});await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,null,{timeout:240000,polling:1000});
   assert(await page.evaluate(()=>Nicaragua.ready),JSON.stringify(await page.evaluate(()=>Nicaragua.boot45)));console.log('Driving test: full game ready');
   await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());await page.locator('#start').click({force:true});await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
+  const traffic=await page.evaluate(()=>__handling13.trafficProbe());assert(traffic.before.length>0);assert(Math.abs(traffic.elapsed-.25)<1e-8,'traffic advances full elapsed time');assert(traffic.after.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.z)));assert(traffic.after.some((p,i)=>Math.hypot(p.x-traffic.before[i].x,p.z-traffic.before[i].z)>0),'some traffic moves');
   const cases=[];
   for(const name of ['sedan','pulsar','caponera','bus']){
    await page.evaluate(name=>__handling13.prepare(name),name);
@@ -26,7 +27,9 @@ const root=path.resolve(__dirname,'..');
    const reverse=await page.evaluate(()=>{__handling13.input(-1,0,false);__handling13.simulate(120);__handling13.frame();return __handling13.snapshot();});assert(reverse.state.speed<0,name+' reverse');if(name==='pulsar')assert(reverse.state.speed>=-1.2);
    cases.push({name,initial,accelerate,steer,brake,reverse,pauseFrozen:true});console.log('Driving case passed: '+name);
   }
-  assert.deepEqual(errors,[]);const result={passed:true,environment:{browser:await browser.version(),renderer:'Chromium SwiftShader, 640x360',physicalAndroid:false},scope:'Full packaged city, player entry, straight acceleration, right turn, braking, pause and reverse; controlled road with other fleet moved away',cases,errors};
+  await page.evaluate(()=>__handling13.prepare('sedan'));
+  const wall=await page.evaluate(()=>__handling13.wallProbe());assert(wall.contacts>0,'actual map collision');assert.equal(wall.penetrating,false);assert(wall.condition<100);assert(Math.abs(wall.speed)<12);assert(wall.z>wall.start.wall[3]);
+  assert.deepEqual(errors,[]);const result={passed:true,environment:{browser:await browser.version(),renderer:'Chromium SwiftShader, 640x360',physicalAndroid:false},scope:'Full packaged city, player entry, straight acceleration, right turn, braking, pause and reverse; controlled road with other fleet moved away',cases,traffic,wall,errors};
   fs.writeFileSync(path.join(root,'dist/vehicle-handling-browser.json'),JSON.stringify(result,null,2));console.log('DRIVE_RESULT '+JSON.stringify(result));
  }finally{await browser.close();fs.unlinkSync(output);}
 })().catch(e=>{console.error(e);process.exitCode=1;});

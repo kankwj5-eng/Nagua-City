@@ -54,7 +54,7 @@ const close=(a,b,t=1e-8)=>assert(Math.abs(a-b)<=t,`${a} != ${b}`);
  const trueWheel=car.parts.wheel_front_L.rotation.x;pres.presentVehiclePoses13(fleet,car,.5,()=>{});close(car.parts.wheel_front_L.rotation.x,trueWheel*.5);close(car.parts.body.rotation.z,.01);close(car.root.position.z,-.16);close(moto.root.position.z,-.065);
  pres.restoreVehiclePoses13(fleet,car);close(car.parts.wheel_front_L.rotation.x,trueWheel);close(moto.root.position.z,-.13);close(car.spin,spin);
  pres.beginVehiclePoses13(fleet,car);moto.root.position.x=100;pres.endVehiclePoses13(fleet,car);pres.presentVehiclePoses13(fleet,car,.1,()=>{});close(moto.root.position.x,100);engine.dispose();
- assert(app.includes('body.rotation.z=v.bodyRest40.z+state.lean'));assert(app.includes('stepFleet13((playing||homeMode)?step:0)'));assert(!app.includes('v.spin+='));new (Object.getPrototypeOf(async function(){}).constructor)(app);
+ assert(app.includes('body.rotation.z=v.bodyRest40.z+state.lean'));assert(app.includes('stepFleet13((playing||homeMode)?step:0)'));assert(app.includes("wrap('trafficSimulation',stepFleet13)"));assert(!app.includes('v.spin+='));new (Object.getPrototypeOf(async function(){}).constructor)(app);
  const report={passed:true,vehicles:maneuvers.length,maneuvers,replayFrameRates:replays.map(r=>r.fps),identicalStateAt720Steps:true,brakingComparison:beforeAfter,contactSeparations:contacts,sweepSpeedMps:48,realBabylonPresentation:true,scope:'Numerical and transform regressions; not human handling assessment or Android FPS'};
  fs.writeFileSync(path.join(root,'dist/vehicle-handling.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 })().catch(e=>{console.error(e);process.exitCode=1;});
