@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101b24">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Nagua City: conduce, explora Managua y vive la ciudad a tu ritmo. Instala el juego como una aplicación web.">
+  <title>Nagua City — Tu ciudad, a tu ritmo</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/icon-192.png" sizes="192x192" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="layout">
+    <div class="copy">
+      <div class="eyebrow"><span class="light" aria-hidden="true"></span> NICARAGUA · MUNDO ABIERTO</div>
+      <div class="brand">NAGUA <span>CITY</span></div>
+      <h1>Tu ciudad.<br><em>A tu ritmo.</em></h1>
+      <p class="lede">Explora Managua, conduce carros y motos y descubre las calles a tu manera. La aventura comienza aquí.</p>
+      <div class="actions">
+        <a class="primary" href="./Managua.html" id="play"><span aria-hidden="true">▶</span> ENTRAR AL JUEGO <span aria-hidden="true">↗</span></a>
+        <button class="secondary" type="button" id="install"><span aria-hidden="true">↓</span> INSTALAR APP</button>
+      </div>
+      <p id="install-state" class="helper" role="status" aria-live="polite">Instálalo desde Chrome en Android y ábrelo desde tu pantalla de inicio.</p>
+      <div class="details"><span>JUEGO WEB INSTALABLE</span><span>CONTROLES TÁCTILES</span><span>EN ESPAÑOL</span></div>
+    </div>
+    <div class="art">
+      <figure class="art-frame">
+        <img src="./assets/managua-menu-reference.jpg" alt="Arte original del menú de Nagua City, con calles y vehículos de Managua" width="1536" height="867" fetchpriority="high">
+        <figcaption><span>01 / CIUDAD ABIERTA</span><span>MANAGUA, NICARAGUA</span></figcaption>
+      </figure>
+    </div>
+  </main>
+  <footer><span>© Nagua City</span><span>Versión web · El juego se carga al entrar</span></footer>
+  <dialog id="instructions" aria-labelledby="instructions-title">
+    <div class="dialog-top"><h2 id="instructions-title">Instalar Nagua City</h2><button type="button" id="close-instructions" aria-label="Cerrar instrucciones">✕</button></div>
+    <p>En Android, abre esta página con <strong>Google Chrome</strong>, toca el menú <strong>⋮</strong> y elige <strong>Instalar aplicación</strong> o <strong>Añadir a pantalla de inicio</strong>.</p>
+    <p>La instalación no descarga automáticamente el juego completo. Necesitarás conexión para cargarlo.</p>
+    <button type="button" class="primary dialog-button" id="ok-instructions">ENTENDIDO</button>
+  </dialog>
+</body>
+</html>
