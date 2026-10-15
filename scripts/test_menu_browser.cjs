@@ -13,6 +13,7 @@ const root=path.resolve(__dirname,'..');
   await page.waitForFunction(()=>document.getElementById('percent47').textContent==='58%');await page.screenshot({path:path.join(root,'dist/menu-loading.png')});
   await page.evaluate(()=>document.querySelector('#loadbar span').style.width='50%');await page.waitForFunction(()=>document.querySelector('#loadbar span').style.width==='58%');
   await page.evaluate(()=>{document.getElementById('status').textContent='Todo listo. Entrá a la ciudad.';document.getElementById('start').disabled=false;});await page.waitForFunction(()=>!document.getElementById('homeSettings').disabled);
+  await page.waitForFunction(()=>Math.abs(document.querySelector('#loadbar span').getBoundingClientRect().width-document.getElementById('loadbar').getBoundingClientRect().width)<.5);
   const layouts=[];
   async function check(label,selector){
    const data=await page.evaluate(selector=>{const outer=document.querySelector(selector),b=outer.getBoundingClientRect();const controls=[...outer.querySelectorAll('button,input,select')].filter(el=>el.getClientRects().length&&!el.hidden);return {width:innerWidth,height:innerHeight,outer:{x:b.x,y:b.y,right:b.right,bottom:b.bottom},controls:controls.map(el=>{const r=el.getBoundingClientRect();return {id:el.id,x:r.x,y:r.y,right:r.right,bottom:r.bottom,width:r.width,height:r.height};}),titleSize:getComputedStyle(document.querySelector('#home h1')).fontSize};},selector);

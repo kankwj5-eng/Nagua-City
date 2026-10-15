@@ -38,3 +38,7 @@ El bloque 12 evita evaluar como candidatos de dibujo nodos ya desactivados, cons
 ## Física y conducción
 
 Correcciones de agarre al frenar en curva, balanceo de carrocería, maniobras lentas de motos, rodadura, dirección Ackermann y colisiones de la huella completa. Tráfico y jugador comparten pasos fijos y presentación interpolada. Detalles, límites y pruebas: [docs/CONDUCCION.md](docs/CONDUCCION.md). Prueba: `node --max-old-space-size=768 tests/vehicle-handling.cjs`. No certifica sensación de conducción ni 60 FPS en un teléfono físico.
+
+## Inicio y menú ilustrado
+
+Arte urbano original, tipografía más contenida, tres acciones principales y ajustes reorganizados para móvil. La presentación usa una sola imagen y elimina el carrusel fotográfico anterior. Construcción y verificaciones: [docs/INICIO_Y_MENU.md](docs/INICIO_Y_MENU.md). Conserva todos los recursos del juego y reduce la presentación en aproximadamente 1,45 MB.
