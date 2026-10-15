@@ -1,0 +1,422 @@
+{
+  "baseline": {
+    "navigationToReadyMs": 41825,
+    "navigationToPlayableMs": 66334,
+    "boot": {
+      "done": true,
+      "failed": false,
+      "phase": "Todo listo. Entrá a la ciudad.",
+      "zones": 9,
+      "ms": 66002,
+      "stages": [
+        {
+          "name": "Arranque",
+          "ms": 0
+        },
+        {
+          "name": "Encendiendo la ciudad…",
+          "ms": 76
+        },
+        {
+          "name": "Abriendo las calles…",
+          "ms": 727
+        },
+        {
+          "name": "Preparando los colores de la ciudad…",
+          "ms": 1089
+        },
+        {
+          "name": "La calle cobra vida…",
+          "ms": 35
+        },
+        {
+          "name": "Preparando vehículos 1/24…",
+          "ms": 23
+        },
+        {
+          "name": "Preparando vehículos 2/24…",
+          "ms": 35
+        },
+        {
+          "name": "Preparando vehículos 3/24…",
+          "ms": 92
+        },
+        {
+          "name": "Preparando vehículos 4/24…",
+          "ms": 88
+        },
+        {
+          "name": "Preparando vehículos 5/24…",
+          "ms": 138
+        },
+        {
+          "name": "Preparando vehículos 6/24…",
+          "ms": 50
+        },
+        {
+          "name": "Preparando vehículos 7/24…",
+          "ms": 60
+        },
+        {
+          "name": "Preparando vehículos 8/24…",
+          "ms": 321
+        },
+        {
+          "name": "Preparando vehículos 9/24…",
+          "ms": 270
+        },
+        {
+          "name": "Preparando vehículos 10/24…",
+          "ms": 24
+        },
+        {
+          "name": "Preparando vehículos 11/24…",
+          "ms": 34
+        },
+        {
+          "name": "Preparando vehículos 12/24…",
+          "ms": 24
+        },
+        {
+          "name": "Preparando vehículos 13/24…",
+          "ms": 20
+        },
+        {
+          "name": "Preparando vehículos 14/24…",
+          "ms": 26
+        },
+        {
+          "name": "Preparando vehículos 15/24…",
+          "ms": 26
+        },
+        {
+          "name": "Preparando vehículos 16/24…",
+          "ms": 24
+        },
+        {
+          "name": "Preparando vehículos 17/24…",
+          "ms": 25
+        },
+        {
+          "name": "Preparando vehículos 18/24…",
+          "ms": 27
+        },
+        {
+          "name": "Preparando vehículos 19/24…",
+          "ms": 9
+        },
+        {
+          "name": "Preparando vehículos 20/24…",
+          "ms": 48
+        },
+        {
+          "name": "Preparando vehículos 21/24…",
+          "ms": 24
+        },
+        {
+          "name": "Preparando vehículos 22/24…",
+          "ms": 21
+        },
+        {
+          "name": "Preparando vehículos 23/24…",
+          "ms": 21
+        },
+        {
+          "name": "Preparando vehículos 24/24…",
+          "ms": 17184
+        },
+        {
+          "name": "Preparando texturas de calles y viviendas…",
+          "ms": 7532
+        },
+        {
+          "name": "Bloque uno · preparando materiales y sombras…",
+          "ms": 4230
+        },
+        {
+          "name": "Abriendo el barrio…",
+          "ms": 1
+        },
+        {
+          "name": "Cargando calles · 1/9…",
+          "ms": 5
+        },
+        {
+          "name": "Cargando calles · 2/9…",
+          "ms": 64
+        },
+        {
+          "name": "Cargando calles · 3/9…",
+          "ms": 54
+        },
+        {
+          "name": "Cargando calles · 4/9…",
+          "ms": 24
+        },
+        {
+          "name": "Cargando calles · 5/9…",
+          "ms": 222
+        },
+        {
+          "name": "Cargando calles · 6/9…",
+          "ms": 45
+        },
+        {
+          "name": "Cargando calles · 7/9…",
+          "ms": 25
+        },
+        {
+          "name": "Cargando calles · 8/9…",
+          "ms": 15
+        },
+        {
+          "name": "Cargando calles · 9/9…",
+          "ms": 28
+        },
+        {
+          "name": "Preparando la primera imagen…",
+          "ms": 4080
+        },
+        {
+          "name": "Dibujando el barrio…",
+          "ms": 981
+        }
+      ]
+    },
+    "zones": 11,
+    "errors": []
+  },
+  "progressive": {
+    "navigationToPlayableMs": 40234,
+    "first": {
+      "startup": {
+        "began": 1465.899999999965,
+        "firstPlayableMs": 28472,
+        "zoneReads": [
+          "w:999,999",
+          "w:0,1",
+          "e:ext:(0, 1)",
+          "w:0,2",
+          "w:-1,2",
+          "e:ext:(-1, 2)",
+          "w:-1,1"
+        ],
+        "textureErrors": [],
+        "catalogBytes": 36675,
+        "automaticEntry": true,
+        "primedTextures": 25,
+        "zonesAtEntry": 4,
+        "zoneReadsAtEntry": 4,
+        "elapsedMs": 38774
+      },
+      "boot": {
+        "done": true,
+        "failed": false,
+        "phase": "Todo listo. Entrá a la ciudad.",
+        "zones": 4,
+        "ms": 38774,
+        "stages": [
+          {
+            "name": "Arranque",
+            "ms": 0
+          },
+          {
+            "name": "Encendiendo la ciudad…",
+            "ms": 74
+          },
+          {
+            "name": "Abriendo las calles…",
+            "ms": 218
+          },
+          {
+            "name": "Preparando los colores de la ciudad…",
+            "ms": 159
+          },
+          {
+            "name": "La calle cobra vida…",
+            "ms": 56
+          },
+          {
+            "name": "Preparando vehículos 1/24…",
+            "ms": 63
+          },
+          {
+            "name": "Preparando vehículos 2/24…",
+            "ms": 34
+          },
+          {
+            "name": "Preparando vehículos 3/24…",
+            "ms": 85
+          },
+          {
+            "name": "Preparando vehículos 4/24…",
+            "ms": 84
+          },
+          {
+            "name": "Preparando vehículos 5/24…",
+            "ms": 54
+          },
+          {
+            "name": "Preparando vehículos 6/24…",
+            "ms": 49
+          },
+          {
+            "name": "Preparando vehículos 7/24…",
+            "ms": 54
+          },
+          {
+            "name": "Preparando vehículos 8/24…",
+            "ms": 56
+          },
+          {
+            "name": "Preparando vehículos 9/24…",
+            "ms": 36
+          },
+          {
+            "name": "Preparando vehículos 10/24…",
+            "ms": 37
+          },
+          {
+            "name": "Preparando vehículos 11/24…",
+            "ms": 50
+          },
+          {
+            "name": "Preparando vehículos 12/24…",
+            "ms": 40
+          },
+          {
+            "name": "Preparando vehículos 13/24…",
+            "ms": 24
+          },
+          {
+            "name": "Preparando vehículos 14/24…",
+            "ms": 31
+          },
+          {
+            "name": "Preparando vehículos 15/24…",
+            "ms": 31
+          },
+          {
+            "name": "Preparando vehículos 16/24…",
+            "ms": 39
+          },
+          {
+            "name": "Preparando vehículos 17/24…",
+            "ms": 40
+          },
+          {
+            "name": "Preparando vehículos 18/24…",
+            "ms": 34
+          },
+          {
+            "name": "Preparando vehículos 19/24…",
+            "ms": 10
+          },
+          {
+            "name": "Preparando vehículos 20/24…",
+            "ms": 55
+          },
+          {
+            "name": "Preparando vehículos 21/24…",
+            "ms": 26
+          },
+          {
+            "name": "Preparando vehículos 22/24…",
+            "ms": 32
+          },
+          {
+            "name": "Preparando vehículos 23/24…",
+            "ms": 21
+          },
+          {
+            "name": "Preparando vehículos 24/24…",
+            "ms": 13776
+          },
+          {
+            "name": "Preparando texturas de calles y viviendas…",
+            "ms": 4776
+          },
+          {
+            "name": "Bloque uno · preparando materiales y sombras…",
+            "ms": 2671
+          },
+          {
+            "name": "Abriendo el barrio…",
+            "ms": 1
+          },
+          {
+            "name": "Cargando calles · 1/9…",
+            "ms": 6
+          },
+          {
+            "name": "Cargando calles · 2/9…",
+            "ms": 45
+          },
+          {
+            "name": "Cargando calles · 3/9…",
+            "ms": 51
+          },
+          {
+            "name": "Cargando calles · 4/9…",
+            "ms": 33
+          },
+          {
+            "name": "Preparando la primera imagen…",
+            "ms": 3976
+          },
+          {
+            "name": "Texturas de la zona inicial…",
+            "ms": 858
+          },
+          {
+            "name": "Dibujando el barrio…",
+            "ms": 791
+          }
+        ]
+      },
+      "playing": true,
+      "homeHidden": true,
+      "quality": "medium",
+      "adaptive": "auto"
+    },
+    "startup": {
+      "began": 1465.899999999965,
+      "firstPlayableMs": 28472,
+      "zoneReads": [
+        "w:999,999",
+        "w:0,1",
+        "e:ext:(0, 1)",
+        "w:0,2",
+        "w:-1,2",
+        "e:ext:(-1, 2)",
+        "w:-1,1",
+        "e:ext:(-1, 1)",
+        "e:ext:(0, 2)",
+        "w:-2,2",
+        "e:ext:(-2, 2)",
+        "w:-2,1",
+        "w:1,1",
+        "e:ext:(1, 1)",
+        "w:0,0",
+        "e:ext:(0, 0)",
+        "w:1,2",
+        "e:ext:(1, 2)",
+        "w:-1,0",
+        "e:ext:(-1, 0)",
+        "w:0,3",
+        "e:ext:(-2, 1)",
+        "w:-1,3",
+        "w:-2,3"
+      ],
+      "textureErrors": [],
+      "catalogBytes": 36675,
+      "automaticEntry": true,
+      "primedTextures": 25,
+      "zonesAtEntry": 4,
+      "zoneReadsAtEntry": 4,
+      "elapsedMs": 61757
+    },
+    "zones": 23,
+    "errors": []
+  }
+}

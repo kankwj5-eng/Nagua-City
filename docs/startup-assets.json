@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "catalogs": [
+    {
+      "catalog": "world",
+      "zonesExact": 81,
+      "imagesExact": 37
+    },
+    {
+      "catalog": "extensions",
+      "zonesExact": 38,
+      "imagesExact": 31
+    },
+    {
+      "pack": "humans",
+      "decodedContentExact": true
+    },
+    {
+      "pack": "surfaces",
+      "decodedContentExact": true
+    },
+    {
+      "pack": "surfaces34",
+      "decodedContentExact": true
+    },
+    {
+      "pack": "materials42",
+      "decodedContentExact": true
+    }
+  ],
+  "otherAssetBlocksExact": 10
+}
