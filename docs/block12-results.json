@@ -1,0 +1,12 @@
+{
+  "block": 12,
+  "engine": "9.29.0",
+  "scope": "embedded engine, moving camera, enable changes, instances, LOD, streaming and disposal; not Android FPS",
+  "snapshotsCompared": 120,
+  "passes": 120,
+  "visited": 25360,
+  "returned": 10930,
+  "activeSetsIndicesVerticesAndMatricesExact": true,
+  "originalBroadPhaseAndDelayedLoadingPreserved": true,
+  "passed": true
+}

@@ -1,0 +1,9 @@
+{
+  "block": 9,
+  "idleClockReads": 0,
+  "boundedRecording": true,
+  "percentilesAndIntervals": true,
+  "exceptionsAndThisPreserved": true,
+  "deliveredAppSyntax": true,
+  "passed": true
+}

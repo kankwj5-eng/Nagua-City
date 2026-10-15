@@ -1,0 +1,515 @@
+{
+  "environment": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/131.0.6778.33 Safari/537.36",
+    "renderer": "SwiftShader software; desktop; 480x270; manual 1/60 simulation steps; instrumentation overhead included",
+    "physicalAndroid": false
+  },
+  "cost": {
+    "groundAt": {
+      "calls": 4881,
+      "ms": 9.60000000015134
+    },
+    "humanWalk": {
+      "calls": 347,
+      "ms": 48.899999999877764
+    },
+    "walkPose": {
+      "calls": 347,
+      "ms": 49.199999999895226
+    },
+    "blocked": {
+      "calls": 7659,
+      "ms": 40.000000000261934
+    },
+    "tickCity": {
+      "calls": 60,
+      "ms": 17.800000000017462
+    },
+    "tick": {
+      "calls": 60,
+      "ms": 20.50000000008731
+    },
+    "updatePeople25": {
+      "calls": 60,
+      "ms": 98.89999999999418
+    },
+    "updateFleet": {
+      "calls": 60,
+      "ms": 121.39999999990687
+    },
+    "sound": {
+      "calls": 60,
+      "ms": 3.800000000104774
+    },
+    "sampleHuman": {
+      "calls": 402,
+      "ms": 22
+    },
+    "plantFeet43": {
+      "calls": 251,
+      "ms": 8.299999999988358
+    },
+    "follow": {
+      "calls": 60,
+      "ms": 3.999999999970896
+    },
+    "updateHouseDetails": {
+      "calls": 60,
+      "ms": 0.10000000000582077
+    },
+    "updateUI": {
+      "calls": 5,
+      "ms": 2.7999999999883585
+    },
+    "scene.render": {
+      "calls": 60,
+      "ms": 46232.10000000009
+    },
+    "telemetryFrame39": {
+      "calls": 60,
+      "ms": 1.9999999999126885
+    },
+    "updateShadowList": {
+      "calls": 1,
+      "ms": 5.100000000005821
+    }
+  },
+  "frames": [
+    65.29999999998836,
+    53.79999999998836,
+    55,
+    4782.900000000023,
+    41.39999999999418,
+    63,
+    52.10000000000582,
+    79.19999999998254,
+    54.39999999999418,
+    47.89999999999418,
+    49.60000000000582,
+    45.39999999999418,
+    9885.300000000017,
+    48.79999999998836,
+    44.70000000001164,
+    50.20000000001164,
+    104.79999999998836,
+    86,
+    71.80000000001746,
+    38.89999999999418,
+    36.79999999998836,
+    33.20000000001164,
+    9737.299999999988,
+    39.19999999998254,
+    32,
+    37.39999999999418,
+    40.10000000000582,
+    46,
+    41.59999999997672,
+    42.5,
+    38.39999999999418,
+    36.70000000001164,
+    36.59999999997672,
+    35.60000000000582,
+    869.6000000000058,
+    38.20000000001164,
+    37.39999999999418,
+    33.39999999999418,
+    46,
+    36.70000000001164,
+    36.69999999998254,
+    38.30000000001746,
+    6836,
+    37.39999999999418,
+    33.70000000001164,
+    2737.8000000000175,
+    42.59999999997672,
+    38.80000000001746,
+    33.10000000000582,
+    31.20000000001164,
+    33.10000000000582,
+    38.10000000000582,
+    35.39999999999418,
+    6721.6999999999825,
+    34.70000000001164,
+    36.90000000002328,
+    2620.2000000000116,
+    36.5,
+    33.09999999997672,
+    34
+  ],
+  "stats": {
+    "motor": "Babylon.js 9.29.0",
+    "zones": 27,
+    "fleet": 45,
+    "pedestrians": 62,
+    "active": 466
+  },
+  "metrics": {
+    "fps": 0.9459370689088876,
+    "frameMs": 1057.152777777778,
+    "p95": 6725.600000000006,
+    "jsMs": 1071.3703798343372,
+    "memoryBytes": 703000000,
+    "gpuMs": 983.210673,
+    "cpuPercent": null,
+    "temperatureC": null,
+    "drawCalls": 833,
+    "activeMeshes": 463,
+    "zones": 27,
+    "width": 480,
+    "height": 270
+  },
+  "playing": true,
+  "boot": {
+    "done": true,
+    "failed": false,
+    "phase": "Todo listo. Entrá a la ciudad.",
+    "zones": 9,
+    "ms": 111789,
+    "stages": [
+      {
+        "name": "Arranque",
+        "ms": 0
+      },
+      {
+        "name": "Encendiendo la ciudad…",
+        "ms": 74
+      },
+      {
+        "name": "Abriendo las calles…",
+        "ms": 838
+      },
+      {
+        "name": "Preparando los colores de la ciudad…",
+        "ms": 954
+      },
+      {
+        "name": "La calle cobra vida…",
+        "ms": 31
+      },
+      {
+        "name": "Preparando vehículos 1/24…",
+        "ms": 22
+      },
+      {
+        "name": "Preparando vehículos 2/24…",
+        "ms": 33
+      },
+      {
+        "name": "Preparando vehículos 3/24…",
+        "ms": 82
+      },
+      {
+        "name": "Preparando vehículos 4/24…",
+        "ms": 84
+      },
+      {
+        "name": "Preparando vehículos 5/24…",
+        "ms": 101
+      },
+      {
+        "name": "Preparando vehículos 6/24…",
+        "ms": 47
+      },
+      {
+        "name": "Preparando vehículos 7/24…",
+        "ms": 50
+      },
+      {
+        "name": "Preparando vehículos 8/24…",
+        "ms": 311
+      },
+      {
+        "name": "Preparando vehículos 9/24…",
+        "ms": 25
+      },
+      {
+        "name": "Preparando vehículos 10/24…",
+        "ms": 23
+      },
+      {
+        "name": "Preparando vehículos 11/24…",
+        "ms": 36
+      },
+      {
+        "name": "Preparando vehículos 12/24…",
+        "ms": 25
+      },
+      {
+        "name": "Preparando vehículos 13/24…",
+        "ms": 20
+      },
+      {
+        "name": "Preparando vehículos 14/24…",
+        "ms": 21
+      },
+      {
+        "name": "Preparando vehículos 15/24…",
+        "ms": 19
+      },
+      {
+        "name": "Preparando vehículos 16/24…",
+        "ms": 24
+      },
+      {
+        "name": "Preparando vehículos 17/24…",
+        "ms": 25
+      },
+      {
+        "name": "Preparando vehículos 18/24…",
+        "ms": 22
+      },
+      {
+        "name": "Preparando vehículos 19/24…",
+        "ms": 9
+      },
+      {
+        "name": "Preparando vehículos 20/24…",
+        "ms": 34
+      },
+      {
+        "name": "Preparando vehículos 21/24…",
+        "ms": 20
+      },
+      {
+        "name": "Preparando vehículos 22/24…",
+        "ms": 21
+      },
+      {
+        "name": "Preparando vehículos 23/24…",
+        "ms": 20
+      },
+      {
+        "name": "Preparando vehículos 24/24…",
+        "ms": 16820
+      },
+      {
+        "name": "Preparando texturas de calles y viviendas…",
+        "ms": 6509
+      },
+      {
+        "name": "Bloque uno · preparando materiales y sombras…",
+        "ms": 3718
+      },
+      {
+        "name": "Abriendo el barrio…",
+        "ms": 1
+      },
+      {
+        "name": "Cargando calles · 1/9…",
+        "ms": 5
+      },
+      {
+        "name": "Cargando calles · 2/9…",
+        "ms": 49
+      },
+      {
+        "name": "Cargando calles · 3/9…",
+        "ms": 54
+      },
+      {
+        "name": "Cargando calles · 4/9…",
+        "ms": 26
+      },
+      {
+        "name": "Cargando calles · 5/9…",
+        "ms": 233
+      },
+      {
+        "name": "Cargando calles · 6/9…",
+        "ms": 52
+      },
+      {
+        "name": "Cargando calles · 7/9…",
+        "ms": 24
+      },
+      {
+        "name": "Cargando calles · 8/9…",
+        "ms": 14
+      },
+      {
+        "name": "Cargando calles · 9/9…",
+        "ms": 26
+      },
+      {
+        "name": "Preparando la primera imagen…",
+        "ms": 4242
+      },
+      {
+        "name": "Dibujando el barrio…",
+        "ms": 782
+      }
+    ]
+  },
+  "meshes": 7833,
+  "materials": 704,
+  "callbacks": 25,
+  "technical": {
+    "streamRequests": 12,
+    "streamPasses": 7,
+    "streamCoalesced": 4,
+    "stationarySkips": 3,
+    "zoneInflations": 27,
+    "zoneCacheHits": 0,
+    "zoneCacheBytes": 30319585,
+    "zoneCacheLimit": 33554432,
+    "zoneEvictions": 3,
+    "houseReuses": 0,
+    "houseBuilds": 16,
+    "houseCacheBytes": 0,
+    "houseCacheLimit": 8388608,
+    "houseCacheCountLimit": 8,
+    "releasedAnimationGroups": 0,
+    "sharedRideTracks": 26076,
+    "releasedImageStrings": 13395162,
+    "shadowScans": 8,
+    "shadowCoalesced": 3,
+    "maxStreamWorkers": 1,
+    "errors": [],
+    "geometrySharing05": {
+      "examined": 939,
+      "shared": 336,
+      "meshes": 336,
+      "duplicateBufferBytes": 6444424,
+      "skipped": 0
+    },
+    "pointCache08": {
+      "clearedMeshes": 1691,
+      "clearedPoints": 1107061,
+      "skippedDifferentPositions": 64
+    },
+    "movingDetails07": {
+      "unfrozenVehicleMeshes": 2
+    },
+    "zoneCacheEntries": 24,
+    "zoneReads": 0,
+    "houseCacheEntries": 0
+  },
+  "errors": [],
+  "cpuTop": [
+    {
+      "name": "getUniformBlockIndex",
+      "selfMs": 22056.60900000133,
+      "samples": 19798
+    },
+    {
+      "name": "drawElements",
+      "selfMs": 6812.414000000064,
+      "samples": 6155
+    },
+    {
+      "name": "enable",
+      "selfMs": 6685.943000000094,
+      "samples": 6016
+    },
+    {
+      "name": "uniformMatrix4fv",
+      "selfMs": 6158.106000000067,
+      "samples": 5544
+    },
+    {
+      "name": "getProgramParameter",
+      "selfMs": 2166.47999999999,
+      "samples": 1969
+    },
+    {
+      "name": "(program)",
+      "selfMs": 900.5960000000001,
+      "samples": 39
+    },
+    {
+      "name": "_evaluateActiveMeshes",
+      "selfMs": 452.4909999999998,
+      "samples": 398
+    },
+    {
+      "name": "(idle)",
+      "selfMs": 189.191,
+      "samples": 163
+    },
+    {
+      "name": "render",
+      "selfMs": 121.39399999999992,
+      "samples": 109
+    },
+    {
+      "name": "(garbage collector)",
+      "selfMs": 117.90099999999997,
+      "samples": 90
+    },
+    {
+      "name": "_renderForCamera",
+      "selfMs": 84.79999999999998,
+      "samples": 74
+    },
+    {
+      "name": "(anonymous)",
+      "selfMs": 70.22599999999997,
+      "samples": 63
+    },
+    {
+      "name": "bindForSubMesh",
+      "selfMs": 66.937,
+      "samples": 54
+    },
+    {
+      "name": "computeWorldMatrix",
+      "selfMs": 64.913,
+      "samples": 53
+    },
+    {
+      "name": "isReady",
+      "selfMs": 62.569,
+      "samples": 60
+    },
+    {
+      "name": "isInFrustum",
+      "selfMs": 55.285999999999994,
+      "samples": 47
+    },
+    {
+      "name": "_update",
+      "selfMs": 46.367000000000004,
+      "samples": 36
+    },
+    {
+      "name": "_prepareDefines",
+      "selfMs": 43.220000000000006,
+      "samples": 36
+    },
+    {
+      "name": "_renderSubMeshForShadowMap",
+      "selfMs": 40.938,
+      "samples": 39
+    },
+    {
+      "name": "bindVertexArray",
+      "selfMs": 37.48800000000001,
+      "samples": 31
+    },
+    {
+      "name": "updateFleet",
+      "selfMs": 34.134,
+      "samples": 21
+    },
+    {
+      "name": "_isSynchronized",
+      "selfMs": 30.438999999999997,
+      "samples": 22
+    },
+    {
+      "name": "isReadyForSubMesh",
+      "selfMs": 27.095000000000002,
+      "samples": 22
+    },
+    {
+      "name": "_prepareRenderingManager",
+      "selfMs": 26.807000000000002,
+      "samples": 23
+    },
+    {
+      "name": "getLOD",
+      "selfMs": 26.38,
+      "samples": 25
+    }
+  ]
+}
