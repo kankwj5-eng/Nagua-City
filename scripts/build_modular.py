@@ -146,6 +146,16 @@ def main():
         raise ValueError("No sobrescribir ni usar la construcción temporal como fuente")
     build_legacy(source, baseline)
     result = inject(baseline, output, verify_pristine=args.verify_pristine)
+    # Compatibilidad con pruebas previas que consultan dist/build-verification.json.
+    # Conservar la información del builder heredado y reflejar la nueva salida.
+    legacy_report = json.loads((baseline.parent / "build-verification.json").read_text(encoding="utf8"))
+    legacy_report["outputSha256"] = result["modularGameSha256"]
+    legacy_report["bytes"] = result["bytes"]
+    legacy_report["modularSourceManifest"] = result["manifest"]
+    legacy_report["modularSourceSha256"] = result["sourceCurrentSha256"]
+    (output.parent / "build-verification.json").write_text(
+        json.dumps(legacy_report, indent=2, ensure_ascii=False) + "\\n", encoding="utf8"
+    )
     print(json.dumps(result, ensure_ascii=False))
 
 
