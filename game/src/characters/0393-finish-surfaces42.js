@@ -21,8 +21,7 @@ function finishSurfaces42(){
  }
  // Respect mobile low quality without allocating replacement maps or shaders.
  const priorSettings=settings;
- settings=function(){
-  priorSettings();
+ const applyNaturalQualityStage1=()=>{
   for(const mat of scene.materials){
    if(!mat.metadata?.naturalGroundStage1)continue;
    const family=mat.metadata.surface42||mat.metadata.surface34;
@@ -30,7 +29,8 @@ function finishSurfaces42(){
    mat.bumpTexture=quality==='low'?null:textures?.normal||textures?.nor_gl||null;
   }
  };
- settings();
+ settings=function(){priorSettings();applyNaturalQualityStage1();};
+ applyNaturalQualityStage1();
  // New world meshes inherit UV metres when streamed; already loaded meshes need reprojection once.
  for(const m of scene.meshes)if(m.material?.metadata?.surface42&&!m.isAnInstance&&!m.skeleton&&m.getTotalVertices())projectUV34(m,m.material.metadata.worldScale);
 }
