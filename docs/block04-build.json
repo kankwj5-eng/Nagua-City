@@ -1,0 +1,19 @@
+{
+  "blocks": [
+    "animation-buffer-packing",
+    "streaming-plan",
+    "exact-animation-storage",
+    "vehicle-template-loading"
+  ],
+  "baseSha256": "a6c43bcea9fe04e0f227496969dd713b226525b24b914b9bfe3d173683a06e2e",
+  "outputSha256": "f02b5a971ebf8165b2432d4f66294921333f06de3ffb2c952c7e3e10676bd57d",
+  "bytes": 183611323,
+  "allOutsideAppSourceIdentical": true,
+  "changedFunctions": [
+    "packKeys45",
+    "samplePacked45",
+    "streamPass44",
+    "createTemplates"
+  ],
+  "assetBlocks": 16
+}

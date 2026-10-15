@@ -1,0 +1,409 @@
+{
+  "environment": "Chrome 131 headless, SwiftShader software GPU, 960x540, desktop container; not physical Android",
+  "results": [
+    {
+      "mode": "before",
+      "wallMs": 44777,
+      "errors": [],
+      "template": {
+        "ms": 4515.5999999996275,
+        "yields": 963,
+        "models": 24
+      },
+      "boot": {
+        "done": true,
+        "failed": false,
+        "phase": "Todo listo. Entr\u00e1 a la ciudad.",
+        "zones": 9,
+        "ms": 41850,
+        "stages": [
+          {
+            "name": "Arranque",
+            "ms": 0
+          },
+          {
+            "name": "Encendiendo la ciudad\u2026",
+            "ms": 132
+          },
+          {
+            "name": "Abriendo las calles\u2026",
+            "ms": 821
+          },
+          {
+            "name": "Preparando los colores de la ciudad\u2026",
+            "ms": 852
+          },
+          {
+            "name": "La calle cobra vida\u2026",
+            "ms": 133
+          },
+          {
+            "name": "Preparando veh\u00edculos 1/24\u2026",
+            "ms": 262
+          },
+          {
+            "name": "Preparando veh\u00edculos 2/24\u2026",
+            "ms": 272
+          },
+          {
+            "name": "Preparando veh\u00edculos 3/24\u2026",
+            "ms": 162
+          },
+          {
+            "name": "Preparando veh\u00edculos 4/24\u2026",
+            "ms": 164
+          },
+          {
+            "name": "Preparando veh\u00edculos 5/24\u2026",
+            "ms": 259
+          },
+          {
+            "name": "Preparando veh\u00edculos 6/24\u2026",
+            "ms": 255
+          },
+          {
+            "name": "Preparando veh\u00edculos 7/24\u2026",
+            "ms": 257
+          },
+          {
+            "name": "Preparando veh\u00edculos 8/24\u2026",
+            "ms": 264
+          },
+          {
+            "name": "Preparando veh\u00edculos 9/24\u2026",
+            "ms": 102
+          },
+          {
+            "name": "Preparando veh\u00edculos 10/24\u2026",
+            "ms": 104
+          },
+          {
+            "name": "Preparando veh\u00edculos 11/24\u2026",
+            "ms": 212
+          },
+          {
+            "name": "Preparando veh\u00edculos 12/24\u2026",
+            "ms": 203
+          },
+          {
+            "name": "Preparando veh\u00edculos 13/24\u2026",
+            "ms": 188
+          },
+          {
+            "name": "Preparando veh\u00edculos 14/24\u2026",
+            "ms": 182
+          },
+          {
+            "name": "Preparando veh\u00edculos 15/24\u2026",
+            "ms": 178
+          },
+          {
+            "name": "Preparando veh\u00edculos 16/24\u2026",
+            "ms": 214
+          },
+          {
+            "name": "Preparando veh\u00edculos 17/24\u2026",
+            "ms": 195
+          },
+          {
+            "name": "Preparando veh\u00edculos 18/24\u2026",
+            "ms": 111
+          },
+          {
+            "name": "Preparando veh\u00edculos 19/24\u2026",
+            "ms": 53
+          },
+          {
+            "name": "Preparando veh\u00edculos 20/24\u2026",
+            "ms": 270
+          },
+          {
+            "name": "Preparando veh\u00edculos 21/24\u2026",
+            "ms": 180
+          },
+          {
+            "name": "Preparando veh\u00edculos 22/24\u2026",
+            "ms": 177
+          },
+          {
+            "name": "Preparando veh\u00edculos 23/24\u2026",
+            "ms": 115
+          },
+          {
+            "name": "Preparando veh\u00edculos 24/24\u2026",
+            "ms": 15805
+          },
+          {
+            "name": "Preparando texturas de calles y viviendas\u2026",
+            "ms": 7105
+          },
+          {
+            "name": "Bloque uno \u00b7 preparando materiales y sombras\u2026",
+            "ms": 3827
+          },
+          {
+            "name": "Abriendo el barrio\u2026",
+            "ms": 1
+          },
+          {
+            "name": "Cargando calles \u00b7 1/9\u2026",
+            "ms": 5
+          },
+          {
+            "name": "Cargando calles \u00b7 2/9\u2026",
+            "ms": 61
+          },
+          {
+            "name": "Cargando calles \u00b7 3/9\u2026",
+            "ms": 59
+          },
+          {
+            "name": "Cargando calles \u00b7 4/9\u2026",
+            "ms": 33
+          },
+          {
+            "name": "Cargando calles \u00b7 5/9\u2026",
+            "ms": 224
+          },
+          {
+            "name": "Cargando calles \u00b7 6/9\u2026",
+            "ms": 35
+          },
+          {
+            "name": "Cargando calles \u00b7 7/9\u2026",
+            "ms": 21
+          },
+          {
+            "name": "Cargando calles \u00b7 8/9\u2026",
+            "ms": 16
+          },
+          {
+            "name": "Cargando calles \u00b7 9/9\u2026",
+            "ms": 39
+          },
+          {
+            "name": "Preparando la primera imagen\u2026",
+            "ms": 5670
+          },
+          {
+            "name": "Dibujando el barrio\u2026",
+            "ms": 1007
+          }
+        ]
+      },
+      "ready": true,
+      "startEnabled": true,
+      "status": "Todo listo. Entr\u00e1 a la ciudad.",
+      "stats": {
+        "motor": "Babylon.js 9.29.0",
+        "zones": 9,
+        "fleet": 45,
+        "pedestrians": 62,
+        "active": 734
+      },
+      "startClickPlaying": true
+    },
+    {
+      "mode": "after",
+      "wallMs": 39675,
+      "errors": [],
+      "template": {
+        "ms": 787,
+        "yields": 65,
+        "models": 24
+      },
+      "boot": {
+        "done": true,
+        "failed": false,
+        "phase": "Todo listo. Entr\u00e1 a la ciudad.",
+        "zones": 9,
+        "ms": 37288,
+        "stages": [
+          {
+            "name": "Arranque",
+            "ms": 0
+          },
+          {
+            "name": "Encendiendo la ciudad\u2026",
+            "ms": 88
+          },
+          {
+            "name": "Abriendo las calles\u2026",
+            "ms": 813
+          },
+          {
+            "name": "Preparando los colores de la ciudad\u2026",
+            "ms": 945
+          },
+          {
+            "name": "La calle cobra vida\u2026",
+            "ms": 25
+          },
+          {
+            "name": "Preparando veh\u00edculos 1/24\u2026",
+            "ms": 14
+          },
+          {
+            "name": "Preparando veh\u00edculos 2/24\u2026",
+            "ms": 64
+          },
+          {
+            "name": "Preparando veh\u00edculos 3/24\u2026",
+            "ms": 72
+          },
+          {
+            "name": "Preparando veh\u00edculos 4/24\u2026",
+            "ms": 78
+          },
+          {
+            "name": "Preparando veh\u00edculos 5/24\u2026",
+            "ms": 36
+          },
+          {
+            "name": "Preparando veh\u00edculos 6/24\u2026",
+            "ms": 32
+          },
+          {
+            "name": "Preparando veh\u00edculos 7/24\u2026",
+            "ms": 40
+          },
+          {
+            "name": "Preparando veh\u00edculos 8/24\u2026",
+            "ms": 36
+          },
+          {
+            "name": "Preparando veh\u00edculos 9/24\u2026",
+            "ms": 38
+          },
+          {
+            "name": "Preparando veh\u00edculos 10/24\u2026",
+            "ms": 24
+          },
+          {
+            "name": "Preparando veh\u00edculos 11/24\u2026",
+            "ms": 35
+          },
+          {
+            "name": "Preparando veh\u00edculos 12/24\u2026",
+            "ms": 32
+          },
+          {
+            "name": "Preparando veh\u00edculos 13/24\u2026",
+            "ms": 20
+          },
+          {
+            "name": "Preparando veh\u00edculos 14/24\u2026",
+            "ms": 24
+          },
+          {
+            "name": "Preparando veh\u00edculos 15/24\u2026",
+            "ms": 21
+          },
+          {
+            "name": "Preparando veh\u00edculos 16/24\u2026",
+            "ms": 25
+          },
+          {
+            "name": "Preparando veh\u00edculos 17/24\u2026",
+            "ms": 31
+          },
+          {
+            "name": "Preparando veh\u00edculos 18/24\u2026",
+            "ms": 24
+          },
+          {
+            "name": "Preparando veh\u00edculos 19/24\u2026",
+            "ms": 12
+          },
+          {
+            "name": "Preparando veh\u00edculos 20/24\u2026",
+            "ms": 35
+          },
+          {
+            "name": "Preparando veh\u00edculos 21/24\u2026",
+            "ms": 20
+          },
+          {
+            "name": "Preparando veh\u00edculos 22/24\u2026",
+            "ms": 21
+          },
+          {
+            "name": "Preparando veh\u00edculos 23/24\u2026",
+            "ms": 23
+          },
+          {
+            "name": "Preparando veh\u00edculos 24/24\u2026",
+            "ms": 15792
+          },
+          {
+            "name": "Preparando texturas de calles y viviendas\u2026",
+            "ms": 7315
+          },
+          {
+            "name": "Bloque uno \u00b7 preparando materiales y sombras\u2026",
+            "ms": 4023
+          },
+          {
+            "name": "Abriendo el barrio\u2026",
+            "ms": 1
+          },
+          {
+            "name": "Cargando calles \u00b7 1/9\u2026",
+            "ms": 11
+          },
+          {
+            "name": "Cargando calles \u00b7 2/9\u2026",
+            "ms": 73
+          },
+          {
+            "name": "Cargando calles \u00b7 3/9\u2026",
+            "ms": 83
+          },
+          {
+            "name": "Cargando calles \u00b7 4/9\u2026",
+            "ms": 36
+          },
+          {
+            "name": "Cargando calles \u00b7 5/9\u2026",
+            "ms": 216
+          },
+          {
+            "name": "Cargando calles \u00b7 6/9\u2026",
+            "ms": 49
+          },
+          {
+            "name": "Cargando calles \u00b7 7/9\u2026",
+            "ms": 37
+          },
+          {
+            "name": "Cargando calles \u00b7 8/9\u2026",
+            "ms": 27
+          },
+          {
+            "name": "Cargando calles \u00b7 9/9\u2026",
+            "ms": 42
+          },
+          {
+            "name": "Preparando la primera imagen\u2026",
+            "ms": 5275
+          },
+          {
+            "name": "Dibujando el barrio\u2026",
+            "ms": 1016
+          }
+        ]
+      },
+      "ready": true,
+      "startEnabled": true,
+      "status": "Todo listo. Entr\u00e1 a la ciudad.",
+      "stats": {
+        "motor": "Babylon.js 9.29.0",
+        "zones": 9,
+        "fleet": 45,
+        "pedestrians": 62,
+        "active": 734
+      },
+      "startClickPlaying": true
+    }
+  ]
+}
