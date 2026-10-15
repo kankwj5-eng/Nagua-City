@@ -75,6 +75,13 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(idle.nearMeshes>0);
   assert(idle.vertices>1000);
   assert(idle.scaling.every(v=>Math.abs(v-1)<.00001),"Preservar escala de rig del personaje");
+  const names=['zacate','tierra','Jardín de barrio','Jardín de rotonda'];
+  for(const name of names){
+    const mat=idle.materials.find(m=>m.name===name);
+    assert(mat,'Falta material real: '+name);
+    assert(mat.albedo&&mat.normal&&mat.scale>0&&mat.family,
+      'PBR sin normal o UV métrica: '+JSON.stringify(mat));
+  }
   assert(idle.rotations.length>5);
   assert(idle.rotations.every(r=>r.q.every(Number.isFinite)),"Huesos con rotaciones finitas");
   console.log("STAGE1_MATERIALS "+JSON.stringify(idle.materials));
