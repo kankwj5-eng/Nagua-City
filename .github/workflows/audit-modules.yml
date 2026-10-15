@@ -1,0 +1,22 @@
+name: Auditoría de separación de módulos
+on:
+  push:
+    branches: ['refactor/modular-game-source']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save --package-lock=false acorn@8.15.0
+      - run: python3 scripts/build_performance.py
+      - run: node scripts/audit_monolith.cjs
