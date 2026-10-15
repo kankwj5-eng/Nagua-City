@@ -77,6 +77,8 @@ jobs:
         run: node scripts/test_menu_browser.cjs
       - name: Probar conducción real de cuatro vehículos
         run: node scripts/test_driving_browser.cjs
+      - name: Comprobar rig, agarre del arma, moto y PBR de césped y tierra
+        run: node scripts/test_visual_stage1.cjs
       - name: Conservar evidencia visual y registros
         if: always()
         uses: actions/upload-artifact@v4
@@ -88,5 +90,7 @@ jobs:
             dist/menu-reference-1536x867.png
             dist/menu-full-game-reference.png
             dist/handling-*.png
+            dist/stage1-visual.json
+            dist/stage1-moto.png
           if-no-files-found: warn
           retention-days: 14
