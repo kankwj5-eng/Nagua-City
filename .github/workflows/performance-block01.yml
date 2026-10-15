@@ -35,6 +35,8 @@ jobs:
         run: node --max-old-space-size=768 tests/performance-block06.cjs
       - name: Verificar detalles móviles
         run: node --max-old-space-size=512 tests/performance-block07.cjs
+      - name: Verificar cachés de puntos y límites de mallas
+        run: node --max-old-space-size=512 tests/performance-block08.cjs
       - name: Conservar HTML y pruebas
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

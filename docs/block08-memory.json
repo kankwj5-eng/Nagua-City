@@ -1,0 +1,17 @@
+{
+  "environment": "Chrome 131, SwiftShader desktop, same live session after forced GC; V8 heap only, not total process or Android RAM",
+  "before": {
+    "usedSize": 475170396,
+    "totalSize": 478552064
+  },
+  "after": {
+    "usedSize": 368774888,
+    "totalSize": 393228288
+  },
+  "savedHeapBytes": 106395508,
+  "stats": {
+    "clearedMeshes": 1824,
+    "clearedPoints": 1550900,
+    "skippedDifferentPositions": 32
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "usage": {
+    "usedSize": 474026296,
+    "totalSize": 479772672
+  },
+  "top": [
+    {
+      "name": "_getData",
+      "bytes": 230938980
+    },
+    {
+      "name": "loadAsset",
+      "bytes": 46841388
+    },
+    {
+      "name": "prepareMaterials34",
+      "bytes": 30879864
+    },
+    {
+      "name": "e",
+      "bytes": 22810588
+    },
+    {
+      "name": "substring",
+      "bytes": 20669768
+    },
+    {
+      "name": "indexOf",
+      "bytes": 15691652
+    },
+    {
+      "name": "maps42",
+      "bytes": 15199320
+    },
+    {
+      "name": "_h",
+      "bytes": 12175832
+    },
+    {
+      "name": "(anonymous)",
+      "bytes": 11774364
+    },
+    {
+      "name": "Float32Array",
+      "bytes": 9743596
+    },
+    {
+      "name": "ae",
+      "bytes": 8426320
+    },
+    {
+      "name": "a",
+      "bytes": 6623432
+    },
+    {
+      "name": "prepare43",
+      "bytes": 6131136
+    },
+    {
+      "name": "FromValues",
+      "bytes": 5447016
+    },
+    {
+      "name": "Zero",
+      "bytes": 5380176
+    },
+    {
+      "name": "Identity",
+      "bytes": 4527348
+    },
+    {
+      "name": "replace",
+      "bytes": 4410720
+    },
+    {
+      "name": "clone",
+      "bytes": 3705668
+    },
+    {
+      "name": "lf",
+      "bytes": 2820020
+    },
+    {
+      "name": "push",
+      "bytes": 2599344
+    },
+    {
+      "name": "Mi",
+      "bytes": 2593068
+    },
+    {
+      "name": "zt",
+      "bytes": 2098864
+    },
+    {
+      "name": "Xh",
+      "bytes": 2002028
+    },
+    {
+      "name": "addUniform",
+      "bytes": 1858488
+    },
+    {
+      "name": "(PARSER)",
+      "bytes": 1802048
+    }
+  ],
+  "telemetry": 793000000
+}

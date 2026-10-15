@@ -1,0 +1,13 @@
+{
+  "block": 8,
+  "engine": "9.29.0",
+  "cacheCopiesRemoved": 2,
+  "pointObjectsRemoved": 8935,
+  "geometryBuffersAndBoundsUnchanged": true,
+  "lazyRayPickingPreserved": true,
+  "pickableAndSkinnedAndDifferentCachesPreserved": true,
+  "newMeshesHandled": true,
+  "gameMeshesAvoidInitialCopies": true,
+  "explicitCacheRequestPreserved": true,
+  "passed": true
+}
