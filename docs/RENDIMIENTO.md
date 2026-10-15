@@ -90,3 +90,31 @@ node --max-old-space-size=512 tests/performance-block03.cjs
 La comprobación de animaciones del bloque 01 ahora extrae el código del HTML generado, para verificar la versión acumulada que se entrega. Sus informes actuales pueden mostrar el ahorro acumulado; `block01-results.json` conserva la medición histórica del primer bloque.
 
 Se probó y descartó una limpieza de dos nodos de texto de arranque: el ensayo del DOM no demostró una bajada de RAM JavaScript. No se incluye ese cambio ni se presenta el recuento de caracteres como memoria liberada. El bloque aceptado es el de buffers, cuyo tamaño se mide directamente.
+
+
+## Bloque 04 — espera de apertura: preparación de vehículos
+
+Se midió el arranque completo y se aisló una espera evitable en `createTemplates`: el código cedía el hilo mediante `setTimeout(0)` antes de cada grupo de piezas. En Chrome esas pausas se aproximaron a 4 ms al repetirse, aunque el grupo hubiera terminado rápidamente. Con los recursos reales se realizan 963 pausas entre piezas y modelos.
+
+Ahora esta función comprueba el tiempo transcurrido y cede entre piezas al acumular unos 8 ms de trabajo. Una malla individual no se interrumpe a mitad de construcción. Se mantiene además la pausa al terminar cada modelo para permitir pintar el progreso. Los 24 modelos y las 963 mallas, sus índices, normales, UV, materiales, metadatos, jerarquía, orden y liberación de datos permanecen iguales. No se cambia el plan de carga del barrio, la resolución ni los recursos visuales.
+
+Comparación de una apertura por versión en Chrome 131 headless, SwiftShader por software, ventana 960×540, contenedor de escritorio:
+
+| Medición | Antes del bloque 04 | Después |
+| --- | ---: | ---: |
+| Preparación de vehículos | 4.516 ms | 787 ms |
+| Pausas en esa preparación | 963 | 65 |
+| Arranque hasta habilitar entrada, desde boot45 | 41.850 ms | 37.288 ms |
+| Zonas al entrar | 9 | 9 |
+| Vehículos / peatones | 45 / 62 | 45 / 62 |
+| Mallas activas en el menú | 734 | 734 |
+
+Ambas aperturas llegaron a `ready`, habilitaron el botón y permitieron entrar (`playing=true`), sin errores JavaScript capturados. La etapa optimizada redujo su tiempo unos 3,73 s en esta comparación. La diferencia de 4,56 s del arranque completo incluye variación de otras etapas: no debe atribuirse toda al cambio ni presentarse como una garantía en Android. El cronómetro boot45 comienza después de leer y ejecutar los scripts iniciales del HTML; no incluye toda la lectura del archivo. El informe conserva también el tiempo observado desde la navegación.
+
+La prueba determinista con recursos reales compara los bytes de cada canal de geometría y el orden de construcción. Simula piezas rápidas y lentas para verificar que el número de pausas se adapta al trabajo; esos tiempos simulados no son medidas de carga real. También comprueba propagación de un error de construcción. Las otras tres pruebas siguen pasando y todo lo externo a appSource continúa idéntico byte a byte.
+
+```sh
+node --max-old-space-size=512 tests/performance-block04.cjs
+```
+
+Informes: `block04-results.json`, `block04-build.json` y `block04-browser.json`. El cambio funcional de este bloque se limita a `createTemplates`. El perfil detectó además coste en construcción de materiales, preparación de personajes y primera imagen; quedan como bloques posteriores, sin alterar todas esas etapas a la vez.

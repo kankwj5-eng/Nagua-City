@@ -58,6 +58,8 @@ def build(source,output):
  app=app[:a]+(ROOT/'performance'/'streaming-plan.js').read_text()+'\n'+app[b:]
  a=app.index('function packKeys45(');b=app.index('function samplePacked45(',a)
  app=app[:a]+(ROOT/'performance'/'exact-animation-storage.js').read_text()+'\n'+app[b:]
+ a=app.index('async function createTemplates(){');b=app.index('let contactSource=',a)
+ app=app[:a]+(ROOT/'performance'/'vehicle-template-loading.js').read_text()+'\n'+app[b:]
  if '</script>' in app:raise ValueError('Código no integrable')
  code=app.encode('utf-8');output.parent.mkdir(parents=True,exist_ok=True);tmp=output.with_suffix('.tmp')
  try:
@@ -69,7 +71,7 @@ def build(source,output):
   tmp.replace(output)
  finally:
   tmp.unlink(missing_ok=True)
- report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':True,'changedFunctions':['packKeys45','samplePacked45','streamPass44'],'assetBlocks':asset_count(output)}
+ report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage','vehicle-template-loading'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':True,'changedFunctions':['packKeys45','samplePacked45','streamPass44','createTemplates'],'assetBlocks':asset_count(output)}
  (output.parent/'build-verification.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--source',type=Path,default=ROOT/'Managua_Del_taller_al_lago(1).html');p.add_argument('--output',type=Path,default=ROOT/'dist'/'Managua.html');a=p.parse_args();build(a.source,a.output)

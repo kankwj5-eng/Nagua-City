@@ -1,0 +1,52 @@
+{
+  "block": 4,
+  "scope": "actual vehicle assets / deterministic geometry-call replay; timings are simulated, not Android startup",
+  "scenarios": [
+    {
+      "meshCostMs": 0.05,
+      "models": 24,
+      "meshes": 963,
+      "yieldsBefore": 963,
+      "yieldsAfter": 24,
+      "simulatedMsBefore": 3900.150000000067,
+      "simulatedMsAfter": 144.14999999999924,
+      "maxWorkSliceMs": 2.849999999999998,
+      "geometryAndOrderIdentical": true
+    },
+    {
+      "meshCostMs": 0.4,
+      "models": 24,
+      "meshes": 963,
+      "yieldsBefore": 963,
+      "yieldsAfter": 54,
+      "simulatedMsBefore": 4237.200000000048,
+      "simulatedMsAfter": 601.199999999989,
+      "maxWorkSliceMs": 8.800000000000002,
+      "geometryAndOrderIdentical": true
+    },
+    {
+      "meshCostMs": 4,
+      "models": 24,
+      "meshes": 963,
+      "yieldsBefore": 963,
+      "yieldsAfter": 477,
+      "simulatedMsBefore": 7704,
+      "simulatedMsAfter": 5760,
+      "maxWorkSliceMs": 12,
+      "geometryAndOrderIdentical": true
+    },
+    {
+      "meshCostMs": 12,
+      "models": 24,
+      "meshes": 963,
+      "yieldsBefore": 963,
+      "yieldsAfter": 939,
+      "simulatedMsBefore": 15408,
+      "simulatedMsAfter": 15312,
+      "maxWorkSliceMs": 24,
+      "geometryAndOrderIdentical": true
+    }
+  ],
+  "failurePropagates": true,
+  "passed": true
+}

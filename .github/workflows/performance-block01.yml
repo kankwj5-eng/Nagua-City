@@ -27,6 +27,8 @@ jobs:
         run: node --max-old-space-size=512 tests/performance-block02.cjs
       - name: Verificar almacenamiento exacto de animaciones
         run: node --max-old-space-size=512 tests/performance-block03.cjs
+      - name: Verificar piezas y pausas de carga de vehículos
+        run: node --max-old-space-size=512 tests/performance-block04.cjs
       - name: Conservar HTML y pruebas
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
