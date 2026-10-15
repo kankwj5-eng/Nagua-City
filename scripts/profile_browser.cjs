@@ -13,10 +13,10 @@ const root=path.resolve(__dirname,'..');
  const browser=await chromium.launch({executablePath:process.env.NAGUA_CHROMIUM||undefined,headless:true,args:['--no-sandbox','--use-angle=swiftshader','--enable-unsafe-swiftshader','--js-flags=--expose-gc','--disable-dev-shm-usage']});
  try{
   const page=await browser.newPage({viewport:{width:480,height:270}}),errors=[];
-  page.on('pageerror',e=>errors.push(e.message));
+  page.on('pageerror',e=>{errors.push(e.message);console.log('PAGE_ERROR '+e.message);});
   const cdp=await page.context().newCDPSession(page);
   await page.goto('file://'+output,{timeout:240000,waitUntil:'load'});
-  await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,{timeout:240000,polling:1000});
+  await page.waitForFunction(()=>window.Nicaragua?.ready||window.Nicaragua?.boot45.failed,null,{timeout:240000,polling:1000});
   assert(await page.evaluate(()=>Nicaragua.ready),JSON.stringify(await page.evaluate(()=>Nicaragua.boot45)));
   await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
   await page.locator('#start').click({force:true});await page.evaluate(()=>Nicaragua.engine.stopRenderLoop());
