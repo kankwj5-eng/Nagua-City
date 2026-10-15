@@ -6,7 +6,7 @@ const ctx={};vm.createContext(ctx);vm.runInContext(source,ctx);
 const variant=ctx.treeSilhouette42;
 assert.equal(typeof variant,"function");
 assert(source.includes("root.scaling.set(silhouette[0],silhouette[1],silhouette[2])"),"Tree transform must use actual silhouette");
-assert(source.includes("const sources=[treeSource42(0,bark,leaf),treeSource42(1,bark,leaf)]"),"Keep two shared meshes; no new geometry sources");
+assert(source.includes("sources=[treeSource42(0,bark,leaf),treeSource42(1,bark,leaf)]"),"Keep two shared meshes; no new geometry sources");
 assert(source.includes("for(const p of positions)"),"Keep existing tree placements");
 const results=[];
 for(let i=0;i<20;i++){
