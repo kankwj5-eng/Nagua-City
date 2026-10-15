@@ -49,9 +49,12 @@ window.__naguaVisualQA={
  ride(){
    const bike=fleet.find(x=>x.bike&&x.name==='pulsar');
    if(!bike)throw Error("No existe la Pulsar");
-   resetPose(player);
-   humanRide(player,bike);
-   return {helmet:player.helmet.isEnabled(),parent:player.root.parent?.name,hip:player.visual.position.y};
+   // Follow the exact entry path (enables the avatar and helmet) instead
+   // of calling humanRide on a possibly disabled avatar from the start screen.
+   nearest=bike;playing=true;driving=false;changeDrive(true);
+   return {helmet:player.helmet.isEnabled(),parent:player.root.parent?.name,
+     hip:player.visual.position.y,driving,rootEnabled:player.root.isEnabled(),
+     helmetMeshes:(player.helmet46||[]).map(m=>({name:m.name,enabled:m.isEnabled(),ownEnabled:m._isEnabled}))};
  }
 };
 `;
