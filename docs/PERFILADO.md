@@ -78,3 +78,18 @@ El primer intento del banco falló porque los parámetros de `waitForFunction` e
 El informe `initial-deep-profile.json` corresponde al commit de herramientas anterior a las correcciones 09–11, ejecución https://github.com/kankwj5-eng/Nagua-City/actions/runs/38691427632. Hubo 60 pasos, 45 vehículos, 62 peatones y cero errores JS capturados. Se observaron 7.810 mallas residentes y 704 materiales. En el muestreo predominan llamadas WebGL (`getUniformBlockIndex`, `uniformMatrix4fv` y `getProgramParameter`), incluyendo preparación de programas y esperas del controlador. El trabajo de peatones acumuló 141,7 ms y el de vehículos 145,5 ms; `scene.render` acumuló 60.244,7 ms. Son tiempos anidados instrumentados en SwiftShader; no se extrapolan al teléfono.
 
 Ese primer ensayo todavía no abría/cerraba explícitamente cada cuadro del motor ni precargaba todas las zonas cercanas antes de la ventana. Sus contadores y pausas de shaders no se usan como comparación numérica directa contra el banco corregido. La comparación posterior vuelve a construir el bloque 08 y ejecuta ambas versiones con el mismo banco. Se conservan los datos iniciales como evidencia del diagnóstico, sin presentarlos como un resultado de FPS.
+
+## Comparación de bloques 09–11 con referencia reconstruida
+
+Ejecución: https://github.com/kankwj5-eng/Nagua-City/actions/runs/38692608201. Informes completos: `block11-before-browser.json` y `block11-after-browser.json`. Ambas versiones pasaron arranque, entrada y 60 pasos, con 27 zonas, 45 vehículos, 62 peatones y cero errores JS. El diagnóstico de la versión nueva capturó sus etapas y restauró correctamente la instrumentación.
+
+| Dato en ese recorrido | Referencia 08 | Bloques 09–11 |
+| --- | ---: | ---: |
+| Mallas residentes | 7.833 | 7.205 |
+| Mallas activas al finalizar | 466 | 466 |
+| Draw calls de la última lectura del HUD | 833 | 828 |
+| Tiempo acumulado dentro de `scene.render`, 60 pasos | 46.232,1 ms | 46.385,9 ms |
+
+La reducción de mallas residentes no produjo una mejora demostrable del tiempo total de render en ese ensayo. Las llamadas WebGL y las pausas de preparación/espera del controlador de SwiftShader siguen dominando. Las lecturas finales del HUD son instantáneas, no medias; no se presenta la diferencia de cinco draw calls como ganancia general. Los buffers idénticos compartidos después de agrupar carrocerías sumaron 5.881.192 bytes, frente a 6.444.424 antes: el agrupamiento intercambia parte de la deduplicación entre plantillas por menos objetos de dibujo. Los datos de heap del HUD están cuantizados y no permiten certificar un ahorro total de RAM.
+
+Esta evidencia motivó el bloque 12 para aislar el coste CPU de evaluación de miles de candidatos. La prioridad pendiente en el dispositivo real es medir el trabajo GPU, materiales/sombras y las pausas del controlador, sin atribuirlas automáticamente a la simulación de personajes. No hay una nueva cifra de FPS Android verificada.

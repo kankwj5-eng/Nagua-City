@@ -32,3 +32,5 @@ Este juego es independiente de DroidDeck y del proyecto de consola Linux gaming 
 Objetivo: 60 FPS estables, pendiente de validación en Android. Herramientas, protocolo, límites y captura desde el teléfono: [docs/PERFILADO.md](docs/PERFILADO.md). El bloque 09 añade grabación optativa de 15 segundos y descarga de informe desde los ajustes, sin enviar datos a servidores. Prueba: `node tests/performance-block09.cjs`.
 
 Los bloques 10 y 11 evitan invalidar las matrices de vehículos estacionados y agrupan piezas opacas compatibles de carrocerías. Pruebas: `node tests/performance-block10.cjs` y `node --max-old-space-size=1536 tests/performance-block11.cjs`. Las ganancias de FPS en Android siguen pendientes de medición.
+
+El bloque 12 evita evaluar como candidatos de dibujo nodos ya desactivados, conservando streaming, instancias y LOD. Prueba: `node tests/performance-block12.cjs`.

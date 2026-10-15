@@ -1,0 +1,30 @@
+{
+  "blocks": [
+    "animation-buffer-packing",
+    "streaming-plan",
+    "exact-animation-storage",
+    "vehicle-template-loading",
+    "static-geometry-sharing",
+    "progressive-gardens",
+    "moving-details",
+    "static-point-cache",
+    "runtime-diagnostics",
+    "stationary-vehicle-transforms",
+    "vehicle-body-batching",
+    "active-mesh-candidates"
+  ],
+  "baseSha256": "a6c43bcea9fe04e0f227496969dd713b226525b24b914b9bfe3d173683a06e2e",
+  "outputSha256": "3e417775bf61c59a71dc7673a48e5f746d819f7da6fdbce9b405dff4a280c85c",
+  "bytes": 183630436,
+  "allOutsideAppSourceIdentical": true,
+  "changedFunctions": [
+    "packKeys45",
+    "samplePacked45",
+    "streamPass44",
+    "createTemplates",
+    "gardens46",
+    "meshData",
+    "updateFleet"
+  ],
+  "assetBlocks": 16
+}

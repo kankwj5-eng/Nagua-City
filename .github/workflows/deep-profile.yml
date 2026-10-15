@@ -2,6 +2,7 @@ name: Perfil profundo de rendimiento
 on:
   push:
     branches: [perf/deep-profile]
+    paths-ignore: ['docs/**', 'README.md']
   workflow_dispatch:
 permissions:
   contents: read

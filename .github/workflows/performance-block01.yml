@@ -43,6 +43,8 @@ jobs:
         run: node --max-old-space-size=768 tests/performance-block10.cjs
       - name: Verificar geometría y exclusiones de carrocerías agrupadas
         run: node --max-old-space-size=1536 tests/performance-block11.cjs
+      - name: Verificar candidatos de dibujo y cambios de escena
+        run: node --max-old-space-size=768 tests/performance-block12.cjs
       - name: Conservar HTML y pruebas
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
