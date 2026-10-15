@@ -95,6 +95,8 @@ def build(source,output):
  const diagPanel09=document.createElement('div');diagPanel09.className='setting';const diagTitle09=document.createElement('b');diagTitle09.textContent='Diagnóstico de rendimiento';const record09=document.createElement('button');record09.textContent='Medir 15 segundos';record09.onclick=()=>{if(!homeMode)pause(false);diagnostics09.start(15);toast('Medición iniciada. Jugá durante 15 segundos y después descargá el informe.');};const export09=document.createElement('button');export09.textContent='Descargar informe';export09.onclick=()=>{if(!diagnostics09.download())toast('Primero iniciá una medición.');};diagPanel09.append(diagTitle09,document.createElement('br'),record09,export09);($('optionsPanel')||$('settings').querySelector('.sheet')).append(diagPanel09);
  """
  app=app.replace(old,setup+'\nengine.runRenderLoop(()=>{try{const now=performance.now();diagnostics09.frame(now);const dt=',1)
+ from build_handling import apply as apply_handling
+ app=apply_handling(app)
  if '</script>' in app:raise ValueError('Código no integrable')
  code=app.encode('utf-8');output.parent.mkdir(parents=True,exist_ok=True);tmp=output.with_suffix('.tmp')
  try:
@@ -106,7 +108,7 @@ def build(source,output):
   tmp.replace(output)
  finally:
   tmp.unlink(missing_ok=True)
- report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage','vehicle-template-loading','static-geometry-sharing','progressive-gardens','moving-details','static-point-cache','runtime-diagnostics','stationary-vehicle-transforms','vehicle-body-batching','active-mesh-candidates'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':True,'changedFunctions':['packKeys45','samplePacked45','streamPass44','createTemplates','gardens46','meshData','updateFleet'],'assetBlocks':asset_count(output)}
+ report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage','vehicle-template-loading','static-geometry-sharing','progressive-gardens','moving-details','static-point-cache','runtime-diagnostics','stationary-vehicle-transforms','vehicle-body-batching','active-mesh-candidates','vehicle-handling'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':True,'changedFunctions':['packKeys45','samplePacked45','streamPass44','createTemplates','gardens46','meshData','updateFleet','Driving.advance','vehicleContact40','suspension40','stepFleet13','vehiclePresentation13'],'assetBlocks':asset_count(output)}
  (output.parent/'build-verification.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--source',type=Path,default=ROOT/'Managua_Del_taller_al_lago(1).html');p.add_argument('--output',type=Path,default=ROOT/'dist'/'Managua.html');a=p.parse_args();build(a.source,a.output)

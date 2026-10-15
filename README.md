@@ -34,3 +34,7 @@ Objetivo: 60 FPS estables, pendiente de validación en Android. Herramientas, pr
 Los bloques 10 y 11 evitan invalidar las matrices de vehículos estacionados y agrupan piezas opacas compatibles de carrocerías. Pruebas: `node tests/performance-block10.cjs` y `node --max-old-space-size=1536 tests/performance-block11.cjs`. Las ganancias de FPS en Android siguen pendientes de medición.
 
 El bloque 12 evita evaluar como candidatos de dibujo nodos ya desactivados, conservando streaming, instancias y LOD. Prueba: `node tests/performance-block12.cjs`.
+
+## Física y conducción
+
+Correcciones de agarre al frenar en curva, balanceo de carrocería, maniobras lentas de motos, rodadura, dirección Ackermann y colisiones de la huella completa. Tráfico y jugador comparten pasos fijos y presentación interpolada. Detalles, límites y pruebas: [docs/CONDUCCION.md](docs/CONDUCCION.md). Prueba: `node --max-old-space-size=768 tests/vehicle-handling.cjs`. No certifica sensación de conducción ni 60 FPS en un teléfono físico.

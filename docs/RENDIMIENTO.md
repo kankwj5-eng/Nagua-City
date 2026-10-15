@@ -222,3 +222,9 @@ El evaluador del motor actualiza cachés de LOD, cuenta vértices y comprueba di
 La prueba con Babylon compara 120 escenas/cuadros con cambios de cámara, activación de padres e hijos, instancias, LOD, altas y disposiciones. Coinciden conjuntos activos, índices, vértices activos y matrices. En ese fixture, 25.360 visitas de candidatos se reducen a 10.930 devueltos al evaluador. Se conserva la disponibilidad de recursos con carga diferida. El contador del motor de vértices candidatos pasa a corresponder a la lista filtrada; no es un recuento de toda la geometría residente. El diagnóstico usa por separado `scene.meshes.length`.
 
 El banco de navegador alterna lotes de evaluación nativa y filtrada dentro de la misma escena caliente, aislándolos de las esperas de la GPU de software. Es una medición CPU de evaluación, no una predicción de FPS en Android.
+
+## Integración de física y conducción
+
+La construcción también aplica `scripts/build_handling.py`; ver [CONDUCCION.md](CONDUCCION.md). `updateFleet` queda dedicado a visibilidad y LOD. La simulación de tráfico, señales y colocación sobre el terreno pasa a `stepFleet13` en el reloj fijo. Se conserva la comparación `Object.is` del bloque 10 para evitar invalidaciones redundantes de altura. El diagnóstico de simulación del jugador sigue envolviendo `tick`; el trabajo fijo de tráfico se mide por separado como `trafficSimulation` y `vehicles` mide ahora presentación/LOD. No comparar sus tiempos aislados con informes anteriores sin considerar este cambio de alcance.
+
+El nuevo bloque modifica explícitamente el comportamiento físico para corregir fallos, a diferencia de los bloques de optimización que buscaban equivalencia. Conserva recursos integrados y no añade bibliotecas en ejecución. Las trece pruebas de regresión se ejecutan en CI. Las mediciones de FPS en Android continúan siendo necesarias.

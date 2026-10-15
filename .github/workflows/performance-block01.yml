@@ -45,6 +45,8 @@ jobs:
         run: node --max-old-space-size=1536 tests/performance-block11.cjs
       - name: Verificar candidatos de dibujo y cambios de escena
         run: node --max-old-space-size=768 tests/performance-block12.cjs
+      - name: Verificar física, agarre y presentación de vehículos
+        run: node --max-old-space-size=768 tests/vehicle-handling.cjs
       - name: Conservar HTML y pruebas
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
