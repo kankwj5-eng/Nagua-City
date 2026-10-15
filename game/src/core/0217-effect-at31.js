@@ -1,0 +1,1 @@
+function effectAt31(pos,col,size,life){const m=B.MeshBuilder.CreateSphere('flash31',{diameter:size,segments:6},scene);m.position.copyFrom(pos);m.material=assetMats.flash31||(assetMats.flash31=pbr('Destello de disparo','#ffe19a',1));m.material.emissiveColor=new B.Color3(1,.72,.30);m.isPickable=false;effects.push({m,until:time+life});return m;}

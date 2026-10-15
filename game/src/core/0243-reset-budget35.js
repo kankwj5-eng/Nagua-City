@@ -1,0 +1,1 @@
+function resetBudget35(){const now=performance.now();stage35.controller.ratio=1;stage35.controller.reset(now);stage35.baseScale=engine.getHardwareScalingLevel();stage35.appliedScale=stage35.baseScale;stage35.warmUntil=now+3500;stage35.lastFrame=0;}

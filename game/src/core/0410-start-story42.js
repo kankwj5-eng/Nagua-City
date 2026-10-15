@@ -1,0 +1,1 @@
+function startStory42(){if(story42.state.completed){toast('Historia terminada. Podés releerla en el diario.');return;}if(!story42.state.active){story42.previousWaypoint=waypoint;story42.state.active=true;story42.state.hold=0;}storyRoute42();saveStory42();storyDialogue42(StoryRules42.missions[story42.state.chapter].intro,StoryRules42.missions[story42.state.chapter].title);}

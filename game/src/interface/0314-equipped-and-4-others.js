@@ -1,0 +1,1 @@
+let equipped='hands',ammo={pistol:12,rifle:30},actionTimer=0,lastAction=-10,inventoryWasPlaying=false;

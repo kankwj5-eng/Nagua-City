@@ -1,0 +1,1 @@
+CityRules.load=function(raw){const s=loadState29.call(this,raw);if(raw?.schema===1){if(raw.state?.owned)for(const k of ['hands','bat','pistol','rifle','shovel'])s.owned[k]=k==='hands'||raw.state.owned[k]===true;else for(const k in s.owned)s.owned[k]=true;}return s;};

@@ -1,0 +1,1 @@
+function turnActor24(a,dir,dt){const target=Math.atan2(-dir.x,-dir.z),delta=Math.atan2(Math.sin(target-a.root.rotation.y),Math.cos(target-a.root.rotation.y));a.root.rotation.y+=clamp(delta,-dt*4,dt*4);}

@@ -1,0 +1,1 @@
+const city={state:CityRules.create(),actors:[],shops:[],patrols:[],groups:[],lastSave:0,lastUI:0,nearestShop:null,shopPlaying:false,shots:0,territories:[{id:'oeste',name:'Sector del taller · ficción',x:-336,z:74,r:20},{id:'este',name:'Pasaje del este · ficción',x:216,z:78,r:18}]};

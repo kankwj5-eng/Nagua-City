@@ -1,0 +1,1 @@
+function ground43(p,name,phase){const a=p.sole40?.[name];if(!a?.length)return 0;const f=clamp(phase,0,1)*(a.length-1),lo=Math.floor(f),hi=Math.min(lo+1,a.length-1);return a[lo]*(1-(f-lo))+a[hi]*(f-lo);}

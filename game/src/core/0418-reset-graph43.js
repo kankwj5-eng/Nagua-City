@@ -1,0 +1,1 @@
+function resetGraph43(p){p.graph43={elapsed:0,lastPosition:null,walk:0,run:0,airTime:0,landing:0,wasAir:false,lastHeading:p.root.rotation.y,turn:0,offset:0,lastMode:'Idle',stride:1};const rig=cacheRig41(p);for(const t of rig.tracks)t.value.copyFrom(t.target[t.property]);}

@@ -1,0 +1,1 @@
+function loadPrefs35(){try{const p=JSON.parse(localStorage.getItem('managua-imagen38')||'{}');stage35.settings={mode:p.mode==='fixed'?'fixed':'auto',target:[30,45,60].includes(+p.target)?+p.target:30,sharp:[0,.16,.28].includes(+p.sharp)?+p.sharp:.16};}catch(e){}}

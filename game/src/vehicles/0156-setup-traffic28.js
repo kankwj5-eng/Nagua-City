@@ -1,0 +1,5 @@
+function setupTraffic28(){parkGarage28(current);for(const v of fleet)v.traffic=false;simulation25.traffic.locks.clear();const cars=fleet.filter(v=>!v.garage&&!v.cityPatrol&&!v.bike&&!v.bicycle&&v.name!=='caponera').slice(0,7),bikes=fleet.filter(v=>!v.garage&&v.bike&&!v.bicycle).slice(0,6),pool=[];for(let i=0;i<7;i++){if(cars[i])pool.push(cars[i]);if(bikes[i])pool.push(bikes[i]);}traffic23.cars=pool;const pos=spawn.clone();for(let i=0;i<pool.length;i++){const v=pool[i],r=roadRoute28(i,pos);v.traffic=true;v.route={...r};v.root.position.set(2000+i*10,0,2000);}
+ // Place the pool before parking to avoid using future traffic lanes as parking bays.
+ for(let i=0;i<pool.length;i++){const v=pool[i];if(!placeTraffic28(v,roadRoute28(i,pos),i,pos)){v.traffic=false;v.retired28=true;}}
+ traffic23.cars=pool.filter(v=>v.traffic);for(const [i,v] of fleet.entries())if(!v.garage&&!v.traffic&&!v.retired28)if(!parkSparse28(v,i)){v.retired28=true;v.root.position.set(2500+i*10,0,2500);}polish26.parked=stage28.parking;
+}

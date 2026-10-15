@@ -1,0 +1,2 @@
+function humanRide(p,v){p.lastGaitPos=null;if(p.equipment)p.equipment.setEnabled(false);p.visual.position.y=0;p.root.parent=v.root;p.root.position.set(0,0,0);p.root.rotation.set(0,0,0);p.helmet.setEnabled(true);sampleHuman(p,v.name==='pulsar'?'RidePulsar':'RideBoxer',.5+v.parts.steering.rotation.y,1);solveHumanRide24(p,v);for(const node of p.rideNodes24||[]){if(/(?:index|middle|ring|pinky)_0[123]_[lr]$/.test(node.name)){node.rotationQuaternion=(node.rotationQuaternion||B.Quaternion.Identity()).multiply(B.Quaternion.RotationAxis(V(1,0,0),.28));}}}
+

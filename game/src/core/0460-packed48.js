@@ -1,0 +1,1 @@
+function packed48(name){const revive=value=>{if(!value||typeof value!=='object')return value;if(value.resource48)return embedded48(value.resource48);if(Array.isArray(value))return value.map(revive);return Object.fromEntries(Object.entries(value).map(([key,v])=>[key,revive(v)]));};return revive(JSON.parse(embedded48('pack48-'+name)));}

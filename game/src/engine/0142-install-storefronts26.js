@@ -1,0 +1,4 @@
+function installStorefronts26(){const a=assetMats;for(const root of scene.transformNodes.filter(n=>n.name.startsWith('Fachada comercial '))){for(const m of root.getChildMeshes())if(m.material===a.glass){m.dispose();polish26.fronts++;}}
+ // Original storefronts and signs remain visible; new details never span the shop front.
+ for(const b of data.buildings){if(!/Maxi Palí|La Colonia|súper express|Eskimo|BANPRO|BAC|LAFISE/.test(b.type))continue;const roads=[-185,-111,-37,37,111,185],road=roads.reduce((r,n)=>Math.abs(n-b.y)<Math.abs(r-b.y)?n:r),s=road<b.y?-1:1,f=b.y+s*(b.d/2+.12),y=groundAt(b.x,b.y);makeDetailGroup('Entrada visible '+b.type,({box})=>{for(const side of [-1,1]){box('Marco de ingreso',b.x+side*.74,y+1.18,f,.075,2.3,.10,a.chrome);box('Macetera baja',b.x+side*2.4,y+.24,f+s*.38,.48,.45,.48,a.monument);}box('Dintel de ingreso',b.x,y+2.36,f,1.56,.08,.10,a.chrome);box('Tapete',b.x,y+.045,f+s*.44,1.45,.015,.75,a.seat);});}
+}

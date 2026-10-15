@@ -1,0 +1,1 @@
+function primitive(kind,opts,material,parent,pos,scale=null){const m=B.MeshBuilder[kind]('character',opts,scene);m.material=material;m.parent=parent;m.position.copyFrom(pos);if(scale)m.scaling.copyFrom(scale);m.isPickable=false;m.receiveShadows=true;return m;}

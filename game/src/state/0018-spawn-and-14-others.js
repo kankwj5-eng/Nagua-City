@@ -1,0 +1,1 @@
+const spawn=V(-37,.055,111),keys={},stick={x:0,y:0},buttons={accelerate:0,brake:0},zones=new Map(),pending=new Set(),fleet=[],pedestrians=[],templates={},worldMats=[],extMats=[],assetMats={},drawMeshes=[],colliderGrid=new Map(),state={x:-40,z:109,heading:0,speed:0,steer:0,lean:0};

@@ -1,0 +1,1 @@
+function installBrains25(){city.territoryVisit25=0;for(const p of pedestrians){p.brain25={state:'walk',lane:p.path.x,goal:p.direction>0?p.path.max:p.path.min,wait:0,decision:(p.index%7)*.035,animation:0,patience:1.3+(p.index%5)*.22,pace:.96+(p.index%7)*.06};}simulation25.brains=pedestrians.length;}

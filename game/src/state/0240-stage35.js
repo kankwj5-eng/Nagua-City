@@ -1,0 +1,1 @@
+const stage35={controller:new FrameBudget35(),baseScale:1,appliedScale:1,lastFrame:0,warmUntil:0,enabled:true,sharpen:null,fxaa:null,sharpenAttached:false,errors:[],soil:null,settings:{mode:'auto',target:30,sharp:.16}};

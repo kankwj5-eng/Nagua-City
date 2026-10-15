@@ -1,0 +1,11 @@
+function stepTraffic23(v,dt){const r=v.route,coord=r.axis==='x'?v.root.position.x:v.root.position.z,half=v.length/2;let desired=v.bike?5.7:6.4,reason='';
+ const crosses=r.axis==='x'?[-111,-37,37,111]:[-111,-37,37,111];
+ for(const c of crosses){const d=(c-coord)*r.dir;if(d>0&&d<half+17&&signalPhase23(r.axis)!=='green'){const stop=Math.max(0,d-7.6-half);desired=Math.min(desired,Math.sqrt(2*2.5*stop));if(stop<1)reason='signal';}}
+ for(const other of fleet){if(other===v)continue;const p=other.root.position,along=((r.axis==='x'?p.x:p.z)-coord)*r.dir,side=Math.abs((r.axis==='x'?p.z:p.x)-r.lane);if(along>0&&along<22&&side<(v.width+other.width)/2+.3){const gap=along-half-other.length/2-1.6;desired=Math.min(desired,Math.max(0,gap/1.4));if(gap<1)reason='vehicle';}}
+ for(const p of [...pedestrians,...city.actors,...(!homeMode&&!driving?[player]:[])]){if(p.downUntil)continue;const pp=p.root.position,along=((r.axis==='x'?pp.x:pp.z)-coord)*r.dir,side=Math.abs((r.axis==='x'?pp.z:pp.x)-r.lane);if(along>-half&&along<half+11&&side<v.width/2+.6){desired=Math.min(desired,Math.max(0,(along-half-1.2)/1.2));reason='pedestrian';}}
+ const accel=desired<v.trafficSpeed?3.5:1.2;v.trafficSpeed+=clamp(desired-v.trafficSpeed,-accel*dt,accel*dt);const delta=v.trafficSpeed*dt,x=v.root.position.x+(r.axis==='x'?r.dir*delta:0),z=v.root.position.z+(r.axis==='z'?r.dir*delta:0);const hit=[-half,0,half].some(o=>blocked(x+(r.axis==='x'?r.dir*o:0),z+(r.axis==='z'?r.dir*o:0),v.width/2+.05,v,true));
+ if(!hit){v.root.position.x=x;v.root.position.z=z;v.spin-=delta/v.radius;}else{v.trafficSpeed=0;reason='obstacle';}
+ v.reason=reason;v.waitTime=v.trafficSpeed<.15?v.waitTime+dt:0;if(reason==='signal')traffic23.stops++;if(reason==='vehicle')traffic23.waits++;
+ const now=r.axis==='x'?v.root.position.x:v.root.position.z;if(now>r.max||now<r.min){const entry=r.dir>0?r.min:r.max,px=r.axis==='x'?entry:r.lane,pz=r.axis==='z'?entry:r.lane;const playerPos=driving?current.root.position:player.root.position;if(Math.hypot(px-playerPos.x,pz-playerPos.z)>70&&!blocked(px,pz,v.width/2+.1,v,true)){v.root.position.set(px,groundAt(px,pz),pz);v.trafficSpeed=0;traffic23.respawns++;}else v.trafficSpeed=0;}
+ for(const [key,p] of Object.entries(v.parts))if(key.startsWith('wheel'))p.rotation.x=v.spin;
+}

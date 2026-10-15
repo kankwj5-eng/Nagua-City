@@ -1,0 +1,1 @@
+function houseBytes44(root){let total=0;const seen=new Set();for(const m of root.getChildMeshes()){const g=m.geometry;if(!g||seen.has(g))continue;seen.add(g);for(const kind of g.getVerticesDataKinds()){const a=g.getVerticesData(kind);if(a)total+=a.byteLength||a.length*4;}const i=g.getIndices();if(i)total+=i.byteLength||i.length*4;}return total;}

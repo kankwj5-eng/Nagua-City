@@ -1,0 +1,1 @@
+function shape46(kind,opts,mat,pos,scale=null){const m=B.MeshBuilder[kind]('detalle46',opts,scene);m.material=mat;m.position.copyFrom(pos);if(scale)m.scaling.copyFrom(scale);m.isPickable=false;return m;}

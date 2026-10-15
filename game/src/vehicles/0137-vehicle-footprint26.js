@@ -1,0 +1,1 @@
+function vehicleFootprint26(v,x,z,heading,others=true){const c=Math.cos(heading),s=Math.sin(heading);for(const along of [-v.length*.5,0,v.length*.5])for(const side of [-v.width*.45,v.width*.45])if(blocked(x+s*along+c*side,z+c*along-s*side,.12,v,others))return false;return true;}

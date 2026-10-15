@@ -1,0 +1,1 @@
+function reloadItem(){if(!(equipped in ammo)||reloadWeapon||city.state.reserve[equipped]===0||ammo[equipped]===(equipped==='pistol'?12:30))return;reloadWeapon=equipped;reloadUntil=gameplayTime+(equipped==='pistol'?1.25:1.65);toast('Recargando…');updateReload();}

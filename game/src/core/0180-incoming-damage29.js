@@ -1,0 +1,1 @@
+function incomingDamage29(a,damage,melee){const d=a.root.position.subtract(player.root.position);d.y=0;d.normalize();const f=V(-Math.sin(player.root.rotation.y),0,-Math.cos(player.root.rotation.y));return Combat29.incoming(expansion29.combat,damage,B.Vector3.Dot(d,f),!melee,gameplayTime);}

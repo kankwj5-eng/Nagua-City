@@ -1,0 +1,33 @@
+/* V33: one HUD, safe areas and independent touch targets. */
+#pad32{--pad:clamp(40px,10vh,62px);--stick33:clamp(90px,27vh,150px);--padOpacity33:.76}
+#pad32 button,#pad32 .analog32{opacity:var(--padOpacity33);-webkit-tap-highlight-color:transparent}
+#pad32 button.pressed32{opacity:1}
+#pad32 .analog32{width:var(--stick33);height:var(--stick33);bottom:max(14px,env(safe-area-inset-bottom));}
+#pad32 .move32{left:max(20px,env(safe-area-inset-left))}#pad32 .camera32{right:max(20px,env(safe-area-inset-right))}
+#pad32 .dpad32{left:calc(var(--stick33) + 34px);bottom:18px!important;width:108px;height:102px;transform:scale(var(--size33,1));transform-origin:left bottom}
+#pad32 .dpad32 button{width:33px;height:33px;font-size:14px;border-radius:10px}
+#pad32 [data-pad=up]{left:36px;top:0}#pad32 [data-pad=left]{left:0;top:34px}#pad32 [data-pad=right]{left:72px;top:34px}#pad32 [data-pad=down]{left:36px;top:68px}
+#pad32 .face32{right:18px;bottom:calc(var(--stick33) + 28px)!important;width:calc(var(--pad)*2.6);height:calc(var(--pad)*2.6);transform:scale(var(--size33,1));transform-origin:right bottom}
+#pad32 .face32 button{width:var(--pad);height:var(--pad);font-size:calc(var(--pad)*.60)}
+#pad32 .triangle32{left:calc(var(--pad)*.8);top:0}#pad32 .square32{left:0;top:calc(var(--pad)*.8)}#pad32 .circle32{left:calc(var(--pad)*1.6);top:calc(var(--pad)*.8)}#pad32 .cross32{left:calc(var(--pad)*.8);top:calc(var(--pad)*1.6)}
+#pad32 .shoulder32{top:max(10px,env(safe-area-inset-top))}#pad32 .shoulder32 button{height:34px;width:62px;font-size:17px;transform:scale(var(--size33,1))}
+#pad32 .menu32{top:10px;left:calc(50% - 18px);background:#1019239e}
+#hud .mapwrap{top:58px!important;left:18px!important;width:82px!important;height:82px!important;border-width:2px!important}
+#hud .mapwrap #minimap{width:78px!important;height:78px!important;position:static!important}
+#hud #top{top:14px!important;left:180px!important;right:180px!important;max-width:none!important}
+#place{font-size:clamp(11px,2.6vh,16px)!important;max-width:calc(50vw - 220px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#hud #cityStatus{left:116px!important;top:61px!important;bottom:auto!important;width:132px!important;max-width:132px!important;display:grid!important;grid-template-columns:1fr!important;gap:3px!important;justify-content:start!important;font-size:11px!important;background:#10202c88;padding:7px 10px;border-radius:9px;line-height:1.35}
+#cityWanted{text-align:left!important;font-size:10px}#cityCurrency{font-size:11px!important}
+#hud #stamina29{left:122px!important;top:132px!important;bottom:auto!important;width:112px!important;height:3px!important}
+#hud #equipmentHUD{top:60px!important;right:18px!important;left:auto!important;bottom:auto!important;width:156px!important;max-width:156px!important;padding:8px 10px!important;background:#10202c88!important;text-align:right;border:0!important;font-size:11px!important}
+#reloadHUD,#fightCity,#padLegend32,#sessionTools{display:none!important}
+#equippedName{font-size:12px!important}#equippedAmmo{font-size:10px!important}
+#hud #dashboard{left:calc(50% - 85px)!important;bottom:14px!important;width:170px!important;min-width:0!important;top:auto!important;border:1px solid #ffffff20;background:#10202c9e!important;border-radius:12px!important;gap:10px!important}
+#hud #near{top:auto!important;bottom:26px!important;left:50%!important;transform:translateX(-50%);font-size:11px!important;padding:8px 12px!important;max-width:34vw;pointer-events:none;background:#10202c9e}
+#hud #toast{top:54px!important;bottom:auto!important;max-width:35vw!important;font-size:11px!important;padding:8px 12px!important}
+#reload33{position:absolute;top:108px;right:28px;width:130px;height:3px;background:#ffffff25;pointer-events:none;border-radius:3px}#reload33 span{display:block;height:100%;background:#e8c078}
+#controls33{padding:12px;border:1px solid #ffffff20;border-radius:12px;display:grid;grid-template-columns:1fr 1fr;gap:14px}#controls33 label{font-size:12px;display:flex;flex-direction:column;gap:7px}#controls33 input{width:100%}.featureline{display:none!important}
+@media(max-width:650px){#place{max-width:100px}#hud #top{left:175px!important}.dpad32{display:none}#pad32{--pad:38px;--stick33:92px}#hud #cityStatus{width:115px!important;max-width:115px!important}.face32{right:12px!important}}
+#hud #dashboard{left:50%!important;transform:translateX(-50%)!important;width:202px!important;display:grid;grid-template-columns:42px 23px 95px;column-gap:10px!important;row-gap:3px!important;padding:10px!important}
+#hud #condition32{grid-column:1 / -1;text-align:right;font-size:9px;white-space:nowrap}
+#hud #dashboard[hidden]{display:none!important}

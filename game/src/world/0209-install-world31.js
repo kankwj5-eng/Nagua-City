@@ -1,0 +1,5 @@
+function installWorld31(){installDistrict31();installPort31();installWardrobe31();installVehicleFinish31();installGunStores31();
+ for(const m of scene.materials){const key=m.name==='asfalto'?'asphalt_03':m.name==='acera'?'concrete_floor':/^pared\d$|Estuco|Pared residencial|Fachada \d|Local |Bloque de patio31/.test(m.name)?'concrete_wall_003':null,t=surfaceTextures31[key];if(!t)continue;m.albedoTexture=t.diff;m.bumpTexture=t.nor_gl;m.invertNormalMapY=true;m.roughness=.95;m.environmentIntensity=.35;if(m.bumpTexture)m.bumpTexture.level=key==='asphalt_03'?.23:.19;district31.scannedSurfaces=(district31.scannedSurfaces||0)+1;}
+ for(const [x,w] of [[-244,38],[-199,40]])addWorldBox(x,-285.2,w,.08);
+ scene.onBeforeRenderObservable.add(()=>{const p=homeMode?current.root.position:driving?current.root.position:player.root.position;let active=0;for(const root of district31.roots){const m=root.metadata,on=!homeMode&&Math.hypot(p.x-m.x31,p.z-m.z31)<m.r31;root.setEnabled(on);if(on)active++;}district31.active=active;});}
+

@@ -1,0 +1,1 @@
+function clearInput(){accumulator=0;frameClock.reset();last=performance.now();for(const k of Object.keys(keys))delete keys[k];stick.x=stick.y=0;if(player){player.moveX=player.moveZ=0;}buttons.accelerate=buttons.brake=buttons.stunt=buttons.cityBlock=0;$('knob').style.transform='';for(const id of ['accelerate','brake','stunt','cityBlock'])$(id).classList.remove('active');}

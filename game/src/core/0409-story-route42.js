@@ -1,0 +1,1 @@
+function storyRoute42(){const goal=StoryRules42.goal(story42.state);if(goal)waypoint={x:goal.x,z:goal.z,label:goal.label,story42:true};else if(waypoint?.story42){waypoint=story42.previousWaypoint;story42.previousWaypoint=null;}}

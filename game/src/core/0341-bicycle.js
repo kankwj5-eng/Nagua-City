@@ -1,0 +1,1 @@
+descriptions.bicycle=['Bicicleta urbana','Cuadro tubular, ruedas finas, frenos y transmisión. Animación de pedaleo pendiente.','Impulsión humana'];

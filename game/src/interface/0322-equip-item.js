@@ -1,0 +1,1 @@
+function equipItem(name){if(!itemDefinitions[name])return;player.equipment?.dispose();equipped=name;player.equipment=null;if(name!=='hands'){const hand=player.root.getDescendants().find(n=>/hand_r$/.test(n.name));if(hand){player.equipment=equipmentModel(name,hand);player.equipment.rotation.set(Math.PI/2,0,Math.PI);}}refreshEquipmentUI();controlsUI();}

@@ -1,0 +1,1 @@
+function roadRoute28(index,pos){const roads=[-185,-111,-37,37,111,185],axis=index%4<2?'x':'z',coord=axis==='x'?pos.z:pos.x,center=roads.reduce((a,b)=>Math.abs(a-coord)<Math.abs(b-coord)?a:b),dir=index%2? -1:1,lane=center+(axis==='x'?dir:-dir)*2.45;return {axis,center,dir,lane,min:center===37?(axis==='x'?-382:-249):-249,max:center===37?(axis==='x'?389:500):249};}
