@@ -154,7 +154,7 @@ def main():
     legacy_report["modularSourceManifest"] = result["manifest"]
     legacy_report["modularSourceSha256"] = result["sourceCurrentSha256"]
     (output.parent / "build-verification.json").write_text(
-        json.dumps(legacy_report, indent=2, ensure_ascii=False) + "\\n", encoding="utf8"
+        json.dumps(legacy_report, indent=2, ensure_ascii=False) + "\n", encoding="utf8"
     )
     print(json.dumps(result, ensure_ascii=False))
 
