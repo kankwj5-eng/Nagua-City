@@ -1,0 +1,45 @@
+name: Arranque progresivo
+on:
+  push:
+    branches: [perf/progressive-startup]
+    paths-ignore: ['docs/**', 'README.md']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          lfs: true
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - name: Construir comparación anterior y arranque progresivo
+        run: |
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          import build_startup,build_performance
+          build_startup.apply=lambda app:app
+          build_startup.split_catalogs=lambda path:[]
+          build_performance.build(Path('Managua_Del_taller_al_lago(1).html'),Path('dist/Managua-baseline.html'))
+          PY
+          python3 scripts/build_performance.py
+      - run: npm install --no-save --package-lock=false playwright@1.49.1
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/test_startup_browser.cjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: Nagua-arranque-progresivo
+          path: |
+            dist/Managua.html
+            dist/startup-*.png
+            dist/startup-browser.json
+            dist/build-verification.json
+          retention-days: 14
+          compression-level: 0

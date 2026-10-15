@@ -97,6 +97,8 @@ def build(source,output):
  app=app.replace(old,setup+'\nengine.runRenderLoop(()=>{try{const now=performance.now();diagnostics09.frame(now);const dt=',1)
  from build_handling import apply as apply_handling
  app=apply_handling(app)
+ from build_startup import apply as apply_startup
+ app=apply_startup(app)
  if '</script>' in app:raise ValueError('Código no integrable')
  code=app.encode('utf-8');output.parent.mkdir(parents=True,exist_ok=True);tmp=output.with_suffix('.tmp')
  try:
@@ -108,10 +110,12 @@ def build(source,output):
   from build_presentation import replace as replace_presentation,stable_digest
   presentation=replace_presentation(tmp)
   if stable_digest(source)!=stable_digest(tmp):raise ValueError('Cambió contenido fuera de appSource y presentation46')
+  from build_startup import split_catalogs
+  startup=split_catalogs(tmp)
   tmp.replace(output)
  finally:
   tmp.unlink(missing_ok=True)
- report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage','vehicle-template-loading','static-geometry-sharing','progressive-gardens','moving-details','static-point-cache','runtime-diagnostics','stationary-vehicle-transforms','vehicle-body-batching','active-mesh-candidates','vehicle-handling','illustrated-menu'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':False,'changedOutsideAppSource':['presentation46'],'allOutsideReviewedScriptsIdentical':True,'presentation':presentation,'changedFunctions':['packKeys45','samplePacked45','streamPass44','createTemplates','gardens46','meshData','updateFleet','Driving.advance','vehicleContact40','suspension40','stepFleet13','vehiclePresentation13'],'assetBlocks':asset_count(output)}
+ report={'blocks':[BLOCK,'streaming-plan','exact-animation-storage','vehicle-template-loading','static-geometry-sharing','progressive-gardens','moving-details','static-point-cache','runtime-diagnostics','stationary-vehicle-transforms','vehicle-body-batching','active-mesh-candidates','vehicle-handling','illustrated-menu','progressive-startup'],'baseSha256':digest(source),'outputSha256':digest(output),'bytes':output.stat().st_size,'allOutsideAppSourceIdentical':False,'changedOutsideAppSource':['presentation46','asset-world','asset-extensions','zone48-*','image48-*','catalog48-*'],'allOutsideReviewedScriptsIdentical':False,'unchangedBeforeCatalogRepack':True,'presentation':presentation,'changedFunctions':['packKeys45','samplePacked45','streamPass44','createTemplates','gardens46','meshData','updateFleet','Driving.advance','vehicleContact40','suspension40','stepFleet13','vehiclePresentation13'],'assetBlocks':asset_count(output),'startup48':startup,'catalogLayoutChanged':True}
  (output.parent/'build-verification.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--source',type=Path,default=ROOT/'Managua_Del_taller_al_lago(1).html');p.add_argument('--output',type=Path,default=ROOT/'dist'/'Managua.html');a=p.parse_args();build(a.source,a.output)
