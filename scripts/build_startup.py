@@ -12,6 +12,12 @@ def apply(app):
 const startup48={began:performance.now(),firstPlayableMs:null,zoneReads:[],textureErrors:[],catalogBytes:0,automaticEntry:true};
 function embedded48(id){const el=document.getElementById(id);if(!el)throw Error('Falta recurso '+id);return el.textContent.trim();}
 function packed48(name){const revive=value=>{if(!value||typeof value!=='object')return value;if(value.resource48)return embedded48(value.resource48);if(Array.isArray(value))return value.map(revive);return Object.fromEntries(Object.entries(value).map(([key,v])=>[key,revive(v)]));};return revive(JSON.parse(embedded48('pack48-'+name)));}
+async function primeVisible48(){
+ const textures=new Set(),center=current?.root.position||spawn;
+ for(const mesh of scene.meshes){if(!mesh.isEnabled()||!mesh.material||!mesh.getTotalVertices())continue;mesh.computeWorldMatrix(false);const sphere=mesh.getBoundingInfo().boundingSphere;if(Math.hypot(sphere.centerWorld.x-center.x,sphere.centerWorld.z-center.z)-sphere.radiusWorld>85)continue;for(const texture of mesh.material.getActiveTextures())if(texture.delayLoadState===4&&texture.startupReady48)textures.add(texture);}
+ startup48.primedTextures=textures.size;const queue=[...textures];
+ for(let i=0;i<queue.length;i+=3){await Promise.all(queue.slice(i,i+3).map(async texture=>{texture.delayLoad();let timer;try{await Promise.race([texture.startupReady48,new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('Tiempo agotado al preparar una textura inicial')),20000);})]);}finally{clearTimeout(timer);}}));await loadYield25();}
+}
 function catalog48(name){const text=embedded48('catalog48-'+name);startup48.catalogBytes+=text.length;const raw=JSON.parse(text);raw.images=raw.images.map((image,i)=>name==='world'?embedded48(image.asset48):{...image,data:embedded48(image.asset48)});delete INTEGRATED[name];document.getElementById('asset-'+name)?.remove();return raw;}
 '''
  replace('const boot45=',helpers+'\nconst boot45=')
@@ -24,10 +30,10 @@ function catalog48(name){const text=embedded48('catalog48-'+name);startup48.cata
  # ordinary completion callbacks. Only our material textures are lazy.
  a=app.index('async function loadTexture(src,invert=false){');b=app.index('async function materials(){',a)
  app=app[:a]+'''async function loadTexture(src,invert=false){
- const previous=scene.useDelayedTextureLoading;let t;
- try{scene.useDelayedTextureLoading=true;t=new B.Texture(src,scene,false,invert,B.Texture.TRILINEAR_SAMPLINGMODE,undefined,(_,e)=>{startup48.textureErrors.push(String(e?.message||e||'Textura inválida'));});}
+ const previous=scene.useDelayedTextureLoading;let t,resolve48,reject48;const ready48=new Promise((resolve,reject)=>{resolve48=resolve;reject48=reject;});ready48.catch(()=>{});
+ try{scene.useDelayedTextureLoading=true;t=new B.Texture(src,scene,false,invert,B.Texture.TRILINEAR_SAMPLINGMODE,()=>resolve48(),(_,e)=>{const message=String(e?.message||e||'Textura inválida');startup48.textureErrors.push(message);reject48(Error(message));});}
  finally{scene.useDelayedTextureLoading=previous;}
- t.gammaSpace=true;t.wrapU=t.wrapV=B.Texture.WRAP_ADDRESSMODE;t.anisotropicFilteringLevel=8;return t;
+ t.startupReady48=ready48;t.gammaSpace=true;t.wrapU=t.wrapV=B.Texture.WRAP_ADDRESSMODE;t.anisotropicFilteringLevel=8;return t;
 }
 '''+app[b:]
  replace('const buffer=await inflate(bytes(z.data));','const encoded=z.asset48?embedded48(z.asset48):z.data;startup48.zoneReads.push(key);const buffer=await inflate(bytes(encoded));')
@@ -37,7 +43,8 @@ function catalog48(name){const text=embedded48('catalog48-'+name);startup48.cata
  replace("const lim=quality==='low'?{r:125,max:12}:quality==='high'?{r:205,max:26}:{r:160,max:18};", "const initial48=!boot45.inspect().done;const lim=initial48?{r:100,max:3}:quality==='low'?{r:125,max:12}:quality==='high'?{r:205,max:26}:{r:160,max:18};")
  replace("const budget=force?(quality==='low'?6:8):2;let loaded=0;\n  for(const o of near)", "const budget=initial48?3:force?(quality==='low'?6:8):1;let loaded=0;\n  for(const o of near)")
  replace('get boot45(){return boot45.inspect();}', 'get startup48(){return {...startup48,elapsedMs:Math.round(performance.now()-startup48.began)};},get boot45(){return boot45.inspect();}')
- replace("$('start').textContent='SALIR AL BARRIO';boot45.finish();", "$('start').textContent='ENTRAR A LA CIUDAD';boot45.finish();startup48.firstPlayableMs=Math.round(performance.now()-startup48.began);startup48.zonesAtEntry=zones.size;startup48.zoneReadsAtEntry=startup48.zoneReads.length;setTimeout(()=>{if(homeMode&&!boot45.inspect().failed)$('start').click();},0);")
+ replace("$('start').textContent='SALIR AL BARRIO';boot45.finish();", "$('start').textContent='ENTRAR A LA CIUDAD';boot45.finish();startup48.firstPlayableMs=Math.round(performance.now()-startup48.began);startup48.zonesAtEntry=zones.size;startup48.zoneReadsAtEntry=startup48.zoneReads.length;if(homeMode&&!boot45.inspect().failed)$('start').click();")
+ replace("ready=true;selectModel(selected);boot45.phase('Dibujando el barrio…',96);","ready=true;selectModel(selected);boot45.phase('Texturas de la zona inicial…',94);await primeVisible48();boot45.phase('Dibujando el barrio…',96);")
  # During a long synchronous setup let the progress UI paint between installers.
  a=app.index("try{if(!window.DecompressionStream)");b=app.index('window.Nicaragua=',a)
  boot=app[a:b]
