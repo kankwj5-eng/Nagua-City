@@ -19,9 +19,20 @@ with (root/'Managua_Del_taller_al_lago(1).html').open('rb') as a,(root/'dist/Man
     else:im['data']=get(new,im.pop('asset48')).decode()
    assert reconstructed==original,name+' changed content'
    summaries.append({'catalog':name,'zonesExact':len(original['zones']),'imagesExact':len(original['images'])})
+  def revive(v):
+   if isinstance(v,dict):
+    if 'resource48' in v:return get(new,v['resource48']).decode()
+    return {k:revive(x) for k,x in v.items()}
+   if isinstance(v,list):return [revive(x) for x in v]
+   return v
+  for name in ['humans','surfaces','surfaces34','materials42']:
+   original=json.loads(gzip.decompress(base64.b64decode(get(old,'asset-'+name))))
+   reconstructed=revive(json.loads(get(new,'pack48-'+name)))
+   assert original==reconstructed,name+' changed content'
+   summaries.append({'pack':name,'decodedContentExact':True})
   ids=re.findall(rb'id="(asset-[^"]+)"',old)
   for id in ids:
-   if id in [b'asset-world',b'asset-extensions']:continue
+   if id in [b'asset-world',b'asset-extensions',b'asset-humans',b'asset-surfaces',b'asset-surfaces34',b'asset-materials42']:continue
    assert get(old,id.decode())==get(new,id.decode()),id
-report={'passed':True,'catalogs':summaries,'otherAssetBlocksExact':len(ids)-2}
+report={'passed':True,'catalogs':summaries,'otherAssetBlocksExact':len(ids)-6}
 (root/'dist/startup-assets.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
