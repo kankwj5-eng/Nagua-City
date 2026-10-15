@@ -8,7 +8,7 @@ const script=require('./html-script.cjs');
  const cleanClamp=(v,a,b)=>Math.max(a,Math.min(b,v));
  function api(code){return new Function('B','V','clamp',code+'\nreturn {pack:packKeys45,sample:samplePacked45}')(B,V,cleanClamp);}
  const helperStart=original.indexOf('function packKeys45('),helperEnd=original.indexOf('const boot45=',helperStart);
- const old=api(original.slice(helperStart,helperEnd)),next=api(fs.readFileSync(path.join(root,'performance/animation-buffer-packing.js'),'utf8'));
+ const old=api(original.slice(helperStart,helperEnd)),next=api(modified.slice(modified.indexOf('function packKeys45('),modified.indexOf('const boot45=',modified.indexOf('function packKeys45('))));
  const report={block:1,engine:B.Engine.Version,libraries:[],maxSampleError:0,valuesCompared:0,samplesCompared:0,physicalAndroid:false};
  for(const id of ['asset-animation38','asset-actor-motion']){
   const models=JSON.parse(zlib.gunzipSync(Buffer.from(await script(source,id),'base64'))),pool=new Map(),distinct=new Set();let before=0,channels=0,constants=0;

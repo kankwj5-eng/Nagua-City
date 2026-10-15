@@ -1,0 +1,17 @@
+{
+  "blocks": [
+    "animation-buffer-packing",
+    "streaming-plan",
+    "exact-animation-storage"
+  ],
+  "baseSha256": "a6c43bcea9fe04e0f227496969dd713b226525b24b914b9bfe3d173683a06e2e",
+  "outputSha256": "73958a2da0eb1ab47625763651f365c4e3c9ee728280451cfe9a3c0b52b39600",
+  "bytes": 183610862,
+  "allOutsideAppSourceIdentical": true,
+  "changedFunctions": [
+    "packKeys45",
+    "samplePacked45",
+    "streamPass44"
+  ],
+  "assetBlocks": 16
+}

@@ -25,6 +25,8 @@ jobs:
         run: node --max-old-space-size=512 tests/performance-block01.cjs
       - name: Verificar streaming, concurrencia y caché
         run: node --max-old-space-size=512 tests/performance-block02.cjs
+      - name: Verificar almacenamiento exacto de animaciones
+        run: node --max-old-space-size=512 tests/performance-block03.cjs
       - name: Conservar HTML y pruebas
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

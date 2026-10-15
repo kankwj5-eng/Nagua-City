@@ -1,0 +1,71 @@
+{
+  "block": 3,
+  "scope": "unique retained animation-buffer payloads after preparation; not whole-process RAM",
+  "physicalAndroid": false,
+  "libraries": [
+    {
+      "id": "asset-animation38",
+      "channels": 2544,
+      "float32Channels": 2544,
+      "float64Channels": 0,
+      "beforeBlock03": 3249488,
+      "afterBlock03": 1624744,
+      "saved": 1624744
+    },
+    {
+      "id": "asset-actor-motion",
+      "channels": 8480,
+      "float32Channels": 0,
+      "float64Channels": 8480,
+      "beforeBlock03": 6409144,
+      "afterBlock03": 6409144,
+      "saved": 0
+    }
+  ],
+  "precisionCases": [
+    {
+      "name": "exact fractions and signed zero",
+      "bits": 32,
+      "passed": true
+    },
+    {
+      "name": "non-representable decimals",
+      "bits": 64,
+      "passed": true
+    },
+    {
+      "name": "float32 integer boundary",
+      "bits": 32,
+      "passed": true
+    },
+    {
+      "name": "integer outside exact precision",
+      "bits": 64,
+      "passed": true
+    },
+    {
+      "name": "number below float32 subnormal range",
+      "bits": 64,
+      "passed": true
+    },
+    {
+      "name": "one high-precision key preserves entire track",
+      "bits": 64,
+      "passed": true
+    },
+    {
+      "name": "exact maximum float32",
+      "bits": 32,
+      "passed": true
+    },
+    {
+      "name": "non-finite data is kept in original storage",
+      "bits": 64,
+      "passed": true
+    }
+  ],
+  "beforeBlock03": 9658632,
+  "afterBlock03": 8033888,
+  "savedThisBlock": 1624744,
+  "passed": true
+}
