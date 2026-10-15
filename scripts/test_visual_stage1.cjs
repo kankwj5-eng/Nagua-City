@@ -54,7 +54,9 @@ window.__naguaVisualQA={
    nearest=bike;playing=true;driving=false;changeDrive(true);
    return {helmet:player.helmet.isEnabled(),parent:player.root.parent?.name,
      hip:player.visual.position.y,driving,rootEnabled:player.root.isEnabled(),
-     helmetMeshes:(player.helmet46||[]).map(m=>({name:m.name,enabled:m.isEnabled(),ownEnabled:m._isEnabled}))};
+     helmetMeshes:(player.helmet46||[]).map(m=>({name:m.name,enabled:m.isEnabled(),ownEnabled:m._isEnabled,
+       parent:m.parent?.name,parentEnabled:m.parent?.isEnabled(),parentOwnEnabled:m.parent?._isEnabled,
+       ancestors:(()=>{const parts=[];for(let n=m.parent,k=0;n&&k<8;n=n.parent,k++)parts.push({name:n.name,enabled:n.isEnabled(),own:n._isEnabled});return parts;})()}))};
  }
 };
 `;
@@ -94,6 +96,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   const aiming=await page.evaluate(()=>__naguaVisualQA.snapshot());
   assert(aiming.rotations.every(r=>r.q.every(Number.isFinite)));
   const bike=await page.evaluate(()=>__naguaVisualQA.ride());
+  console.log("STAGE1_RIDE "+JSON.stringify(bike));
   assert(bike.helmet,"Casco activo durante conducción");
   assert(bike.parent,"Personaje unido al vehículo");
   assert.deepEqual(errors,[],"Errores JavaScript en el juego real");
