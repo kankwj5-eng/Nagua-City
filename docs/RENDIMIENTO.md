@@ -232,3 +232,5 @@ El nuevo bloque modifica explícitamente el comportamiento físico para corregir
 ## Presentación ilustrada del inicio
 
 La revisión visual modifica también el script `presentation46`; las garantías históricas de igualdad fuera de `appSource` se refieren a los bloques anteriores. El constructor actual verifica por hash todo lo externo a los dos scripts revisados y conserva los 16 bloques de recursos. Se sustituye el carrusel por una imagen WebP estática y se conservan interfaces y eventos del arranque. Detalles y límites: [INICIO_Y_MENU.md](INICIO_Y_MENU.md).
+
+La revisión posterior usa directamente el JPEG proporcionado por el usuario, sin recodificarlo ni regenerarlo. La fidelidad se comprueba con capturas del fixture y del juego completo después de la reconstrucción heredada del menú. Durante el inicio se oculta la telemetría visual para no cubrir la referencia; su preferencia y funcionamiento durante la partida se conservan. La zona con el 100 % impreso se cubre mientras la carga real sigue pendiente. Véase [INICIO_Y_MENU.md](INICIO_Y_MENU.md).

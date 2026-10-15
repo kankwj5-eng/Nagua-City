@@ -1,0 +1,50 @@
+{
+  "blocks": [
+    "animation-buffer-packing",
+    "streaming-plan",
+    "exact-animation-storage",
+    "vehicle-template-loading",
+    "static-geometry-sharing",
+    "progressive-gardens",
+    "moving-details",
+    "static-point-cache",
+    "runtime-diagnostics",
+    "stationary-vehicle-transforms",
+    "vehicle-body-batching",
+    "active-mesh-candidates",
+    "vehicle-handling",
+    "illustrated-menu"
+  ],
+  "baseSha256": "a6c43bcea9fe04e0f227496969dd713b226525b24b914b9bfe3d173683a06e2e",
+  "outputSha256": "d8275994725f3878dda9b49ee28987ad83e488e6cbc4bc1f3c8e3b849e4e01f5",
+  "bytes": 182309722,
+  "allOutsideAppSourceIdentical": false,
+  "changedOutsideAppSource": [
+    "presentation46"
+  ],
+  "allOutsideReviewedScriptsIdentical": true,
+  "presentation": {
+    "artBytes": 354211,
+    "artImages": 1,
+    "previousPresentationBytes": 1820044,
+    "newPresentationBytes": 492195,
+    "networkRequests": 0,
+    "artSource": "user-supplied-reference",
+    "artSHA256": "55100b6c97eca0ef8830583735dd301ab2758957537ad8c633ea15e77b5c9854"
+  },
+  "changedFunctions": [
+    "packKeys45",
+    "samplePacked45",
+    "streamPass44",
+    "createTemplates",
+    "gardens46",
+    "meshData",
+    "updateFleet",
+    "Driving.advance",
+    "vehicleContact40",
+    "suspension40",
+    "stepFleet13",
+    "vehiclePresentation13"
+  ],
+  "assetBlocks": 16
+}

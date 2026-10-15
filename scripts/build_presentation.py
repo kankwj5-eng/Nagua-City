@@ -24,7 +24,7 @@ def stable_digest(path):
 
 def replace(path):
  from build_performance import copy_range
- start,end=range_for(path,OPEN);raw=(ROOT/'presentation/assets/managua-key-art.webp').read_bytes();art='data:image/webp;base64,'+base64.b64encode(raw).decode()
+ start,end=range_for(path,OPEN);raw=(ROOT/'presentation/assets/managua-menu-reference.jpg').read_bytes();art='data:image/jpeg;base64,'+base64.b64encode(raw).decode()
  code=(ROOT/'presentation/menu.js').read_text().replace('__ART_DATA_URL__',json.dumps(art)).replace('__STYLE_TEXT__',json.dumps((ROOT/'presentation/menu.css').read_text()))
  if '</script>' in code:raise ValueError('Invalid presentation code')
  out=path.with_suffix('.presentation.tmp')
@@ -34,4 +34,4 @@ def replace(path):
   if stable_digest(path)!=stable_digest(out):raise ValueError('Changed content outside reviewed scripts')
   out.replace(path)
  finally:out.unlink(missing_ok=True)
- return {'artBytes':len(raw),'artImages':1,'previousPresentationBytes':end-start,'newPresentationBytes':len(code.encode()),'networkRequests':0}
+ return {'artBytes':len(raw),'artImages':1,'previousPresentationBytes':end-start,'newPresentationBytes':len(code.encode()),'networkRequests':0,'artSource':'user-supplied-reference','artSHA256':hashlib.sha256(raw).hexdigest()}
