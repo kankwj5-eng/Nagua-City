@@ -7,6 +7,7 @@ to versioned HTTP resources.  The browser fetches them as they are needed.
 from __future__ import annotations
 
 import base64
+import gzip
 import hashlib
 import json
 import re
@@ -63,7 +64,14 @@ def split_web_game(path: Path, assets: Path) -> dict:
             is_image = bool(header) or candidate.startswith(
                 (b"/9j/", b"iVBORw0KGgo", b"UklGR")
             )
-            if is_image:
+            is_human_glb = identifier.startswith("resource48-humans-") and candidate.startswith(b"Z2xURg")
+            if is_human_glb:
+                model = base64.b64decode(candidate, validate=True)
+                if len(model) < 12 or model[:4] != b"glTF" or int.from_bytes(model[8:12], "little") != len(model):
+                    raise ValueError("Invalid GLB header: " + identifier)
+                payload = gzip.compress(model, compresslevel=6, mtime=0)
+                suffix, representation = ".gz", "glb-gzip"
+            elif is_image:
                 payload = base64.b64decode(candidate, validate=True)
                 if payload.startswith(bytes((255, 216))):
                     suffix = ".jpg"
@@ -78,7 +86,7 @@ def split_web_game(path: Path, assets: Path) -> dict:
                 payload = packed
                 suffix, representation = ".txt", "text"
             pack = identifier.split("-", 2)[1]
-            summary = resource_packs.setdefault(pack, {"image": 0, "text": 0, "bytes": 0})
+            summary = resource_packs.setdefault(pack, {"image": 0, "text": 0, "glb-gzip": 0, "bytes": 0})
             summary[representation] += 1
             summary["bytes"] += len(payload)
         digest = hashlib.sha256(payload).hexdigest()[:16]
