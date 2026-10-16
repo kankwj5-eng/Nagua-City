@@ -1,3 +1,17 @@
+// Composición de jardineras y copas tropicales sobre posiciones ya existentes.
+// La selección no genera plantas, materiales, objetos o consultas adicionales.
+function gardenSpecies46(o,index,palmAvailable){
+ const seed=(Math.abs(Math.round(o.x*7))+Math.abs(Math.round(o.z*3))+index*11)%19;
+ if(o.zone==='avenida'){
+  // Las copas siguen dominando las avenidas. Algunas esquinas usan
+  // jardineras ornamentales para romper la repetición de árboles.
+  if(seed===3)return 2;
+  if(seed===9)return 3;
+  if(palmAvailable&&index%11===0)return 4;
+ }
+ return o.type;
+}
+
 function gardens46(){
  const bark=pbr('Corteza de jardines46','#84765d',.95);surface42(bark,'bark_brown_02',1.4,'#a6a08c');const leaf=pbr('Hoja fotográfica jardines46','#d0ddb6',.78);leaf.albedoTexture=art46.leafTexture;leaf.backFaceCulling=false;leaf.twoSidedLighting=true;leaf.transparencyMode=B.PBRMaterial.PBRMATERIAL_ALPHATEST;leaf.alphaCutOff=.35;leaf.subSurface.isTranslucencyEnabled=true;leaf.subSurface.translucencyIntensity=.16;leaf.subSurface.tintColor=B.Color3.FromHexString('#a6bd7c');new LeafWind36(leaf).strength=.22;const pot=pbr('Terracota de macetas46','#986e4d',.94);pot.bumpTexture=stage42.textures.concrete_pavement.normal;pot.bumpTexture.level=.18;
  const prototypes=[];for(let type=0;type<4;type++){const root=new B.TransformNode('Fuente jardín46 '+type,scene),parts=[];
@@ -10,9 +24,9 @@ function gardens46(){
  }
  const palmSource=stage42.sources.find(r=>r.name==='Fuente palma42');if(palmSource)prototypes.push(palmSource);
  art46.plantTypes=['árbol de sombra','árbol de patio','maceta tropical','guineo de portal','palmera de avenida'];
- const positions=[];for(const road of [-185,-111,-37,37,111,185])for(let z=-160;z<=232;z+=44)for(const side of [-1,1]){const x=road+side*10.8;if(inWorld(x,z)&&!blocked(x,z,.45,null,true))positions.push({x,z,type:Math.abs(Math.round(z/44+road))%2});}
- for(const [i,b] of data.buildings.entries())if(i%2===0&&b.type==='casa'){const x=b.x+b.w*.5+.72,z=b.y-b.d*.22;if(inWorld(x,z)&&!blocked(x,z,.18,null,true))positions.push({x,z,type:i%4===0?3:2});}
- const placements=positions.slice(0,245).map((o,i)=>({...o,id:i,type:palmSource&&o.type<2&&i%7===0?4:o.type}));
+ const positions=[];for(const road of [-185,-111,-37,37,111,185])for(let z=-160;z<=232;z+=44)for(const side of [-1,1]){const x=road+side*10.8;if(inWorld(x,z)&&!blocked(x,z,.45,null,true))positions.push({x,z,zone:'avenida',type:Math.abs(Math.round(z/44+road))%2});}
+ for(const [i,b] of data.buildings.entries())if(i%2===0&&b.type==='casa'){const x=b.x+b.w*.5+.72,z=b.y-b.d*.22;if(inWorld(x,z)&&!blocked(x,z,.18,null,true))positions.push({x,z,zone:'patio',type:i%4===0?3:2});}
+ const placements=positions.slice(0,245).map((o,i)=>({...o,id:i,type:gardenSpecies46(o,i,!!palmSource)}));
  // Register collision once, even for gardens whose render instances are not needed yet.
  for(const o of placements)addWorldBox(o.x,o.z,o.type===2||o.type===3?.38:.28,o.type===2||o.type===3?.38:.28);
  const residents=spatialResidents06(placements,o=>{
