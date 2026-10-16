@@ -3,10 +3,10 @@
  * nine bikes keep the same mesh count, wheel radii, steering and physics pivots. */
 const fs=require("node:fs"),path=require("node:path"),vm=require("node:vm"),assert=require("node:assert/strict");
 const source=fs.readFileSync(path.join(__dirname,"../game/src/vehicles/0440-bike46.js"),"utf8");
-let created=0;
+let created=0;const createdObjects=[];
 function mesh(name){
  return {name,scaling:{x:1,y:1,z:1,set(x,y,z){this.x=x;this.y=y;this.z=z;},setAll(x){this.x=this.y=this.z=x;}},
- setEnabled(state){this.enabled=state;},clone(n){created++;return mesh(n);},createInstance(n){created++;return mesh(n);}};
+ setEnabled(state){this.enabled=state;},clone(n){created++;const m=mesh(n);createdObjects.push(m);return m;},createInstance(n){created++;const m=mesh(n);createdObjects.push(m);return m;}};
 }
 const proto=()=>({body:[mesh("bike46_body_paint_"),mesh("bike46_body_detail_")],steering:[mesh("bike46_optics_paint_")],wheel:[mesh("bike46_wheel_detail_")]});
 const sources=new Map([["sport",proto()],["work",proto()]]);
@@ -24,10 +24,20 @@ for(const name of names){
  ctx.bike46(v);
  assert(v.art46,name+" should get its visual finish");
  assert.equal(created-before,5,name+" added an unexpected mesh/draw call");
- for(const part of Object.values(parts))part.children=[...[]];
- const main=Object.values(parts).map(p=>p);
- // Collect the five created objects from the recording hook below.
  const dims=Array.from(ctx.bikeSilhouette46(name));
+ const perBike=createdObjects.slice(before);
+ for(const m of perBike){
+  const s=m.scaling;
+  if(m.parent===parts.body){
+   assert(Math.abs(s.x-dims[0])<1e-12&&Math.abs(s.y-1)<1e-12&&Math.abs(s.z-dims[1])<1e-12,name+" body proportions");
+  }else if(m.parent===parts.steering){
+   assert.equal(s.x,dims[2],name+" lamp width");
+   assert.equal(s.y,1);assert.equal(s.z,1);
+  }else{
+   assert(m.parent===parts.wheel_front||m.parent===parts.wheel_rear,name+" moved wheel source");
+   assert(Math.abs(s.x-v.radius/.30)<1e-12&&s.x===s.y&&s.y===s.z,name+" wheel radius");
+  }
+ }
  assert.equal(dims.length,3);
  for(const s of dims)assert(s>=.88&&s<=1.10,"Non-moving proportions must remain restrained");
  signatures.add(dims.join("/"));
