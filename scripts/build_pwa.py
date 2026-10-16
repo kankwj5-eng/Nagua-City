@@ -82,6 +82,8 @@ def build(game: Path, output: Path, *, stream_web: bool = True) -> dict:
         raise FileNotFoundError("Falta el arte de menú original.")
     output.mkdir(parents=True, exist_ok=True)
     target = output / "Managua.html"
+    if stream_web and game == target:
+        raise ValueError('El HTML portátil debe conservarse fuera del directorio web')
     if game != target:
         shutil.copyfile(game, target)
     # Stream assets in the hosted PWA only; leave the standalone HTML intact.
