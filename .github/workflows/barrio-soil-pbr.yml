@@ -1,0 +1,30 @@
+name: Suelos realistas de barrios de tierra
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/characters/0393-finish-surfaces42.js'
+      - 'tests/barrio-soil-pbr.cjs'
+      - '.github/workflows/barrio-soil-pbr.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/characters/0393-finish-surfaces42.js'
+      - 'tests/barrio-soil-pbr.cjs'
+      - '.github/workflows/barrio-soil-pbr.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  materials:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Comprobar PBR de tierra, caminos y patios sin recursos nuevos
+        run: node tests/barrio-soil-pbr.cjs

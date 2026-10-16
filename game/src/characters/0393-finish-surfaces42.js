@@ -1,3 +1,13 @@
+// Suelos de barrio: distintas frecuencias y tonos sin nuevas texturas.
+// Los caminos conservan grano más fino; los patios, polvo menos uniforme.
+function barrioSoilProfile42(name){
+ if(/^Tierra compactada|^Pasaje residencial de tierra/i.test(name))
+  return {scale:2.7,tint:'#c7af8d',zone:'camino'};
+ if(/^Suelo terroso|^Suelo de solar|^Terreno residencial extendido/i.test(name))
+  return {scale:3.1,tint:'#bca78a',zone:'patio'};
+ return {scale:3.6,tint:'#cbb99e',zone:'suelo'};
+}
+
 function finishSurfaces42(){
  for(const mat of scene.materials.slice()){
   // Use already-loaded scanned PBR grass/soil maps instead of the single
@@ -16,7 +26,12 @@ function finishSurfaces42(){
   }
   else if(/^asfalto$|Asfalto|asfalto/i.test(mat.name))surface42(mat,'asphalt_02',3.2,'#b3b5b4');
   else if(/^acera$|Losa de portal|Loseta de paseo|Losa de portal|Adoquín de corredor|Cerámica de portales|Losa.*concreto/i.test(mat.name))surface42(mat,'concrete_pavement',2.5,'#d7d3c9');
-  else if(mat.metadata?.surface35==='tierra_ia'||/Terreno residencial extendido|Pasaje residencial de tierra|Tierra compactada|Suelo terroso|Suelo de solar/i.test(mat.name))surface42(mat,'brown_mud_dry',3.6,'#ddd2bd');
+  else if(mat.metadata?.surface35==='tierra_ia'||/Terreno residencial extendido|Pasaje residencial de tierra|Tierra compactada|Suelo terroso|Suelo de solar/i.test(mat.name)){
+   const profile=barrioSoilProfile42(mat.name);
+   surface42(mat,'brown_mud_dry',profile.scale,profile.tint);
+   mat.roughness=.98;
+   mat.metadata={...(mat.metadata||{}),naturalGroundStage1:true,barrioSoilZone42:profile.zone};
+  }
   else if(/Corteza|Ramas|Tronco|Corteza ramificada/i.test(mat.name))surface42(mat,'bark_brown_02',1.8);
  }
  // Respect mobile low quality without allocating replacement maps or shaders.
