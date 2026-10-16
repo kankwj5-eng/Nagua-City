@@ -25,7 +25,7 @@ class TestFastWeb(unittest.TestCase):
         for idx in range(35):
             scripts.append(f'<script type="application/octet-stream" id="image48-world-{idx}">{image}</script>')
         for idx in range(35):
-            encoded = "QUJDREVGRw==" * 300
+            encoded = base64.b64encode(bytes((255,216,255,217))).decode() if idx == 1 else "QUJDREVGRw==" * 300
             scripts.append(f'<script type="application/octet-stream" id="resource48-humans-{idx}">{encoded}</script>')
         return ("<!doctype html><body>" + "".join(scripts) + "</body>").encode()
 
@@ -53,6 +53,8 @@ class TestFastWeb(unittest.TestCase):
             self.assertEqual(gzip.decompress(zone.read_bytes()), b"barrio 0")
             resource = next(data.glob("resource48-humans-0-*.txt"))
             self.assertEqual(resource.read_text(), "QUJDREVGRw==" * 300)
+            self.assertEqual(next(data.glob("resource48-humans-1-*.jpg")).read_bytes(), bytes((255,216,255,217)))
+            self.assertEqual(report["resourcePacks"]["humans"]["image"], 1)
             image = next(data.glob("image48-world-0-*.png"))
             self.assertEqual(image.read_bytes()[:8], bytes((137, 80, 78, 71, 13, 10, 26, 10)))
 
