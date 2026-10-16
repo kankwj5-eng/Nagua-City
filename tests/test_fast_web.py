@@ -25,7 +25,8 @@ class TestFastWeb(unittest.TestCase):
         for idx in range(35):
             scripts.append(f'<script type="application/octet-stream" id="image48-world-{idx}">{image}</script>')
         for idx in range(35):
-            scripts.append(f'<script type="application/octet-stream" id="resource48-humans-{idx}">QUJDREVGRw==</script>')
+            encoded = "QUJDREVGRw==" * 300
+            scripts.append(f'<script type="application/octet-stream" id="resource48-humans-{idx}">{encoded}</script>')
         return ("<!doctype html><body>" + "".join(scripts) + "</body>").encode()
 
     def test_exports_only_selected_data_without_changing_source(self):
@@ -51,7 +52,7 @@ class TestFastWeb(unittest.TestCase):
             zone = next(data.glob("zone48-world-0-*.gz"))
             self.assertEqual(gzip.decompress(zone.read_bytes()), b"barrio 0")
             resource = next(data.glob("resource48-humans-0-*.txt"))
-            self.assertEqual(resource.read_text(), "QUJDREVGRw==")
+            self.assertEqual(resource.read_text(), "QUJDREVGRw==" * 300)
             image = next(data.glob("image48-world-0-*.png"))
             self.assertEqual(image.read_bytes()[:8], bytes((137, 80, 78, 71, 13, 10, 26, 10)))
 
