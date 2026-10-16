@@ -1,0 +1,30 @@
+name: Apoyo visual de motos sobre pendientes
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/engine/0445-install46.js'
+      - 'tests/motorcycle-ground-grade.cjs'
+      - '.github/workflows/motorcycle-grade.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/engine/0445-install46.js'
+      - 'tests/motorcycle-ground-grade.cjs'
+      - '.github/workflows/motorcycle-grade.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  grade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validar modelo de pendiente, estabilidad y presupuesto de muestreo
+        run: node tests/motorcycle-ground-grade.cjs
