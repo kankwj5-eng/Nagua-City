@@ -25,7 +25,9 @@ class TestFastWeb(unittest.TestCase):
         for idx in range(35):
             scripts.append(f'<script type="application/octet-stream" id="image48-world-{idx}">{image}</script>')
         for idx in range(35):
-            encoded = base64.b64encode(bytes((255,216,255,217))).decode() if idx == 1 else "QUJDREVGRw==" * 300
+            glb = b"glTF" + (2).to_bytes(4, "little") + (12).to_bytes(4, "little")
+            encoded = (base64.b64encode(bytes((255,216,255,217))).decode() if idx == 1 else
+                       base64.b64encode(glb).decode() if idx == 2 else "QUJDREVGRw==" * 300)
             scripts.append(f'<script type="application/octet-stream" id="resource48-humans-{idx}">{encoded}</script>')
         return ("<!doctype html><body>" + "".join(scripts) + "</body>").encode()
 
@@ -55,6 +57,8 @@ class TestFastWeb(unittest.TestCase):
             self.assertEqual(resource.read_text(), "QUJDREVGRw==" * 300)
             self.assertEqual(next(data.glob("resource48-humans-1-*.jpg")).read_bytes(), bytes((255,216,255,217)))
             self.assertEqual(report["resourcePacks"]["humans"]["image"], 1)
+            self.assertEqual(gzip.decompress(next(data.glob("resource48-humans-2-*.gz")).read_bytes()), b"glTF" + (2).to_bytes(4, "little") + (12).to_bytes(4, "little"))
+            self.assertEqual(report["resourcePacks"]["humans"]["glb-gzip"], 1)
             image = next(data.glob("image48-world-0-*.png"))
             self.assertEqual(image.read_bytes()[:8], bytes((137, 80, 78, 71, 13, 10, 26, 10)))
 
