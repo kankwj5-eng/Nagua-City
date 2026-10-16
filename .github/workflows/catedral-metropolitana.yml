@@ -1,0 +1,33 @@
+name: Catedral Metropolitana y colisiones urbanas
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/world/0063-install-landmarks21.js'
+      - 'game/src/world/0062-stage21-landmarks.js'
+      - 'tests/cathedral-landmark.cjs'
+      - '.github/workflows/catedral-metropolitana.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/world/0063-install-landmarks21.js'
+      - 'game/src/world/0062-stage21-landmarks.js'
+      - 'tests/cathedral-landmark.cjs'
+      - '.github/workflows/catedral-metropolitana.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  arquitectura:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/cathedral-landmark.cjs
+      - run: node tests/barrio-power-poles.cjs
+      - run: node tests/barrio-house-facades.cjs
