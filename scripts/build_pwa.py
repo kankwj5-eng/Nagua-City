@@ -14,6 +14,7 @@ import shutil
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
+from build_fast_web import split_web_game
 
 ROOT = Path(__file__).resolve().parents[1]
 WEB = ROOT / "web"
@@ -83,6 +84,8 @@ def build(game: Path, output: Path) -> dict:
     target = output / "Managua.html"
     if game != target:
         shutil.copyfile(game, target)
+    # Stream assets in the hosted PWA only; leave the standalone HTML intact.
+    fast_web = split_web_game(target, output / 'assets' / 'stream')
     for name in ["index.html", "style.css", "app.js", "sw.js",
                  "manifest.webmanifest", "offline.html"]:
         shutil.copyfile(WEB / name, output / name)
@@ -102,6 +105,7 @@ def build(game: Path, output: Path) -> dict:
         "app": manifest["short_name"],
         "game": target.name,
         "gameBytes": target.stat().st_size,
+        "streaming": fast_web,
         "shellFiles": 10,
         "startURL": manifest["start_url"],
         "offlineGame": False,
