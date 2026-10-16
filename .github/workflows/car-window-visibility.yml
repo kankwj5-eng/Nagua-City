@@ -1,0 +1,37 @@
+name: Vidrios de automóviles
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0207-install-vehicle-finish31.js'
+      - 'tests/car-window-inventory.cjs'
+      - 'tests/car-glass-material.cjs'
+      - '.github/workflows/car-window-visibility.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0207-install-vehicle-finish31.js'
+      - 'tests/car-window-inventory.cjs'
+      - 'tests/car-glass-material.cjs'
+      - '.github/workflows/car-window-visibility.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  glass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Extraer posiciones y cantidad de los paneles originales
+        run: |
+          git lfs pull
+          node --max-old-space-size=1024 tests/car-window-inventory.cjs
+      - name: Verificar configuración de los vidrios sin recursos nuevos
+        run: node tests/car-glass-material.cjs
