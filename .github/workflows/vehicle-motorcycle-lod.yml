@@ -1,0 +1,29 @@
+name: Estabilidad visual LOD de motos y carros
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0359-update-fleet.js'
+      - 'tests/vehicle-motorcycle-lod-hysteresis.cjs'
+      - '.github/workflows/vehicle-motorcycle-lod.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0359-update-fleet.js'
+      - 'tests/vehicle-motorcycle-lod-hysteresis.cjs'
+      - '.github/workflows/vehicle-motorcycle-lod.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lod:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/vehicle-motorcycle-lod-hysteresis.cjs
