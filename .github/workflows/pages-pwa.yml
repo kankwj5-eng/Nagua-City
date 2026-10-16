@@ -35,9 +35,22 @@ jobs:
       - name: Instalar dependencia para iconos PNG
         run: python -m pip install --disable-pip-version-check Pillow==11.3.0
       - name: Ensamblar el juego desde módulos organizados (sin duplicar recursos)
-        run: python3 scripts/build_modular.py --output dist/site/Managua.html
+        run: python3 scripts/build_modular.py --output dist/Managua-portable.html
       - name: Preparar portada, manifiesto, iconos y service worker
-        run: python3 scripts/build_pwa.py --game dist/site/Managua.html --output dist/site
+        run: python3 scripts/build_pwa.py --game dist/Managua-portable.html --output dist/site
+      - name: Validar que la PWA dividió sus recursos sin modificar el archivo portátil
+        run: |
+          python3 -m unittest discover -s tests -p 'test_fast_web.py' -v
+          python3 - <<'PY'
+          from pathlib import Path
+          portable=Path('dist/Managua-portable.html')
+          web=Path('dist/site/Managua.html')
+          resources=list(Path('dist/site/assets/stream').iterdir())
+          print({'portableBytes': portable.stat().st_size,'webStartBytes': web.stat().st_size,'streamChunks':len(resources)})
+          assert portable.stat().st_size > 100000000
+          assert web.stat().st_size < portable.stat().st_size * .85
+          assert len(resources)>100
+          PY
       - name: Verificar que la web usa los módulos JavaScript verdaderos
         run: node tests/module-source.cjs dist/site/Managua.html
       - name: Probar instalación y archivos PWA
