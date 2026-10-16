@@ -1,1 +1,15 @@
-function refreshEquipmentUI(){const d=itemDefinitions[equipped];$('equippedName').textContent=d.name;$('equippedAmmo').textContent=equipped in ammo?ammo[equipped]+' / '+(equipped==='pistol'?12:30)+' · reserva '+city.state.reserve[equipped]:'I: mochila · F: usar';$('useItem').textContent=d.action;$('reloadHUD').hidden=!(equipped in ammo);$('reloadItem').hidden=!(equipped in ammo);for(const b of $('inventoryChoices').children)b.classList.toggle('selected',b.dataset.item===equipped);$('itemDescription').textContent=d.desc;}
+function refreshEquipmentUI(){
+ if(!itemDefinitions[equipped])equipped='hands';
+ const item=itemDefinitions[equipped];
+ $('equippedName').textContent=item.name;
+ $('equippedAmmo').textContent='I: mochila · F: '+(equipped==='hands'?'pelear':'usar herramienta');
+ $('useItem').textContent=item.action;
+ $('reloadHUD').hidden=true;$('reloadItem').hidden=true;
+ for(const button of $('inventoryChoices').children){
+  const allowed=!!itemDefinitions[button.dataset.item];
+  button.hidden=!allowed;
+  button.disabled=!allowed;
+  button.classList.toggle('selected',allowed&&button.dataset.item===equipped);
+ }
+ $('itemDescription').textContent=item.desc;
+}

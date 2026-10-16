@@ -1,4 +1,23 @@
-function installCombat29(){const oldEquip=equipItem;equipItem=function(name){if(!city.state.owned?.[name]){toast('Comprá este equipo en la armería o ferretería.');return;}if(name!==equipped){reloadWeapon=null;reloadUntil=0;}oldEquip(name);};
- const oldRefresh=refreshEquipmentUI;refreshEquipmentUI=function(){oldRefresh();for(const b of $('inventoryChoices').children){const owned=!!city.state.owned?.[b.dataset.item];b.disabled=!owned;b.title=owned?'Equipar':'Disponible en tienda';}};
- const hud=document.createElement('div');hud.id='stamina29';hud.setAttribute('role','meter');hud.setAttribute('aria-label','Resistencia');hud.setAttribute('aria-valuemin','0');hud.setAttribute('aria-valuemax','100');hud.innerHTML='<span></span>';$('hud').append(hud);const aim=document.createElement('button');aim.id='aim29';aim.type='button';aim.textContent='APUNTAR · X';aim.onclick=()=>{expansion29.combat.aim=!expansion29.combat.aim;};$('hud').append(aim);const cross=document.createElement('div');cross.id='reticle29';cross.hidden=true;$('hud').append(cross);document.addEventListener('keydown',e=>{if(e.code==='KeyX'&&!e.repeat&&playing&&!driving&&equipped in ammo)expansion29.combat.aim=!expansion29.combat.aim;});scene.onBeforeCameraRenderObservable.add(()=>{if(!homeMode&&!driving)camera.fov=expansion29.combat.aim?.84:1.06;});refreshEquipmentUI();
+function installCombat29(){
+ const originalEquip=equipItem;
+ equipItem=function(name){
+  if(!itemDefinitions[name])return;
+  if(!city.state.owned?.[name]&&name!=='hands'){toast('Esta herramienta se consigue en la ferretería.');return;}
+  originalEquip(name);
+ };
+ const originalRefresh=refreshEquipmentUI;
+ refreshEquipmentUI=function(){
+  originalRefresh();
+  for(const button of $('inventoryChoices').children){
+   const allowed=!!itemDefinitions[button.dataset.item];
+   button.hidden=!allowed;
+   button.disabled=!allowed||!city.state.owned?.[button.dataset.item];
+   button.title=allowed?(button.disabled?'Disponible en ferretería':'Equipar'):'No disponible en este juego';
+  }
+ };
+ const hud=document.createElement('div');
+ hud.id='stamina29';hud.setAttribute('role','meter');hud.setAttribute('aria-label','Resistencia');
+ hud.setAttribute('aria-valuemin','0');hud.setAttribute('aria-valuemax','100');
+ hud.innerHTML='<span></span>';$('hud').append(hud);
+ refreshEquipmentUI();
 }

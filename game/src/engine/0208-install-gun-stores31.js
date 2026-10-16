@@ -1,2 +1,2 @@
-function installGunStores31(){for(const marker of stage30.markers){const root=new B.TransformNode('Armas expuestas31 '+marker.name,scene),x=marker.x+1.4,z=17;for(const [index,name] of ['pistol','rifle','bat','shovel'].entries()){const display=equipmentModel(name,root);display.position.set(x-1.7+index*1.05,1.65,z-3.5);display.rotation.set(Math.PI/2,0,-Math.PI/2);display.scaling.setAll(name==='pistol'?1.5:1);district31.weaponDisplays++;}citySign('ARMAS · MUNICIÓN',root,V(x+1.5,1.8,z+4.66),2.6).scaling.y=.35;registerDetail31(root,x,z,105);}
-}
+// Firearm storefronts and weapon exhibits are not part of Nagua City anymore.
+function installGunStores31(){}
