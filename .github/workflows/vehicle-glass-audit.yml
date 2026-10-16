@@ -12,6 +12,7 @@ on:
     paths:
       - 'game/src/vehicles/0207-install-vehicle-finish31.js'
       - 'tests/vehicle-glass-audit.cjs'
+      - 'tests/vehicle-glass-visibility.cjs'
       - '.github/workflows/vehicle-glass-audit.yml'
   workflow_dispatch:
 permissions:
