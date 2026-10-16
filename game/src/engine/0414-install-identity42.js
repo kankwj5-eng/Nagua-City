@@ -1,8 +1,8 @@
 function installIdentity42(){
  const intro=$('home').querySelector('.intro'),start=$('start'),garage=$('garageOpen'),options=$('homeSettings'),status=$('status'),load=$('loadbar');
- intro.replaceChildren();const mast=document.createElement('div');mast.className='route-brand42';mast.innerHTML='<div class="route-stamp42">NICARAGUA · RECORRIDO 01</div><h1>MANAGUA<span>DEL TALLER<br>AL LAGO.</span></h1><p class="lead">Un motor prestado. Una factura mojada.<br>Y una ciudad que todavía no termina su día.</p>';intro.append(mast);
+ intro.replaceChildren();const mast=document.createElement('div');mast.className='route-brand42';mast.innerHTML='<div class="route-stamp42">NICARAGUA · EXPLORACIÓN LIBRE</div><h1>MANAGUA<span>DEL TALLER<br>AL LAGO.</span></h1><p class="lead">Explorá las calles, los talleres y los barrios.<br>De la ciudad al lago, a tu propio ritmo.</p>';intro.append(mast);
  const action=document.createElement('div');action.className='route-actions42';start.textContent='SALIR AL BARRIO';garage.textContent='LAS LLAVES';options.textContent='AJUSTAR EL RECORRIDO';action.append(start,garage,options);intro.append(action);
- const story=document.createElement('button');story.id='storyHome42';story.className='route-story42';story.innerHTML='<span>EL CUADERNO DE MATEO</span><b>Cuando vuelve la luz</b><small>Seis recorridos que empiezan en el taller de Beto.</small>';story.onclick=()=>{if(!ready)return;start.click();if(playing)startStory42();};intro.append(story,status,load);
+ intro.append(status,load);
  const note=document.createElement('div');note.className='route-note42';note.textContent='TALLER / PASAJES / PUERTO / VUELTA AL BARRIO';intro.append(note);
  const garagePanel=$('home').querySelector('.garagecard');garagePanel.querySelector('.kicker').textContent='TABLERO DE LLAVES · TALLER DE BETO';garagePanel.querySelector('.specs span:last-child').textContent='LISTO PARA SALIR';
  const headings=$('settings').querySelectorAll('h2');if(headings[0])headings[0].textContent='Antes de volver a la calle';
