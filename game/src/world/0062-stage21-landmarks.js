@@ -1,1 +1,1 @@
-const stage21Landmarks={tower:false,sandino:false,adoquines:true};
+const stage21Landmarks={tower:false,sandino:false,cathedral:false,adoquines:true};
