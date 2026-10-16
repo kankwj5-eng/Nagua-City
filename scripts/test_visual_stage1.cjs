@@ -72,6 +72,25 @@ window.__naguaVisualQA={
    humanRide(player,current);
    const third=capture();
    return {count:fingers.length,first,second,third};
+ },
+ bikeFamilies(){
+  return ['pulsar','boxer','trail','taypan'].map(name=>{
+   const v=fleet.find(x=>x.name===name&&x.bike);
+   if(!v||!v.art46)throw Error('Falta carrocería real '+name);
+   const painted=v.parts.body.getChildMeshes().filter(m=>/bike46_body_paint_/.test(m.name));
+   if(!painted.length)throw Error('Falta tanque/carenado propio '+name);
+   let vertices=0,shapeSum=0;
+   for(const m of painted){
+    const positions=m.getVerticesData(B.VertexBuffer.PositionKind);
+    if(!positions)throw Error('Geometría de pintura ausente '+name);
+    for(let k=0;k<positions.length;k+=3){
+     shapeSum+=positions[k]*.13+positions[k+1]*1.73+positions[k+2]*.71;
+     vertices++;
+    }
+   }
+   return {name,family:v.bikeStyle46,vertices,shapeChecksum:Math.round(shapeSum*1000),paint:painted[0].material?.name,
+     wheelbase:v.wheelbase,steeringPivot:v.meta.steeringPivot};
+  });
  }
 };
 `;
@@ -125,6 +144,12 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   for(let i=0;i<grip.count;i++)maxDelta=Math.max(maxDelta,angleDelta(grip.second[i].q,grip.third[i].q));
   console.log("STAGE1_RIDER_REPEAT "+JSON.stringify({fingers:grip.count,maxRepeatedPoseRadians:maxDelta}));
   assert(maxDelta<.001,"Los dedos cambian de forma al volver a subir a la moto: "+maxDelta);
+  const families=await page.evaluate(()=>__naguaVisualQA.bikeFamilies());
+  console.log("STAGE1_BIKE_FAMILIES "+JSON.stringify(families));
+  assert.deepEqual(families.map(x=>x.family),['sport','work','dual','urban'],"Cuatro siluetas de motos distintas");
+  assert(families.every(x=>x.vertices>200&&Number.isFinite(x.shapeChecksum)),"Fuentes geométricas válidas");
+  assert.equal(new Set(families.map(x=>x.shapeChecksum)).size,4,"Las motos deben diferir por geometría, no solo por color");
+  assert.equal(new Set(families.map(x=>x.paint)).size,4,"Acabados exteriores distintos sin materiales nuevos");
   assert.deepEqual(errors,[],"Errores JavaScript en el juego real");
   await page.screenshot({path:path.join(root,"dist/stage1-moto.png")});
   const report={passed:true,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
