@@ -1,0 +1,35 @@
+name: Auditar vidrio de carros
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0207-install-vehicle-finish31.js'
+      - 'tests/vehicle-glass-audit.cjs'
+      - 'tests/vehicle-glass-visibility.cjs'
+      - '.github/workflows/vehicle-glass-audit.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0207-install-vehicle-finish31.js'
+      - 'tests/vehicle-glass-audit.cjs'
+      - 'tests/vehicle-glass-visibility.cjs'
+      - '.github/workflows/vehicle-glass-audit.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  glass:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Auditar ventanas reales y materiales de carro
+        run: node tests/vehicle-glass-audit.cjs
+      - name: Comprobar transparencia de cabinas y faros de moto
+        run: node tests/vehicle-glass-visibility.cjs
