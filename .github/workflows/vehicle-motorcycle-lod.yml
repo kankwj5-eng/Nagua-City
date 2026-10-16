@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'game/src/vehicles/0359-update-fleet.js'
+      - 'game/src/engine/0445-install46.js'
       - 'tests/vehicle-motorcycle-lod-hysteresis.cjs'
       - '.github/workflows/vehicle-motorcycle-lod.yml'
   push:
@@ -27,3 +28,4 @@ jobs:
         with:
           node-version: '24'
       - run: node tests/vehicle-motorcycle-lod-hysteresis.cjs
+      - run: node tests/motorcycle-silhouettes.cjs
