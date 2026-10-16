@@ -92,6 +92,17 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   }
   const idle=await page.evaluate(()=>__naguaVisualQA.snapshot());
   assert(idle.hero);
+  // Confirmar dentro del navegador real, no solamente en un mock, que el solar
+  // fue encontrado y las 63 cúpulas se ensamblaron como geometría visible.
+  const cathedral=await page.evaluate(()=>{
+    const meshes=Nicaragua.scene.meshes.filter(m=>m.name.startsWith("Catedral Metropolitana de Managua · modelo artístico21"));
+    return {installed:!!Nicaragua.landmarkDetails.cathedral,
+      meshGroups:meshes.length,vertices:meshes.reduce((s,m)=>s+m.getTotalVertices(),0)};
+  });
+  assert(cathedral.installed,"No se encontró un solar libre para la Nueva Catedral en el juego real");
+  assert(cathedral.meshGroups>=3&&cathedral.vertices>5000,
+    "Catedral sin geometría fusionada o sin sus 63 cúpulas: "+JSON.stringify(cathedral));
+  console.log("CATEDRAL_BROWSER "+JSON.stringify(cathedral));
   assert(idle.nearMeshes>0);
   assert(idle.vertices>1000);
   assert(idle.scaling.every(v=>Math.abs(v-1)<.00001),"Preservar escala de rig del personaje");
@@ -127,7 +138,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(maxDelta<.001,"Los dedos cambian de forma al volver a subir a la moto: "+maxDelta);
   assert.deepEqual(errors,[],"Errores JavaScript en el juego real");
   await page.screenshot({path:path.join(root,"dist/stage1-moto.png")});
-  const report={passed:true,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
+  const report={passed:true,cathedral,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
   fs.writeFileSync(path.join(root,"dist/stage1-visual.json"),JSON.stringify(report,null,2));
   console.log("STAGE1_VISUAL "+JSON.stringify(report));
  }finally{await browser.close();}
