@@ -14,6 +14,16 @@ const marker="engine.runRenderLoop(()=>{";
 assert.equal(app.split(marker).length,2,"Render loop anchor moved");
 const inject=`
 window.__naguaVisualQA={
+ scanCathedral(){
+  const all=[];
+  for(let z=343;z<=488;z+=5)for(let x=57;x<=86;x+=3){
+   if(x-13<=43||!inWorld(x-14,z-15)||!inWorld(x+21,z+21))continue;
+   const overlaps=data.boxes.reduce((n,b)=>n+(x+21>b[0]-1&&x-14<b[2]+1&&z+21>b[1]-1&&z-15<b[3]+1),0);
+   all.push({x,z,overlaps});
+  }
+  return {colliders:data.boxes.length,free:all.filter(a=>!a.overlaps).length,
+   closest:all.sort((a,b)=>a.overlaps-b.overlaps||Math.hypot(a.x-79,a.z-385)-Math.hypot(b.x-79,b.z-385)).slice(0,12)};
+ },
  snapshot(){
    const meshes=[...player.nearMeshes,...player.lodMeshes].filter(m=>!m.isDisposed()&&m.getTotalVertices()>0);
    const nodes=player.root.getDescendants();
@@ -99,6 +109,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
     return {installed:!!Nicaragua.landmarkDetails.cathedral,
       meshGroups:meshes.length,vertices:meshes.reduce((s,m)=>s+m.getTotalVertices(),0)};
   });
+  if(!cathedral.installed)console.log("CATEDRAL_SOLARES_REALES "+JSON.stringify(await page.evaluate(()=>__naguaVisualQA.scanCathedral())));
   assert(cathedral.installed,"No se encontró un solar libre para la Nueva Catedral en el juego real");
   assert(cathedral.meshGroups>=3&&cathedral.vertices>5000,
     "Catedral sin geometría fusionada o sin sus 63 cúpulas: "+JSON.stringify(cathedral));
