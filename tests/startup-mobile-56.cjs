@@ -14,6 +14,7 @@ async function run(coarse){
   technical44,
   boot45:{phase:(name,pct)=>phases.push({name,pct})},
   templates:{sedan:{root:{getChildMeshes:()=>[{geometry}]}}},
+  scene:{},
   B:{},
   loadYield25:async()=>{},
   createTemplates:async()=>calls.push("templates"),
