@@ -40,7 +40,7 @@ def split_web_game(path: Path, assets: Path) -> dict:
             raise ValueError("Empty required asset: " + identifier)
         if family == "zone48":
             payload = base64.b64decode(packed, validate=True)
-            if not payload.startswith(b"\\x1f\\x8b"):
+            if not payload.startswith(bytes((31, 139))):
                 raise ValueError("Zone is not gzipped: " + identifier)
             suffix, representation = ".gz", "gzip"
         elif family == "image48":
@@ -51,7 +51,7 @@ def split_web_game(path: Path, assets: Path) -> dict:
                 suffix = EXTENSIONS[mime]
             else:
                 payload = base64.b64decode(packed, validate=True)
-                suffix = ".jpg" if payload.startswith(b"\\xff\\xd8") else ".png"
+                suffix = ".jpg" if payload.startswith(bytes((255, 216))) else ".png"
             representation = "image"
         else:
             # Packed geometry is already encoded as a string by the game;
