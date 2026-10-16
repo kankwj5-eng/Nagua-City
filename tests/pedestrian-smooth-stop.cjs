@@ -37,6 +37,7 @@ waits=false;
 for(let frame=0;frame<90;frame++)ctx.updatePeople25(dt);
 assert(p.speed>1,"After traffic clears, pedestrian resumes walking");
 assert(position.z>stopped,"Pedestrian starts moving again");
-assert.equal(animationCalls,150);
+// At 56 m, this game intentionally samples animation about every .08 s.
+assert(animationCalls>=25&&animationCalls<=31,"Distance LOD must remain enabled");
 assert.equal(updates,150);
 console.log("PEDESTRIAN_SMOOTH_STOP_OK "+JSON.stringify({frames:150,stopDistanceMeters:stopped,initialStepMps:expected,restarted:true,noVelocitySnap:true}));
