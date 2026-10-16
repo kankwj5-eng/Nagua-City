@@ -3,8 +3,17 @@ function installVehicleFinish31(){
  // Keep their surfaces visible instead of painting every pane opaque.
  // The same ONE shared material covers every car, no added meshes or textures.
  const smoke=pbr('Cristal de ventanas31','#547078',.16,0);
- smoke.alpha=.78;
- smoke.transparencyMode=B.PBRMaterial.PBRMATERIAL_ALPHABLEND;
+ // Alpha blending costs extra fill-rate on low-end Mali devices.
+ // Keep a reflective dielectric tint below high quality; swap one shared
+ // material only when the user changes graphics quality.
+ const glassQuality31=()=>{
+  const transparent=quality==='high';
+  smoke.alpha=transparent?.78:1;
+  smoke.transparencyMode=transparent?B.PBRMaterial.PBRMATERIAL_ALPHABLEND:B.PBRMaterial.PBRMATERIAL_OPAQUE;
+ };
+ glassQuality31();
+ const priorGlassSettings31=settings;
+ settings=function(){priorGlassSettings31();glassQuality31();};
  smoke.backFaceCulling=false;
  smoke.environmentIntensity=.64;
  smoke.clearCoat.isEnabled=true;
