@@ -1,3 +1,16 @@
+// Original proportions for existing motorcycle prototypes. Reuse every
+// polygon, material and wheel pivot: only scale non-moving body/optics parts.
+function bikeSilhouette46(name){
+ const proportions={
+  pulsar:[1.05,1.025,1.05],yamaha:[.96,.955,.98],
+  trail:[.94,1.072,1.075],enduro:[.92,1.068,1.055],
+  boxer:[.90,1.015,.94],discover:[.965,.975,.99],
+  delivery:[.91,1.085,.94],taypan:[.89,.96,.91],
+  urban125:[.945,.935,.975]
+ };
+ return proportions[name]||[1,1,1];
+}
+
 function bike46(v){
  if(!v.bike||v.bicycle||v.art46)return;const sport=['pulsar','yamaha','trail'].includes(v.name),family=sport?'sport':'work';let proto=bikePrototypes46.get(family);
  if(!proto){const paint=assetMats.red,metal=pbr('Aleación cepillada moto46','#788488',.38,.83),black=pbr('Polímero de moto46','#1c2429',.86),lens=pbr('Óptica de moto46','#d3e3df',.15,.12),seat=assetMats.seat;paint.clearCoat.isEnabled=true;paint.clearCoat.intensity=.95;paint.clearCoat.roughness=.13;lens.emissiveColor=B.Color3.FromHexString('#101414');metal.bumpTexture=normalGrain25('Metal cepillado46','wood');metal.bumpTexture.level=.06;
@@ -22,10 +35,14 @@ function bike46(v){
  }
  for(const m of v.parts.body.getChildMeshes())if(/_(?:paint|red|seat)_/.test(m.name))m.setEnabled(false);
  for(const m of v.parts.steering.getChildMeshes()){const box=m.getBoundingInfo().boundingBox,head=box.center.z<-.68&&box.center.y>.80&&box.center.y<1.25&&box.extendSize.y<.18&&Math.abs(box.center.x)<.04;if(head||/_(?:paint|trim37|lens37|glass)_/.test(m.name)&&box.extendSize.length()>.055)m.setEnabled(false);}
+ const silhouette46=bikeSilhouette46(v.name);
  for(const [part,list] of [['body',proto.body],['steering',proto.steering],['wheel_front',proto.wheel],['wheel_rear',proto.wheel]]){
   const root=v.parts[part];if(!root)continue;
   if(part.startsWith('wheel'))for(const m of root.getChildMeshes())if(!/46/.test(m.name))m.setEnabled(false);
-  for(const m of list){const copy=m.name.includes('_paint_')?m.clone(m.name+v.id,null):m.createInstance(m.name+v.id);copy.parent=root;copy.setEnabled(true);copy.receiveShadows=true;copy.isPickable=false;if(part.startsWith('wheel'))copy.scaling.setAll(v.radius/.30);}
+  for(const m of list){const copy=m.name.includes('_paint_')?m.clone(m.name+v.id,null):m.createInstance(m.name+v.id);copy.parent=root;copy.setEnabled(true);copy.receiveShadows=true;copy.isPickable=false;
+   if(part==='body')copy.scaling.set(silhouette46[0],1,silhouette46[1]);
+   else if(part==='steering')copy.scaling.set(silhouette46[2],1,1);
+   else if(part.startsWith('wheel'))copy.scaling.setAll(v.radius/.30);}
  }
  v.art46=true;art46.bikes++;
 }

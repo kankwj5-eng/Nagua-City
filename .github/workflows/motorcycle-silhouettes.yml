@@ -1,0 +1,30 @@
+name: Siluetas originales de motos
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0440-bike46.js'
+      - 'tests/motorcycle-silhouettes.cjs'
+      - '.github/workflows/motorcycle-silhouettes.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/vehicles/0440-bike46.js'
+      - 'tests/motorcycle-silhouettes.cjs'
+      - '.github/workflows/motorcycle-silhouettes.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  shapes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Nueve siluetas sin geometría extra ni cambios en ruedas
+        run: node tests/motorcycle-silhouettes.cjs
