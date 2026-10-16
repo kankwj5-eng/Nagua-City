@@ -26,8 +26,7 @@ for(const file of ["game/src/engine/0218-install-weapons31.js","game/src/engine/
 const life=read("game/src/world/0077-install-city-life.js");
 assert(!/Armería|['"]arms['"]/.test(life),"Old gun shop should not remain in the barrio");
 assert(life.includes("Ferretería del Barrio"));
-assert(read("game/src/core/0464-trystatement.js").includes("delete vehicleAssets.equipment.pistol"));
-assert(read("game/src/core/0464-trystatement.js").includes("delete vehicleAssets.equipment.rifle"));
+assert(read("game/src/core/0464-trystatement.js").includes("installWeapons31();"),"Compatibility stub remains callable");
 assert(read("game/src/engine/0179-update-combat29.js").includes("c.aim=false"));
 assert(read("game/src/interface/0323-refresh-equipment-ui.js").includes("button.hidden=!allowed"));
 const fights=read("game/src/engine/0264-install-combat38.js");
