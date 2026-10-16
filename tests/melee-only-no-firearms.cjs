@@ -7,7 +7,7 @@ assert.deepEqual(Object.keys(items).sort(),["hands","shovel"]);
 assert.equal(items.hands.action,"GOLPEAR");
 const goods=vm.runInNewContext(read("game/src/data/0069-city-goods.js")+"\ncityGoods;");
 assert(!goods.arms,"Armería removed from active businesses");
-assert.deepEqual(goods.tools.map(x=>x.weapon),["shovel"]);
+assert.deepEqual(Array.from(goods.tools,x=>x.weapon),["shovel"]);
 const commerce=vm.runInNewContext(read("game/src/state/0170-commerce29.js")+"\nCommerce29;");
 for(const weapon of ["pistol","rifle","bat"]){
  const state={cash:5000,purchases:0,owned:{}};
