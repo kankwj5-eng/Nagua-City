@@ -1,0 +1,29 @@
+name: Detalles eléctricos de los barrios
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/world/0203-install-district31.js'
+      - 'tests/barrio-power-poles.cjs'
+      - '.github/workflows/barrio-power-poles.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/world/0203-install-district31.js'
+      - 'tests/barrio-power-poles.cjs'
+      - '.github/workflows/barrio-power-poles.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  neighborhoods:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/barrio-power-poles.cjs
