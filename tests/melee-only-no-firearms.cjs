@@ -26,6 +26,10 @@ for(const file of ["game/src/engine/0218-install-weapons31.js","game/src/engine/
 const life=read("game/src/world/0077-install-city-life.js");
 assert(!/Armería|['"]arms['"]/.test(life),"Old gun shop should not remain in the barrio");
 assert(life.includes("Ferretería del Barrio"));
+const world30=read("game/src/world/0189-install-world30.js");
+assert(!world30.includes("cityGoods.arms"),"Remove legacy ammunition purchases during world setup");
+assert(!world30.includes("weapon:\'pistol\'"),"No pistol sold at tools shop");
+assert(world30.includes("stage30.markers=[]"),"No firearms displays for stage 30");
 assert(read("game/src/core/0464-trystatement.js").includes("installWeapons31();"),"Compatibility stub remains callable");
 assert(read("game/src/engine/0179-update-combat29.js").includes("c.aim=false"));
 assert(read("game/src/interface/0323-refresh-equipment-ui.js").includes("button.hidden=!allowed"));
