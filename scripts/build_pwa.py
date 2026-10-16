@@ -67,7 +67,7 @@ def icon(size: int) -> Image.Image:
     return image.resize((size, size), Image.Resampling.LANCZOS)
 
 
-def build(game: Path, output: Path) -> dict:
+def build(game: Path, output: Path, *, stream_web: bool = True) -> dict:
     game = game.resolve()
     output = output.resolve()
     if not game.is_file():
@@ -85,7 +85,7 @@ def build(game: Path, output: Path) -> dict:
     if game != target:
         shutil.copyfile(game, target)
     # Stream assets in the hosted PWA only; leave the standalone HTML intact.
-    fast_web = split_web_game(target, output / 'assets' / 'stream')
+    fast_web = split_web_game(target, output / 'assets' / 'stream') if stream_web else None
     for name in ["index.html", "style.css", "app.js", "sw.js",
                  "manifest.webmanifest", "offline.html"]:
         shutil.copyfile(WEB / name, output / name)
