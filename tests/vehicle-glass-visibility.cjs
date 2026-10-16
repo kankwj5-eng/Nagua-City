@@ -15,7 +15,7 @@ const bus=make("bus",false,[glass,paint]);
 const moto=make("pulsar",true,[headlamp,paint]);
 const cars=[sedan,suv,bus];
 const fleet=[...cars,moto];
-const ctx={B:{PBRMaterial},fleet,district31:{opaqueVehicles:0},
+const ctx={B:{PBRMaterial},fleet,quality:'high',settings(){},district31:{opaqueVehicles:0},
  scene:{imageProcessingConfiguration:{},fogStart:0,fogEnd:0},
  pbr:(name,color,roughness,metallic)=>{const p=new PBRMaterial(name);p.albedoColor=color;p.roughness=roughness;p.metallic=metallic;return p;},
  lightSettings(){},$(){return {value:"dia"};}};
@@ -36,6 +36,16 @@ assert.equal(glassCount,6);
 assert.equal(moto.root.getChildMeshes()[0].material,headlamp,"Optical lenses of motorcycles must not be replaced");
 assert.equal(headlamp.alpha,1);
 assert.equal(headlamp.transparencyMode,PBRMaterial.PBRMATERIAL_OPAQUE);
+// Changing quality must not allocate new glass geometry or material.
+ctx.quality="low";ctx.settings();
+assert.equal(tinted.alpha,1,"Low quality: reflective and cheap glass");
+assert.equal(tinted.transparencyMode,PBRMaterial.PBRMATERIAL_OPAQUE);
+ctx.quality="medium";ctx.settings();
+assert.equal(tinted.transparencyMode,PBRMaterial.PBRMATERIAL_OPAQUE);
+ctx.quality="high";ctx.settings();
+assert.equal(tinted.alpha,.78);
+assert.equal(tinted.transparencyMode,PBRMaterial.PBRMATERIAL_ALPHABLEND);
+
 assert.equal(ctx.district31.opaqueVehicles,4,"Per-vehicle statistics preserved");
 assert.equal(ctx.scene.imageProcessingConfiguration.contrast,1.16);
 console.log("CAR_GLASS_VISIBILITY_OK "+JSON.stringify({carMeshes:glassCount,sharedMaterials:1,noNewMeshes:true,motorcycleLensesUntouched:true,opacity:.78,transparent:true}));
