@@ -30,6 +30,8 @@ def split_web_game(path: Path, assets: Path) -> dict:
     types = {"zone48": 0, "image48": 0, "resource48": 0}
     savings = {"zone48": 0, "image48": 0, "resource48": 0}
     full_bytes = 0
+    payload_by_type = {"zone48": 0, "image48": 0, "resource48": 0}
+    resource_packs = {}
 
     def replace(match: re.Match[bytes]) -> bytes:
         nonlocal full_bytes
@@ -54,15 +56,37 @@ def split_web_game(path: Path, assets: Path) -> dict:
                 suffix = ".jpg" if payload.startswith(bytes((255, 216))) else ".png"
             representation = "image"
         else:
-            # Packed geometry is already encoded as a string by the game;
-            # preserve its bytes so the existing typed-array decoder is exact.
-            payload = packed
-            suffix, representation = ".txt", "text"
+            # Keep GLB/model data byte-for-byte; textures can be handed directly
+            # to Babylon as URLs and should not be downloaded at startup.
+            header = IMAGE_DATA_URL.match(packed)
+            candidate = packed[header.end():] if header else packed
+            is_image = bool(header) or candidate.startswith(
+                (b"/9j/", b"iVBORw0KGgo", b"UklGR")
+            )
+            if is_image:
+                payload = base64.b64decode(candidate, validate=True)
+                if payload.startswith(bytes((255, 216))):
+                    suffix = ".jpg"
+                elif payload.startswith(bytes((137, 80, 78, 71))):
+                    suffix = ".png"
+                elif payload.startswith(b"RIFF") and payload[8:12] == b"WEBP":
+                    suffix = ".webp"
+                else:
+                    raise ValueError("Invalid embedded image: " + identifier)
+                representation = "image"
+            else:
+                payload = packed
+                suffix, representation = ".txt", "text"
+            pack = identifier.split("-", 2)[1]
+            summary = resource_packs.setdefault(pack, {"image": 0, "text": 0, "bytes": 0})
+            summary[representation] += 1
+            summary["bytes"] += len(payload)
         digest = hashlib.sha256(payload).hexdigest()[:16]
         filename = f"{identifier}-{digest}{suffix}"
         target = assets / filename
         target.write_bytes(payload)
         full_bytes += len(payload)
+        payload_by_type[family] += len(payload)
         types[family] += 1
         savings[family] += len(packed) - len(filename)
         return (
@@ -83,6 +107,8 @@ def split_web_game(path: Path, assets: Path) -> dict:
         "resources": total,
         "byType": types,
         "payloadBytes": full_bytes,
+        "payloadBytesByType": payload_by_type,
+        "resourcePacks": resource_packs,
         "assetDirectory": "assets/stream",
         "portableBuildPreserved": True,
     }
