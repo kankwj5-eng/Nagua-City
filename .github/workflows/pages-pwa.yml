@@ -59,6 +59,20 @@ jobs:
         run: |
           node --check web/app.js
           node --check web/sw.js
+      - name: Preparar Chromium para la prueba web con archivos externos
+        run: |
+          npm install --no-save --package-lock=false playwright@1.49.1
+          npx playwright install --with-deps chromium
+      - name: Entrar al juego PWA sobre HTTP y comprobar descargas progresivas
+        run: node scripts/test_fast_web_browser.cjs
+      - name: Adjuntar informe de arranque web
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nagua-arranque-web
+          path: dist/fast-web-browser.json
+          if-no-files-found: warn
+          retention-days: 14
       - name: Configurar Pages
         if: github.event_name != 'pull_request'
         uses: actions/configure-pages@v5
