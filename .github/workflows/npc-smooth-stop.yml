@@ -1,0 +1,29 @@
+name: Frenado natural de peatones
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/characters/0126-update-people25.js'
+      - 'tests/pedestrian-smooth-stop.cjs'
+      - '.github/workflows/npc-smooth-stop.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/characters/0126-update-people25.js'
+      - 'tests/pedestrian-smooth-stop.cjs'
+      - '.github/workflows/npc-smooth-stop.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  movement:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/pedestrian-smooth-stop.cjs
