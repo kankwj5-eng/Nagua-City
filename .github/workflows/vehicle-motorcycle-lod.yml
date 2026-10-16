@@ -5,6 +5,8 @@ on:
     paths:
       - 'game/src/vehicles/0359-update-fleet.js'
       - 'game/src/engine/0445-install46.js'
+      - 'game/src/vehicles/0140-install-riders26.js'
+      - 'tests/motorcycle-rider-lod.cjs'
       - 'tests/vehicle-motorcycle-lod-hysteresis.cjs'
       - '.github/workflows/vehicle-motorcycle-lod.yml'
   push:
@@ -29,3 +31,4 @@ jobs:
           node-version: '24'
       - run: node tests/vehicle-motorcycle-lod-hysteresis.cjs
       - run: node tests/motorcycle-silhouettes.cjs
+      - run: node tests/motorcycle-rider-lod.cjs
