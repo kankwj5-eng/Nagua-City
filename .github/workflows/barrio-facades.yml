@@ -1,0 +1,30 @@
+name: Casas reales de barrios
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/world/0282-install-district32.js'
+      - 'tests/barrio-house-facades.cjs'
+      - '.github/workflows/barrio-facades.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/world/0282-install-district32.js'
+      - 'tests/barrio-house-facades.cjs'
+      - '.github/workflows/barrio-facades.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  houses:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Comprobar bloques, ladrillos y zinc sin geometría adicional
+        run: node tests/barrio-house-facades.cjs
