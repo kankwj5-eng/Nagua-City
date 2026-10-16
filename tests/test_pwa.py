@@ -18,7 +18,7 @@ class TestPWA(unittest.TestCase):
             contents = b"<!doctype html><html><head></head><body>Juego real</body></html>"
             game.write_bytes(contents)
             destination = root / "site"
-            result = build(game, destination)
+            result = build(game, destination, stream_web=False)
             self.assertEqual((destination / "Managua.html").read_bytes(), contents)
             self.assertEqual(game.read_bytes(), contents)
             self.assertFalse(result["offlineGame"])
