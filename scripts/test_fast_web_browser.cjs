@@ -22,13 +22,15 @@ const server=http.createServer((req,res)=>{
  const browser=await chromium.launch({headless:true,args:["--no-sandbox","--use-angle=swiftshader","--enable-unsafe-swiftshader","--disable-dev-shm-usage"]});
  try{
   const page=await browser.newPage({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  await page.addInitScript(()=>{const report=console.error.bind(console);console.error=(...args)=>{(window.__caughtBootErrors||(window.__caughtBootErrors=[])).push(args.map(x=>x?.stack||String(x)).join(" | "));report(...args);};});
   page.on("pageerror",err=>errors.push(String(err)));const consoleErrors=[];page.on("console",msg=>{if(msg.type()==="error")consoleErrors.push(msg.text());});
   page.on("requestfailed",req=>failures.push(req.url()+": "+req.failure()?.errorText));
   const t=Date.now();
   await page.goto("http://127.0.0.1:"+port+"/Managua.html",{waitUntil:"domcontentloaded",timeout:180000});
   await page.waitForFunction(()=>window.Nicaragua?.ready||document.getElementById("status")?.classList.contains("error"),null,{timeout:210000,polling:200});
   const status=await page.locator("#status").innerText();
-  assert(await page.evaluate(()=>window.Nicaragua?.ready),"Boot error: "+status+"; console: "+consoleErrors.join(" | "));
+  const bootStack=await page.evaluate(()=>window.__caughtBootErrors||[]);
+  assert(await page.evaluate(()=>window.Nicaragua?.ready),"Boot error: "+status+"; console: "+consoleErrors.join(" | ")+"; stack: "+bootStack.join(" | "));
   await page.waitForFunction(()=>Nicaragua.playing,null,{timeout:10000});
   const first=await page.evaluate(()=>({startup:Nicaragua.startup48,boot:Nicaragua.boot45,playing:Nicaragua.playing,zones:Nicaragua.zones.size}));
   assert(first.playing,"Game did not auto-enter");
