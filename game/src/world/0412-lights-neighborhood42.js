@@ -1,3 +1,16 @@
+// Alumbrado ambiental independiente de la historia y sin luces puntuales.
+ // El juego se explora libremente; los tres faroles siempre deben existir.
 function lightsNeighborhood42(){
- if(story42.lights)return;story42.lights=true;const warm=pbr('Luz recuperada del barrio42','#fff0c8',.9);warm.emissiveColor=B.Color3.FromHexString('#efc77e');for(const [x,z] of [[-354,22],[-330,22],[-339,22]]){const bulb=B.MeshBuilder.CreateSphere('Lámpara del barrio42',{diameter:.14,segments:8},scene);bulb.position.set(x,2.4,z);bulb.material=warm;bulb.isPickable=false;const l=new B.PointLight('Luz del local42',bulb.position.clone(),scene);l.diffuse=B.Color3.FromHexString('#ffd39a');l.intensity=.35;l.range=4;}
+ if(stage42.neighborhoodLamps)return;
+ const warm=pbr('Difusores cálidos barrio42','#ead0a4',.92);
+ warm.emissiveColor=B.Color3.FromHexString('#b28a46');
+ const root=makeDetailGroup('Luminarias de comercios del barrio42',({box})=>{
+  for(const [x,z] of [[-354,22],[-330,22],[-339,22]]){
+   const y=groundAt(x,z);
+   box('Montura pared de farol42',x,y+2.48,z,.20,.16,.55,assetMats.steel);
+   box('Difusor cálido de farol42',x,y+2.38,z+.31,.35,.20,.31,warm);
+  }
+ });
+ registerDetail31(root,-339,22,100);
+ stage42.neighborhoodLamps=true;
 }
