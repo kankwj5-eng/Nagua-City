@@ -31,8 +31,9 @@ function installLandmarks21(){const a=assetMats,towerStone=pbr('Hormigón de tor
    }
    box('Portal escalonado oscuro21',cx,cy+3.3,cz+17.61,4.35,5.6,.09,shadow);
    for(let k=0;k<4;k++){
-    const offset=k*.26;
-    box('Marco profundo de portal21',cx,cy+3.5,cz+17.75+k*.06,6.45-offset,6.35-offset,.09,concrete);
+    const width=6.45-k*.26,depth=cz+17.75+k*.06;
+    for(const side of [-1,1])box('Jamba profunda de portal21',cx+side*(width/2-.23),cy+3.45,depth,.46,6.35-k*.20,.11,concrete);
+    box('Dintel profundo de portal21',cx,cy+6.60-k*.10,depth,width,.42,.11,concrete);
    }
    box('Puerta principal de madera21',cx,cy+2.30,cz+17.89,2.9,4.6,.075,assetMats.toolWood);
    for(let i=0;i<3;i++)box('Franja de entrada21',cx,cy+.07+i*.04,cz+18.6+i*.86,5.7,.09,.82,assetMats.monument);
