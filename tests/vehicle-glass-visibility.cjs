@@ -8,7 +8,7 @@ class PBRMaterial{
 }
 PBRMaterial.PBRMATERIAL_OPAQUE=0;PBRMaterial.PBRMATERIAL_ALPHABLEND=2;
 const glass=new PBRMaterial("glass"),paint=new PBRMaterial("paint"),headlamp=new PBRMaterial("glass");
-const make=(name,bike,materials)=>({name,bike,root:{getChildMeshes(){return materials.map(material=>({material,receiveShadows:true}));}}});
+const make=(name,bike,materials)=>{const meshes=materials.map(material=>({material,receiveShadows:true}));return {name,bike,root:{getChildMeshes(){return meshes;}}};};
 const sedan=make("sedan",false,[glass,glass,glass,paint]);
 const suv=make("suv",false,[glass,paint,glass]);
 const bus=make("bus",false,[glass,paint]);
