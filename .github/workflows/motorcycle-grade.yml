@@ -3,13 +3,15 @@ on:
   pull_request:
     branches: [main]
     paths:
-      - 'game/src/engine/0445-install46.js'
+      - 'game/src/engine/0370-tick.js'
+      - 'game/src/vehicles/0347-change-drive.js'
       - 'tests/motorcycle-ground-grade.cjs'
       - '.github/workflows/motorcycle-grade.yml'
   push:
     branches: [main]
     paths:
-      - 'game/src/engine/0445-install46.js'
+      - 'game/src/engine/0370-tick.js'
+      - 'game/src/vehicles/0347-change-drive.js'
       - 'tests/motorcycle-ground-grade.cjs'
       - '.github/workflows/motorcycle-grade.yml'
   workflow_dispatch:
