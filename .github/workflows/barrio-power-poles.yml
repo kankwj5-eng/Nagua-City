@@ -4,12 +4,18 @@ on:
     branches: [main]
     paths:
       - 'game/src/world/0203-install-district31.js'
+      - 'game/src/world/0412-lights-neighborhood42.js'
+      - 'game/src/engine/0404-install42.js'
+      - 'tests/barrio-lamps-free-roam.cjs'
       - 'tests/barrio-power-poles.cjs'
       - '.github/workflows/barrio-power-poles.yml'
   push:
     branches: [main]
     paths:
       - 'game/src/world/0203-install-district31.js'
+      - 'game/src/world/0412-lights-neighborhood42.js'
+      - 'game/src/engine/0404-install42.js'
+      - 'tests/barrio-lamps-free-roam.cjs'
       - 'tests/barrio-power-poles.cjs'
       - '.github/workflows/barrio-power-poles.yml'
   workflow_dispatch:
@@ -27,3 +33,4 @@ jobs:
         with:
           node-version: '24'
       - run: node tests/barrio-power-poles.cjs
+      - run: node tests/barrio-lamps-free-roam.cjs
