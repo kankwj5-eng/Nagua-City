@@ -20,7 +20,7 @@ const mats=names.map(n=>new PBRMaterial(n)),byName=Object.fromEntries(mats.map(m
 const scene={materials:mats,meshes:[]};
 const B={PBRMaterial,Color3:{FromHexString(s){return s;},White(){return "#ffffff";}}};
 const ctx={scene,B,stage42:{textures:families,materials:0},stage34:{families},quality:"high",
- settings(){this.settingsCalled=(this.settingsCalled||0)+1;},material34(){throw Error("No existing low-res fallbacks should be used");},
+ settings(){},material34(){throw Error("No existing low-res fallbacks should be used");},
  projectUV34(){throw Error("No mesh to reproject in this fixture");}};
 vm.createContext(ctx);
 vm.runInContext(source42+"\n"+surfaceFinish+"\nfinishSurfaces42();",ctx);
