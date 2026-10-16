@@ -32,7 +32,7 @@ assert(byType.every(n=>n>0),"Tener árboles, jardineras de dos tipos y palmas");
 assert(byZone.patio>0&&byZone.avenida>0);
 for(const item of placements)if(item.zone==="patio")assert(item.type===2||item.type===3,"Los patios no reciben palmas gigantes");
 for(const item of placements){
- const withoutPalm=pick(item,item.id,false);
+ const withoutPalm=pick(base[item.id],item.id,false);
  assert(withoutPalm!==4,"Sin fuente de palmeras no generar referencias inválidas");
 }
 assert(source.includes("positions.slice(0,245)"),"Conservar límite preexistente");
