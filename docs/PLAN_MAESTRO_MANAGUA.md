@@ -50,16 +50,25 @@ Ninguna instrucción permite destruir barrios completos ni sustituir masivamente
 
 ### Etapa 2 — Catálogo arquitectónico moderno
 - [x] Primera entrega piloto (PR #47): tres modelos originales — hotel con teja terracota, oficinas acristaladas en azul y bloque comercial blanco — con búsqueda de parcela comprobada y registro en el mapa. La prueba visual en Chromium comprueba las construcciones que realmente aparecen; no constituye una recreación exacta de un inmueble determinado.
-- [x] Catálogo **procedural** de seis familias inspirado en los videos, en dos entregas: hotel terracota, comercio blanco, oficina azul, torre técnica con exoesqueleto, sede corporativa horizontal y edificio institucional con pilastras. Los tres modelos añadidos en la segunda entrega requieren aprobación visual de Chromium antes de integrar el PR; no son copias exactas de inmuebles reales.
+- [x] Catálogo **procedural** de seis familias inspirado en los videos, en dos entregas: hotel terracota, comercio blanco, oficina azul, torre técnica con exoesqueleto, sede corporativa horizontal y edificio institucional con pilastras. Los tres modelos de la segunda entrega superaron la inspección visual en Chromium del PR #48; no son copias exactas de inmuebles reales.
 - [ ] Coordinar las ubicaciones por zona; **si una parcela correcta tiene casa, reemplazar exclusivamente esa casa** mediante una operación atómica de malla + datos + colisión.
 - [ ] Variedad de pisos, volumen, orientación y huecos de ventana; entradas funcionales y bases ajustadas al terreno.
 - [ ] Materiales PBR compartidos, atlas y LOD. Añadir por etapas sin generar centenares de mallas por torre.
 
 
 
-**Segunda tanda en validación:** torre técnica en el corredor sureste (entorno x=210, z=-249), sede corporativa baja en expansión oriental (x=273, z=18) y edificio institucional en la zona norte (x=-6, z=321). Las tres parcelas adicionales se eligieron entre candidatos auditados en Chromium; la selección definitiva sigue comprobando calles, hitos, edificios y colisionadores. No se borra ninguna casita en esta fase; la sustitución identificada de viviendas sigue como etapa pendiente. Las coordenadas son internas al juego, no geográficas.
+**Segunda tanda validada e integrada (PR #48):** torre técnica en el corredor sureste (entorno x=210, z=-249), sede corporativa baja en expansión oriental (x=273, z=18) y edificio institucional en la zona norte (x=-6, z=321). Las tres parcelas adicionales se eligieron entre candidatos auditados en Chromium; la selección definitiva sigue comprobando calles, hitos, edificios y colisionadores. No se borra ninguna casita en esta fase; la sustitución identificada de viviendas sigue como etapa pendiente. Las coordenadas son internas al juego, no geográficas.
 
 **Distribución piloto verificada en Chromium (PR #47):** hotel de teja roja en el sector litoral suroriental (x=147, z=-249), oficinas azules en la expansión oriental (x=280, z=67) y bloque comercial blanco al norte del centro (x=-6, z=300). Son coordenadas del mapa artístico del juego, **no coordenadas geográficas reales**. La prueba confirmó tres edificios nuevos, 267 edificios anteriores conservados y tres mallas fusionadas. El sistema puede buscar alternativas en la misma zona si el solar inicial se ocupa. Todavía no elimina casas, porque los modelos de casas base pueden proceder del paquete dinámico de zonas y no siempre tienen malla y colisión individual atribuibles. La autorización general para sustituir una casa sigue vigente, pero la demolición requiere trazabilidad específica de mallas, techos, adornos y colisionadores.
+
+### Próximo paquete de implementación — cruces y paisajismo
+
+1. Inventariar la geometría y las colisiones del paso a desnivel central, identificar cada rampa, los accesos a nivel de suelo y los puntos donde confluyen.
+2. Implementar **conexiones transitables** con continuidad de pendiente, curva y ancho; comprobar circulación arriba y abajo sin colisiones falsas.
+3. Instalar isletas y jardineras bajas fuera del área de rodamiento, con distancias mínimas a rampas, peatones y cruces.
+4. Añadir señalización horizontal y señales con coste gráfico bajo, evitando nuevas luces dinámicas.
+5. Crear pruebas automáticas para rutas completas, ausencia de superposiciones, conservación de viviendas y rendimiento de mallas.
+6. No dar por terminada esta etapa hasta comprobarla en el navegador real y, después, en Android físico.
 
 ### Etapa 3 — Vegetación y extensión perceptiva
 - [ ] Medianeras verdes, isletas y rotondas, guineos, palmas, árboles de sombra y arbustos, sin plantar sobre pavimento ni obstáculos.
