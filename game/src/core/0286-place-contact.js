@@ -1,1 +1,1 @@
-function placeContact(shadow,p,heading,enabled){shadow.setEnabled(enabled);if(enabled){shadow.position.set(p.x,groundAt(p.x,p.z)+.009,p.z);shadow.rotation.y=heading;}}
+function placeContact(shadow,p,heading,enabled,upper=false){shadow.setEnabled(enabled);if(enabled){shadow.position.set(p.x,roadSurface50(p.x,p.z,upper)+.009,p.z);shadow.rotation.y=heading;}}
