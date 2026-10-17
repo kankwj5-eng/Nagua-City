@@ -47,7 +47,7 @@ for(const site of sites){
 }
 first.ctx.installModernBlocks52();
 assert.equal(first.placed.length,3,"Instalación idempotente");
-const unavailable=mock([-300,-300,300,300]);
+const unavailable=mock([-1000,-1000,1000,1000]);
 unavailable.ctx.installModernBlocks52();
 assert.equal(unavailable.ctx.stage34.modern52.count,0,"Sin huecos seguros no debe forzarse la construcción");
 assert.equal(unavailable.data.buildings.length,1,"No se borran casas ante una manzana bloqueada");
