@@ -39,5 +39,7 @@ los elementos viejos hasta que se reemplace el runtime.
    pruebas de navegador y rendimiento Android.
 6. Solo fusionar y publicar si el juego completo supera regresiones.
 
+La tarea GitHub Actions `clean-stage.yml` prueba la limpieza sobre el HTML real, verifica SHA256 y conserva solo el informe, no una build inutilizable.
+
 Los modelos nuevos de **vehículos aún no se han entregado**. Hasta entonces
 se preserva `main` jugable y PR #54 continúa en borrador.
