@@ -1,0 +1,32 @@
+name: Edificios modernos y urbanismo sin superposiciones
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'game/src/engine/0238-install-architecture34.js'
+      - 'tests/modern-buildings-placement.cjs'
+      - 'docs/PLAN_MAESTRO_MANAGUA.md'
+      - '.github/workflows/modern-buildings.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'game/src/engine/0238-install-architecture34.js'
+      - 'tests/modern-buildings-placement.cjs'
+      - 'docs/PLAN_MAESTRO_MANAGUA.md'
+      - '.github/workflows/modern-buildings.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  arquitectura:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/urban-parcel-policy.cjs
+      - run: node tests/modern-buildings-placement.cjs
