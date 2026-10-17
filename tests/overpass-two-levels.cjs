@@ -62,7 +62,7 @@ assert(soffit.filter(m=>Math.abs(m.z+37)<10).every(m=>m.y-m.h/2>4.8),
  "El cruce central conserva altura libre para tráfico inferior");
 const crosswalks=geometry.filter(x=>x.name==="Paso peatonal del nivel inferior54");
 assert.equal(crosswalks.length,22,"Dos cebras completas de 11 franjas");
-assert(crosswalks.every(m=>m.y<.15&&Math.abs(m.z+37)<=4&&Math.abs(m.x-37)===16),
+assert(crosswalks.every(m=>Math.abs(m.y-(ctx.groundAt(m.x,m.z)+.033))<1e-6&&Math.abs(m.z+37)<=4&&Math.abs(m.x-37)===16),
  "Los pasos peatonales deben estar sobre la vía inferior, no en el tablero");
 assert(!/new B\.(?:PointLight|SpotLight)|new B\.DynamicTexture/.test(groupSource),
  "Sin luces ni texturas dinámicas nuevas");
