@@ -6,6 +6,10 @@ on:
       - 'scripts/import_cast_v4.py'
       - 'tests/test_cast_v4.py'
       - 'docs/ELENCO_NICARAGUA_V4.md'
+      - 'game/characters-v4/**'
+      - 'tests/cast-v4-runtime.cjs'
+      - 'game/characters-v4/**'
+      - 'tests/cast-v4-runtime.cjs'
       - '.github/workflows/elenco-v4.yml'
   push:
     branches: [main]
@@ -28,3 +32,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python3 -m unittest discover -s tests -p 'test_cast_v4.py' -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --check game/characters-v4/cast-runtime.js
+      - run: node tests/cast-v4-runtime.cjs
