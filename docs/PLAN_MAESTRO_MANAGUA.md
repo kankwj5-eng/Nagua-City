@@ -43,14 +43,14 @@ Ninguna instrucción permite destruir barrios completos ni sustituir masivamente
 ### Etapa 1 — Cruce vial central de calidad
 - [x] Paso a desnivel funcional inicial con dos alturas, rampas y tráfico separado (PR #45).
 - [ ] Conectores y curvas de acceso, rotonda inferior con circulación efectiva, arcenes y medianas vegetales compatibles con las rutas reales.
-- [x] Defensas físicas por **nivel superior únicamente**: SAT de impacto de carro y bloqueo lateral de peatones, sin añadir estas barandas al índice plano de colisiones, para mantener libre el cruce inferior (PR #49, sujeto a pruebas).
+- [x] Defensas físicas por **nivel superior únicamente**: SAT de impacto de carro y bloqueo lateral de peatones, sin añadir estas barandas al índice plano de colisiones, para mantener libre el cruce inferior (PR #50, pendiente de pruebas de integración).
 - [x] Primera señalización y acabado: intradós de hormigón, diez captafaros pasivos y dos pasos de cebra sin obstáculos bajo el puente. Sin nuevas luces dinámicas; falta revisar el acabado visual de la rotonda.
 - [ ] Barreras en accesos curvos y extremos, aceras continuas, drenaje y materiales PBR detallados de asfalto y hormigón.
 - [ ] Verificar entradas y salidas, flujo de tráfico en ambas alturas y que nada quede encima de casas o vehículos.
 
 ### Etapa 2 — Catálogo arquitectónico moderno
 - [x] Primera entrega piloto (PR #47): tres modelos originales — hotel con teja terracota, oficinas acristaladas en azul y bloque comercial blanco — con búsqueda de parcela comprobada y registro en el mapa. La prueba visual en Chromium comprueba las construcciones que realmente aparecen; no constituye una recreación exacta de un inmueble determinado.
-- [x] Catálogo **procedural** de seis familias inspirado en los videos, en dos entregas: hotel terracota, comercio blanco, oficina azul, torre técnica con exoesqueleto, sede corporativa horizontal y edificio institucional con pilastras. Los tres modelos añadidos en la segunda entrega requieren aprobación visual de Chromium antes de integrar el PR; no son copias exactas de inmuebles reales.
+- [x] Catálogo **procedural** de seis familias inspirado en los videos, en dos entregas: hotel terracota, comercio blanco, oficina azul, torre técnica con exoesqueleto, sede corporativa horizontal y edificio institucional con pilastras. Los tres modelos añadidos en la segunda entrega fueron verificados en Chromium e integrados mediante el PR #48: seis estilos, 273 edificios registrados y ninguna vivienda eliminada; no son copias exactas de inmuebles reales.
 - [ ] Coordinar las ubicaciones por zona; **si una parcela correcta tiene casa, reemplazar exclusivamente esa casa** mediante una operación atómica de malla + datos + colisión.
 - [ ] Variedad de pisos, volumen, orientación y huecos de ventana; entradas funcionales y bases ajustadas al terreno.
 - [ ] Materiales PBR compartidos, atlas y LOD. Añadir por etapas sin generar centenares de mallas por torre.
