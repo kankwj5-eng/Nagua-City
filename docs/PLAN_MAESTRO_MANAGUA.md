@@ -47,10 +47,14 @@ Ninguna instrucción permite destruir barrios completos ni sustituir masivamente
 - [ ] Verificar entradas y salidas, flujo de tráfico en ambas alturas y que nada quede encima de casas o vehículos.
 
 ### Etapa 2 — Catálogo arquitectónico moderno
+- [x] Primera entrega piloto (PR #47): tres modelos originales — hotel con teja terracota, oficinas acristaladas en azul y bloque comercial blanco — con búsqueda de parcela comprobada y registro en el mapa. La prueba visual en Chromium comprueba las construcciones que realmente aparecen; no constituye una recreación exacta de un inmueble determinado.
 - [ ] Seis tipos: hotel beige con tejado de teja roja, torre blanca de ventanas y balcones, oficina acristalada azul, bloque corporativo horizontal, torre de estructura vista, edificio institucional mixto.
 - [ ] Coordinar las ubicaciones por zona; **si una parcela correcta tiene casa, reemplazar exclusivamente esa casa** mediante una operación atómica de malla + datos + colisión.
 - [ ] Variedad de pisos, volumen, orientación y huecos de ventana; entradas funcionales y bases ajustadas al terreno.
 - [ ] Materiales PBR compartidos, atlas y LOD. Añadir por etapas sin generar centenares de mallas por torre.
+
+
+**Distribución piloto verificada en Chromium (PR #47):** hotel de teja roja en el sector litoral suroriental (x=147, z=-249), oficinas azules en la expansión oriental (x=280, z=67) y bloque comercial blanco al norte del centro (x=-6, z=300). Son coordenadas del mapa artístico del juego, **no coordenadas geográficas reales**. La prueba confirmó tres edificios nuevos, 267 edificios anteriores conservados y tres mallas fusionadas. El sistema puede buscar alternativas en la misma zona si el solar inicial se ocupa. Todavía no elimina casas, porque los modelos de casas base pueden proceder del paquete dinámico de zonas y no siempre tienen malla y colisión individual atribuibles. La autorización general para sustituir una casa sigue vigente, pero la demolición requiere trazabilidad específica de mallas, techos, adornos y colisionadores.
 
 ### Etapa 3 — Vegetación y extensión perceptiva
 - [ ] Medianeras verdes, isletas y rotondas, guineos, palmas, árboles de sombra y arbustos, sin plantar sobre pavimento ni obstáculos.

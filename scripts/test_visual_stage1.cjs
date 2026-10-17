@@ -14,6 +14,38 @@ const marker="engine.runRenderLoop(()=>{";
 assert.equal(app.split(marker).length,2,"Render loop anchor moved");
 const inject=`
 window.__naguaVisualQA={
+ urbanSurvey(){
+  const bands=[-185,-111,-37,37,111,185];
+  const roads=bands.flatMap(c=>[{axis:'x',center:c,width:11},{axis:'z',center:c,width:11}]);
+  const protectedSites=[{x:72,z:308,radius:42},{x:79,z:403,radius:34},
+   {x:-15,z:-284,radius:29},{x:-74,z:-284,radius:33},{x:-148,z:-285,radius:32},
+   {x:57,z:-285,radius:31},{x:37,z:-37,radius:36}];
+  const sectors=[
+   ['centro-sur',-249,-49,-249,-48],['centro-norte',-249,-49,44,249],
+   ['este',49,249,42,249],['este-sur',49,249,-249,-50],
+   ['expansion-oriente',273,393,-38,105],
+   ['expansion-occidente',-399,-273,-83,102],['sector-norte',-13,103,279,505]
+  ];
+  const result=[];
+  for(const [name,xmin,xmax,zmin,zmax] of sectors){
+   const valid=[],reasons={},sample=0;let tries=0;
+   for(let x=xmin;x<=xmax;x+=7)for(let z=zmin;z<=zmax;z+=7){
+    if(!inWorld(x-7,z-6)||!inWorld(x+7,z+6))continue;
+    tries++;
+    const r=planUrbanParcel51({x,z,w:11,d:9,buffer:1.4},data.buildings,data.boxes,roads,protectedSites);
+    if(r.approved){if(valid.length<6)valid.push([x,z]);}else reasons[r.reason]=(reasons[r.reason]||0)+1;
+   }
+   result.push({name,tries,valid,reasons});
+  }
+  return result;
+ },
+ modern52(){
+   const state=stage34.modern52||{sites:[],count:0,blocked:0,replacedHomes:0};
+   const m=scene.meshes.filter(o=>/^(Hotel urbano de teja terracota52|Edificio de oficinas azul52|Edificio blanco comercial52) /.test(o.name));
+   return {count:state.count||0,sites:state.sites||[],blocked:state.blocked||0,
+    originalBuildings:state.originalBuildings||0,reasons:state.reasons||{},buildingsNow:data.buildings.length,
+    replacedHomes:state.replacedHomes||0,meshGroups:m.length,vertices:m.reduce((s,o)=>s+o.getTotalVertices(),0)};
+ },
  overpass(){
    const meshes=scene.meshes.filter(m=>m.name.startsWith("Paso a desnivel de Managua · dos alturas50"));
    const carHigh={traffic:true,route:{axis:"z"}},carLow={traffic:true,route:{axis:"x"}};
@@ -126,6 +158,13 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(overpass.upper&&!overpass.lower&&overpass.highY-overpass.lowY>5,
    "El tráfico superior e inferior no está separado: "+JSON.stringify(overpass));
   console.log("OVERPASS_BROWSER "+JSON.stringify(overpass));
+  const modern=await page.evaluate(()=>__naguaVisualQA.modern52());
+  assert(modern.replacedHomes===0&&modern.buildingsNow===modern.originalBuildings+modern.count,
+    "Cambió un inmueble existente o el catálogo perdió sincronía: "+JSON.stringify(modern));
+  if(modern.count===0)console.log("URBAN_SURVEY "+JSON.stringify(await page.evaluate(()=>__naguaVisualQA.urbanSurvey())));
+  assert(modern.count>=1&&modern.meshGroups>=modern.count&&modern.vertices>500,
+    "La ciudad real no incorporó ningún edificio moderno válido: "+JSON.stringify(modern));
+  console.log("MODERN_BUILDINGS_BROWSER "+JSON.stringify(modern));
   assert(cathedral.meshGroups>=3&&cathedral.vertices>5000,
     "Catedral sin geometría fusionada o sin sus 63 cúpulas: "+JSON.stringify(cathedral));
   console.log("CATEDRAL_BROWSER "+JSON.stringify(cathedral));
@@ -164,7 +203,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(maxDelta<.001,"Los dedos cambian de forma al volver a subir a la moto: "+maxDelta);
   assert.deepEqual(errors,[],"Errores JavaScript en el juego real");
   await page.screenshot({path:path.join(root,"dist/stage1-moto.png")});
-  const report={passed:true,cathedral,overpass,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
+  const report={passed:true,cathedral,overpass,modern,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
   fs.writeFileSync(path.join(root,"dist/stage1-visual.json"),JSON.stringify(report,null,2));
   console.log("STAGE1_VISUAL "+JSON.stringify(report));
  }finally{await browser.close();}
