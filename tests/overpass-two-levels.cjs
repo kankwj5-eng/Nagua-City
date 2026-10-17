@@ -66,4 +66,16 @@ assert(read("game/src/vehicles/0168-step-traffic29.js").includes("r.center===37&
 assert(read("game/src/vehicles/0115-fleet-snapshot25.js").includes("y:o.root.position.y"),"El plan de tráfico requiere altitud");
 assert(read("game/src/vehicles/0116-step-traffic25.js").includes("sameLevel=snapshots.filter"),"La IA debe ignorar coches de otra altura");
 assert(read("game/src/vehicles/0116-step-traffic25.js").includes("locks.delete('37,-37')"),"Cruce elevado no debe bloquearse por semáforos 2D");
+// Salir del vehículo desde la cubierta no puede teletransportar al avatar debajo.
+ctx.blocked=()=>false;ctx.V=(x,y,z)=>({x,y,z});
+vm.runInContext(read("game/src/vehicles/0346-safe-vehicle-exit.js"),ctx);
+const driven={width:1.8,heading:0,overpass50:true,root:{position:{x:37,y:5.6,z:-37}}};
+const exitTop=ctx.safeVehicleExit(driven);
+assert(exitTop&&exitTop.y>5.2,"El avatar se mantiene sobre el tablero al bajar");
+driven.overpass50=false;const exitUnder=ctx.safeVehicleExit(driven);
+assert(exitUnder&&exitUnder.y<1,"El conductor de abajo no se teletransporta al puente");
+assert(read("game/src/vehicles/0347-change-drive.js").includes("player.overpass50=!!v.overpass50"),"Conservar la altura del conductor al bajar");
+assert(read("game/src/engine/0370-tick.js").includes("ground=roadSurface50(player.root.position.x"),"La caminata debe respetar la cubierta");
+assert(read("game/src/engine/0370-tick.js").includes("player.moveZ*dt,.30,player"),"Colisiones peatonales deben usar la capa actual");
+assert(read("game/src/core/0286-place-contact.js").includes("roadSurface50(p.x,p.z,upper)"),"Sombras no pueden quedar en la calle inferior");
 console.log("OVERPASS_TWO_LEVELS_OK "+JSON.stringify({segments:44,pillars:colliders.length,maxRise:overpass.height,dynamicLights:0,materials:materials.length}));
