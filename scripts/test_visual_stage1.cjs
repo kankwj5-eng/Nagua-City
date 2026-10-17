@@ -41,7 +41,7 @@ window.__naguaVisualQA={
  },
  modern52(){
    const state=stage34.modern52||{sites:[],count:0,blocked:0,replacedHomes:0};
-   const m=scene.meshes.filter(o=>/^(Hotel urbano de teja terracota52|Edificio de oficinas azul52|Edificio blanco comercial52) /.test(o.name));
+   const m=scene.meshes.filter(o=>/^(Hotel urbano de teja terracota52|Edificio de oficinas azul52|Edificio blanco comercial52|Torre técnica de estructura visible52|Sede corporativa horizontal52|Edificio institucional moderno52) /.test(o.name));
    return {count:state.count||0,sites:state.sites||[],blocked:state.blocked||0,
     originalBuildings:state.originalBuildings||0,reasons:state.reasons||{},buildingsNow:data.buildings.length,
     replacedHomes:state.replacedHomes||0,meshGroups:m.length,vertices:m.reduce((s,o)=>s+o.getTotalVertices(),0)};
@@ -162,6 +162,10 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(modern.replacedHomes===0&&modern.buildingsNow===modern.originalBuildings+modern.count,
     "Cambió un inmueble existente o el catálogo perdió sincronía: "+JSON.stringify(modern));
   if(modern.count===0)console.log("URBAN_SURVEY "+JSON.stringify(await page.evaluate(()=>__naguaVisualQA.urbanSurvey())));
+  assert(modern.count===6&&modern.sites.length===6&&modern.meshGroups>=6&&modern.vertices>10000,
+    "Las seis tipologías deben aparecer en la escena, no solo en los mocks: "+JSON.stringify(modern));
+  assert(new Set(modern.sites.map(s=>s.type)).size===6,
+    "Se detectaron fachadas repetidas o faltantes: "+JSON.stringify(modern.sites));
   assert(modern.count>=1&&modern.meshGroups>=modern.count&&modern.vertices>500,
     "La ciudad real no incorporó ningún edificio moderno válido: "+JSON.stringify(modern));
   console.log("MODERN_BUILDINGS_BROWSER "+JSON.stringify(modern));

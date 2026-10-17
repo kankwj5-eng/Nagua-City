@@ -24,13 +24,13 @@ function installArchitecture34(){
  installModernBlocks52();
 }
 
-// Etapa 52: primeras tres tipologías contemporáneas a partir del segundo video.
+// Etapa 52: seis tipologías contemporáneas originales inspiradas en el segundo video.
 // Parcelas auditadas en sector litoral sureste, expansión oriental y zona norte.
 // Sin desplazar una vivienda sin malla y colisión individual atribuibles.
 // La selección es determinista y verifica tanto las casas como TODOS los sólidos.
 function installModernBlocks52(){
  if(stage34.modern52)return;
- const modern={sites:[],blocked:0,reasons:{},styles:['hotel-teja','oficina-vidrio','mixto-blanco'],replacedHomes:0,originalBuildings:data.buildings.length};
+ const modern={sites:[],blocked:0,reasons:{},styles:['hotel-teja','oficina-vidrio','mixto-blanco','torre-tecnica','corporativo-bajo','institucional'],replacedHomes:0,originalBuildings:data.buildings.length};
  stage34.modern52=modern;
  const cross=[-185,-111,-37,37,111,185];
  const roads=cross.flatMap(c=>[{axis:'x',center:c,width:11},{axis:'z',center:c,width:11}]);
@@ -40,7 +40,10 @@ function installModernBlocks52(){
  const types=[
   {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:147,seedZ:-249,w:11,d:9,floors:7},
   {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:280,seedZ:67,w:11,d:9,floors:8},
-  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-6,seedZ:300,w:11,d:9,floors:6}
+  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-6,seedZ:300,w:11,d:9,floors:6},
+  {type:'torre-tecnica',label:'Torre técnica de estructura visible52',seedX:210,seedZ:-249,w:11,d:9,floors:8},
+  {type:'corporativo-bajo',label:'Sede corporativa horizontal52',seedX:273,seedZ:18,w:11,d:9,floors:3},
+  {type:'institucional',label:'Edificio institucional moderno52',seedX:-6,seedZ:321,w:11,d:9,floors:5}
  ];
  const stucco=pbr('Estuco marfil moderno52','#dfd8c6',.93),white=pbr('Hormigón blanco moderno52','#e0e3dc',.94),
   roof=pbr('Teja terracota de hotel52','#b96a4c',.88),blue=pbr('Vidrio azul urbano52','#23485c',.27,.14),
@@ -79,7 +82,7 @@ function installModernBlocks52(){
    const frontZ=z+front*(d/2+.045);
    // Vistas hacia la avenida: vidrio real de fachada con marcos y
    // antepechos/rellanos a escala de pisos; no pegatinas de ventanas.
-   const perFloor=spec.type==='mixto-blanco'?4:5;
+   const perFloor=(spec.type==='mixto-blanco'||spec.type==='institucional')?4:5;
    const step=w/(perFloor+1);
    for(let floor=1;floor<=spec.floors;floor++){
     const iy=base+.5+(floor-.5)*3.1;
@@ -99,8 +102,42 @@ function installModernBlocks52(){
    }
    box('Pórtico peatonal retranqueado52',x,base+1.68,frontZ+front*.13,4.1,2.7,.16,shade);
    box('Entrada cristal de edificio52',x,base+1.61,frontZ+front*.26,2.8,2.6,.07,blue);
-   box('Alero de entrada moderno52',x,base+3.27,frontZ+front*.85,5.1,.19,1.75,mass);
+   box('Alero de entrada moderno52',x,base+3.27,frontZ+front*.55,5.1,.19,1.5,mass);
    box('Acera de portal moderno52',x,base+.045,frontZ+front*1.21,w*.73,.09,1.7,terrace);
+   // Siluetas muy diferentes: torre estructural, sede horizontal y centro cívico.
+   // Piezas a escala contenidas en el solar y agrupadas por cinco materiales.
+   if(spec.type==='torre-tecnica'){
+    // Dos cruces diagonales por cara frontal dan carácter estructural sin
+    // generar una textura o malla permanente por cada ventana.
+    for(let level=0;level<spec.floors;level++){
+     const iy=base+.5+level*3.1+1.55;
+     for(const side of [-1,1]){
+      const tx=x+side*(w/2-1.25);
+      const brace=box('Tirante diagonal de exoesqueleto52',tx,iy,frontZ+front*.33,.13,3.25,.18,shade);
+      brace.rotation.z=side*(level%2?.52:-.52);
+     }
+    }
+    for(const side of [-1,1])
+     box('Columna vertical externa de torre52',x+side*(w/2-.56),base+h/2+.5,frontZ+front*.36,.28,h,.34,shade);
+    box('Pabellón alto de estructura52',x,base+h+1.02,z,w*.74,1.06,d*.61,shade);
+   }
+   if(spec.type==='corporativo-bajo'){
+    for(const side of [-1,1]){
+     box('Aleta vertical de oficinas corporativas52',x+side*(w/2-.52),base+h*.5+.5,frontZ+front*.23,.32,h-.25,.37,shade);
+    }
+    for(let floor=1;floor<=spec.floors;floor++)
+     box('Marquesina solar horizontal52',x,base+.5+floor*3.1-.28,frontZ+front*.42,w-.85,.14,.7,terrace);
+    box('Franja acristalada baja corporativa52',x,base+2.25,frontZ+front*.26,w-1.9,2.04,.12,blue);
+    box('Techo plano extendido corporativo52',x,base+h+.67,z,w+.7,.29,d+.5,white);
+   }
+   if(spec.type==='institucional'){
+    for(let n=-2;n<=2;n++){
+     box('Pilastrón institucional claro52',x+n*2.05,base+h*.5+.5,frontZ+front*.24,.24,h-.28,.30,stucco);
+    }
+    box('Acceso público con marquesina institucional52',x,base+3.03,frontZ+front*.65,6.2,.19,1.08,terrace);
+    box('Panel protector sobre entrada52',x,base+4.15,frontZ+front*.20,4.4,1.12,.17,shade);
+    box('Remate de cubierta institucional52',x,base+h+.75,z,w-.7,.46,d-.6,stucco);
+   }
    if(spec.type==='hotel-teja'){
     for(const side of [-1,1]){
      const t=box('Tejado inclinado terracota52',x+side*w*.25,base+h+1.30,z,w*.54,.19,d+1.65,roof);
