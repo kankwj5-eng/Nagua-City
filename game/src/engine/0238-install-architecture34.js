@@ -19,6 +19,113 @@ function installArchitecture34(){
  }
  const pavers=pbr('Adoquín de corredor34','#cac0aa',.95);pavers.albedoTexture=pavers33();const green=stage34.families.aerial_grass_rock,dirt=stage34.families.brown_mud_dry;
  for(let i=0;i<8;i++){const x=-388+(i%4)*25,z=-75+Math.floor(i/4)*15;if(blocked(x,z,1,null,true))continue;const mat=pbr('Suelo de solar34 '+i,'#fff',1);material34(mat,i%3?'brown_mud_dry':'aerial_grass_rock',3.5);const m=B.MeshBuilder.CreateGround('Suelo con textura34 '+i,{width:9,height:7},scene);m.position.set(x,groundAt(x,z)+.018,z);m.material=mat;m.receiveShadows=true;m.isPickable=false;const root=new B.TransformNode('Solar texturado34 '+i,scene);m.parent=root;projectUV34(m,3.5);registerDetail31(root,x,z,85);}
+
+ // La ampliación de oficinas/hotel sucede después de la construcción de las casitas.
+ installModernBlocks52();
+}
+
+// Etapa 52: primeras tres tipologías contemporáneas a partir del segundo video.
+// Zonas separadas del centro, sin desplazar una vivienda sin sus mallas asignadas.
+// La selección es determinista y verifica tanto las casas como TODOS los sólidos.
+function installModernBlocks52(){
+ if(stage34.modern52)return;
+ const modern={sites:[],blocked:0,styles:['hotel-teja','oficina-vidrio','mixto-blanco'],replacedHomes:0};
+ stage34.modern52=modern;
+ const cross=[-185,-111,-37,37,111,185];
+ const roads=cross.flatMap(c=>[{axis:'x',center:c,width:14},{axis:'z',center:c,width:14}]);
+ const protectedSites=[{x:72,z:308,radius:42},{x:79,z:403,radius:34},
+  {x:-15,z:-284,radius:29},{x:-74,z:-284,radius:33},{x:-148,z:-285,radius:32},
+  {x:57,z:-285,radius:31},{x:37,z:-37,radius:36}];
+ const types=[
+  {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:-145,seedZ:-133,w:16,d:13,floors:7},
+  {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:144,seedZ:132,w:16,d:12,floors:8},
+  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-145,seedZ:132,w:14,d:12,floors:6}
+ ];
+ const stucco=pbr('Estuco marfil moderno52','#dfd8c6',.93),white=pbr('Hormigón blanco moderno52','#e0e3dc',.94),
+  roof=pbr('Teja terracota de hotel52','#b96a4c',.88),blue=pbr('Vidrio azul urbano52','#23485c',.27,.14),
+  shade=pbr('Marcos grafito moderno52','#3b4a4e',.78),terrace=assetMats.monument;
+ const concrete=surfaceTextures31.concrete_wall_003;
+ if(concrete?.diff){stucco.albedoTexture=concrete.diff;white.albedoTexture=concrete.diff;}
+ blue.environmentIntensity=.50;
+ const candidateOffsets=[[0,0]];
+ for(let ring=6;ring<=42;ring+=6)for(let k=-ring;k<=ring;k+=6){
+  candidateOffsets.push([k,-ring],[k,ring],[-ring,k],[ring,k]);
+ }
+ const seen=new Set();
+ for(const spec of types){
+  let lot=null;
+  for(const [dx,dz] of candidateOffsets){
+   const x=spec.seedX+dx,z=spec.seedZ+dz,key=x+','+z;
+   if(seen.has(spec.type+key))continue;seen.add(spec.type+key);
+   const edge=2.6;
+   if(!inWorld(x-spec.w/2-edge,z-spec.d/2-edge)||!inWorld(x+spec.w/2+edge,z+spec.d/2+edge))continue;
+   const result=planUrbanParcel51({x,z,w:spec.w,d:spec.d,buffer:edge},
+    data.buildings,data.boxes,roads,protectedSites);
+   if(!result.approved){modern.blocked++;continue;}
+   // Esta primera versión usa solares libres; los derribos quedarán habilitados
+   // solo cuando mallas de zonas, techos, detalles y colisiones tengan dueño.
+   if(result.replacements.length)continue;
+   lot={x,z,assessment:result};break;
+  }
+  if(!lot)continue;
+  const {x,z}=lot,h=spec.floors*3.1,base=groundAt(x,z),
+    faceRoad=cross.reduce((p,r)=>Math.abs(r-z)<Math.abs(p-z)?r:p,cross[0]),
+    front=faceRoad>z?1:-1,d=spec.d,w=spec.w;
+  const root=makeDetailGroup(spec.label,({box})=>{
+   box('Basamento con textura52',x,base+.25,z,w+.30,.5,d+.30,terrace);
+   const mass=spec.type==='hotel-teja'?stucco:white;
+   box('Núcleo de edificio moderno52',x,base+h/2+.5,z,w,h,d,mass);
+   const frontZ=z+front*(d/2+.045);
+   // Vistas hacia la avenida: vidrio real de fachada con marcos y
+   // antepechos/rellanos a escala de pisos; no pegatinas de ventanas.
+   const perFloor=spec.type==='mixto-blanco'?4:5;
+   const step=w/(perFloor+1);
+   for(let floor=1;floor<=spec.floors;floor++){
+    const iy=base+.5+(floor-.5)*3.1;
+    box('Cornisa lineal por piso52',x,base+.5+floor*3.1,frontZ+front*.08,w+.36,.17,.24,
+      spec.type==='oficina-vidrio'?shade:terrace);
+    for(let col=1;col<=perFloor;col++){
+     const px=x-w/2+col*step;
+     box('Ventana urbana con cristal52',px,iy+.16,frontZ+front*.09,Math.min(1.65,step-.35),1.70,.10,blue);
+     box('Dintel de ventana urbana52',px,iy+1.09,frontZ+front*.16,Math.min(1.8,step-.23),.12,.18,mass);
+     if(spec.type!=='oficina-vidrio'&&col%2===0)
+      box('Barandal de balcón moderno52',px,iy-.76,frontZ+front*.52,Math.min(1.8,step-.30),.09,.12,shade);
+    }
+    // Ventanas laterales; la cara no se repite como una fachada completamente plana.
+    for(const side of [-1,1])for(const row of [-1,1]){
+     box('Ventanal lateral urbano52',x+side*(w/2+.06),iy+.10,z+row*d*.24,.10,1.58,1.40,blue);
+    }
+   }
+   box('Pórtico peatonal retranqueado52',x,base+1.68,frontZ+front*.13,4.1,2.7,.16,shade);
+   box('Entrada cristal de edificio52',x,base+1.61,frontZ+front*.26,2.8,2.6,.07,blue);
+   box('Alero de entrada moderno52',x,base+3.27,frontZ+front*.85,5.1,.19,1.75,mass);
+   box('Acera de portal moderno52',x,base+.045,frontZ+front*1.21,w*.73,.09,1.7,terrace);
+   if(spec.type==='hotel-teja'){
+    for(const side of [-1,1]){
+     const t=box('Tejado inclinado terracota52',x+side*w*.25,base+h+1.30,z,w*.54,.19,d+1.65,roof);
+     t.rotation.z=-side*.19;
+    }
+    box('Cumbrera terracota hotel52',x,base+h+2.12,z,.30,.16,d+1.7,roof);
+    for(const side of [-1,1])box('Pilastra hotel de teja52',x+side*(w/2-.9),base+h*.52,z+front*(d/2+.17),.46,h-.4,.32,stucco);
+   }else{
+    box('Azotea técnica52',x,base+h+.57,z,w+.4,.24,d+.3,white);
+    box('Caseta de mantenimiento52',x+w*.25,base+h+1.27,z-d*.20,3.3,1.4,2.6,mass);
+    for(const side of [-1,1]){
+     box('Moldura vertical de fachada52',x+side*(w/2-.45),base+h*.50+.5,frontZ+front*.20,.36,h,.30,shade);
+    }
+    if(spec.type==='oficina-vidrio'){
+     // Banda de cristal vertical para una identidad distinta de la torre blanca.
+     box('Vestíbulo acristalado52',x,base+2,z+d*.07,w-1.5,3.4,d*.75,blue);
+    }
+   }
+  });
+  registerDetail31(root,x,z,quality==='low'?125:180);
+  addWorldBox(x,z,w,d);
+  data.buildings.push({x,y:z,w,d,h,type:'Edificio moderno52 · '+spec.type});
+  data.places.push([spec.label,x,z+front*(d/2+2.5)]);
+  modern.sites.push({type:spec.type,x,z,w,d,h,front,drawMeshes:root.getChildMeshes().length});
+ }
+ modern.count=modern.sites.length;
 }
 
 // Resolution control is deterministic feedback, not a neural network.
