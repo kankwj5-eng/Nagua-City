@@ -20,6 +20,7 @@ on:
       - 'game/src/vehicles/0368-present-vehicle-poses13.js'
       - 'game/src/vehicles/0012-vehicle-contact40.js'
       - 'tests/overpass-two-levels.cjs'
+      - 'tests/viaduct-guardrails-height.cjs'
       - '.github/workflows/overpass-two-levels.yml'
   push:
     branches: [main]
@@ -41,6 +42,7 @@ on:
       - 'game/src/vehicles/0368-present-vehicle-poses13.js'
       - 'game/src/vehicles/0012-vehicle-contact40.js'
       - 'tests/overpass-two-levels.cjs'
+      - 'tests/viaduct-guardrails-height.cjs'
       - '.github/workflows/overpass-two-levels.yml'
   workflow_dispatch:
 permissions:
@@ -57,4 +59,5 @@ jobs:
         with:
           node-version: '24'
       - run: node tests/overpass-two-levels.cjs
+      - run: node tests/viaduct-guardrails-height.cjs
       # La conducción completa se comprueba en modular-validation tras compilar el HTML.

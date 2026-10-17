@@ -4,6 +4,13 @@ function vehicleContact40(x,z,v,r){
  const seen=new Set();for(let gx=Math.floor((x-bounds.x)/12);gx<=Math.floor((x+bounds.x)/12);gx++)for(let gz=Math.floor((z-bounds.z)/12);gz<=Math.floor((z+bounds.z)/12);gz++)for(const b of colliderGrid.get(gx+','+gz)||[]){
   if(seen.has(b))continue;seen.add(b);keep(VehicleContact13.box(shape,{x:(b[0]+b[2])/2,z:(b[1]+b[3])/2,halfWidth:(b[2]-b[0])/2,halfLength:(b[3]-b[1])/2,heading:0}));
  }
+ // Guardarraíles del nivel superior. La calle inferior queda libre porque
+ // estas paredes no entran jamás en la cuadrícula 2D de colisiones.
+ if(v.overpass50&&overpassRise50(z)>.75)for(const side of [-1,1]){
+  const gx=overpass50.x+side*(overpass50.halfWidth+.21);
+  if(Math.abs(x-gx)>bounds.x+.22)continue;
+  keep(VehicleContact13.box(shape,{x:gx,z,halfWidth:.135,halfLength:2.3,heading:0}));
+ }
  if(city24.roundabout)keep(VehicleContact13.circle(shape,city24.roundabout));
  for(const other of fleet){
   if(other===v||other.garage&&other!==current||other.retired28)continue;
