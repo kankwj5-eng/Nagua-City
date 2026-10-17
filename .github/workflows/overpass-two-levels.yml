@@ -41,4 +41,4 @@ jobs:
         with:
           node-version: '24'
       - run: node tests/overpass-two-levels.cjs
-      - run: node tests/vehicle-handling.cjs
+      # La conducción completa se comprueba en modular-validation tras compilar el HTML.
