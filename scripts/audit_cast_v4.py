@@ -14,7 +14,7 @@ from pathlib import Path
 LEGACY = {
  "mallas_personaje_antiguo": re.compile(r"Citizen(?:Near|LOD|Atlas)|MPFB|Piel anatómica MH43", re.I),
  "contenedores_anteriores": re.compile(r"\bhumanContainers\b|\blowPeople\b", re.I),
- "animaciones_obsoletas": re.compile(r"asset-animation38|asset-actor-motion|pack48\(['\"]humans['\"]\)", re.I),
+ "animaciones_obsoletas": re.compile(r"asset-animation38|asset-actor-motion|packed48\(['\"]humans['\"]\)", re.I),
  "ropa_anteriores": re.compile(r"\bwardrobe\[type\]|\bdressHuman\(|\bprepareWardrobe25\(", re.I),
  "instanciacion_obsoleta": re.compile(r"\binstantiateHuman45\(|\bdistantPerson\(", re.I),
 }
