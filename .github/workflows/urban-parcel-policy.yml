@@ -1,0 +1,36 @@
+name: Plan maestro, parcelas y viviendas de Managua
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'docs/PLAN_MAESTRO_MANAGUA.md'
+      - 'game/src/world/0064-city-rules.js'
+      - 'tests/urban-parcel-policy.cjs'
+      - 'game/src/world/0226-install-road33.js'
+      - 'tests/overpass-two-levels.cjs'
+      - '.github/workflows/urban-parcel-policy.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'docs/PLAN_MAESTRO_MANAGUA.md'
+      - 'game/src/world/0064-city-rules.js'
+      - 'tests/urban-parcel-policy.cjs'
+      - 'game/src/world/0226-install-road33.js'
+      - 'tests/overpass-two-levels.cjs'
+      - '.github/workflows/urban-parcel-policy.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  urbanismo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node tests/urban-parcel-policy.cjs
+      - run: node tests/overpass-two-levels.cjs
