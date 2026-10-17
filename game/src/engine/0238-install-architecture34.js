@@ -32,14 +32,14 @@ function installModernBlocks52(){
  const modern={sites:[],blocked:0,reasons:{},styles:['hotel-teja','oficina-vidrio','mixto-blanco'],replacedHomes:0,originalBuildings:data.buildings.length};
  stage34.modern52=modern;
  const cross=[-185,-111,-37,37,111,185];
- const roads=cross.flatMap(c=>[{axis:'x',center:c,width:14},{axis:'z',center:c,width:14}]);
+ const roads=cross.flatMap(c=>[{axis:'x',center:c,width:11},{axis:'z',center:c,width:11}]);
  const protectedSites=[{x:72,z:308,radius:42},{x:79,z:403,radius:34},
   {x:-15,z:-284,radius:29},{x:-74,z:-284,radius:33},{x:-148,z:-285,radius:32},
   {x:57,z:-285,radius:31},{x:37,z:-37,radius:36}];
  const types=[
-  {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:-145,seedZ:-133,w:16,d:13,floors:7},
-  {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:144,seedZ:132,w:16,d:12,floors:8},
-  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-145,seedZ:132,w:14,d:12,floors:6}
+  {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:-145,seedZ:-133,w:11,d:9,floors:7},
+  {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:144,seedZ:132,w:12,d:9,floors:8},
+  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-145,seedZ:132,w:11,d:9,floors:6}
  ];
  const stucco=pbr('Estuco marfil moderno52','#dfd8c6',.93),white=pbr('Hormigón blanco moderno52','#e0e3dc',.94),
   roof=pbr('Teja terracota de hotel52','#b96a4c',.88),blue=pbr('Vidrio azul urbano52','#23485c',.27,.14),
@@ -57,7 +57,7 @@ function installModernBlocks52(){
   for(const [dx,dz] of candidateOffsets){
    const x=spec.seedX+dx,z=spec.seedZ+dz,key=x+','+z;
    if(seen.has(spec.type+key))continue;seen.add(spec.type+key);
-   const edge=2.6;
+   const edge=1.4;
    if(!inWorld(x-spec.w/2-edge,z-spec.d/2-edge)||!inWorld(x+spec.w/2+edge,z+spec.d/2+edge))continue;
    const result=planUrbanParcel51({x,z,w:spec.w,d:spec.d,buffer:edge},
     data.buildings,data.boxes,roads,protectedSites);
