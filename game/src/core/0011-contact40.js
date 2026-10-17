@@ -13,7 +13,7 @@ function contact40(x,z,r,ignore){
  }
  for(const v of fleet){
   if(v===ignore||v.garage&&v!==current||v.retired28||v===current&&driving)continue;
-  const dx=x-v.root.position.x,dz=z-v.root.position.z;if(Math.abs(dx)>v.length/2+r+1||Math.abs(dz)>v.length/2+r+1)continue;
+  if(Math.abs(groundAt(x,z)-v.root.position.y)>2.8)continue;const dx=x-v.root.position.x,dz=z-v.root.position.z;if(Math.abs(dx)>v.length/2+r+1||Math.abs(dz)>v.length/2+r+1)continue;
   const c=Math.cos(v.heading),s=Math.sin(v.heading),lx=c*dx-s*dz,lz=s*dx+c*dz,hx=v.width/2+r,hz=v.length/2+r;
   if(Math.abs(lx)<hx&&Math.abs(lz)<hz){const px=hx-Math.abs(lx),pz=hz-Math.abs(lz);if(px<pz){const sign=lx<0?-1:1;keep(c*sign,-s*sign,px);}else{const sign=lz<0?-1:1;keep(s*sign,c*sign,pz);}}
  }
