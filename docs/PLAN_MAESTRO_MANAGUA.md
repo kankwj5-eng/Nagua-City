@@ -54,7 +54,7 @@ Ninguna instrucción permite destruir barrios completos ni sustituir masivamente
 - [ ] Materiales PBR compartidos, atlas y LOD. Añadir por etapas sin generar centenares de mallas por torre.
 
 
-**Política durante la fase piloto:** el sistema prueba posiciones iniciales en sectores separados del centro, el este y el oeste; si los lotes están ocupados, desplaza la búsqueda dentro de la misma zona. Todavía no elimina casas, porque los modelos de casas base pueden proceder del paquete dinámico de zonas y no siempre tienen malla y colisión individual atribuibles. La autorización general para sustituir una casa sigue vigente, pero la demolición requiere trazabilidad específica de mallas, techos, adornos y colisionadores.
+**Distribución piloto verificada en Chromium (PR #47):** hotel de teja roja en el sector litoral suroriental (x=147, z=-249), oficinas azules en la expansión oriental (x=280, z=67) y bloque comercial blanco al norte del centro (x=-6, z=300). Son coordenadas del mapa artístico del juego, **no coordenadas geográficas reales**. La prueba confirmó tres edificios nuevos, 267 edificios anteriores conservados y tres mallas fusionadas. El sistema puede buscar alternativas en la misma zona si el solar inicial se ocupa. Todavía no elimina casas, porque los modelos de casas base pueden proceder del paquete dinámico de zonas y no siempre tienen malla y colisión individual atribuibles. La autorización general para sustituir una casa sigue vigente, pero la demolición requiere trazabilidad específica de mallas, techos, adornos y colisionadores.
 
 ### Etapa 3 — Vegetación y extensión perceptiva
 - [ ] Medianeras verdes, isletas y rotondas, guineos, palmas, árboles de sombra y arbustos, sin plantar sobre pavimento ni obstáculos.
