@@ -43,3 +43,7 @@ La tarea GitHub Actions `clean-stage.yml` prueba la limpieza sobre el HTML real,
 
 Los modelos nuevos de **vehículos aún no se han entregado**. Hasta entonces
 se preserva `main` jugable y PR #54 continúa en borrador.
+
+La auditoría `scripts/audit_legacy_fleet.py` enumera usos de los catálogos,
+modelos y animaciones antiguos de vehículos. `--strict` se hará obligatorio
+al integrar los vehículos nuevos, no antes: hoy detectará dependencias reales.

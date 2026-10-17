@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - scripts/clean_legacy_media.py
+      - scripts/audit_legacy_fleet.py
+      - tests/test_audit_legacy_fleet.py
       - tests/test_clean_legacy_media.py
       - docs/LIMPIEZA_PERSONAJES_VEHICULOS.md
       - .github/workflows/clean-stage.yml
@@ -33,6 +35,10 @@ jobs:
           python-version: '3.12'
       - name: Probar extracciones de muestra
         run: python3 -m unittest discover -s tests -p 'test_clean_legacy_media.py' -v
+      - name: Verificar auditoría del parque vehicular obsoleto
+        run: |
+          python3 -m unittest discover -s tests -p 'test_audit_legacy_fleet.py' -v
+          python3 scripts/audit_legacy_fleet.py | python3 -c 'import json,sys; d=json.load(sys.stdin); print({k:v for k,v in d.items() if k != "detalles"})'
       - name: Crear copia de juego modular (sin publicarla)
         run: python3 scripts/build_modular.py --output dist/Managua-portable.html
       - name: Extraer paquetes obsoletos en staging
