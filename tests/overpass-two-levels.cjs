@@ -56,6 +56,14 @@ assert(geometry.filter(x=>x.name==="Pretil lateral50").length>=50);
 assert.equal(overpass.pillars,4,"Los cuatro pilares quedan fuera de ambas carreteras");
 assert.equal(overpass.landscape51,8,"Jardineras únicamente en las ocho ubicaciones libres de prueba");
 assert.equal(geometry.filter(x=>x.name==="Línea blanca de borde51").length,88,"Marcas de borde continuas, 2 por segmento");
+assert(geometry.filter(x=>x.name==="Intradós de hormigón del viaducto53").length>=20,
+ "Debe verse la cara inferior de hormigón");
+assert.equal(geometry.filter(x=>x.name==="Captafaros pasivos del pretil53").length,10,
+ "Captafaros separados sin luces dinámicas");
+assert.equal(geometry.filter(x=>x.name==="Cebra de paso inferior53").length,22,
+ "Dos pasos de cebra a nivel inferior");
+assert(!/new B\.(?:PointLight|SpotLight)|new B\.DynamicTexture/.test(groupSource),
+ "No crear luces costosas ni nuevas texturas dinámicas");
 assert.equal(colliders.length,12,"Cuatro pilares y ocho jardineras sin objetos invisibles");
 assert(colliders.slice(0,4).every(([x,z])=>Math.abs(z+37)>=24&&Math.abs(x-37)>5),"Pilares fuera de los ejes del cruce");
 assert(colliders.slice(4).every(([x,z])=>Math.abs(z+37)>8&&Math.abs(x-37)>8),"Jardineras fuera de calzadas");
