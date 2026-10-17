@@ -19,7 +19,7 @@ const unseen=plan({...site,replaceIndices:[1]},[home,other],[box],roads,protecte
 assert.equal(unseen.reason,"unapproved-home","La autorización para otra casa no equivale a esta");
 const alien=plan({...site,replaceIndices:[0]},[home,other,[/*ignored*/]], [box,[22.5,21.5,25.5,24.5]],roads,protectedSites);
 assert.equal(alien.reason,"unowned-collision","No quitar colisiones ajenas");
-const partial=plan({x:20,z:18,w:4,d:4,replaceIndices:[0]},[home],[box],roads,protectedSites);
+const partial=plan({x:20,z:18,w:2,d:2,replaceIndices:[0]},[home],[box],roads,protectedSites);
 assert.equal(partial.reason,"partial-home","Nunca demoler media casa");
 const landmark=plan({x:100,z:100,w:8,d:8},[],[],roads,protectedSites);
 assert.equal(landmark.reason,"protected-landmark","Proteger los edificios emblemáticos");
