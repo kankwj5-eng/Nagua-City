@@ -50,7 +50,15 @@ window.__naguaVisualQA={
    const meshes=scene.meshes.filter(m=>m.name.startsWith("Paso a desnivel de Managua · dos alturas50"));
    const carHigh={traffic:true,route:{axis:"z"}},carLow={traffic:true,route:{axis:"x"}};
    const upper=overpassLayer50(carHigh,37,-37,0),lower=overpassLayer50(carLow,37,-37,Math.PI/2);
-   return {installed:overpass50.installed,meshGroups:meshes.length,
+   // Comprobar en el motor real el contacto del SAT: un impacto arriba,
+   // ninguno abajo, sin sumar las barandas al colliderGrid compartido.
+   const railShape={x:overpass50.x+4.0,z:overpass50.z,heading:0,halfWidth:.9,halfLength:2.05};
+   let railTop=0,railBelow=0;
+   overpassVehicleGuardrails53(railShape,true,c=>{if(c)railTop++;});
+   overpassVehicleGuardrails53(railShape,false,c=>{if(c)railBelow++;});
+   return {railTop,railBelow,guardTop:overpassGuardrail53(41.71,-37,true,.3),
+    guardBelow:overpassGuardrail53(41.71,-37,false,.3),
+    installed:overpass50.installed,meshGroups:meshes.length,
     vertices:meshes.reduce((n,m)=>n+m.getTotalVertices(),0),
     upper,lower,highY:roadSurface50(37,-37,upper),lowY:roadSurface50(37,-37,lower),
     pillars:overpass50.pillars,landscape:overpass50.landscape51};
@@ -157,7 +165,9 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
    "Falta geometría real del paso a desnivel: "+JSON.stringify(overpass));
   assert(overpass.upper&&!overpass.lower&&overpass.highY-overpass.lowY>5,
    "El tráfico superior e inferior no está separado: "+JSON.stringify(overpass));
-  console.log("OVERPASS_BROWSER "+JSON.stringify(overpass));
+  assert(overpass.railTop>=1&&overpass.railBelow===0&&overpass.guardTop&&!overpass.guardBelow,
+   "El guardarraíl superior no separa ambos niveles: "+JSON.stringify(overpass));
+    console.log("OVERPASS_BROWSER "+JSON.stringify(overpass));
   const modern=await page.evaluate(()=>__naguaVisualQA.modern52());
   assert(modern.replacedHomes===0&&modern.buildingsNow===modern.originalBuildings+modern.count,
     "Cambió un inmueble existente o el catálogo perdió sincronía: "+JSON.stringify(modern));
