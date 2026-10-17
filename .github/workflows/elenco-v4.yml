@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'scripts/import_cast_v4.py'
+      - 'scripts/audit_cast_v4.py'
+      - 'tests/test_audit_cast_v4.py'
       - 'tests/test_cast_v4.py'
       - 'docs/ELENCO_NICARAGUA_V4.md'
       - 'game/characters-v4/**'
@@ -32,6 +34,9 @@ jobs:
         with:
           python-version: '3.12'
       - run: python3 -m unittest discover -s tests -p 'test_cast_v4.py' -v
+      - run: python3 -m unittest discover -s tests -p 'test_audit_cast_v4.py' -v
+      - name: Contar dependencias del elenco anterior sin silenciarlas
+        run: python3 scripts/audit_cast_v4.py > /tmp/legacy-cast-v4.json
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
