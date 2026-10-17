@@ -33,3 +33,14 @@ function overpassLayer50(v,x,z,heading){
  v.overpass50=d>overpass50.flatHalf+22&&longitudinal;
  return v.overpass50;
 }
+
+
+// Barreras con altura propia: la misma coordenada horizontal admite vehículos
+// bajo el puente. No insertar pretiles en colliderGrid ni en data.boxes (2D).
+// La trayectoria superior sí debe chocar con los muros de protección.
+function overpassGuardrails53(x,z,upper,r=0){
+ if(!upper||!overpass50.installed||overpassRise50(z)<=.75)return false;
+ if(Math.abs(z-overpass50.z)>=overpass50.halfLength)return false;
+ const edge=overpass50.halfWidth+.21;
+ return Math.abs(Math.abs(x-overpass50.x)-edge)<Math.max(0,r)+.18;
+}
