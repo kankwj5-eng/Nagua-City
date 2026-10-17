@@ -53,6 +53,30 @@ const geometry=shapes[0]?.elements||[];
 assert.equal(shapes.length,2,"Puente y jardineras en grupos fusionables por material");
 assert.equal(geometry.filter(x=>x.name==="Tablero vehicular50").length,44);
 assert(geometry.filter(x=>x.name==="Pretil lateral50").length>=50);
+const roadArrows=geometry.filter(o=>o.name==="Flecha de aproximación del viaducto55");
+assert.equal(roadArrows.length,8,"Dos carriles, dos accesos, dos zonas de aviso");
+assert.equal(geometry.filter(o=>o.name==="Punta de flecha vial55").length,16,
+ "Las flechas direccionales deben formar una punta visible");
+assert.equal(geometry.filter(o=>o.name==="Continuidad de arcén en acceso55").length,12,
+ "Las líneas de borde conectan con la calle normal por ambos extremos");
+assert.equal(geometry.filter(o=>o.name==="Separación central discontinua en acceso55").length,6,
+ "Continuidad del eje central sin invasión de carriles");
+assert.equal(geometry.filter(o=>o.name==="Rejilla de drenaje en tablero55").length,8,
+ "Solo ocho rejillas compactas sobre la cubierta");
+for(const obj of roadArrows){
+ assert(Math.abs(obj.y-vm.runInContext("roadSurface50("+obj.x+","+obj.z+",true)",ctx)-.047)<1e-8,
+  "Las flechas deben tocar el tablero o la calle de acceso sin flotar");
+ assert(Math.abs(obj.x-37)<3&&Math.abs(obj.z+37)>=56,
+  "Las flechas no se ponen bajo el puente ni fuera de carril");
+}
+assert(geometry.filter(o=>o.name==="Rejilla de drenaje en tablero55").every(o=>Math.abs(o.x-37)>3.8&&Math.abs(o.z+37)>=18),
+ "Los drenajes quedan pegados al borde, no sobre la trayectoria del auto");
+const island=shapes[1].elements;
+assert.equal(island.filter(o=>o.name==="Tronco compacto de arbusto55").length,16);
+assert.equal(island.filter(o=>o.name==="Follaje tropical bajo de isleta55").length,16);
+assert.equal(island.filter(o=>o.name==="Franja de hojas tropicales55").length,16);
+assert(island.filter(o=>o.name==="Follaje tropical bajo de isleta55").every(o=>o.h<=.60&&o.y-o.h/2>=.3),
+ "Plantas bajas sin copas peligrosas sobre el cruce");
 assert.equal(overpass.pillars,4,"Los cuatro pilares quedan fuera de ambas carreteras");
 assert.equal(overpass.landscape51,8,"Jardineras únicamente en las ocho ubicaciones libres de prueba");
 assert.equal(geometry.filter(x=>x.name==="Línea blanca de borde51").length,88,"Marcas de borde continuas, 2 por segmento");
