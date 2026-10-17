@@ -7,7 +7,7 @@ function updateFleet(dt){
   const distance=B.Vector3.DistanceSquared(v.root.position,p);
   const visible=visibleVehicle28(v,distance)&&!(homeMode&&v.garage&&(!homeGarage||v!==current));
   if(v.visibleRender49!==visible){v.root.setEnabled(visible);v.visibleRender49=visible;}
-  placeContact(v.contact,v.root.position,v.heading,visible);
+  placeContact(v.contact,v.root.position,v.heading,visible,!!v.overpass50);
   if(!v.low)continue;
   const threshold=quality==='high'?60:quality==='low'?30:45,margin=4;
   const detailed=v===current||(v.detailLOD49===undefined?distance<threshold*threshold:v.detailLOD49?distance<(threshold+margin)**2:distance<(threshold-margin)**2);
