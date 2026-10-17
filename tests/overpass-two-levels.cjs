@@ -63,4 +63,7 @@ for(const path of ["game/src/engine/0370-tick.js","game/src/vehicles/0369-step-f
  assert(read(path).includes("roadSurface50("),"Integración de dos niveles faltante: "+path);
 }
 assert(read("game/src/vehicles/0168-step-traffic29.js").includes("r.center===37&&c===-37"),"No girar a nivel en pleno viaducto");
+assert(read("game/src/vehicles/0115-fleet-snapshot25.js").includes("y:o.root.position.y"),"El plan de tráfico requiere altitud");
+assert(read("game/src/vehicles/0116-step-traffic25.js").includes("sameLevel=snapshots.filter"),"La IA debe ignorar coches de otra altura");
+assert(read("game/src/vehicles/0116-step-traffic25.js").includes("locks.delete('37,-37')"),"Cruce elevado no debe bloquearse por semáforos 2D");
 console.log("OVERPASS_TWO_LEVELS_OK "+JSON.stringify({segments:44,pillars:colliders.length,maxRise:overpass.height,dynamicLights:0,materials:materials.length}));
