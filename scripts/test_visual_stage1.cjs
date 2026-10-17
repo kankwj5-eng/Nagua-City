@@ -14,6 +14,15 @@ const marker="engine.runRenderLoop(()=>{";
 assert.equal(app.split(marker).length,2,"Render loop anchor moved");
 const inject=`
 window.__naguaVisualQA={
+ overpass(){
+   const meshes=scene.meshes.filter(m=>m.name.startsWith("Paso a desnivel de Managua · dos alturas50"));
+   const carHigh={traffic:true,route:{axis:"z"}},carLow={traffic:true,route:{axis:"x"}};
+   const upper=overpassLayer50(carHigh,37,-37,0),lower=overpassLayer50(carLow,37,-37,Math.PI/2);
+   return {installed:overpass50.installed,meshGroups:meshes.length,
+    vertices:meshes.reduce((n,m)=>n+m.getTotalVertices(),0),
+    upper,lower,highY:roadSurface50(37,-37,upper),lowY:roadSurface50(37,-37,lower),
+    pillars:overpass50.pillars};
+ },
  scanCathedral(){
   const all=[];
   for(let z=343;z<=488;z+=5)for(let x=57;x<=86;x+=3){
@@ -111,17 +120,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   });
   if(!cathedral.installed)console.log("CATEDRAL_SOLARES_REALES "+JSON.stringify(await page.evaluate(()=>__naguaVisualQA.scanCathedral())));
   assert(cathedral.installed,"No se encontró un solar libre para la Nueva Catedral en el juego real");
-  const overpass=await page.evaluate(()=>{
-   const meshes=scene.meshes.filter(m=>m.name.startsWith("Paso a desnivel de Managua · dos alturas50"));
-   const carHigh={traffic:true,route:{axis:"z"}};
-   const carLow={traffic:true,route:{axis:"x"}};
-   const upper=overpassLayer50(carHigh,37,-37,0);
-   const lower=overpassLayer50(carLow,37,-37,Math.PI/2);
-   return {installed:overpass50.installed,meshGroups:meshes.length,
-    vertices:meshes.reduce((n,m)=>n+m.getTotalVertices(),0),
-    upper,lower,highY:roadSurface50(37,-37,upper),lowY:roadSurface50(37,-37,lower),
-    pillars:overpass50.pillars};
-  });
+  const overpass=await page.evaluate(()=>__naguaVisualQA.overpass());
   assert(overpass.installed&&overpass.meshGroups>=2&&overpass.vertices>1000,
    "Falta geometría real del paso a desnivel: "+JSON.stringify(overpass));
   assert(overpass.upper&&!overpass.lower&&overpass.highY-overpass.lowY>5,
