@@ -56,6 +56,12 @@ assert(geometry.filter(x=>x.name==="Pretil lateral50").length>=50);
 assert.equal(overpass.pillars,4,"Los cuatro pilares quedan fuera de ambas carreteras");
 assert.equal(overpass.landscape51,8,"Jardineras únicamente en las ocho ubicaciones libres de prueba");
 assert.equal(geometry.filter(x=>x.name==="Línea blanca de borde51").length,88,"Marcas de borde continuas, 2 por segmento");
+assert(geometry.filter(x=>x.name==="Junta transversal del tablero53").length>=5,
+ "Juntas de dilatación visibles a ras de calzada");
+assert(geometry.filter(x=>x.name==="Nervadura de hormigón bajo tablero53").length>=3,
+ "Nervaduras ligeras y por encima del gálibo de la calle inferior");
+assert(geometry.filter(x=>x.name==="Reflector pasivo sobre pretil53").length>=10,
+ "Reflectores sin PointLight ni texturas exclusivas");
 assert.equal(colliders.length,12,"Cuatro pilares y ocho jardineras sin objetos invisibles");
 assert(colliders.slice(0,4).every(([x,z])=>Math.abs(z+37)>=24&&Math.abs(x-37)>5),"Pilares fuera de los ejes del cruce");
 assert(colliders.slice(4).every(([x,z])=>Math.abs(z+37)>8&&Math.abs(x-37)>8),"Jardineras fuera de calzadas");
