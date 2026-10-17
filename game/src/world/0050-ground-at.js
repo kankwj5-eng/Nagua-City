@@ -33,3 +33,22 @@ function overpassLayer50(v,x,z,heading){
  v.overpass50=d>overpass50.flatHalf+22&&longitudinal;
  return v.overpass50;
 }
+
+
+// Defensa a la altura de la cubierta, nunca en la vía transversal inferior.
+// La longitud (±54 m) coincide con los paneles cuyo relieve supera 0.75 m:
+// no se añade a colliderGrid porque ese índice solo conoce x/z, no pisos.
+function overpassGuardrail53(x,z,upper,r=0){
+ if(!upper||!overpass50.installed||Math.abs(z-overpass50.z)>54+r)return false;
+ const railX=overpass50.halfWidth+.21;
+ return Math.abs(Math.abs(x-overpass50.x)-railX)<.135+r;
+}
+function overpassVehicleGuardrails53(shape,upper,contact){
+ if(!upper||!overpass50.installed||
+   Math.abs(shape.z-overpass50.z)>54+shape.halfLength+shape.halfWidth)return;
+ for(const side of [-1,1]){
+  const rail={x:overpass50.x+side*(overpass50.halfWidth+.21),z:overpass50.z,
+   halfWidth:.135,halfLength:54,heading:0};
+  contact(VehicleContact13.box(shape,rail));
+ }
+}
