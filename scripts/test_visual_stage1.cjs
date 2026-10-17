@@ -111,6 +111,22 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   });
   if(!cathedral.installed)console.log("CATEDRAL_SOLARES_REALES "+JSON.stringify(await page.evaluate(()=>__naguaVisualQA.scanCathedral())));
   assert(cathedral.installed,"No se encontró un solar libre para la Nueva Catedral en el juego real");
+  const overpass=await page.evaluate(()=>{
+   const meshes=scene.meshes.filter(m=>m.name.startsWith("Paso a desnivel de Managua · dos alturas50"));
+   const carHigh={traffic:true,route:{axis:"z"}};
+   const carLow={traffic:true,route:{axis:"x"}};
+   const upper=overpassLayer50(carHigh,37,-37,0);
+   const lower=overpassLayer50(carLow,37,-37,Math.PI/2);
+   return {installed:overpass50.installed,meshGroups:meshes.length,
+    vertices:meshes.reduce((n,m)=>n+m.getTotalVertices(),0),
+    upper,lower,highY:roadSurface50(37,-37,upper),lowY:roadSurface50(37,-37,lower),
+    pillars:overpass50.pillars};
+  });
+  assert(overpass.installed&&overpass.meshGroups>=2&&overpass.vertices>1000,
+   "Falta geometría real del paso a desnivel: "+JSON.stringify(overpass));
+  assert(overpass.upper&&!overpass.lower&&overpass.highY-overpass.lowY>5,
+   "El tráfico superior e inferior no está separado: "+JSON.stringify(overpass));
+  console.log("OVERPASS_BROWSER "+JSON.stringify(overpass));
   assert(cathedral.meshGroups>=3&&cathedral.vertices>5000,
     "Catedral sin geometría fusionada o sin sus 63 cúpulas: "+JSON.stringify(cathedral));
   console.log("CATEDRAL_BROWSER "+JSON.stringify(cathedral));
@@ -149,7 +165,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(maxDelta<.001,"Los dedos cambian de forma al volver a subir a la moto: "+maxDelta);
   assert.deepEqual(errors,[],"Errores JavaScript en el juego real");
   await page.screenshot({path:path.join(root,"dist/stage1-moto.png")});
-  const report={passed:true,cathedral,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
+  const report={passed:true,cathedral,overpass,scope:"Chromium/SwiftShader; no certifica FPS Android",idle:{...idle,rotations:idle.rotations.length,materials:idle.materials},aiming:{...aiming,rotations:aiming.rotations.length,materials:undefined},weapon:hand,bike,errors};
   fs.writeFileSync(path.join(root,"dist/stage1-visual.json"),JSON.stringify(report,null,2));
   console.log("STAGE1_VISUAL "+JSON.stringify(report));
  }finally{await browser.close();}
