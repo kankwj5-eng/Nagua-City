@@ -53,7 +53,12 @@ window.__naguaVisualQA={
    return {installed:overpass50.installed,meshGroups:meshes.length,
     vertices:meshes.reduce((n,m)=>n+m.getTotalVertices(),0),
     upper,lower,highY:roadSurface50(37,-37,upper),lowY:roadSurface50(37,-37,lower),
-    pillars:overpass50.pillars,landscape:overpass50.landscape51};
+    pillars:overpass50.pillars,landscape:overpass50.landscape51,
+    upperBarrier:overpassGuardrails53(41.71,-37,true,.30),
+    lowerClear:!overpassGuardrails53(41.71,-37,false,.30),
+    drivingLaneClear:!overpassGuardrails53(39.45,-37,true,.30),
+    upperWalkingBlocked:blocked(41.71,-37,.30,{overpass50:true},false),
+    lowerWalkingFree:!blocked(41.71,-37,.30,{overpass50:false},false)};
  },
  scanCathedral(){
   const all=[];
@@ -157,6 +162,8 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
    "Falta geometría real del paso a desnivel: "+JSON.stringify(overpass));
   assert(overpass.upper&&!overpass.lower&&overpass.highY-overpass.lowY>5,
    "El tráfico superior e inferior no está separado: "+JSON.stringify(overpass));
+  assert(overpass.upperBarrier&&overpass.lowerClear&&overpass.drivingLaneClear&&overpass.upperWalkingBlocked&&overpass.lowerWalkingFree,
+   "Las barreras físicas del puente no distinguen alturas: "+JSON.stringify(overpass));
   console.log("OVERPASS_BROWSER "+JSON.stringify(overpass));
   const modern=await page.evaluate(()=>__naguaVisualQA.modern52());
   assert(modern.replacedHomes===0&&modern.buildingsNow===modern.originalBuildings+modern.count,
