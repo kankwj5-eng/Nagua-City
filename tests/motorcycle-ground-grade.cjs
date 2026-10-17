@@ -17,6 +17,8 @@ const ctx={Math,Number,time:0,playing:true,gameplayTime:0,driving:true,
  clamp:(x,a,b)=>Math.max(a,Math.min(b,x)),
  tickCity(){},Driving:{advance(){stepCalls++;}},
  resolveVehicle40(){},groundAt(x,z){groundSamples++;return -z*slope;},
+ // Esta prueba aislada ejercita la moto sobre terreno normal, sin viaducto.
+ overpassLayer50(){return false;},roadSurface50(x,z){return ctx.groundAt(x,z);},
  suspension40(){},applyPlayerWheels13(){},
 };
 vm.createContext(ctx);vm.runInContext(source,ctx);
