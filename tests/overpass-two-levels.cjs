@@ -35,7 +35,7 @@ for(let d=18;d<66;d+=.5){
  assert(a-b<.1,"Pendiente acotada para motos");
 }
 assert(Math.abs(y(37,-37,true)-y(37,-37,false)-5.4)<1e-9,"Dos alturas en el mismo cruce");
-assert.equal(y(50,-37,true),y(50,-37,false),"La calle transversal queda abajo");
+assert(y(50,-37,true)>y(50,-37,false)+5,"El brazo peatonal este-oeste cruza elevado");
 assert.equal(y(37,-105,true),y(37,-105,false),"Fuera del viaducto no hay alteraciones");
 const request=(x,z,heading,route=null)=>{
  const v={traffic:!!route,route,overpass50:false};
@@ -50,7 +50,13 @@ assert(layer(car,37,-99,0),"Entrar por la rampa");
 assert(layer(car,37,-37,Math.PI/2),"No caer a nivel inferior al girar sobre el tablero");
 assert(!layer(car,37,40,0),"Desactivar la capa elevada después de salir");
 const geometry=shapes[0]?.elements||[];
-assert.equal(shapes.length,2,"Puente y jardineras en grupos fusionables por material");
+assert.equal(shapes.length,4,"Puente, jardineras, brazo peatonal y plazoletas agrupados");
+const pedestrian=shapes[2].elements,plaza=shapes[3].elements;
+assert(pedestrian.filter(o=>o.name==='Losa peatonal texturada este-oeste57').length>=32,'Dos brazos reales de la cruz');
+assert.equal(pedestrian.filter(o=>o.name==='Cebra del cruce peatonal elevado57').length,11,'Cebra al nivel superior');
+assert.equal(pedestrian.filter(o=>o.name==='Luminaria pasiva de pasarela57').length,8,'Faroles pasivos sin luces GPU');
+assert(plaza.filter(o=>o.name==='Solado mineral de plazoleta57').length===4,'Plazoletas urbanas fuera de carriles');
+assert(overpass.cross57&&overpass.plazas57===4,'Cruce elevado y suelo urbano integrados');
 assert.equal(geometry.filter(x=>x.name==="Tablero vehicular50").length,44);
 assert(geometry.filter(x=>x.name==="Pretil lateral50").length>=50);
 const roadArrows=geometry.filter(o=>o.name==="Flecha de aproximación del viaducto55");
@@ -100,10 +106,10 @@ assert(geometry.filter(x=>x.name==="Reflector pasivo sobre pretil53").length>=10
 assert.equal(colliders.length,12,"Cuatro pilares y ocho jardineras sin objetos invisibles");
 assert(colliders.slice(0,4).every(([x,z])=>Math.abs(z+37)>=24&&Math.abs(x-37)>5),"Pilares fuera de los ejes del cruce");
 assert(colliders.slice(4).every(([x,z])=>Math.abs(z+37)>8&&Math.abs(x-37)>8),"Jardineras fuera de calzadas");
-assert.equal(registrations.length,2,"Puente y jardineras comparten streaming por distancia");
+assert.equal(registrations.length,4,"Cruce y plaza con streaming separado");
 assert.equal(registrations[0][3],150);
 assert.equal(registrations[1][3],155);
-assert(materials.length<=2,"Solo dos materiales PBR, reutilizando marcas y metal");
+assert(materials.length<=3,"Tres materiales PBR, reutilizando acabados urbanos");
 assert.equal(places.length,1,"Marcador en mapa disponible");
 for(const path of ["game/src/engine/0370-tick.js","game/src/vehicles/0369-step-fleet13.js","game/src/vehicles/0012-vehicle-contact40.js","game/src/core/0051-blocked.js"]){
  assert(read(path).includes("roadSurface50("),"Integración de dos niveles faltante: "+path);
