@@ -18,7 +18,7 @@ window.__naguaVisualQA={
    const state=stage34.modern52||{sites:[],count:0,blocked:0,replacedHomes:0};
    const m=scene.meshes.filter(o=>/^(Hotel urbano de teja terracota52|Edificio de oficinas azul52|Edificio blanco comercial52) /.test(o.name));
    return {count:state.count||0,sites:state.sites||[],blocked:state.blocked||0,
-    originalBuildings:state.originalBuildings||0,buildingsNow:data.buildings.length,
+    originalBuildings:state.originalBuildings||0,reasons:state.reasons||{},buildingsNow:data.buildings.length,
     replacedHomes:state.replacedHomes||0,meshGroups:m.length,vertices:m.reduce((s,o)=>s+o.getTotalVertices(),0)};
  },
  overpass(){
