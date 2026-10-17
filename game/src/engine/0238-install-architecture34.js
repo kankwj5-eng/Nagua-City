@@ -29,7 +29,7 @@ function installArchitecture34(){
 // La selección es determinista y verifica tanto las casas como TODOS los sólidos.
 function installModernBlocks52(){
  if(stage34.modern52)return;
- const modern={sites:[],blocked:0,styles:['hotel-teja','oficina-vidrio','mixto-blanco'],replacedHomes:0};
+ const modern={sites:[],blocked:0,styles:['hotel-teja','oficina-vidrio','mixto-blanco'],replacedHomes:0,originalBuildings:data.buildings.length};
  stage34.modern52=modern;
  const cross=[-185,-111,-37,37,111,185];
  const roads=cross.flatMap(c=>[{axis:'x',center:c,width:14},{axis:'z',center:c,width:14}]);
