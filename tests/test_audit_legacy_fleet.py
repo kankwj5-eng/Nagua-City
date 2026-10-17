@@ -12,9 +12,10 @@ class FleetAuditTests(unittest.TestCase):
                 "function createTemplates(){}\n"
                 "humanRide(p,v);\n"
                 "const animation='RidePulsar';\n"
-                "const model='boxer';\n",encoding="utf8")
+                "const model='boxer';\n"
+                "bike46(v);\n",encoding="utf8")
             found=module.audit(root)
-            self.assertEqual(len(found),5)
+            self.assertEqual(len(found),6)
             self.assertEqual(set(x["categoria"] for x in found),set(module.PATTERNS))
     def test_does_not_remove_shared_physics(self):
         with tempfile.TemporaryDirectory() as d:
