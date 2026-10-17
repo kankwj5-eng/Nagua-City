@@ -7,7 +7,7 @@ function vehicleContact40(x,z,v,r){
  if(city24.roundabout)keep(VehicleContact13.circle(shape,city24.roundabout));
  for(const other of fleet){
   if(other===v||other.garage&&other!==current||other.retired28)continue;
-  const obstacle={x:other.root.position.x,z:other.root.position.z,heading:other.heading,halfWidth:other.width/2,halfLength:other.length/2},ext=VehicleContact13.bounds(obstacle);
+  if(Math.abs(roadSurface50(x,z,!!v.overpass50)-other.root.position.y)>2.8)continue;const obstacle={x:other.root.position.x,z:other.root.position.z,heading:other.heading,halfWidth:other.width/2,halfLength:other.length/2},ext=VehicleContact13.bounds(obstacle);
   if(Math.abs(x-obstacle.x)>bounds.x+ext.x||Math.abs(z-obstacle.z)>bounds.z+ext.z)continue;
   keep(VehicleContact13.box(shape,obstacle));
  }
