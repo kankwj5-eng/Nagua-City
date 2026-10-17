@@ -21,7 +21,7 @@ window.__naguaVisualQA={
    return {installed:overpass50.installed,meshGroups:meshes.length,
     vertices:meshes.reduce((n,m)=>n+m.getTotalVertices(),0),
     upper,lower,highY:roadSurface50(37,-37,upper),lowY:roadSurface50(37,-37,lower),
-    pillars:overpass50.pillars};
+    pillars:overpass50.pillars,landscape:overpass50.landscape51};
  },
  scanCathedral(){
   const all=[];
