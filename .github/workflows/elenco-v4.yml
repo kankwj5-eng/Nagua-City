@@ -1,0 +1,30 @@
+name: Validar preparación del elenco Nicaragua v4
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/import_cast_v4.py'
+      - 'tests/test_cast_v4.py'
+      - 'docs/ELENCO_NICARAGUA_V4.md'
+      - '.github/workflows/elenco-v4.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/import_cast_v4.py'
+      - 'tests/test_cast_v4.py'
+      - 'docs/ELENCO_NICARAGUA_V4.md'
+      - '.github/workflows/elenco-v4.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m unittest discover -s tests -p 'test_cast_v4.py' -v
