@@ -38,16 +38,17 @@ function installModernBlocks52(){
   {x:-15,z:-284,radius:29},{x:-74,z:-284,radius:33},{x:-148,z:-285,radius:32},
   {x:57,z:-285,radius:31},{x:37,z:-37,radius:36}];
  const types=[
-  {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:147,seedZ:-249,w:11,d:9,floors:7},
-  {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:280,seedZ:67,w:11,d:9,floors:8},
-  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-6,seedZ:300,w:11,d:9,floors:6},
-  {type:'torre-tecnica',label:'Torre técnica de estructura visible52',seedX:210,seedZ:-249,w:11,d:9,floors:8},
+  {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:147,seedZ:-249,w:11,d:9,floors:12},
+  {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:280,seedZ:67,w:11,d:9,floors:16},
+  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-6,seedZ:300,w:11,d:9,floors:13},
+  {type:'torre-tecnica',label:'Torre técnica de estructura visible52',seedX:210,seedZ:-249,w:11,d:9,floors:15},
   {type:'corporativo-bajo',label:'Sede corporativa horizontal52',seedX:273,seedZ:18,w:11,d:9,floors:3},
-  {type:'institucional',label:'Edificio institucional moderno52',seedX:-6,seedZ:321,w:11,d:9,floors:5}
+  {type:'institucional',label:'Edificio institucional moderno52',seedX:-6,seedZ:321,w:11,d:9,floors:11}
  ];
  const stucco=pbr('Estuco marfil moderno52','#dfd8c6',.93),white=pbr('Hormigón blanco moderno52','#e0e3dc',.94),
   roof=pbr('Teja terracota de hotel52','#b96a4c',.88),blue=pbr('Vidrio azul urbano52','#23485c',.27,.14),
-  shade=pbr('Marcos grafito moderno52','#3b4a4e',.78),terrace=assetMats.monument;
+  shade=pbr('Marcos grafito moderno52','#3b4a4e',.78),
+  turquoise=pbr('Paneles turquesa de fachada52','#327b82',.48,.16),copper=pbr('Acentos terracota de fachada52','#ad704e',.82),terrace=assetMats.monument;
  const concrete=surfaceTextures31.concrete_wall_003;
  if(concrete?.diff){stucco.albedoTexture=concrete.diff;white.albedoTexture=concrete.diff;}
  blue.environmentIntensity=.50;
@@ -77,22 +78,24 @@ function installModernBlocks52(){
     front=faceRoad>z?1:-1,d=spec.d,w=spec.w;
   const root=makeDetailGroup(spec.label,({box})=>{
    box('Basamento con textura52',x,base+.25,z,w+.30,.5,d+.30,terrace);
-   const mass=spec.type==='hotel-teja'?stucco:white;
+   const mass=spec.type==='hotel-teja'?stucco:spec.type==='torre-tecnica'?shade:white;
    box('Núcleo de edificio moderno52',x,base+h/2+.5,z,w,h,d,mass);
    const frontZ=z+front*(d/2+.045);
    // Vistas hacia la avenida: vidrio real de fachada con marcos y
    // antepechos/rellanos a escala de pisos; no pegatinas de ventanas.
-   const perFloor=(spec.type==='mixto-blanco'||spec.type==='institucional')?4:5;
+   const tall=spec.floors>=10,detailStride=tall?2:1;
+   const perFloor=tall?3:(spec.type==='mixto-blanco'||spec.type==='institucional'?4:5);
    const step=w/(perFloor+1);
-   for(let floor=1;floor<=spec.floors;floor++){
+   for(let floor=1;floor<=spec.floors;floor+=detailStride){
     const iy=base+.5+(floor-.5)*3.1;
     box('Cornisa lineal por piso52',x,base+.5+floor*3.1,frontZ+front*.08,w+.36,.17,.24,
       spec.type==='oficina-vidrio'?shade:terrace);
     for(let col=1;col<=perFloor;col++){
      const px=x-w/2+col*step;
-     box('Ventana urbana con cristal52',px,iy+.16,frontZ+front*.09,Math.min(1.65,step-.35),1.70,.10,blue);
-     box('Dintel de ventana urbana52',px,iy+1.09,frontZ+front*.16,Math.min(1.8,step-.23),.12,.18,mass);
-     if(spec.type!=='oficina-vidrio'&&col%2===0)
+     box('Ventana urbana con cristal52',px,iy+(tall?1.00:.16),frontZ+front*.09,Math.min(1.65,step-.35),tall?3.4:1.70,.10,
+      spec.type==='torre-tecnica'?turquoise:blue);
+     box('Dintel de ventana urbana52',px,iy+(tall?2.76:1.09),frontZ+front*.16,Math.min(1.8,step-.23),.12,.18,mass);
+     if(spec.type!=='oficina-vidrio'&&col%2===0&&!tall)
       box('Barandal de balcón moderno52',px,iy-.76,frontZ+front*.52,Math.min(1.8,step-.30),.09,.12,shade);
     }
     // Ventanas laterales; la cara no se repite como una fachada completamente plana.
@@ -106,10 +109,18 @@ function installModernBlocks52(){
    box('Acera de portal moderno52',x,base+.045,frontZ+front*1.21,w*.73,.09,1.7,terrace);
    // Siluetas muy diferentes: torre estructural, sede horizontal y centro cívico.
    // Piezas a escala contenidas en el solar y agrupadas por cinco materiales.
+   if(tall){
+    // Bandas de color continuas con pocos objetos por torre.
+    for(const side of [-1,1])box('Banda vertical de identidad en torre52',
+     x+side*(w/2-1.05),base+h/2+.5,frontZ+front*.31,.62,h,.18,
+     spec.type==='hotel-teja'?copper:spec.type==='torre-tecnica'?turquoise:shade);
+   }
+   if(spec.type==='oficina-vidrio')box('Cortina de vidrio azul central52',x,base+h/2+.5,frontZ+front*.21,2.3,h-.4,.18,blue);
+   if(spec.type==='mixto-blanco')box('Acento terracota de torre mixta52',x+w*.26,base+h/2+.5,frontZ+front*.25,.80,h-.4,.17,copper);
    if(spec.type==='torre-tecnica'){
     // Dos cruces diagonales por cara frontal dan carácter estructural sin
     // generar una textura o malla permanente por cada ventana.
-    for(let level=0;level<spec.floors;level++){
+    for(let level=0;level<spec.floors;level+=2){
      const iy=base+.5+level*3.1+1.55;
      for(const side of [-1,1]){
       const tx=x+side*(w/2-1.25);

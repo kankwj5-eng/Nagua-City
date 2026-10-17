@@ -52,7 +52,9 @@ for(let i=0;i<lots.length;i++)for(let j=0;j<i;j++){
    "Ningún inmueble moderno se superpone con otro");
 }
 assert(first.roots.every(o=>o.range===125),"Limitar LOD en teléfonos básicos");
-assert.equal(first.materials.length,5,"Cinco materiales PBR compartidos, no uno por ventana");
+assert.equal(first.materials.length,7,"Siete materiales PBR compartidos, no uno por ventana");
+assert(sites.filter(s=>s.h>=30).length>=5,"Cinco edificios alcanzan altura de torre");
+assert(first.placed.some(g=>g.boxes.some(b=>b.v[0]==='Banda vertical de identidad en torre52')),"Torres con bandas de identidad");
 assert(first.placed.every(o=>o.boxes.length<175),"Geometría económica por edificio");
 for(const site of sites){
  assert(![-185,-111,-37,37,111,185].some(r=>Math.abs(site.x-r)<14||Math.abs(site.z-r)<14),"No construir sobre carreteras");
