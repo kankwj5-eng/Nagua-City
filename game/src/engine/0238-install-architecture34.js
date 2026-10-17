@@ -29,7 +29,7 @@ function installArchitecture34(){
 // La selección es determinista y verifica tanto las casas como TODOS los sólidos.
 function installModernBlocks52(){
  if(stage34.modern52)return;
- const modern={sites:[],blocked:0,styles:['hotel-teja','oficina-vidrio','mixto-blanco'],replacedHomes:0,originalBuildings:data.buildings.length};
+ const modern={sites:[],blocked:0,reasons:{},styles:['hotel-teja','oficina-vidrio','mixto-blanco'],replacedHomes:0,originalBuildings:data.buildings.length};
  stage34.modern52=modern;
  const cross=[-185,-111,-37,37,111,185];
  const roads=cross.flatMap(c=>[{axis:'x',center:c,width:14},{axis:'z',center:c,width:14}]);
@@ -48,7 +48,7 @@ function installModernBlocks52(){
  if(concrete?.diff){stucco.albedoTexture=concrete.diff;white.albedoTexture=concrete.diff;}
  blue.environmentIntensity=.50;
  const candidateOffsets=[[0,0]];
- for(let ring=6;ring<=42;ring+=6)for(let k=-ring;k<=ring;k+=6){
+ for(let ring=6;ring<=102;ring+=6)for(let k=-ring;k<=ring;k+=6){
   candidateOffsets.push([k,-ring],[k,ring],[-ring,k],[ring,k]);
  }
  const seen=new Set();
@@ -61,7 +61,7 @@ function installModernBlocks52(){
    if(!inWorld(x-spec.w/2-edge,z-spec.d/2-edge)||!inWorld(x+spec.w/2+edge,z+spec.d/2+edge))continue;
    const result=planUrbanParcel51({x,z,w:spec.w,d:spec.d,buffer:edge},
     data.buildings,data.boxes,roads,protectedSites);
-   if(!result.approved){modern.blocked++;continue;}
+   if(!result.approved){modern.blocked++;modern.reasons[result.reason]=(modern.reasons[result.reason]||0)+1;continue;}
    // Esta primera versión usa solares libres; los derribos quedarán habilitados
    // solo cuando mallas de zonas, techos, detalles y colisiones tengan dueño.
    if(result.replacements.length)continue;
