@@ -16,7 +16,7 @@ function mock(blocker=null){
   stage34:{},quality:"low",assetMats:{monument:{name:"monument"}},
   surfaceTextures31:{concrete_wall_003:{diff:"sharedConcrete"}},
   pbr(name){const m={name};materials.push(m);return m;},
-  inWorld:(x,z)=>Math.abs(x)<266&&Math.abs(z)<266,
+  inWorld:(x,z)=>(Math.abs(x)<266&&Math.abs(z)<266)||(x>=266&&x<397&&z>-46&&z<117)||(x>-20&&x<108&&z>=266&&z<515)||(x>-405&&x<-259&&z>-90&&z<107),
   groundAt:()=>.003,
   registerDetail31:(r,x,z,range)=>roots.push({r,x,z,range}),
   addWorldBox:(x,z,w,d)=>{added.push([x,z,w,d]);b.boxes.push([x-w/2,z-d/2,x+w/2,z+d/2]);},
@@ -30,7 +30,7 @@ first.ctx.installModernBlocks52();
 const sites=first.ctx.stage34.modern52.sites;
 assert.equal(sites.length,3,"Centro, corredor oriental y corredor occidental deben tener un ejemplo cada uno");
 assert.deepEqual(Array.from(sites,x=>x.type),["hotel-teja","oficina-vidrio","mixto-blanco"]);
-assert(sites[0].x<0&&sites[0].z<0&&sites[1].x>0&&sites[1].z>0&&sites[2].x<0&&sites[2].z>0,"Tipos repartidos, no juntos");
+assert(sites[0].x>100&&sites[0].z<-200&&sites[1].x>266&&sites[1].z>0&&sites[2].x<0&&sites[2].z>266,"Hotel en litoral sureste, oficina al este y comercio al norte");
 assert(first.placed.length===3&&first.roots.length===3&&first.added.length===3,"Un grupo y una colisión por inmueble");
 assert.equal(first.ctx.stage34.modern52.replacedHomes,0,"Las viviendas originales no se borran sin identificador de malla");
 assert.equal(first.data.buildings[0],first.house,"La casa anterior conserva su identidad, orden y atributos");
@@ -53,8 +53,8 @@ assert.equal(unavailable.ctx.stage34.modern52.count,0,"Sin huecos seguros no deb
 assert.equal(unavailable.data.buildings.length,1,"No se borran casas ante una manzana bloqueada");
 assert.equal(unavailable.added.length,0);
 const protectedHouse=mock();
-protectedHouse.data.buildings.push({x:-145,y:-133,w:12,d:10,h:3,type:"casa"});
+protectedHouse.data.buildings.push({x:147,y:-249,w:10,d:8,h:3,type:"casa"});
 protectedHouse.ctx.installModernBlocks52();
 assert.equal(protectedHouse.data.buildings[1].type,"casa","No sustituir sin malla visual localizada");
-assert(!protectedHouse.ctx.stage34.modern52.sites.some(s=>Math.abs(s.x+145)<13&&Math.abs(s.z+133)<12),"Evitar casa del solar preferido");
+assert(!protectedHouse.ctx.stage34.modern52.sites.some(s=>Math.abs(s.x-147)<12&&Math.abs(s.z+249)<11),"Evitar casa del solar preferido");
 console.log("MANAGUA_MODERN_BUILDINGS_OK "+JSON.stringify({buildings:sites.length,roots:3,materials:first.materials.length,originalHousesIntact:true}));
