@@ -46,6 +46,22 @@ function installOverpass50(){
     const stripe=box('Línea discontinua central50',x,hm+.049,mid,.12,.015,section*.52,marking);
     stripe.rotation.x=angle;
    }
+   // Juntas y drenajes visibles, discretos y a ras de asfalto.
+   // Evitar apoyos nuevos sobre la vía que cruza por debajo.
+   if(i>3&&i<divisions-3&&i%7===0){
+    const seam=box('Junta transversal del tablero53',x,hm+.041,mid,halfWidth*2-.5,.017,.075,metal);
+    seam.rotation.x=angle;
+   }
+   if(overpassRise50(mid)>3&&i%7===0){
+    const rib=box('Nervadura de hormigón bajo tablero53',x,hm-.28,mid,halfWidth*2+.22,.24,.28,concrete);
+    rib.rotation.x=angle;
+   }
+   if(overpassRise50(mid)>.75&&i%5===0){
+    for(const side of [-1,1]){
+     const reflector=box('Reflector pasivo sobre pretil53',x+side*(halfWidth+.39),hm+.53,mid,.045,.18,1.1,marking);
+     reflector.rotation.x=angle;
+    }
+   }
   }
   // Dos pares de columnas de hormigón lejos de la calzada transversal z=-37.
   for(const dz of [-25,25])for(const side of [-1,1]){
