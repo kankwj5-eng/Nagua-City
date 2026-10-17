@@ -34,6 +34,9 @@ async function run(coarse){
 (async()=>{
  const mobile=await run(true),desktop=await run(false);
  const boot=fs.readFileSync(path.join(root,"game/src/engine/0463-boot45.js"),"utf8");
+ const prime=fs.readFileSync(path.join(root,"game/src/core/0461-prime-visible48.js"),"utf8");
+ assert(prime.includes("slice(0,12)")&&prime.includes("2400"),"La espera por texturas iniciales debe estar acotada");
+ assert(prime.includes("deferredTextures"),"Informar cuántas texturas se aplazaron");
  assert(!boot.includes("Podés volver a abrir el archivo."),"Never label slow phases as errors");
  assert(boot.includes("no es un error confirmado"),"Slow-phase diagnostics must remain honest");
  assert(boot.includes("function fail(error)"),"Real errors still show retry");
