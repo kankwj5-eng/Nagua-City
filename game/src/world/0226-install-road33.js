@@ -30,6 +30,12 @@ function installOverpass50(){
    const hm=(h0+h1)*.5,angle=-Math.atan2(h1-h0,section);
    const pavement=box('Tablero vehicular50',x,hm-.055,mid,halfWidth*2,.18,section+.035,asphalt);
    pavement.rotation.x=angle;
+   // Cara inferior continua de hormigón (unida al tablero), solo en tramo alto.
+   // El cruce de abajo mantiene gálibo y los colisionadores 2D no se modifican.
+   if(overpassRise50(mid)>1.2){
+    const underside=box('Intradós de hormigón del viaducto53',x,hm-.265,mid,halfWidth*2+.18,.24,section+.035,concrete);
+    underside.rotation.x=angle;
+   }
    // Líneas continuas sobre la propia rampa, sin texturas repetidas ni
    // colisión en falso con la circulación inferior.
    for(const side of [-1,1]){
@@ -56,6 +62,17 @@ function installOverpass50(){
    box('Pilar del viaducto50',px,base+(top-base)*.5,pz,.78,top-base,.82,concrete);
    box('Cabezal de apoyo50',px,top-.12,pz,1.2,.33,2.4,concrete);
    pillars.push([px,pz]);
+  }
+  // Pequeños captafaros fijados a la cara exterior de las barreras, sin luces.
+  for(const dz of [-48,-24,0,24,48])for(const side of [-1,1]){
+   box('Captafaros pasivos del pretil53',
+    x+side*(halfWidth+.39),roadSurface50(x,z+dz,true)+.53,z+dz,.065,.17,.34,marking);
+  }
+  // Paso peatonal transversal sobre la calle INFERIOR. Pintura a ras de asfalto,
+  // sin bolardos, falsos muros ni nada que cierre el carril existente.
+  for(const offset of [-16,16])for(let stripe=-5;stripe<=5;stripe++){
+   const px=x+offset,pz=z+stripe*.77;
+   box('Cebra de paso inferior53',px,groundAt(px,pz)+.033,pz,.98,.012,.49,marking);
   }
   for(const dz of [-19,19]){
    const pz=z+dz,top=roadSurface50(x,pz,true)-.29;
