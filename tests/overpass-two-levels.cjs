@@ -7,8 +7,8 @@ const begin=groupSource.indexOf("// Paso a desnivel urbano:");
 assert(begin>=0&&groupSource.includes(" installOverpass50();"),"El puente debe instalarse al cargar el mundo, no bajo una misión");
 const shapes=[],registrations=[],colliders=[],places=[],materials=[];
 const B={MeshBuilder:{}},surfaceTextures31={asphalt_03:{diff:"asphalt",nor_gl:"asphaltNormals"}};
-const ctx={B,surfaceTextures31,assetMats:{white:{name:"white"},steel:{name:"steel"},monument:{name:"monument"}},
- data:{places},groundAt:(x,z)=>.20+z*.00001,
+const ctx={B,surfaceTextures31,assetMats:{white:{name:"white"},steel:{name:"steel"},monument:{name:"monument"},houseBase:{name:"soil"}},
+ data:{places,boxes:[],buildings:[]},inWorld:()=>true,groundAt:(x,z)=>.20+z*.00001,pbrSharedGrass31:()=>({name:"sharedGrass"}),
  pbr:(name)=>{const m={name};materials.push(m);return m;},
  blocked:(x,z)=>false,
  makeDetailGroup:(name,fn)=>{const elements=[];fn({box:(name,x,y,z,w,h,d,mat)=>{const o={name,x,y,z,w,h,d,mat,rotation:{x:0}};elements.push(o);return o;}});const root={name,elements};shapes.push(root);return root;},
@@ -50,13 +50,18 @@ assert(layer(car,37,-99,0),"Entrar por la rampa");
 assert(layer(car,37,-37,Math.PI/2),"No caer a nivel inferior al girar sobre el tablero");
 assert(!layer(car,37,40,0),"Desactivar la capa elevada después de salir");
 const geometry=shapes[0]?.elements||[];
-assert.equal(shapes.length,1,"Un grupo fusionable por material");
+assert.equal(shapes.length,2,"Puente y jardineras en grupos fusionables por material");
 assert.equal(geometry.filter(x=>x.name==="Tablero vehicular50").length,44);
 assert(geometry.filter(x=>x.name==="Pretil lateral50").length>=50);
-assert.equal(colliders.length,4,"Solo pilares generan colisiones; los pasos inferiores quedan abiertos");
-assert(colliders.every(([x,z])=>Math.abs(z+37)>=24&&Math.abs(x-37)>5),"Pilares fuera de los ejes del cruce");
-assert.equal(registrations.length,1,"Límite de distancia en Android");
+assert.equal(overpass.pillars,4,"Los cuatro pilares quedan fuera de ambas carreteras");
+assert.equal(overpass.landscape51,8,"Jardineras únicamente en las ocho ubicaciones libres de prueba");
+assert.equal(geometry.filter(x=>x.name==="Línea blanca de borde51").length,88,"Marcas de borde continuas, 2 por segmento");
+assert.equal(colliders.length,12,"Cuatro pilares y ocho jardineras sin objetos invisibles");
+assert(colliders.slice(0,4).every(([x,z])=>Math.abs(z+37)>=24&&Math.abs(x-37)>5),"Pilares fuera de los ejes del cruce");
+assert(colliders.slice(4).every(([x,z])=>Math.abs(z+37)>8&&Math.abs(x-37)>8),"Jardineras fuera de calzadas");
+assert.equal(registrations.length,2,"Puente y jardineras comparten streaming por distancia");
 assert.equal(registrations[0][3],150);
+assert.equal(registrations[1][3],155);
 assert(materials.length<=2,"Solo dos materiales PBR, reutilizando marcas y metal");
 assert.equal(places.length,1,"Marcador en mapa disponible");
 for(const path of ["game/src/engine/0370-tick.js","game/src/vehicles/0369-step-fleet13.js","game/src/vehicles/0012-vehicle-contact40.js","game/src/core/0051-blocked.js"]){

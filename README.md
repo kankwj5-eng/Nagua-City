@@ -12,6 +12,15 @@ Repositorio oficial del juego de conducción y exploración de Managua.
 - Optimizar cargas, memoria y rendimiento con mediciones verificables.
 - Interfaz en español; entrega jugable en HTML independiente.
 
+## Plan maestro visual de Managua (tres videos)
+
+El diseño del centro vial, las avenidas, los barrios arbolados y la familia de edificios modernos se guía por tres videos aportados por el creador en octubre de 2026. **Se pueden sustituir viviendas concretas cuando sea necesario para ubicar correctamente una obra importante**, pero nunca se borrarán otras casas o construcciones a ciegas. Cada reemplazo exige retirar la vivienda visual, sus datos y sus colisiones, proteger vecinos y verificar el resultado.
+
+- [Plan maestro por etapas, zonas, referencias y reglas de sustitución controlada](docs/PLAN_MAESTRO_MANAGUA.md).
+- Planificación de parcelas sin efectos secundarios: código en game/src/world/0064-city-rules.js.
+- Pruebas de seguridad urbanística: node tests/urban-parcel-policy.cjs.
+- Primera mejora ligada a los videos: líneas continuas en la rampa e isletas verdes verificadas alrededor del paso a desnivel; **no** equivale todavía a una rotonda funcional ni a completar todos los edificios del video.
+
 ## Archivo oficial y rendimiento
 
 La base del usuario es `Managua_Del_taller_al_lago(1).html`, almacenada en Git LFS. Las mejoras de rendimiento se aplican por bloques pequeños; el original se conserva.

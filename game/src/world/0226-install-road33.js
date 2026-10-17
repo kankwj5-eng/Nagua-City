@@ -30,6 +30,12 @@ function installOverpass50(){
    const hm=(h0+h1)*.5,angle=-Math.atan2(h1-h0,section);
    const pavement=box('Tablero vehicular50',x,hm-.055,mid,halfWidth*2,.18,section+.035,asphalt);
    pavement.rotation.x=angle;
+   // Líneas continuas sobre la propia rampa, sin texturas repetidas ni
+   // colisión en falso con la circulación inferior.
+   for(const side of [-1,1]){
+    const edge=box('Línea blanca de borde51',x+side*(halfWidth-.42),hm+.045,mid,.105,.013,section+.016,marking);
+    edge.rotation.x=angle;
+   }
    // Pantallas ligeras fuera del espacio de rodaje. No se añaden colisiones
    // bidimensionales en los bordes para no bloquear la calle que cruza abajo.
    if(overpassRise50(mid)>.75)for(const side of [-1,1]){
@@ -61,4 +67,41 @@ function installOverpass50(){
  for(const [px,pz] of pillars)addWorldBox(px,pz,.78,.82);
  data.places.push(['Paso a desnivel · avenida central (diseño inspirado)',x+8,z-7]);
  overpass50.pillars=pillars.length;
+ beautifyOverpass51();
+}
+
+// Primer acabado de jardinería junto al viaducto, inspirado en el video aéreo.
+// Son aceras/isletas fuera del cruce; no altera la rotonda original ni sus casas.
+function beautifyOverpass51(){
+ if(overpass50.landscape51!==undefined)return;
+ const {x,z}=overpass50;
+ const candidates=[[-12.4,-23],[12.4,-23],[-12.4,23],[12.4,23],
+                   [-13.2,-48],[13.2,-48],[-13.2,48],[13.2,48]];
+ const patches=[];
+ const streetCenters=[-185,-111,-37,37,111,185];
+ for(const [dx,dz] of candidates){
+  const px=x+dx,pz=z+dz,w=3.1,d=4.0,padding=.65;
+  if(!inWorld(px-w/2-padding,pz-d/2-padding)||!inWorld(px+w/2+padding,pz+d/2+padding))continue;
+  if(streetCenters.some(c=>Math.abs(px-c)<8.0||Math.abs(pz-c)<8.0))continue;
+  const area=[px-w/2-padding,pz-d/2-padding,px+w/2+padding,pz+d/2+padding];
+  const overlap=(b)=>area[0]<b[2]&&area[2]>b[0]&&area[1]<b[3]&&area[3]>b[1];
+  if(data.boxes.some(overlap))continue;
+  if(data.buildings.some(b=>b.w>0&&b.d>0&&overlap([b.x-b.w/2,b.y-b.d/2,b.x+b.w/2,b.y+b.d/2])))continue;
+  if(blocked(px,pz,.55,null,false))continue;
+  patches.push({x:px,z:pz,w,d,y:groundAt(px,pz)});
+ }
+ if(patches.length){
+  const soil=assetMats.houseBase,curb=assetMats.monument,green=pbrSharedGrass31();
+  const root=makeDetailGroup('Isletas verdes despejadas del paso a desnivel51',({box})=>{
+   for(const p of patches){
+    box('Base de bordillo en isleta51',p.x,p.y+.055,p.z,p.w+.24,.11,p.d+.24,curb);
+    box('Tierra de jardinera51',p.x,p.y+.122,p.z,p.w,.035,p.d,soil);
+    box('Cubierta de zacate de isleta51',p.x,p.y+.145,p.z,p.w-.23,.014,p.d-.28,green);
+   }
+  });
+  registerDetail31(root,x,z,155);
+  // Isletas reales, fuera de las calzadas, impiden plantas superpuestas futuras.
+  for(const p of patches)addWorldBox(p.x,p.z,p.w+.24,p.d+.24);
+ }
+ overpass50.landscape51=patches.length;
 }

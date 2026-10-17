@@ -7,3 +7,50 @@ var CityRules={
  recover(s){s.health=100;s.cash=Math.max(0,s.cash-150);s.wanted=0;s.hiddenTime=0;s.territory=null;s.territoryTime=0;},
  load(raw){const s=this.create();if(!raw||raw.schema!==1)return s;const v=raw.state;if(!v||!Number.isFinite(v.cash)||!Number.isFinite(v.health))return s;s.cash=Math.max(0,Math.min(100000,v.cash));s.health=Math.max(1,Math.min(100,v.health));s.outfit=Math.max(0,Math.min(8,Math.floor(v.outfit||0)));for(const n of ['pistol','rifle'])if(Number.isFinite(v.reserve?.[n]))s.reserve[n]=Math.max(0,Math.min(1000,Math.floor(v.reserve[n])));for(const n of ['pistol','rifle'])if(Number.isFinite(v.magazines?.[n]))s.magazines[n]=Math.max(0,Math.min(n==='pistol'?12:30,Math.floor(v.magazines[n])));if(v.job?.id==='cacao')s.job={id:'cacao',x:-26,z:90};return s;}
 };
+
+
+// Selector NO destructivo de parcelas: la sustitución de casas se autoriza
+// por índice exacto, no por distancia, y nunca elimina mallas automáticamente.
+// Quien aplique un plan debe retirar malla visual, streaming, datos y colisión
+// de cada vivienda identificada en una misma operación comprobable.
+function planUrbanParcel51(site,buildings,colliders,roads=[],protectedSites=[]){
+ const fail=(reason,extra={})=>({approved:false,reason,replacements:[],...extra});
+ if(!site||![site.x,site.z,site.w,site.d].every(Number.isFinite)||site.w<=0||site.d<=0)return fail('invalid-footprint');
+ const buffer=Number.isFinite(site.buffer)?Math.max(0,Math.min(4,site.buffer)):1;
+ const lot=[site.x-site.w/2-buffer,site.z-site.d/2-buffer,site.x+site.w/2+buffer,site.z+site.d/2+buffer];
+ const intersects=(a,b)=>a[0]<b[2]&&a[2]>b[0]&&a[1]<b[3]&&a[3]>b[1];
+ const inside=(a,b)=>a[0]>=b[0]-.01&&a[1]>=b[1]-.01&&a[2]<=b[2]+.01&&a[3]<=b[3]+.01;
+ for(const road of roads){
+  if(road.axis!=='x'&&road.axis!=='z')return fail('invalid-road');
+  const half=(road.width||9)/2;
+  const roadRect=road.axis==='x'?[road.min??-10000,road.center-half,road.max??10000,road.center+half]:
+   [road.center-half,road.min??-10000,road.center+half,road.max??10000];
+  if(intersects(lot,roadRect))return fail('road-conflict');
+ }
+ for(const landmark of protectedSites){
+  const radius=landmark.radius||8;
+  if(intersects(lot,[landmark.x-radius,landmark.z-radius,landmark.x+radius,landmark.z+radius]))return fail('protected-landmark');
+ }
+ const replaceIds=new Set(site.replaceIndices||[]);
+ const buildingsHit=[],replacements=[];
+ for(let i=0;i<buildings.length;i++){
+  const b=buildings[i];
+  if(![b.x,b.y,b.w,b.d].every(Number.isFinite)||b.w<=0||b.d<=0)continue;
+  const footprint=[b.x-b.w/2,b.y-b.d/2,b.x+b.w/2,b.y+b.d/2];
+  if(!intersects(lot,footprint))continue;
+  buildingsHit.push(i);
+  const isHome=b.type==='casa'||/^vivienda/i.test(String(b.type||''));
+  if(!isHome||!replaceIds.has(i))return fail(isHome?'unapproved-home':'other-building',{blockingIndex:i});
+  // No house may be half-demolished by a new footprint. Require complete cover.
+  if(!inside(footprint,lot))return fail('partial-home',{blockingIndex:i});
+  replacements.push({index:i,x:b.x,z:b.y,w:b.w,d:b.d,type:b.type});
+ }
+ if([...replaceIds].some(i=>!buildingsHit.includes(i)))return fail('unmatched-replacement');
+ let blockingColliders=0;
+ for(const rect of colliders)if(rect?.length===4&&intersects(lot,rect)){
+  const owned=replacements.some(r=>inside(rect,[r.x-r.w/2-.35,r.z-r.d/2-.35,r.x+r.w/2+.35,r.z+r.d/2+.35]));
+  if(!owned)blockingColliders++;
+ }
+ if(blockingColliders)return fail('unowned-collision',{blockingColliders});
+ return {approved:true,reason:replacements.length?'explicit-home-replacement':'free-parcel',replacements,footprint:lot};
+}
