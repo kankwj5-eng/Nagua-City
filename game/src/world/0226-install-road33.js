@@ -30,6 +30,13 @@ function installOverpass50(){
    const hm=(h0+h1)*.5,angle=-Math.atan2(h1-h0,section);
    const pavement=box('Tablero vehicular50',x,hm-.055,mid,halfWidth*2,.18,section+.035,asphalt);
    pavement.rotation.x=angle;
+   // La losa inferior continua se apoya contra el asfalto y deja visibles las
+   // nervaduras espaciadas. Sin crear colisión 2D: deben pasar carros por debajo.
+   if(overpassRise50(mid)>1.2){
+    const soffit=box('Intradós continuo de hormigón54',x,hm-.225,mid,
+     halfWidth*2+.18,.16,section+.035,concrete);
+    soffit.rotation.x=angle;
+   }
    // Líneas continuas sobre la propia rampa, sin texturas repetidas ni
    // colisión en falso con la circulación inferior.
    for(const side of [-1,1]){
@@ -72,6 +79,13 @@ function installOverpass50(){
    box('Pilar del viaducto50',px,base+(top-base)*.5,pz,.78,top-base,.82,concrete);
    box('Cabezal de apoyo50',px,top-.12,pz,1.2,.33,2.4,concrete);
    pillars.push([px,pz]);
+  }
+  // Dos cruces pintados sobre la avenida este-oeste, antes y después del
+  // nudo bajo el puente. Ninguno agrega muro ni obstáculo al tránsito.
+  for(const offset of [-16,16])for(let stripe=-5;stripe<=5;stripe++){
+   const px=x+offset,pz=z+stripe*.77;
+   box('Paso peatonal del nivel inferior54',px,groundAt(px,pz)+.033,pz,
+    .98,.012,.49,marking);
   }
   for(const dz of [-19,19]){
    const pz=z+dz,top=roadSurface50(x,pz,true)-.29;
