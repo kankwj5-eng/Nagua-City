@@ -56,6 +56,17 @@ assert(geometry.filter(x=>x.name==="Pretil lateral50").length>=50);
 assert.equal(overpass.pillars,4,"Los cuatro pilares quedan fuera de ambas carreteras");
 assert.equal(overpass.landscape51,8,"Jardineras únicamente en las ocho ubicaciones libres de prueba");
 assert.equal(geometry.filter(x=>x.name==="Línea blanca de borde51").length,88,"Marcas de borde continuas, 2 por segmento");
+const soffit=geometry.filter(x=>x.name==="Intradós continuo de hormigón54");
+assert(soffit.length>=20,"Losa inferior continua en tramo elevado, sin huecos entre nervaduras");
+assert(soffit.filter(m=>Math.abs(m.z+37)<10).every(m=>m.y-m.h/2>4.8),
+ "El cruce central conserva altura libre para tráfico inferior");
+const crosswalks=geometry.filter(x=>x.name==="Paso peatonal del nivel inferior54");
+assert.equal(crosswalks.length,22,"Dos cebras completas de 11 franjas");
+assert(crosswalks.every(m=>m.y<.15&&Math.abs(m.z+37)<=4&&Math.abs(m.x-37)===16),
+ "Los pasos peatonales deben estar sobre la vía inferior, no en el tablero");
+assert(!/new B\.(?:PointLight|SpotLight)|new B\.DynamicTexture/.test(groupSource),
+ "Sin luces ni texturas dinámicas nuevas");
+
 assert(geometry.filter(x=>x.name==="Junta transversal del tablero53").length>=5,
  "Juntas de dilatación visibles a ras de calzada");
 assert(geometry.filter(x=>x.name==="Nervadura de hormigón bajo tablero53").length>=3,
