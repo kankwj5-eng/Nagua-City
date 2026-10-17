@@ -25,7 +25,8 @@ function installArchitecture34(){
 }
 
 // Etapa 52: primeras tres tipologías contemporáneas a partir del segundo video.
-// Zonas separadas del centro, sin desplazar una vivienda sin sus mallas asignadas.
+// Parcelas auditadas en sector litoral sureste, expansión oriental y zona norte.
+// Sin desplazar una vivienda sin malla y colisión individual atribuibles.
 // La selección es determinista y verifica tanto las casas como TODOS los sólidos.
 function installModernBlocks52(){
  if(stage34.modern52)return;
@@ -37,9 +38,9 @@ function installModernBlocks52(){
   {x:-15,z:-284,radius:29},{x:-74,z:-284,radius:33},{x:-148,z:-285,radius:32},
   {x:57,z:-285,radius:31},{x:37,z:-37,radius:36}];
  const types=[
-  {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:-145,seedZ:-133,w:11,d:9,floors:7},
-  {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:144,seedZ:132,w:12,d:9,floors:8},
-  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-145,seedZ:132,w:11,d:9,floors:6}
+  {type:'hotel-teja',label:'Hotel urbano de teja terracota52',seedX:147,seedZ:-249,w:11,d:9,floors:7},
+  {type:'oficina-vidrio',label:'Edificio de oficinas azul52',seedX:280,seedZ:67,w:11,d:9,floors:8},
+  {type:'mixto-blanco',label:'Edificio blanco comercial52',seedX:-6,seedZ:300,w:11,d:9,floors:6}
  ];
  const stucco=pbr('Estuco marfil moderno52','#dfd8c6',.93),white=pbr('Hormigón blanco moderno52','#e0e3dc',.94),
   roof=pbr('Teja terracota de hotel52','#b96a4c',.88),blue=pbr('Vidrio azul urbano52','#23485c',.27,.14),
@@ -48,7 +49,7 @@ function installModernBlocks52(){
  if(concrete?.diff){stucco.albedoTexture=concrete.diff;white.albedoTexture=concrete.diff;}
  blue.environmentIntensity=.50;
  const candidateOffsets=[[0,0]];
- for(let ring=6;ring<=102;ring+=6)for(let k=-ring;k<=ring;k+=6){
+ for(let ring=6;ring<=42;ring+=6)for(let k=-ring;k<=ring;k+=6){
   candidateOffsets.push([k,-ring],[k,ring],[-ring,k],[ring,k]);
  }
  const seen=new Set();
