@@ -43,7 +43,8 @@ Ninguna instrucción permite destruir barrios completos ni sustituir masivamente
 ### Etapa 1 — Cruce vial central de calidad
 - [x] Paso a desnivel funcional inicial con dos alturas, rampas y tráfico separado (PR #45).
 - [ ] Conectores y curvas de acceso, rotonda inferior con circulación efectiva, arcenes y medianas vegetales compatibles con las rutas reales.
-- [x] Barreras laterales con **colisión dependiente del nivel** para vehículos y peatones, sin convertirlas en obstáculos globales 2D ni tapar el paso inferior. Juntas de dilatación, nervaduras bajo tablero y reflectores pasivos (PR #49, en verificación).
+- [x] Barreras laterales con **colisión dependiente del nivel** para vehículos y peatones, sin convertirlas en obstáculos globales 2D ni tapar el paso inferior. Juntas de dilatación, nervaduras bajo tablero y reflectores pasivos (PR #49, fusionado tras pruebas).
+- [x] Losa inferior continua del puente y dos pasos peatonales pintados sobre la calzada inferior, sin nuevas colisiones ni luces (siguiente entrega complementaria).
 - [ ] Aún pendientes: aceras conectadas, cartelería vial, drenaje detallado y señalización horizontal completa en las curvas y accesos; la barrera física no sustituye la red vial final.
 - [ ] Verificar entradas y salidas, flujo de tráfico en ambas alturas y que nada quede encima de casas o vehículos.
 
