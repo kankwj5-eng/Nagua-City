@@ -162,6 +162,10 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   assert(modern.replacedHomes===0&&modern.buildingsNow===modern.originalBuildings+modern.count,
     "Cambió un inmueble existente o el catálogo perdió sincronía: "+JSON.stringify(modern));
   if(modern.count===0)console.log("URBAN_SURVEY "+JSON.stringify(await page.evaluate(()=>__naguaVisualQA.urbanSurvey())));
+  assert(modern.count===6&&modern.sites.length===6&&modern.meshGroups>=6&&modern.vertices>10000,
+    "Las seis tipologías deben aparecer en la escena, no solo en los mocks: "+JSON.stringify(modern));
+  assert(new Set(modern.sites.map(s=>s.type)).size===6,
+    "Se detectaron fachadas repetidas o faltantes: "+JSON.stringify(modern.sites));
   assert(modern.count>=1&&modern.meshGroups>=modern.count&&modern.vertices>500,
     "La ciudad real no incorporó ningún edificio moderno válido: "+JSON.stringify(modern));
   console.log("MODERN_BUILDINGS_BROWSER "+JSON.stringify(modern));
