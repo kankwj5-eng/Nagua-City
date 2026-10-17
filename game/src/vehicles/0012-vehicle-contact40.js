@@ -5,6 +5,8 @@ function vehicleContact40(x,z,v,r){
   if(seen.has(b))continue;seen.add(b);keep(VehicleContact13.box(shape,{x:(b[0]+b[2])/2,z:(b[1]+b[3])/2,halfWidth:(b[2]-b[0])/2,halfLength:(b[3]-b[1])/2,heading:0}));
  }
  if(city24.roundabout)keep(VehicleContact13.circle(shape,city24.roundabout));
+ // Barreras físicas del tablero elevado; jamás interrumpen los carros inferiores.
+ overpassVehicleGuardrails53(shape,!!v.overpass50,keep);
  for(const other of fleet){
   if(other===v||other.garage&&other!==current||other.retired28)continue;
   if(Math.abs(roadSurface50(x,z,!!v.overpass50)-other.root.position.y)>2.8)continue;const obstacle={x:other.root.position.x,z:other.root.position.z,heading:other.heading,halfWidth:other.width/2,halfLength:other.length/2},ext=VehicleContact13.bounds(obstacle);
