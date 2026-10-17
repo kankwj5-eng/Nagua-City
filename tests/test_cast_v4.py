@@ -16,7 +16,7 @@ spec.loader.exec_module(mod)
 def fake_glb(identifier, clips=None):
     actions = sorted(mod.REQUIRED_CLIPS)
     amount = 37 if identifier == "01_mateo" else 12
-    names = clips or actions + [f"Clip_{i}" for i in range(amount-len(actions))]
+    names = clips if clips is not None else actions + [f"Clip_{i}" for i in range(amount-len(actions))]
     document = {"skins": [{"joints": list(range(79 if identifier == "01_mateo" else 52))}],
                 "animations": [{"name": name} for name in names],
                 "extensionsRequired": ["KHR_mesh_quantization"]}
