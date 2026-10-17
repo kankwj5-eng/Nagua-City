@@ -70,6 +70,40 @@ function installOverpass50(){
     }
    }
   }
+  // Acercamientos con señales direccionales y conexión visual hasta la vía
+  // existente. Las marcas están al nivel real del asfalto en cada transición,
+  // sin colisionadores ni pavimento duplicado sobre las casas del barrio.
+  for(const direction of [-1,1])for(const distance of [57,72]){
+   const pz=z+direction*distance;
+   for(const lane of [-1,1]){
+    const px=x+lane*2.20,grade=roadSurface50(px,pz,true);
+    const forward=lane===-1?1:-1;
+    const stem=box('Flecha de aproximación del viaducto55',px,grade+.047,pz,
+     .12,.012,1.08,marking);
+    for(const side of [-1,1]){
+     const head=box('Punta de flecha vial55',px+side*.27,grade+.048,
+      pz+forward*.61,.10,.012,.72,marking);
+     head.rotation.y=side*forward*.65;
+    }
+   }
+  }
+  // Línea de carril a ras de pavimento en ambos empalmes con la calle base;
+  // estos remates no añaden una segunda calzada ni hacen saltar vehículos.
+  for(const direction of [-1,1])for(const distance of [67.5,71,74.5]){
+   const pz=z+direction*distance,grade=groundAt(x,pz);
+   for(const side of [-1,1])box('Continuidad de arcén en acceso55',
+    x+side*(halfWidth-.42),grade+.041,pz,.105,.014,2.9,marking);
+   box('Separación central discontinua en acceso55',x,grade+.042,pz,
+    .12,.014,1.65,marking);
+  }
+  // Rejillas de drenaje fuera de la franja de rodaje y por dentro del pretil.
+  // La altura acompaña a la rampa y no bloquea el tránsito inferior.
+  for(const distance of [-30,-18,18,30])for(const side of [-1,1]){
+   const pz=z+distance,px=x+side*(halfWidth-.48),grade=roadSurface50(px,pz,true);
+   const gutter=box('Rejilla de drenaje en tablero55',px,grade+.042,pz,
+    .21,.014,.52,metal);
+   gutter.rotation.x=-(roadSurface50(px,pz+.26,true)-roadSurface50(px,pz-.26,true))/.52;
+  }
   // Dos pares de columnas de hormigón lejos de la calzada transversal z=-37.
   for(const dz of [-25,25])for(const side of [-1,1]){
    const px=x+side*6.10,pz=z+dz;
@@ -127,6 +161,14 @@ function beautifyOverpass51(){
     box('Base de bordillo en isleta51',p.x,p.y+.055,p.z,p.w+.24,.11,p.d+.24,curb);
     box('Tierra de jardinera51',p.x,p.y+.122,p.z,p.w,.035,p.d,soil);
     box('Cubierta de zacate de isleta51',p.x,p.y+.145,p.z,p.w-.23,.014,p.d-.28,green);
+    // Dos grupos de plantas compactas por jardinera. La copa queda baja para
+    // respetar visibilidad, calzada, pasos de peatones y postes existentes.
+    for(const side of [-1,1]){
+     const bx=p.x+side*.76,bz=p.z+side*.63;
+     box('Tronco compacto de arbusto55',bx,p.y+.39,bz,.13,.46,.13,soil);
+     box('Follaje tropical bajo de isleta55',bx,p.y+.69,bz,.75,.57,.80,green);
+     box('Franja de hojas tropicales55',bx,p.y+.93,bz,.40,.13,.50,green);
+    }
    }
   });
   registerDetail31(root,x,z,155);
