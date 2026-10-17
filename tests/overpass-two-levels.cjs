@@ -50,7 +50,7 @@ assert(layer(car,37,-99,0),"Entrar por la rampa");
 assert(layer(car,37,-37,Math.PI/2),"No caer a nivel inferior al girar sobre el tablero");
 assert(!layer(car,37,40,0),"Desactivar la capa elevada después de salir");
 const geometry=shapes[0]?.elements||[];
-assert.equal(shapes.length,1,"Un grupo fusionable por material");
+assert.equal(shapes.length,2,"Puente y jardineras en grupos fusionables por material");
 assert.equal(geometry.filter(x=>x.name==="Tablero vehicular50").length,44);
 assert(geometry.filter(x=>x.name==="Pretil lateral50").length>=50);
 assert.equal(overpass.pillars,4,"Los cuatro pilares quedan fuera de ambas carreteras");
