@@ -45,7 +45,8 @@ Ninguna instrucción permite destruir barrios completos ni sustituir masivamente
 - [ ] Conectores y curvas de acceso, rotonda inferior con circulación efectiva, arcenes y medianas vegetales compatibles con las rutas reales.
 - [x] Barreras laterales con **colisión dependiente del nivel** para vehículos y peatones, sin convertirlas en obstáculos globales 2D ni tapar el paso inferior. Juntas de dilatación, nervaduras bajo tablero y reflectores pasivos (PR #49, fusionado tras pruebas).
 - [x] Losa inferior continua del puente y dos pasos peatonales pintados sobre la calzada inferior, sin nuevas colisiones ni luces (siguiente entrega complementaria).
-- [ ] Aún pendientes: aceras conectadas, cartelería vial, drenaje detallado y señalización horizontal completa en las curvas y accesos; la barrera física no sustituye la red vial final.
+- [x] Marcas de aproximación, flechas de sentido y prolongación de arcenes; rejillas superficiales de drenaje sin obstáculos ni luces nuevas (PR #52, pendiente de integración hasta pruebas verdes).
+- [ ] Aún pendientes: aceras conectadas, cartelería vial, drenaje funcional detallado y señalización completa en curvas y accesos; la barrera física no sustituye la red vial final.
 - [ ] Verificar entradas y salidas, flujo de tráfico en ambas alturas y que nada quede encima de casas o vehículos.
 
 ### Etapa 2 — Catálogo arquitectónico moderno
@@ -61,7 +62,9 @@ Ninguna instrucción permite destruir barrios completos ni sustituir masivamente
 
 **Distribución piloto verificada en Chromium (PR #47):** hotel de teja roja en el sector litoral suroriental (x=147, z=-249), oficinas azules en la expansión oriental (x=280, z=67) y bloque comercial blanco al norte del centro (x=-6, z=300). Son coordenadas del mapa artístico del juego, **no coordenadas geográficas reales**. La prueba confirmó tres edificios nuevos, 267 edificios anteriores conservados y tres mallas fusionadas. El sistema puede buscar alternativas en la misma zona si el solar inicial se ocupa. Todavía no elimina casas, porque los modelos de casas base pueden proceder del paquete dinámico de zonas y no siempre tienen malla y colisión individual atribuibles. La autorización general para sustituir una casa sigue vigente, pero la demolición requiere trazabilidad específica de mallas, techos, adornos y colisionadores.
 
-### Próximo paquete de implementación — cruces y paisajismo
+### Entrega parcial del viaducto — señalización, arcenes y paisaje (PR #52)
+
+**Implementado en código:** flechas de dirección en cuatro tramos de aproximación, prolongación de líneas de borde y eje a ambas entradas, ocho drenajes de cubierta y follaje tropical bajo en las jardineras que realmente superen el filtro de ocupación. Todo integrado en las mismas agrupaciones de geometría, sin luces dinámicas nuevas ni colisionadores de acera inventados. **No equivale a haber conectado una rotonda de circulación real.**
 
 1. Inventariar la geometría y las colisiones del paso a desnivel central, identificar cada rampa, los accesos a nivel de suelo y los puntos donde confluyen.
 2. Implementar **conexiones transitables** con continuidad de pendiente, curva y ancho; comprobar circulación arriba y abajo sin colisiones falsas.
