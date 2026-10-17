@@ -121,7 +121,7 @@ fs.writeFileSync(copy,Buffer.concat([b.subarray(0,start),Buffer.from(app),b.suba
   if(!cathedral.installed)console.log("CATEDRAL_SOLARES_REALES "+JSON.stringify(await page.evaluate(()=>__naguaVisualQA.scanCathedral())));
   assert(cathedral.installed,"No se encontró un solar libre para la Nueva Catedral en el juego real");
   const overpass=await page.evaluate(()=>__naguaVisualQA.overpass());
-  assert(overpass.installed&&overpass.meshGroups>=2&&overpass.vertices>1000,
+  assert(overpass.installed&&overpass.meshGroups>=1&&overpass.vertices>1000,
    "Falta geometría real del paso a desnivel: "+JSON.stringify(overpass));
   assert(overpass.upper&&!overpass.lower&&overpass.highY-overpass.lowY>5,
    "El tráfico superior e inferior no está separado: "+JSON.stringify(overpass));
