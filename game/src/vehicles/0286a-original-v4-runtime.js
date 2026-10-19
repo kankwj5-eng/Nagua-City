@@ -12,11 +12,6 @@ const originalV4=(()=>{
   pulsar:[.76,2.02,1.37,160,31],taypan:[.76,2,1.33,135,25],
   "mototaxi-roja":[1.42,2.45,1.83,440,15],"canonera-abierta":[1.42,2.52,1.83,460,15]
  };
- const aliases=Object.freeze({sedan:"hilux",pickup:"hilux",suv:"landcruiser",bus:"landcruiser",
-  taxi:"mototaxi-roja",truck:"hilux",boxer:"taypan",discover:"pulsar",
-  trail:"taypan",delivery:"taypan",yamaha:"pulsar",caponera:"canonera-abierta",
-  pickup4x4:"hilux",lc300:"landcruiser",prado:"landcruiser",alto:"hilux",
-  hatch:"hilux",bicycle:"taypan",enduro:"taypan",urban125:"taypan"});
  let metadata=null,people=new Map(),cars=new Map(),loadedPeople=false,loadedCars=false;
  const exists=()=>!!document.getElementById("v4-original-specifications");
  function spec(){
@@ -103,7 +98,7 @@ const originalV4=(()=>{
   for(const mesh of nearMeshes){mesh.isPickable=false;mesh.receiveShadows=true;}
   const helmet={setEnabled(){},isEnabled(){return false;}};
   const p={index,hero,human:true,bodyType:hero?0:1,root,visual,hips:visual,helmet,
-    nearMeshes,lodMeshes:[],streetProps:[],clips:{},phase:0,blend:0,speed:0,wait:0,
+    nearMeshes,lodMeshes:[],streetProps:[],clips:{},bindTracks:[],phase:0,blend:0,speed:0,wait:0,
     direction:1,mode:"Idle",transition:0,animClock:0,hp:100,far:false,
     v4:{id,groups,instance,active:null,playing:null}};
   for(const [name,g] of groups)p.clips[name]={from:g.from,to:g.to,duration:(g.to-g.from)/30||1,tracks:[]};
@@ -112,7 +107,8 @@ const originalV4=(()=>{
   return p;
  }
  function makeCar(requested,x,z,heading=0,id=0){
-  const name=cars.has(requested)?requested:aliases[requested];
+  const name=requested;
+  if(!FLEET.includes(name))throw Error('Modelo antiguo no permitido: '+name);
   const pack=cars.get(name);if(!pack)throw Error("Vehículo V4 no autorizado o sin preparar: "+requested);
   const {instance,groups}=instantiate(pack.container,id+1000),info=pack.info;
   const root=new B.TransformNode("vehiculo_v4_"+name+"_"+id,scene);
@@ -127,7 +123,7 @@ const originalV4=(()=>{
   const meta={radius:info.radius,width,length,wheelbase,mass,seat:[0,1,0],
     steeringPivot:[0,1,0],hands:[.4,1,0]};
   const v={name,id,root,visual,heading,meta,radius:info.radius,wheelbase,width,length,
-    maxSpeed,bike,bus:false,bicycle:false,parts:{steering},traffic:false,garage:false,
+    maxSpeed,bike,bus:false,bicycle:false,parts:{steering,body:visual},traffic:false,garage:false,
     spin:0,phase:0,distance:0,profile:{runningMassKg:mass},
     v4:{id:name,info,groups,instance,roll:0,lastPosition:root.position.clone(),lastDirection:null}};
   v.contact=contactShadow("Sombra vehículo V4 "+id,width*1.12,length*.85);
