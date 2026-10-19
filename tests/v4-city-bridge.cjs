@@ -1,0 +1,25 @@
+"use strict";
+const assert=require("node:assert/strict"),bridge=require("../game/v4/city-bridge.js");
+function obj(id){return {id,root:{position:{x:0,y:0,z:0},rotation:{y:0},setEnabled(v){this.enabled=v;}},play(name){this.active=name;},walk(speed){this.walkSpeed=speed;},dispose(){this.dead=true;},update(speed,turn){this.wheels={speed,turn};}};}
+const created=[];
+const bundle={characters:{ids:bridge.CAST,spawn(id){const p=obj(id);created.push(p);return p;}},vehicles:{ids:bridge.VEHICLES,create(id){const v=obj(id);created.push(v);return v;}}};
+const city=bridge.mount({bundle,groundAt:()=>0,spawn:{x:0,z:0}});
+assert.equal(city.worldModelCount.characters,10);assert.equal(city.worldModelCount.vehicles,4);
+assert.equal(city.pedestrians.length,9);assert.equal(city.vehicles.length,4);
+assert.equal(created.length,14);
+city.step(.016,{forward:1,cameraYaw:0});assert(city.player.root.position.z<0);
+for(let i=0;i<200;i++)city.step(.04,{forward:1,cameraYaw:0,run:true});
+assert.equal(city.current,null);
+city.player.root.position.x=city.vehicles[0].root.position.x;
+city.player.root.position.z=city.vehicles[0].root.position.z;
+assert.equal(city.toggleVehicle(),true);assert.equal(city.driving,true);
+city.step(.04,{forward:1,strafe:.6});
+assert(city.current.wheels.speed>0);
+assert(city.current.wheels.turn>.5);
+assert.equal(city.toggleVehicle(),true);assert.equal(city.driving,false);
+assert.equal(city.action("Punch_L"),true);
+assert.equal(city.player.active,"Punch_L");assert.equal(city.action("OldMoto"),false);
+city.dispose();assert(created.every(x=>x.dead));
+assert.throws(()=>city.step(.04,{forward:1}),/liberado/);
+assert.throws(()=>bridge.mount({bundle:{...bundle,vehicles:{...bundle.vehicles,ids:["old"]}},groundAt:()=>0}));
+console.log("NAGUA_V4_CITY_BRIDGE_OK",JSON.stringify({people:10,vehicles:4,legacy:0}));
