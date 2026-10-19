@@ -14,7 +14,7 @@ const cars=carIds.map((id,i)=>{
    name:rename(name),from:0,to:30,start(){return this;},pause(){},stop(){},goToFrame(f){this.frame=f;}
   }))};
  }};
- return {id,container,info:{type:i<2?"camioneta":i<4?"moto":"caponera",radius:.3,wheels},width:i<2?2:1.3,wheelbase:2,max:25};
+ return {id,root:new Node("original_"+id),container,info:{type:i<2?"camioneta":i<4?"moto":"caponera",radius:.3,wheels},width:i<2?2:1.3,wheelbase:2,max:25};
 });
 const state={cars,traffic:[],scene:{},driving:null,
  player:{root:{position:{x:999,z:999},isEnabled(){return true;}}},
