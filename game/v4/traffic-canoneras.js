@@ -39,7 +39,7 @@ function initTrafficV4(){
 function trafficNearbyV4(self,x,z,dist){
  const min=dist*dist;
  for(const other of [...state.cars,...state.traffic]){
-  if(other===self||other===state.driving||other.root?.isEnabled?.()===false)continue;
+  if(other===self||other.root?.isEnabled?.()===false)continue;
   const dx=x-other.root.position.x,dz=z-other.root.position.z;
   if(dx*dx+dz*dz<min)return true;
  }
@@ -96,6 +96,18 @@ function animateVehicleV4(car,dt){
  if(other&&other._prepared){other.stop();other._prepared=false;}
  if(chosen)anim(car,positive?'Direccion_Derecha':'Direccion_Izquierda',Math.min(.5,Math.abs(car.steer)*.5));
 }
+function vehicleContactV4(self,x,z,r){
+ for(const v of [...state.cars,...state.traffic]){
+  if(v===self||!v.root?.position)continue;
+  const dx=x-v.root.position.x,dz=z-v.root.position.z;
+  if(dx*dx+dz*dz<Math.pow(r+v.width*.43+.22,2))return true;
+ }
+ if(self)for(const p of state.people){
+  const dx=x-p.root.position.x,dz=z-p.root.position.z;
+  if(dx*dx+dz*dz<(r+.45)**2)return true;
+ }
+ return false;
+}
 function updatePedestriansV4(dt){
  const city=state.officialCity;
  for(const p of state.people){
@@ -106,7 +118,6 @@ function updatePedestriansV4(dt){
   const next=z+p.walkDirection*p.speed*dt;
   const blocked=city.blocked(p.root.position.x,next,.32)||
    [...state.cars,...state.traffic].some(v=>{
-    if(v===state.driving)return false;
     const dx=p.root.position.x-v.root.position.x,dz=next-v.root.position.z;
     return dx*dx+dz*dz<Math.max(1.45,v.width*.7+1)**2;
    });
