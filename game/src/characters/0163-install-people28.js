@@ -1,2 +1,1 @@
-function installPeople28(){for(const p of [player,...pedestrians,...city.actors,...polish26.riders.map(r=>r.p)]){for(const prop of p.streetProps||[])if(/^Gorra|^Chaleco|^Falda con leggings/.test(prop.name)){prop.dispose();stage28.removedCaps++;}p.streetProps=(p.streetProps||[]).filter(o=>!o.isDisposed());dressClothes28(p);for(const m of [...p.nearMeshes,...p.lodMeshes])if(m.material?.name.includes('Piel_MPFB28')){m.material.roughness=.94;m.material.environmentIntensity=.3;m.material.metallic=0;m.material.transparencyMode=B.PBRMaterial.PBRMATERIAL_OPAQUE;}}stage28.garageHidden=fleet.filter(v=>v.garage&&v!==current).length;}
-
+// No generar ropa ni proporciones de personajes obsoletos.
