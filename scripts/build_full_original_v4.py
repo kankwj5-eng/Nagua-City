@@ -20,108 +20,17 @@ def replace_exact(src: str, search: str, replacement: str, label: str):
     return src.replace(search,replacement,1)
 
 def patch_app(app):
-    # Keep the city initialization itself byte-for-byte; replace *only* legacy
-    # model setup and model-dependent installation, never camera/light/world.
-    app=replace_exact(app,"vehicleAssets=await loadAsset('vehicles');","vehicleAssets=await loadAsset('vehicles');",'vehicle palette')
-    app=replace_exact(app,"await createTemplates();","if(!originalV4.exists())await createTemplates();",'vehicle templates')
-    app=replace_exact(app,"const mobileBoot49=matchMedia('(pointer:coarse)').matches;","const mobileBoot49=matchMedia('(pointer:coarse)').matches||originalV4.exists();",'no batching for v4 models')
-    app=replace_exact(app,"await prepareAnimations38();","if(!originalV4.exists())await prepareAnimations38();",'old human animations')
-    app=replace_exact(app,"await prepareWardrobe25();","if(!originalV4.exists())await prepareWardrobe25();",'old wardrobe texture')
-    app=replace_exact(app,"await preparePoliceUniforms();","if(!originalV4.exists())await preparePoliceUniforms();",'old police texture')
-    for fn in ('installArms24()','installGrips26()','installRiders26()','installHumans26()','installPeople28()','installCombatPose29()','installPose30()'):
-        # skips model-specific rig and wardrobe upgrades, not their surrounding city
-        needle=fn+';'
-        app=replace_exact(app,needle,'if(!originalV4.exists())'+needle,fn)
-    # Existing original UI menus contain retired car names. Start with the
-    # nearest authentic V4 vehicle and map menu selections later.
-    app=replace_exact(app,"ready=true;selectModel(selected);","ready=true;if(originalV4.exists())selected='hilux';selectModel(selected);",'initial garage model')
-    app=replace_exact(app,"function applyCityOutfit(){","function applyCityOutfit(){if(originalV4.exists())return;",'legacy outfits')
-    app=replace_exact(app,"async function prepare43(){","async function prepare43(){if(originalV4.exists())return;",'legacy skeleton extra prep')
-    # Keep the HIGH-QUALITY city additions while skipping modifications to obsolete rigs.
-    app=replace_exact(app,"function install41(){","function install41(){if(originalV4.exists()){neighborhood41();return;}", 'skip old skeleton cache 41')
-    app=replace_exact(app,"vehicleFinish42();locomotion42();","vehicleFinish42();if(!originalV4.exists())locomotion42();",'keep quality lighting42')
-    app=replace_exact(app,"function installTechnical44(){","function installTechnical44(){if(originalV4.exists()){stage35.settings.mode='auto';$('adaptive35').value='auto';resetBudget35();refreshZones25=refreshZones44;updateHouseDetails=updateHouses44;return;}", 'avoid retired animation release')
-    v4_visuals="""if(originalV4.exists()){
-      const leafEl=$('asset-leaf46');
-      art46.leafTexture=await loadTexture('data:image/webp;base64,'+leafEl.textContent,false);
-      art46.leafTexture.hasAlpha=true;art46.leafTexture.gammaSpace=true;leafEl.remove();
-      materials46();gardens46();compactGeometry46();
-      scene.skipPointerMovePicking=true;scene.skipPointerDownPicking=true;scene.skipPointerUpPicking=true;
-      return;
-    }
+    """El código del juego original se edita en game/src directamente.
+
+    No aplicar parches heredados sobre los módulos ya sustituidos: convertiría
+    el runtime nuevo en una mezcla de modelos anteriores y actuales.
     """
-    app=replace_exact(app,"async function install46(){","async function install46(){"+v4_visuals,'preserve gardens and materials46')
-    # Preserve native garage layout while replacing its retired vehicle choices.
-    extra="""if(originalV4.exists()){
-      const list=$('modelchoices');list.replaceChildren();
-      for(const item of originalV4.spec().vehicles){
-        const button=document.createElement('button');
-        button.dataset.model=item.id;button.textContent=item.name||item.id;
-        list.append(button);
-      }
-    }"""
-    app=replace_exact(app,"settings();bind();bindStage21();", "settings();"+extra+"bind();bindStage21();",'garage V4 selection')
-    # The original garage filtering uses old categories; keep six new names in
-    # their appropriate categories, rather than rendering 20 defunct buttons.
-    app=replace_exact(app,"function repaint(v,color){","function repaint(v,color){if(v?.v4)return;",'keep GLB original paint colors')
-    # Preserve missions and original buildings, but do not create 9 legacy
-    # garage variants and recolored caponera meshes from the previous fleet.
-    start=app.index(" const colors=['red','blue','green','yellow','orange'];for(const [i,color] of colors.entries())",app.index('function installWorld30()'))
-    stop=app.index(" for(const t of city.territories)",start)
-    app=app[:start]+" if(!originalV4.exists()){\n"+app[start:stop]+" }\n"+app[stop:]
-    # Keep original car paint palette as shared city material data, but declare
-    # only the 6 new selectable vehicles in the garage/technical profile.
-    profile="""if(originalV4.exists()){
-      for(const info of originalV4.spec().vehicles){
-       const id=info.id,type=info.type,cc=type==='moto'?150:0;
-       descriptions[id]=[info.name||id,'Modelo nuevo con geometría, texturas y animaciones GLB originales',
-        type==='moto'?'Motocicleta':type==='caponera'?'Mototaxi nicaragüense':'Camioneta 4×4'];
-       VEHICLE_PROFILES[id]={label:info.name||id,variant:descriptions[id][2],source:null,
-        massKg:null,runningMassKg:type==='moto'?160:type==='caponera'?440:2300,
-        hp:type==='moto'?19:type==='caponera'?12:140,
-        torqueNm:type==='moto'?15:type==='caponera'?12:400,
-        gears:type==='moto'?5:6,engine:type==='moto'||type==='caponera'?'Motor simulado 4T':'Motor simulado 4×4',cc,
-        note:'Parámetros jugables de prueba; no homologación',maxSpeed:type==='moto'?28:type==='caponera'?14:33};
-      }
-    }"""
-    app=replace_exact(app,"await installFleet();",profile+"await installFleet();",'new vehicle menu/profiles')
-    # Preserve the original GLB geometry and its motion clips; only furnish
-    # empty compatibility transform nodes for chassis and wheel-suspension math.
-    app=replace_exact(app,"parts:{steering}","parts:{steering,body:visual}", 'vehicle body compatibility')
-    # Create V4 vehicles using the ORIGINAL traffic entries and spawning lanes.
-    anchor="async function installFleet(){"
-    fleet_js="""if(originalV4.exists()){
-      await originalV4.prepare('cars');
-      let id=0;
-      const ids=originalV4.spec().vehicles.map(v=>v.id);
-      for(const d of selectStreetFleet28(data.fleet)){
-        if(id>=36)break;
-        await loadYield25();
-        if(!inWorld(d.x,d.z))continue;
-        const name=ids[id%ids.length];
-        const v=createVehicle(name,d.x,d.z,d.angle||0,id++);
-        v.traffic=true;
-        v.route={axis:Math.abs(d.x+37)<12?'z':'x',lane:Math.abs(d.x+37)<12?d.x:d.z,min:-195,max:195,target:1};
-      }
-      const positions=[[-34,111],[-29.5,111],[-24,111],[-19,111],[-34,123],[-28,123]];
-      for(let i=0;i<6;i++){
-        const v=createVehicle(ids[i],positions[i][0],positions[i][1],0,id++);
-        v.garage=true;
-      }
-      current=fleet.find(v=>v.garage&&v.name==='hilux');
-      return;
-    }
-    """
-    app=replace_exact(app,anchor,anchor+fleet_js,'genuine fleet insertion')
-    # New animations own their own wheels: no legacy wheel mesh rotations.
-    for code,repl in (
-      ("function createVehicle(name,x,z,heading=0,id=0){","function createVehicle(name,x,z,heading=0,id=0){if(originalV4.exists())return originalV4.makeCar(name,x,z,heading,id);"),
-      ("function applyPlayerWheels13(v,s,dt){","function applyPlayerWheels13(v,s,dt){if(v?.v4){originalV4.animateWheels(v,s.speed,s.steer,dt);return;}"),
-      ("function resetPose(p){","function resetPose(p){if(p?.v4){renderRestore=null;renderPrevious=null;originalV4.restorePerson(p);return;}"),
-      ("function humanWalk(p,speed,dt){","function humanWalk(p,speed,dt){if(p?.v4){originalV4.setClip(p,speed>2.5?'Run':speed>.08?'Walk':'Idle');return;}"),
-    ):
-      if repl not in app:
-        app=replace_exact(app,code,repl,'v4 compatibility')
+    checks=("const originalV4=(()=>","await originalV4.prepare('cars')",
+            "await originalV4.prepare('people')","function makeHuman(",
+            "function createVehicle(","function installFleet(")
+    for token in checks:
+        if token not in app:
+            raise ValueError("Módulo V4 original incompleto: "+token)
     return app
 
 def build(original:Path, models:Path, output:Path):
