@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - .github/workflows/v4-source-export.yml
+      - game/src/**
+      - game/manifest.json
   workflow_dispatch:
 permissions:
   contents: read
