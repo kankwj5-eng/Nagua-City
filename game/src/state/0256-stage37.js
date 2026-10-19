@@ -1,1 +1,1 @@
-const stage37={vehicleModels:['pulsar','yamaha','boxer','taypan','pickup','pickup4x4','lc300'],plants:[],grass:[],templates:[],materials:0,errors:[]};
+const stage37={vehicleModels:['hilux','landcruiser','pulsar','taypan','mototaxi-roja','canonera-abierta'],plants:[],grass:[],templates:[],materials:0,errors:[]};
