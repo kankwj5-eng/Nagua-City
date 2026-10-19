@@ -26,7 +26,7 @@ vm.createContext(ctx);
 vm.runInContext(text+";this.api={initTrafficV4,updateTrafficV4,updatePedestriansV4,cloneTrafficV4}",ctx);
 ctx.api.initTrafficV4();
 assert.equal(state.traffic.length,6);
-assert.deepEqual(state.traffic.map(x=>x.id),carIds);
+assert.deepEqual(Array.from(state.traffic,x=>x.id),carIds);
 assert(state.traffic.every(c=>c.groups.has("Direccion_Derecha")));
 const before=state.traffic.map(x=>x.root.position.z);
 for(let i=0;i<480;i++)ctx.api.updateTrafficV4(1/60);
