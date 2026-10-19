@@ -57,6 +57,13 @@ def build(original:Path, models:Path, output:Path):
     def replace(tag):
         nonlocal old_model_count
         key=tag.group('id').decode('ascii')
+        if key=='asset-data':
+            # Quitar el inventario de 167 vehículos antiguos sin tocar edificios,
+            # colisiones, superficies ni lugares del mapa original.
+            archive=json.loads(base64.b64decode(tag.group('body')))
+            archive['fleet']=[]
+            encoded=base64.b64encode(json.dumps(archive,separators=(',',':'),ensure_ascii=False).encode('utf8'))
+            return tag.group(0)[:tag.start('body')-tag.start()]+encoded+b'</script>'
         if key=='asset-vehicles':
             old=json.loads(gzip.decompress(base64.b64decode(tag.group('body'))))
             old_model_count=len(old['models'])
