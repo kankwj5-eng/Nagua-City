@@ -13,6 +13,8 @@ on:
       - 'tests/test_cast_v4.py'
       - 'docs/ELENCO_NICARAGUA_V4.md'
       - 'game/characters-v4/**'
+      - 'game/v4/**'
+      - 'tests/v4-zip-loader.cjs'
       - 'tests/cast-v4-runtime.cjs'
       - '.github/workflows/elenco-v4.yml'
   push:
@@ -47,4 +49,5 @@ jobs:
       - run: node --check game/characters-v4/cast-runtime.js
       - run: node tests/cast-v4-runtime.cjs
       - run: node tests/vehicle-v4-runtime.cjs
+      - run: node tests/v4-zip-loader.cjs
       - run: python3 -m unittest discover -s tests -p 'test_import_vehicles_v4.py' -v
