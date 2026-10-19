@@ -1,1 +1,2 @@
-async function preparePoliceUniforms(){for(let type=0;type<2;type++){const im=new Image();im.src=wardrobe[type][2].url;await im.decode();const w=im.width,h=im.height,tex=new B.DynamicTexture('Uniforme policial '+type,{width:w,height:h},scene,false);const ctx=tex.getContext();ctx.drawImage(im,0,0);const data=ctx.getImageData(w/2,0,w/2,h/2);for(let i=0;i<data.data.length;i+=4){const l=(data.data[i]+data.data[i+1]+data.data[i+2])/3;data.data[i]=l*.23;data.data[i+1]=l*.40;data.data[i+2]=l*.60;}ctx.putImageData(data,w/2,0);tex.update(false);policeUniforms.push(tex);}}
+// Vestuario de NPC integrado en los GLB, no en capas de texturas anteriores.
+async function preparePoliceUniforms(){}

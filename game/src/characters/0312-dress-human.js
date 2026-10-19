@@ -1,9 +1,2 @@
-function dressHuman(p,type){
- const variant=p.hero?0:Math.floor(p.index/2)%wardrobe[type].length;
- for(const m of [...p.nearMeshes,...p.lodMeshes]){if(!m.material?.name.includes('CitizenAtlas'))continue;const key=type+'_'+variant;const mat=outfitMaterials[key]||(outfitMaterials[key]=m.material.clone('Ropa de calle '+key));mat.albedoTexture=wardrobe[type][variant];m.material=mat;}
- if(!p.hero){const h=[.97,1.03,1,.95,1.01,.98][variant%6],width=[1,1.04,.98,1.03,.99,1.01][variant%6];p.root.scaling.set(h*width,h,h*width);}
- p.streetProps=[];
- if(!p.hero&&p.index%3===0){const spine=p.root.getDescendants().find(n=>/spine_03$/.test(n.name));if(spine){const bag=new B.TransformNode('Mochila urbana',scene);bag.parent=p.root;bag.position.set(0,1.22,.20);primitive('CreateSphere',{diameter:1,segments:16},assetMats.streetFabric,bag,V(),V(.30,.42,.17));primitive('CreateBox',{width:.24,height:.16,depth:.045},assetMats.streetFabric,bag,V(0,-.07,.086));for(const side of [-1,1]){const strap=B.MeshBuilder.CreateTube('Correa de mochila',{path:[V(side*.12,-.15,0),V(side*.18,.08,-.19),V(side*.12,.22,-.06)],radius:.013,tessellation:8},scene);strap.parent=bag;strap.material=assetMats.seat;strap.isPickable=false;}p.root.computeWorldMatrix(true);bag.computeWorldMatrix(true);spine.computeWorldMatrix(true);bag.setParent(spine);p.streetProps.push(bag);}}
- if(!p.hero&&p.index%5===0){const head=p.root.getDescendants().find(n=>/head$/.test(n.name));if(head){const cap=new B.TransformNode('Gorra de calle',scene);cap.parent=p.root;cap.position.set(0,type===0?1.77:1.67,0);primitive('CreateSphere',{diameter:.245,segments:16},assetMats.streetFabric,cap,V(),V(1,.43,1));primitive('CreateSphere',{diameter:.23,segments:12},assetMats.streetFabric,cap,V(0,-.03,-.13),V(1,.05,.70));p.root.computeWorldMatrix(true);cap.computeWorldMatrix(true);head.computeWorldMatrix(true);cap.setParent(head);p.streetProps.push(cap);}}
-}
-
+// No deformar ni sustituir las texturas de los personajes definitivos.
+function dressHuman(person,type){}
