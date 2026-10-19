@@ -2306,6 +2306,13 @@
       "sha256": "cbe1e0123b0038a9464999d0aea80155f22de2041c9193f94485db9c6d16ab2e"
     },
     {
+      "path": "game/src/vehicles/0286a-original-v4-runtime.js",
+      "group": "vehicles",
+      "symbol": "originalV4",
+      "type": "VariableDeclaration",
+      "utf8Bytes": 7874
+    },
+    {
       "path": "game/src/vehicles/0287-create-vehicle.js",
       "group": "vehicles",
       "symbol": "createVehicle",
