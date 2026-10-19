@@ -4,7 +4,7 @@ const ids=Object.keys(lib.FILES);
 assert.equal(ids.length,4);
 const manifest={vehicleModels:4,oldVehicleModels:0,vehicles:ids.map(id=>{
  const wheels=id==="hilux"||id==="landcruiser"?["Delantera_Der","Delantera_Izq","Trasera_Der","Trasera_Izq"]:["Rueda_Delantera","Rueda_Trasera"];
- return {id,file:lib.FILES[id],radius:.3,wheels,animations:["Direccion_Izquierda","Direccion_Derecha",...wheels.map(w=>"Rodar_"+w)]};
+ return {id,file:lib.FILES[id],radius:.3,wheels,steering:wheels.length===4?["Direccion_Delantera_Der","Direccion_Delantera_Izq"]:["Direccion"],animations:["Direccion_Izquierda","Direccion_Derecha",...wheels.map(w=>"Rodar_"+w)]};
 })};
 lib.validate(manifest);assert.throws(()=>lib.validate({...manifest,vehicleModels:20}));
 assert.throws(()=>lib.validate({...manifest,oldVehicleModels:1}));
