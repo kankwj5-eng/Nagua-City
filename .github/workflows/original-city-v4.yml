@@ -1,0 +1,57 @@
+name: Verificar mapa original con elenco V4
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - scripts/build_original_city_v4.py
+      - game/v4/official-city.js
+      - tests/test_original_city_v4.py
+      - .github/workflows/original-city-v4.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  city-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Confirmar archivo original LFS
+        run: |
+          git lfs pull
+          test "$(wc -c < 'Managua_Del_taller_al_lago(1).html')" -gt 100000000
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verificar sintaxis de constructor y renderizador
+        run: |
+          python3 -m py_compile scripts/build_original_city_v4.py
+          node --check game/v4/official-city.js
+      - name: Probar contratos de datos originales sin incluir modelos viejos
+        run: |
+          python3 -m unittest discover -s tests -p 'test_original_city_v4.py' -v
+      - name: Inspeccionar catálogos REALES del mapa
+        run: |
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from build_original_city_v4 import source_assets,scripts_from_catalogs
+          raw=source_assets(Path('Managua_Del_taller_al_lago(1).html'))
+          tags,counts,sizes=scripts_from_catalogs(raw)
+          assert counts['world']['zones']==81
+          assert counts['extensions']['zones']==38
+          assert counts['world']['images']==37
+          assert counts['extensions']['images']==31
+          assert counts['terrain']['surfaces']==4436
+          assert counts['terrain']['colliders']==4559
+          assert len(tags)==81+38+37+31+3
+          assert all('asset-humans' not in t and 'asset-vehicles' not in t for t in tags)
+          print({'originalMapZones':119,'textures':68,'terrainTriangles':4436,'colliders':4559,'oldHumanResources':0,'oldVehicleResources':0})
+          PY
