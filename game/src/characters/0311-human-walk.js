@@ -1,4 +1,4 @@
-function humanWalk(p,speed,dt){
+function humanWalk(p,speed,dt){if(p?.v4){originalV4.setClip(p,speed>2.5?'Run':speed>.08?'Walk':'Idle');return;}
  p.helmet.setEnabled(false);p.animClock+=Math.min(dt,.10);if(p.far&&p.animClock<.08)return;dt=p.animClock;p.animClock=0;
  const k=1-Math.exp(-dt*11);p.gaitSpeed=(p.gaitSpeed||0)+(speed-(p.gaitSpeed||0))*k;
  const walk=clamp(p.gaitSpeed/.32,0,1),run=clamp((p.gaitSpeed-1.7)/1.8,0,1),stride=GAIT.walkStride+(GAIT.runStride-GAIT.walkStride)*run;
