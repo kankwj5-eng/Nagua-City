@@ -1,1 +1,4 @@
-function walkPose(p,speed,dt){if(p?.v4){originalV4.setClip(p,speed>2.5?'Run':speed>.08?'Walk':'Idle');return;}if(p.human){humanWalk(p,speed,dt);return;}const blend=1-Math.exp(-dt*10);p.blend+=(Number(speed>.05)-p.blend)*blend;p.phase+=speed*dt*(speed>5?4.8:6.2);p.core.rotation.x+=(0-p.core.rotation.x)*blend;p.hips.position.y=.86+Math.abs(Math.sin(p.phase*2))*.018*p.blend;for(let k=0;k<2;k++){const f=Math.sin(p.phase+k*Math.PI),s=p.legs[k],a=p.arms[k];s.hip.rotation.set(f*(speed>5?.65:.42)*p.blend,0,(k?1:-1)*.012);s.knee.rotation.x=-Math.max(0,-f)*(speed>5?1.05:.70)*p.blend-.025;a.shoulder.rotation.set(-f*.36*p.blend-.06,0,(k?1:-1)*.06);a.elbow.rotation.x=.24+(speed>5?.66:0);}}
+function walkPose(person,speed,dt){
+ if(!person?.v4)return;
+ originalV4.setClip(person,speed>2.5?'Run':speed>.08?'Walk':'Idle');
+}

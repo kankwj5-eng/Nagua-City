@@ -1,1 +1,3 @@
-function sampleHuman(p,name,phase,blend=1){if(p?.v4){originalV4.seekClip(p,name,phase);return;}const clip=p.clips[name];if(!clip)return;const frame=clip.from+(clip.to-clip.from)*clamp(phase,0,1);for(const tr of clip.tracks){const keys=tr.keys;if(!keys.length)continue;if(keys.packed45){samplePacked45(tr,frame,blend);continue;}let lo=0,hi=keys.length-1;while(lo+1<hi){const mid=(lo+hi)>>1;if(keys[mid].frame<=frame)lo=mid;else hi=mid;}const a=keys[lo],b=keys[hi],t=b.frame===a.frame?0:clamp((frame-a.frame)/(b.frame-a.frame),0,1);let val;if(tr.property==='rotationQuaternion'){val=B.Quaternion.Slerp(a.value,b.value,t);if(blend<1&&tr.target.rotationQuaternion)val=B.Quaternion.Slerp(tr.target.rotationQuaternion,val,blend);}else{val=B.Vector3.Lerp(a.value,b.value,t);if(blend<1)val=B.Vector3.Lerp(tr.target[tr.property],val,blend);}tr.target[tr.property].copyFrom(val);}}
+function sampleHuman(person,clip,phase,blend=1){
+ return originalV4.seekClip(person,clip,phase);
+}
