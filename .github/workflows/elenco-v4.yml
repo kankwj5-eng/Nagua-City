@@ -4,6 +4,10 @@ on:
     branches: [main]
     paths:
       - 'scripts/import_cast_v4.py'
+      - 'scripts/import_vehicles_v4.py'
+      - 'game/vehicles-v4/**'
+      - 'tests/vehicle-v4-runtime.cjs'
+      - 'tests/test_import_vehicles_v4.py'
       - 'scripts/audit_cast_v4.py'
       - 'tests/test_audit_cast_v4.py'
       - 'tests/test_cast_v4.py'
@@ -42,3 +46,5 @@ jobs:
           node-version: '24'
       - run: node --check game/characters-v4/cast-runtime.js
       - run: node tests/cast-v4-runtime.cjs
+      - run: node tests/vehicle-v4-runtime.cjs
+      - run: python3 -m unittest discover -s tests -p 'test_import_vehicles_v4.py' -v
