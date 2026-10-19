@@ -50,4 +50,5 @@ jobs:
       - run: node tests/cast-v4-runtime.cjs
       - run: node tests/vehicle-v4-runtime.cjs
       - run: node tests/v4-zip-loader.cjs
+      - run: node tests/v4-city-bridge.cjs
       - run: python3 -m unittest discover -s tests -p 'test_import_vehicles_v4.py' -v
