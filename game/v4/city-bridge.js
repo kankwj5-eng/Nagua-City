@@ -40,10 +40,10 @@ function mount(options){
   const unit=bundle.vehicles.create(id,i),metrics=METRICS[id];
   const x=spawn.x+4+(i%2)*4.5,z=spawn.z+10+Math.floor(i/2)*8;
   setPosition(unit,x,z);unit.root.rotation.y=Math.PI;
-  Object.assign(unit,metrics,{heading:Math.PI,baseY:unit.root.position.y});
+  Object.assign(unit,metrics,{heading:Math.PI,baseY:unit.root.position.y,radius:unit.spec.radius,meta:{mass:metrics.mass}});
   return unit;
  });
- let driving=null,alive=true,move={x:0,z:0},heading=0,speed=0,steer=0;
+ let driving=null,alive=true,move={x:0,z:0},heading=0,speed=0,steer=0,actionTime=0;
  const state={x:0,z:0,heading:0,speed:0,steer:0,lean:0,wheelie:0,throttle:0,gear:1};
  function requireActive(){if(!alive)throw Error("El mundo v4 fue liberado");}
  function nearby(limit=3.3){
@@ -96,7 +96,7 @@ function mount(options){
    const target=Math.atan2(-move.x,-move.z),turn=Math.atan2(Math.sin(target-hero.root.rotation.y),Math.cos(target-hero.root.rotation.y));
    hero.root.rotation.y+=clamp(turn,-dt*8,dt*8);
   }
-  hero.walk(actual);
+  if(actionTime>0)actionTime=Math.max(0,actionTime-dt);else hero.walk(actual);
  }
  function vehicleStep(dt,input){
   const car=driving;let turn=clamp(input.strafe||0,-1,1);
@@ -141,7 +141,7 @@ function mount(options){
   requireActive();
   if(driving)return false;
   if(!["Punch_L","Punch_R","Guard","HitReaction","Recover","Talk","Wave"].includes(name))return false;
-  hero.play(name,false);return true;
+  actionTime=name==="Guard"?.7:.55;hero.play(name,false);return true;
  }
  return Object.freeze({
   player:hero,pedestrians,vehicles,state,step,toggleVehicle,action,nearby,

@@ -56,7 +56,7 @@
      const angle=clamp(steer,-1,1);
      // Los clips de dirección van centro -> giro máximo -> centro.
      // Su mitad (0..0.5) conserva el giro constante del manubrio y las ruedas.
-     seek(animations.get(angle>=0?"Direccion_Izquierda":"Direccion_Derecha"),Math.abs(angle)*.5);
+     seek(animations.get(angle>=0?"Direccion_Derecha":"Direccion_Izquierda"),Math.abs(angle)*.5);
      this.steering=angle;distance+=speedMps*dt;this.rollRadians=distance/spec.radius%TAU;
      const phase=(this.rollRadians/TAU+1)%1;
      for(const wheel of wheels)seek(wheel,phase);

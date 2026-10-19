@@ -142,7 +142,7 @@ engine.runRenderLoop(()=>{
    const group=currentGroups.get("Rodar_"+wheel);
    if(group)window.NaguaVehiclesV4.seek(group,phase);
   }
-  const direction=currentGroups.get(turn>=0?"Direccion_Izquierda":"Direccion_Derecha");
+  const direction=currentGroups.get(turn>=0?"Direccion_Derecha":"Direccion_Izquierda");
   if(direction)window.NaguaVehiclesV4.seek(direction,Math.abs(turn)*.5);
  }
  scene.render();
