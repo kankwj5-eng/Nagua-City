@@ -1,11 +1,12 @@
 "use strict";
 const assert=require("node:assert/strict"),bridge=require("../game/v4/city-bridge.js");
-function obj(id){return {id,root:{position:{x:0,y:0,z:0},rotation:{y:0},setEnabled(v){this.enabled=v;}},play(name){this.active=name;},walk(speed){this.walkSpeed=speed;},dispose(){this.dead=true;},update(speed,turn){this.wheels={speed,turn};}};}
+function obj(id){return {id,spec:{radius:.32},root:{position:{x:0,y:0,z:0},rotation:{y:0},setEnabled(v){this.enabled=v;}},play(name){this.active=name;},walk(speed){this.walkSpeed=speed;},dispose(){this.dead=true;},update(speed,turn){this.wheels={speed,turn};}};}
 const created=[];
 const bundle={characters:{ids:bridge.CAST,spawn(id){const p=obj(id);created.push(p);return p;}},vehicles:{ids:bridge.VEHICLES,create(id){const v=obj(id);created.push(v);return v;}}};
 const city=bridge.mount({bundle,groundAt:()=>0,spawn:{x:0,z:0}});
 assert.equal(city.worldModelCount.characters,10);assert.equal(city.worldModelCount.vehicles,4);
 assert.equal(city.pedestrians.length,9);assert.equal(city.vehicles.length,4);
+assert(city.vehicles.every(v=>v.radius>0&&v.meta.mass>0));
 assert.equal(created.length,14);
 city.step(.016,{forward:1,cameraYaw:0});assert(city.player.root.position.z<0);
 for(let i=0;i<200;i++)city.step(.04,{forward:1,cameraYaw:0,run:true});
