@@ -28,7 +28,7 @@ jobs:
           wanted=[b'asset-world',b'asset-extensions',b'asset-data']
           parts=[]
           for key in wanted:
-           pattern=rb'<script\\b[^>]*id="'+key+rb'"[^>]*>.*?</script>'
+           pattern=rb'<script\b[^>]*id="'+key+rb'"[^>]*>.*?</script>'
            found=re.search(pattern,source,re.S|re.I)
            if not found:raise SystemExit('No encontrado: '+str(key))
            parts.append(found.group(0))
