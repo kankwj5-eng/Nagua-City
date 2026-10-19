@@ -14,6 +14,7 @@ const originalV4=(()=>{
  };
  let metadata=null,people=new Map(),cars=new Map(),loadedPeople=false,loadedCars=false;
  const exists=()=>!!document.getElementById("v4-original-specifications");
+ function requireModels(){if(!exists())throw Error("Faltan los 16 modelos V4 en la compilación: generar HTML con scripts/build_full_original_v4.py");}
  function spec(){
   if(!exists())return null;
   if(!metadata){
@@ -36,7 +37,7 @@ const originalV4=(()=>{
   return value;
  }
  async function prepare(kind){
-  if(!exists())return false;
+  requireModels();
   const targets=kind==="people"?people:cars,items=kind==="people"?spec().characters:spec().vehicles;
   const done=kind==="people"?loadedPeople:loadedCars;
   if(done)return true;
