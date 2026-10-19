@@ -32,13 +32,26 @@ class FullOriginalV4(unittest.TestCase):
    self.assertIn(token,original)
    self.assertIn(token,patched,token)
   self.assertIn("await originalV4.prepare('cars')",patched)
-  self.assertIn("list.replaceChildren()",patched)
   self.assertIn("originalV4.animateWheels",patched)
-  self.assertIn("if(!originalV4.exists())await prepareAnimations38()",patched)
-  self.assertNotEqual(original,patched)
+  self.assertEqual(original,patched)
+  self.assertIn("function stepFleet13(dt)",patched)
+  self.assertIn("originalV4.makeCar(name,x,z,heading,id)",patched)
   with tempfile.TemporaryDirectory() as d:
    source=Path(d)/"app.js";source.write_text(patched,encoding="utf8")
    subprocess.run(["node","--check",str(source)],check=True,capture_output=True)
+ def test_no_legacy_models_in_replaced_game_modules(self):
+  checks={
+   "game/src/characters/0292-prepare-humans.js":["packed48('humans')","CitizenNear"],
+   "game/src/characters/0293-make-human.js":["humanContainers","CitizenLOD"],
+   "game/src/characters/0311-human-walk.js":["soleCurves","sampleHuman("],
+   "game/src/vehicles/0287-create-vehicle.js":["lowTemplates","templates[name]"],
+   "game/src/vehicles/0289-install-fleet.js":["boxer","pickup4x4","caponera_family","data.fleet"],
+   "game/src/vehicles/0307-vehicle-variants.js":["discover:'boxer'","caponera_family"],
+   "game/src/world/0189-install-world30.js":["caponera_family","pickupwork","urban125"],
+  }
+  for path,banned in checks.items():
+   code=(ROOT/path).read_text("utf8")
+   for word in banned:self.assertNotIn(word,code,path)
  def test_protected_input(self):
   with tempfile.TemporaryDirectory() as d:
    source=Path(d)/"source.html";source.write_text("<html></html>")
