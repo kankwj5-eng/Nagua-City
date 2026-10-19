@@ -21,9 +21,9 @@ const glb=new Uint8Array(20);glb.set([103,108,84,70]);new DataView(glb.buffer).s
  assert.equal(loads,4);const moto=loader.create("pulsar",1),hilux=loader.create("hilux",2);
  assert.equal(moto.visual.rotation.y,-Math.PI/2);
  moto.update(3,.8,1/60);
- assert(Math.abs(moto.animations.get("Direccion_Izquierda").frame-24)<1e-8);
+ assert(Math.abs(moto.animations.get("Direccion_Derecha").frame-24)<1e-8);
  moto.update(-3,-.5,1/60);
- assert(Math.abs(moto.animations.get("Direccion_Derecha").frame-15)<1e-8);
+ assert(Math.abs(moto.animations.get("Direccion_Izquierda").frame-15)<1e-8);
  hilux.update(12,1,1/60);
  assert.equal(hilux.spec.wheels.length,4);
  assert.throws(()=>loader.create("sedan",99));
