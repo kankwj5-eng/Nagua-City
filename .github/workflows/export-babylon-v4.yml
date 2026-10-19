@@ -1,0 +1,52 @@
+name: Exportar motor Babylon integrado para HTML único V4
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/export-babylon-v4.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Confirmar archivo original descargado
+        run: |
+          git lfs pull
+          test "$(wc -c < 'Managua_Del_taller_al_lago(1).html')" -gt 100000000
+      - name: Extraer biblioteca y explorar plugins GLB
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64,gzip,re,json
+          source=Path('Managua_Del_taller_al_lago(1).html').read_bytes()
+          folder=Path('dist/babylon-v4')
+          folder.mkdir(parents=True,exist_ok=True)
+          matches=re.findall(rb'<script\b[^>]*id="(asset-[a-z0-9-]+)"[^>]*>(.*?)</script>',source,re.S|re.I)
+          print('CATALOG ASSETS:',[(name.decode(),len(raw)) for name,raw in matches])
+          extracted=[]
+          for name,encoded in matches:
+              if name==b'asset-babylon' or any(key in name.lower() for key in (b'loader',b'gltf',b'glb')):
+                  try:data=gzip.decompress(base64.b64decode(encoded))
+                  except Exception as err:
+                      print('Non gzip:',name,err)
+                      continue
+                  target=folder/(name.decode()+'.js')
+                  target.write_bytes(data)
+                  print('EXTRACTED',str(target),len(data),'GLTFFileLoader',b'GLTFFileLoader' in data,'GLTF2',b'GLTF2' in data)
+                  extracted.append(str(target))
+          if not (folder/'asset-babylon.js').exists():
+              raise SystemExit('Missing Babylon JS from official LFS game')
+          (folder/'metadata.json').write_text(json.dumps({'scripts':extracted,'ids':[x[0].decode() for x in matches]},indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: babylon-offline-v4
+          path: dist/babylon-v4
+          retention-days: 1
