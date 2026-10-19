@@ -75,7 +75,7 @@ class OfficialCityV4 {
   const mime=png?'image/png':webp?'image/webp':'image/jpeg';
   const uri=encoded.startsWith('data:')?encoded:'data:'+mime+';base64,'+encoded;
   const t=new this.B.Texture(uri,this.scene,false,
-   kind==='extensions'?!!meta.flipY:false,this.B.Texture.TRILINEAR_SAMPLINGMODE);
+   kind==='extensions'?!meta.flipY:false,this.B.Texture.TRILINEAR_SAMPLINGMODE);
   if(meta.repeat){t.uScale=meta.repeat[0];t.vScale=meta.repeat[1];}
   t.wrapU=t.wrapV=this.B.Texture.WRAP_ADDRESSMODE;this.textures.set(key,t);return t;
  }
