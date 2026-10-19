@@ -73,6 +73,10 @@ jobs:
         run: |
           git lfs pull
           python3 scripts/build_modular.py
+      - name: Cargar modelos V4 reales en el juego ORIGINAL para el navegador
+        run: |
+          python3 scripts/package_original_v4.py --source dist/Managua.html --output dist/Managua-v4.html
+          mv dist/Managua-v4.html dist/Managua.html
       - name: Preparar Chromium para pruebas visuales
         run: |
           npm install --no-save --package-lock=false playwright@1.49.1
