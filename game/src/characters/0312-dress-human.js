@@ -1,2 +1,1 @@
-// No deformar ni sustituir las texturas de los personajes definitivos.
-function dressHuman(person,type){}
+// No se añaden materiales ni variaciones a la piel GLB.
