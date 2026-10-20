@@ -89,7 +89,15 @@ async function launch(){
    published.httpStatus=response?.status()||null;
    published.title=await page.title();
    published.playHref=await page.locator("#play").getAttribute("href").catch(()=>null);
-   published.artLoaded=await page.locator(".art-frame img").evaluate(img=>img.complete&&img.naturalWidth>0).catch(()=>false);
+   // domcontentloaded llega antes del JPEG: esperar decode evita falsos negativos.
+   published.artLoaded=await page.locator(".art-frame img").evaluate(async img=>{
+     try{await img.decode();return img.naturalWidth>0;}catch{return false;}
+   }).catch(()=>false);
+   try{
+     const responseGame=await page.request.head(new URL("Managua.html",PUBLIC).href,{timeout:30000});
+     published.gameHttpStatus=responseGame.status();
+     published.gameContentType=responseGame.headers()["content-type"]||null;
+   }catch(e){published.gameHttpStatus=null;published.gameHeadError=String(e?.message||e);}
    published.consoleErrors=browserErrors;
    published.requestFailures=networkErrors;
    published.reachable=!!response&&response.ok()&&!!published.playHref;
