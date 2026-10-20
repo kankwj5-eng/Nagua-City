@@ -43,11 +43,13 @@ async function launch(){
     entry.title=await page.title();
     entry.imageLoaded=await page.locator(".art-frame img").evaluate(img=>img.complete&&img.naturalWidth>0);
     entry.overflow=await page.evaluate(()=>({document:document.documentElement.scrollWidth-innerWidth,body:document.body.scrollWidth-innerWidth}));
+    entry.artBounds=await page.locator(".art-frame").evaluate(el=>{const r=el.getBoundingClientRect();return {top:Math.round(r.top),bottom:Math.round(r.bottom)};});
     entry.playHref=await page.locator("#play").getAttribute("href");
     assert.equal(entry.status,200);
     assert(entry.imageLoaded,"No carga el arte original de Managua");
     assert.equal(entry.playHref,"./Managua.html");
     assert(entry.overflow.document<=2,"La portada se desborda horizontalmente");
+    if(width===844)assert(entry.artBounds.top>=0&&entry.artBounds.bottom<=height,"La ilustración queda fuera de la pantalla horizontal");
     await page.locator("#guide-trigger").click();
     assert(await page.locator("#guide").isVisible(),"La guía no se abre");
     await page.locator("#guide-tab-conducir").click();
