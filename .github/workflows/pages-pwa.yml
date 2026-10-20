@@ -88,7 +88,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nagua-arranque-web
-          path: dist/fast-web-browser.json
+          path: |
+            dist/fast-web-browser.json
+            dist/v4-browser-ciudad.png
           if-no-files-found: warn
           retention-days: 14
       - name: Configurar Pages
