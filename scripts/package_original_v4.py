@@ -20,6 +20,16 @@ CAST=("01_mateo","02_ernesto","03_daniel","04_luis","05_rafael",
 FLEET=("hilux","landcruiser","pulsar","taypan","mototaxi-roja","canonera-abierta")
 IDS=CAST+FLEET
 OLD_TAGS={"asset-humans","asset-animation38","asset-actor-motion","pack48-humans"}
+# El bootstrap heredado captura y elimina los asset-* al inicio. Como V4
+# sustituye el paquete humano antiguo, no debe pedir asset-humans ausente.
+BOOTSTRAP_OLD=b'for(const name of ["world", "extensions", "vehicles", "data", "babylon", "loaders", "humans", "surfaces"])'
+BOOTSTRAP_V4=b'for(const name of ["world", "extensions", "vehicles", "data", "babylon", "loaders", "surfaces"])'
+
+def patch_bootstrap(raw: bytes) -> bytes:
+    if raw.count(BOOTSTRAP_OLD)!=1:
+        raise ValueError("No se encontró exactamente una carga antigua de humanos en el bootstrap: revisar base")
+    return raw.replace(BOOTSTRAP_OLD,BOOTSTRAP_V4,1)
+
 TAG=re.compile(rb'<script\b(?P<attrs>[^>]*\bid="(?P<id>[^"]+)"[^>]*)>(?P<body>.*?)</script>',re.I|re.S)
 END=b"</body>"
 
@@ -55,7 +65,7 @@ def build(source:Path,output:Path)->dict:
         if key in OLD_TAGS or key.startswith("resource48-humans-"):
             replaced.append(key);return b""
         return match.group(0)
-    cleaned=TAG.sub(scrub,raw)
+    cleaned=patch_bootstrap(TAG.sub(scrub,raw))
     if len(old_vehicles)<10 or len(replaced)<12:
         raise ValueError("No se encontró la flota y el elenco antiguos: no cambiar el mapa")
     if cleaned.count(END)!=1: raise ValueError("Falta un cierre </body> único")
