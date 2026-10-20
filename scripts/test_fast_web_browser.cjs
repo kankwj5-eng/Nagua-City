@@ -34,12 +34,82 @@ const server=http.createServer((req,res)=>{
   await page.waitForFunction(()=>Nicaragua.playing,null,{timeout:10000});
   const first=await page.evaluate(()=>({startup:Nicaragua.startup48,boot:Nicaragua.boot45,playing:Nicaragua.playing,zones:Nicaragua.zones.size}));
   assert(first.playing,"Game did not auto-enter");
+  // Verificar dentro del navegador que el mundo no utiliza NPC/carros anteriores.
+  const v4 = await page.evaluate(() => {
+    const n=window.Nicaragua;
+    const ids=["01_mateo","02_ernesto","03_daniel","04_luis","05_rafael",
+      "06_valeria","07_marisol","08_xiomara","09_rosa","10_elena"];
+    const vehicles=["hilux","landcruiser","pulsar","taypan","mototaxi-roja","canonera-abierta"];
+    const specs=JSON.parse(document.getElementById("v4-original-specifications")?.textContent||"null");
+    const people=[n.player,...n.pedestrians];
+    const garage=n.fleet.filter(v=>v.garage);
+    return {
+      specsCharacters:specs?.characters?.map(v=>v.id)||[],
+      specsVehicles:specs?.vehicles?.map(v=>v.id)||[],
+      hero:n.player?.v4?.id||null,
+      npcs:n.pedestrians.length,
+      allPeopleV4:people.every(p=>p.v4&&ids.includes(p.v4.id)),
+      npcsUnique:[...new Set(n.pedestrians.map(p=>p.v4?.id))].sort(),
+      oldCharacterInstances:people.filter(p=>!p.v4).length,
+      fleetTotal:n.fleet.length,
+      garageNames:garage.map(v=>v.name),
+      allVehiclesV4:n.fleet.every(v=>v.v4&&vehicles.includes(v.v4.id)),
+      oldVehicleInstances:n.fleet.filter(v=>!v.v4).length,
+      heroMeshCount:n.player.root.getChildMeshes().length,
+      heroClips:n.player.v4?.groups?.size||0,
+      npcMinMeshCount:Math.min(...n.pedestrians.map(p=>p.root.getChildMeshes().length)),
+      npcMinClipCount:Math.min(...n.pedestrians.map(p=>p.v4?.groups?.size||0)),
+      garageMeshCounts:garage.map(v=>({id:v.v4?.id,meshes:v.root.getChildMeshes().length,clips:v.v4?.groups?.size||0})),
+      modelMeshesInScene:n.scene.meshes.length
+    };
+  });
+  const modelIds=["01_mateo","02_ernesto","03_daniel","04_luis","05_rafael",
+    "06_valeria","07_marisol","08_xiomara","09_rosa","10_elena"];
+  const vehicleIds=["hilux","landcruiser","pulsar","taypan","mototaxi-roja","canonera-abierta"];
+  assert.deepEqual(v4.specsCharacters,modelIds,"El manifiesto de 10 personas cambió");
+  assert.deepEqual(v4.specsVehicles,vehicleIds,"Faltan los seis modelos vehiculares");
+  assert.equal(v4.hero,"01_mateo","Mateo debe ser el protagonista real");
+  assert(v4.npcs>0,"No se generaron NPC nuevos");
+  assert(v4.allPeopleV4,"Se introdujeron personajes del rig antiguo");
+  assert.equal(v4.oldCharacterInstances,0);
+  assert.deepEqual([...v4.garageNames].sort(),[...vehicleIds].sort(),"El garaje debe ofrecer las 6 variantes");
+  assert(v4.allVehiclesV4,"Se introdujeron carros antiguos");
+  assert.equal(v4.oldVehicleInstances,0);
+  assert(v4.heroMeshCount>0,"Mateo sin malla 3D visible en el grafo de escena");
+  assert(v4.heroClips>=5,"Mateo sin animaciones cargadas");
+  assert(v4.npcMinMeshCount>0,"Hay NPC V4 sin geometría");
+  assert(v4.npcMinClipCount>=5,"Hay NPC V4 sin animaciones");
+  for(const car of v4.garageMeshCounts){
+    assert(car.meshes>0,"Vehículo V4 sin malla: "+car.id);
+    assert(car.clips>=5,"Vehículo V4 sin animaciones: "+car.id);
+  }
+  await page.screenshot({path:path.join(__dirname,"../dist/v4-browser-ciudad.png")}).catch(e=>console.warn("Screenshot no disponible",String(e)));
+  // Validación estática extra: los paquetes humanos y animaciones viejos no viajan.
+  const packaged=fs.readFileSync(path.join(site,"Managua.html"),"utf8");
+  for(const deleted of ['asset-humans','asset-animation38','asset-actor-motion','pack48-humans']){
+    assert(!new RegExp('<script[^>]*id="'+deleted+'"').test(packaged),
+      "Recurso obsoleto publicado: "+deleted);
+  }
+  for(const id of [...modelIds,...vehicleIds]){
+    assert(packaged.includes('id="v4-original-'+id+'"'),"Falta GLB final: "+id);
+  }
+  console.log("V4_RUNTIME_OK "+JSON.stringify(v4));
   assert(first.startup.remoteRequests>0,"Expected remote downloads for split resources");
   assert(first.startup.zoneReadsAtEntry<=4,"Too many world zones loaded at entry");
   assert(assetRequests>0,"No on-demand assets requested");
+  if(errors.length){
+    const html=fs.readFileSync(path.join(site,"Managua.html"),"utf8");
+    const lines=html.split("\n");
+    for(const error of errors){
+      const match=error.match(/Managua\.html:(\d+):(\d+)/);
+      if(!match)continue;
+      const row=Number(match[1])-1,col=Number(match[2])-1,line=lines[row]||"";
+      console.error("RUNTIME_SOURCE_CONTEXT "+JSON.stringify({row:row+1,col:col+1,lineLength:line.length,snippet:line.slice(Math.max(0,col-450),col+450)}));
+    }
+  }
   assert.deepEqual(errors,[],"Unexpected JavaScript errors");
   assert.deepEqual(failures,[],"Network failures");
-  const report={navigationToPlayableMs:Date.now()-t,htmlBytes:fs.statSync(path.join(site,"Managua.html")).size,assetRequests,requests,bytesServed,firstPlayableMs:first.startup.firstPlayableMs,bootStages:first.boot.stages,remoteRequests:first.startup.remoteRequests,remoteBytes:first.startup.remoteBytes,zonesAtEntry:first.startup.zonesAtEntry,errors,failures,passed:true};
+  const report={v4,navigationToPlayableMs:Date.now()-t,htmlBytes:fs.statSync(path.join(site,"Managua.html")).size,assetRequests,requests,bytesServed,firstPlayableMs:first.startup.firstPlayableMs,bootStages:first.boot.stages,remoteRequests:first.startup.remoteRequests,remoteBytes:first.startup.remoteBytes,zonesAtEntry:first.startup.zonesAtEntry,errors,failures,passed:true};
   fs.writeFileSync(path.join(__dirname,"../dist/fast-web-browser.json"),JSON.stringify(report,null,2));
   console.log("FAST_WEB_BROWSER_OK "+JSON.stringify({...report,bootStages:undefined}));
   await page.close();

@@ -23,8 +23,27 @@
       <div class="actions">
         <a class="primary" href="./Managua.html" id="play"><span aria-hidden="true">▶</span> ENTRAR AL JUEGO <span aria-hidden="true">↗</span></a>
         <button class="secondary" type="button" id="install"><span aria-hidden="true">↓</span> INSTALAR APP</button>
+        <button class="secondary" type="button" id="guide-trigger" aria-controls="guide" aria-expanded="false"><span aria-hidden="true">ⓘ</span> CÓMO JUGAR</button>
       </div>
       <p id="install-state" class="helper" role="status" aria-live="polite">Instálalo desde Chrome en Android y ábrelo desde tu pantalla de inicio.</p>
+      <p id="connection-state" class="connection-state" role="status" aria-live="polite">Comprobando el estado de conexión del navegador…</p>
+      <section id="guide" class="guide-panel" aria-label="Guía rápida de Nagua City" hidden>
+        <div class="guide-heading">
+          <span class="guide-eyebrow">ANTES DE SALIR A LA CALLE</span>
+          <h2>Tu primera vuelta por Managua</h2>
+        </div>
+        <div class="guide-tabs" role="tablist" aria-label="Consejos para empezar">
+          <button type="button" role="tab" id="guide-tab-explorar" aria-controls="guide-content" aria-selected="true" tabindex="0" data-guide="explorar">Explorar</button>
+          <button type="button" role="tab" id="guide-tab-conducir" aria-controls="guide-content" aria-selected="false" tabindex="-1" data-guide="conducir">Conducir</button>
+          <button type="button" role="tab" id="guide-tab-ajustes" aria-controls="guide-content" aria-selected="false" tabindex="-1" data-guide="ajustes">Ajustes</button>
+        </div>
+        <div id="guide-content" class="guide-content" role="tabpanel" aria-labelledby="guide-tab-explorar" tabindex="0">
+          <span id="guide-step" class="guide-step">01 / RECORRIDO LIBRE</span>
+          <h3 id="guide-title">Conoce la ciudad</h3>
+          <p id="guide-description">Toca «Entrar al juego» y, en su menú principal, elige «Entrar a la ciudad» para recorrer Managua libremente.</p>
+          <p class="guide-notice">Consejo: en el celular, juega con la pantalla en posición horizontal.</p>
+        </div>
+      </section>
       <div class="details"><span>JUEGO WEB INSTALABLE</span><span>CONTROLES TÁCTILES</span><span>EN ESPAÑOL</span></div>
     </div>
     <div class="art">

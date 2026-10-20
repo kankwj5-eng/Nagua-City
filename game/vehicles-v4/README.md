@@ -1,3 +1,5 @@
+> **Estado actualizado (20 de octubre de 2026).** Este documento relata la fase inicial de **cuatro vehículos**. La flota actual es de **seis GLB**, sumando `mototaxi-roja` y `canonera-abierta`. Los seis archivos están en `game/assets-v4/`; `scripts/package_original_v4.py` elimina las geometrías y catálogos antiguos del paquete entregado y conserva el HTML original Git LFS sin cambios. `game/src/vehicles/0287-create-vehicle.js` usa únicamente `originalV4.makeCar`. El laboratorio de cuatro vehículos se conserva como herramienta independiente, no como catálogo del juego actual.
+
 # Vehículos v4: solamente cuatro modelos finales
 
 Recibidos el 18 de octubre de 2026: `Hilux-grafito.glb`, `Land-Cruiser-roja.glb`,

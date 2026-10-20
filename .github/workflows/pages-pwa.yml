@@ -40,6 +40,8 @@ jobs:
         run: |
           python3 scripts/package_original_v4.py --source dist/Managua-portable.html --output dist/Managua-v4.html
           mv dist/Managua-v4.html dist/Managua-portable.html
+      - name: Probar que el arranque no pide humanos antiguos eliminados
+        run: python3 -m unittest discover -s tests -p 'test_v4_bootstrap.py' -v
       - name: Preparar portada, manifiesto, iconos y service worker
         run: python3 scripts/build_pwa.py --game dist/Managua-portable.html --output dist/site
       - name: Validar que la PWA dividió sus recursos sin modificar el archivo portátil
@@ -59,6 +61,8 @@ jobs:
         run: node tests/module-source.cjs dist/site/Managua.html
       - name: Probar instalación y archivos PWA
         run: python3 -m unittest discover -s tests -p 'test_pwa.py' -v
+      - name: Verificar guía interactiva y navegación accesible
+        run: node tests/pwa-launcher-interaction.cjs
       - name: Validar JavaScript del lanzador
         run: |
           node --check web/app.js
@@ -67,6 +71,16 @@ jobs:
         run: |
           npm install --no-save --package-lock=false playwright@1.49.1
           npx playwright install --with-deps chromium
+      - name: Auditar portada real en Chromium y comprobar enlace público
+        run: node scripts/audit_site_browser.cjs
+      - name: Adjuntar capturas e informe de la página web
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nagua-auditoria-web-chromium
+          path: dist/site-audit/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Entrar al juego PWA sobre HTTP y comprobar descargas progresivas
         run: node scripts/test_fast_web_browser.cjs
       - name: Adjuntar informe de arranque web
@@ -74,7 +88,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nagua-arranque-web
-          path: dist/fast-web-browser.json
+          path: |
+            dist/fast-web-browser.json
+            dist/v4-browser-ciudad.png
           if-no-files-found: warn
           retention-days: 14
       - name: Configurar Pages

@@ -51,6 +51,27 @@ Abre `http://localhost:8000` desde ese equipo para previsualizar el lanzador. Pa
 - `scripts/build_pwa.py`: copia los archivos y genera iconos PNG 192 y 512 con contenido dentro de la zona segura maskable.
 - `.github/workflows/pages-pwa.yml`: construcción, pruebas y despliegue GitHub Pages.
 
+## Guía interactiva del lanzador
+
+La portada incluye **Cómo jugar**, un panel que se abre y cierra sin iniciar el
+motor pesado. Sus tres pestañas explican cómo entrar a la ciudad, elegir un
+vehículo y ajustar los controles. Los botones se pueden activar tocándolos o con
+teclado (flechas, Inicio y Fin); se anuncia la selección con roles ARIA.
+
+Un pequeño aviso muestra **lo que informa el navegador** sobre estar conectado
+o sin conexión. No se utiliza como una prueba de que el servidor esté accesible:
+`navigator.onLine` puede reportar una red local sin acceso real a internet.
+La primera descarga del juego sigue requiriendo conexión y puede consumir
+muchos datos. Ninguno de los consejos modifica automáticamente las opciones del
+juego, el personaje ni el vehículo seleccionado.
+
+Prueba sin dependencias externas:
+
+```sh
+node --check web/app.js
+node tests/pwa-launcher-interaction.cjs
+```
+
 ## Límites y futuro
 
 - Esta versión **no promete** 60 FPS ni funcionamiento offline para el juego completo.

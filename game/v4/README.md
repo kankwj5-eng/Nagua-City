@@ -1,3 +1,5 @@
+> **Estado actualizado (20 de octubre de 2026).** El visor de 14 modelos descrito aquí es un **laboratorio histórico**. El juego actual incorpora **16 GLB** (Mateo + nueve NPC, dos camionetas, dos motos y dos caponeras) desde `game/assets-v4/`. La compilación de GitHub Pages ejecuta `scripts/package_original_v4.py` y publica los recursos nuevos. El archivo base original en Git LFS permanece como respaldo. Ver `docs/ESTADO_MODELOS_V4.md`. No asumir que las verificaciones automatizadas sustituyen una prueba de jugabilidad Android.
+
 # Nagua City V4 — integración separada de los modelos nuevos
 
 El objetivo final es reemplazar todo el elenco y el parque vehicular antiguos
