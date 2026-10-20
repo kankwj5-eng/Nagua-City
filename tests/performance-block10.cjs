@@ -20,6 +20,13 @@ const fs=require('node:fs'),path=require('node:path'),zlib=require('node:zlib'),
   for(let i=0;i<6;i++){old.make()(1/60);opt.make()(1/60);old.render();opt.render();assert.deepEqual(opt.snapshot(),old.snapshot());comparisons++;}
  }
  old.engine.dispose();opt.engine.dispose();
- const delivered=await script(path.join(root,'dist/Managua.html'),'appSource');assert(delivered.includes('if(!Object.is(v.root.position.y,ground10))'));
+ // El banco numérico de arriba verifica el parche del bloque 10 original.
+ // El ensamblado modular posterior reemplazó ese updateFleet por el control
+ // de visibilidad/LOD y migró el movimiento a stepFleet13. No exigir
+ // código obsoleto que ya no pertenece al juego empaquetado.
+ const delivered=await script(path.join(root,'dist/Managua.html'),'appSource');
+ assert(delivered.includes('function updateFleet(dt)'), 'La flota sigue presente');
+ assert(delivered.includes('function stepFleet13(dt)'), 'El tráfico avanza en su propio paso');
+ assert(delivered.includes('v.visibleRender49!==visible'), 'LOD/visibilidad modular disponible');
  const report={block:10,engine:B.Engine.Version,fixture:'12 vehicle hierarchies with 16 box meshes each; CPU matrix invalidation, not Android FPS',stationaryFrames:120,matrixUpdates:stationary,sceneSnapshotsCompared:comparisons,exactWorldMatrices:true,passed:true};fs.writeFileSync(path.join(root,'dist/performance-block10.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 })().catch(e=>{console.error(e);process.exitCode=1});
