@@ -26,10 +26,33 @@ const originalV4=(()=>{
   }
   return metadata;
  }
+ // Android puede ejecutar el arranque asíncrono antes de que el analizador
+ // termine de recibir el HTML. Los modelos V4 se insertan después del motor:
+ // nunca tratar un nodo aún no analizado como un archivo perdido.
+ async function waitForDocumentV4(){
+  if(document.readyState==="loading")
+   await new Promise(resolve=>document.addEventListener("DOMContentLoaded",resolve,{once:true}));
+ }
  async function bytesFor(id){
   const tag=document.getElementById("v4-original-"+id);
-  if(!tag)throw Error("Falta modelo V4: "+id);
-  const value=new Uint8Array(await inflate(bytes(tag.textContent)));
+  if(!tag)throw Error("Falta modelo V4 después de cargar el documento: "+id);
+  let value;
+  if(tag.dataset.src){
+   // La PWA entrega cada GLB comprimido por separado. El HTML portátil
+   // permanece con los mismos modelos integrados y usa la ruta siguiente.
+   if(tag.dataset.format!=="glb-gzip")throw Error("Formato V4 desconocido: "+id);
+   const url=new URL(tag.dataset.src,document.baseURI);
+   if(url.origin!==location.origin)throw Error("Origen V4 no permitido: "+id);
+   let response;
+   try{response=await fetch(url.href,{cache:"force-cache"});}
+   catch(error){throw Error("No se pudo descargar modelo V4 "+id+": "+(error?.message||error));}
+   if(!response.ok)throw Error("No se pudo descargar modelo V4 "+id+" (HTTP "+response.status+")");
+   const gzip=await response.arrayBuffer();
+   const raw=await new Response(new Blob([gzip]).stream().pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
+   value=new Uint8Array(raw);
+  }else{
+   value=new Uint8Array(await inflate(bytes(tag.textContent)));
+  }
   if(value.length<20||String.fromCharCode(...value.subarray(0,4))!=="glTF"||
     new DataView(value.buffer,value.byteOffset,value.byteLength).getUint32(8,true)!==value.length)
    throw Error("Archivo 3D no válido: "+id);
@@ -37,6 +60,7 @@ const originalV4=(()=>{
   return value;
  }
  async function prepare(kind){
+  await waitForDocumentV4();
   requireModels();
   const targets=kind==="people"?people:cars,items=kind==="people"?spec().characters:spec().vehicles;
   const done=kind==="people"?loadedPeople:loadedCars;
