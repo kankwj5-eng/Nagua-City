@@ -45,4 +45,72 @@
       });
     });
   }
+}
+  // Guía interactiva de la portada: no modifica ni simula el estado del motor 3D.
+  const guideTrigger = document.getElementById("guide-trigger");
+  const guide = document.getElementById("guide");
+  const guideTabs = Array.from(guide.querySelectorAll('[role="tab"]'));
+  const guidePanel = document.getElementById("guide-content");
+  const guideStep = document.getElementById("guide-step");
+  const guideTitle = document.getElementById("guide-title");
+  const guideDescription = document.getElementById("guide-description");
+  const guideContent = {
+    explorar: {
+      step: "01 / RECORRIDO LIBRE",
+      title: "Conoce la ciudad",
+      description: "Toca «Entrar al juego» y, en su menú principal, elige «Entrar a la ciudad» para recorrer Managua libremente."
+    },
+    conducir: {
+      step: "02 / VEHÍCULOS",
+      title: "Elige tu forma de conducir",
+      description: "En el menú del juego, abre «Elegir vehículo» para explorar los automóviles y motocicletas disponibles antes de conducir."
+    },
+    ajustes: {
+      step: "03 / CONFIGURACIÓN",
+      title: "Prepara tu celular",
+      description: "Dentro del juego abre «Ajustes» para revisar imagen, sonido y controles. Usa la pantalla en horizontal y, para la primera carga, una conexión Wi-Fi."
+    }
+  };
+  const selectGuideTab = tab => {
+    const entry = guideContent[tab.dataset.guide];
+    if (!entry) return;
+    for (const item of guideTabs) {
+      const selected = item === tab;
+      item.setAttribute("aria-selected", String(selected));
+      item.tabIndex = selected ? 0 : -1;
+    }
+    guidePanel.setAttribute("aria-labelledby", tab.id);
+    guideStep.textContent = entry.step;
+    guideTitle.textContent = entry.title;
+    guideDescription.textContent = entry.description;
+  };
+  guideTrigger.addEventListener("click", () => {
+    guide.hidden = !guide.hidden;
+    guideTrigger.setAttribute("aria-expanded", String(!guide.hidden));
+    if (guide.hidden) guideTrigger.focus();
+    else guideTabs.find(tab => tab.getAttribute("aria-selected") === "true").focus();
+  });
+  guideTabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => selectGuideTab(tab));
+    tab.addEventListener("keydown", event => {
+      const key = event.key;
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(key)) return;
+      event.preventDefault();
+      const next = key === "Home" ? 0 : key === "End" ? guideTabs.length - 1
+        : (index + (key === "ArrowRight" ? 1 : guideTabs.length - 1)) % guideTabs.length;
+      selectGuideTab(guideTabs[next]);
+      guideTabs[next].focus();
+    });
+  });
+  const connectionState = document.getElementById("connection-state");
+  const updateConnectionState = () => {
+    const connected = navigator.onLine !== false;
+    connectionState.dataset.connected = connected ? "true" : "false";
+    connectionState.textContent = connected
+      ? "● Conexión detectada por el navegador. La primera carga del juego puede consumir bastantes datos."
+      : "● El navegador indica que no hay conexión. Necesitarás internet para abrir la ciudad.";
+  };
+  window.addEventListener("online", updateConnectionState);
+  window.addEventListener("offline", updateConnectionState);
+  updateConnectionState();
 })();
