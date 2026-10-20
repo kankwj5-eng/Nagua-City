@@ -84,6 +84,43 @@ const server=http.createServer((req,res)=>{
     assert(car.clips>=5,"Vehículo V4 sin animaciones: "+car.id);
   }
   await page.screenshot({path:path.join(__dirname,"../dist/v4-browser-ciudad.png")}).catch(e=>console.warn("Screenshot no disponible",String(e)));
+  // El motor ha entrado en la ciudad; comprobar la vida local y los asientos
+  // en una escena REAL con las mallas GLB, no solo con pruebas simuladas.
+  await page.waitForTimeout(1800);
+  const life = await page.evaluate(()=>{
+    const n=Nicaragua,vehicles=n.fleet.filter(v=>v.streamV4);
+    const riders=vehicles.filter(v=>v.bike||v.caponera);
+    const active=n.pedestrians.filter(p=>p.lifeV4Active&&p.root.isEnabled());
+    const hero=n.player.root.position;
+    return {
+      heroVisualYaw:n.player.visual.rotation.y,
+      pool:vehicles.length,
+      models:[...new Set(vehicles.map(v=>v.name))],
+      activeTraffic:vehicles.filter(v=>v.traffic&&v.root.isEnabled()).length,
+      activePedestrians:active.length,
+      nearPedestrians:active.filter(p=>Math.hypot(p.root.position.x-hero.x,p.root.position.z-hero.z)<130).length,
+      riderCount:riders.filter(v=>v.trafficRider26&&v.trafficRider26.root.parent===v.root).length,
+      riderTotal:riders.length
+    };
+  });
+  assert(Math.abs(life.heroVisualYaw-Math.PI)<.0001,"Mateo mira de espaldas al avanzar");
+  assert.equal(life.pool,18,"Tráfico debe reutilizar 18 modelos");
+  assert.deepEqual([...life.models].sort(),[...vehicleIds].sort(),"No circulan las seis clases V4");
+  assert(life.activeTraffic>=3,"El tráfico no aparece en la zona del jugador");
+  assert(life.activePedestrians>=3&&life.nearPedestrians>=3,"No aparecen peatones cercanos");
+  assert.equal(life.riderCount,life.riderTotal,"Faltan conductores sobre las motos y caponeras");
+  console.log("V4_LOCAL_LIFE_OK "+JSON.stringify(life));
+  // Se comprueba también la caponera del garaje con un conductor visible.
+  const caponera=await page.evaluate(()=>{
+    const n=Nicaragua,v=n.fleet.find(v=>v.garage&&v.caponera);
+    if(!v)return {found:false};
+    n.inspectDrive40(v);
+    return {found:true,mounted:n.driving,visible:n.player.root.isEnabled(),
+      attached:n.player.root.parent===v.root,seatHeight:n.player.root.position.y};
+  });
+  assert(caponera.found&&caponera.mounted&&caponera.visible&&caponera.attached&&caponera.seatHeight>.5,
+    "Mateo debe mostrarse sentado en la caponera al subir");
+  console.log("V4_CAPONERA_OK "+JSON.stringify(caponera));
   // Validación estática extra: los paquetes humanos y animaciones viejos no viajan.
   const packaged=fs.readFileSync(path.join(site,"Managua.html"),"utf8");
   for(const deleted of ['asset-humans','asset-animation38','asset-actor-motion','pack48-humans']){
