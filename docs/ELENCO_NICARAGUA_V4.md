@@ -1,3 +1,5 @@
+> **Actualización (20 de octubre de 2026).** El texto siguiente documenta una fase anterior de preparación. Posteriormente se incorporaron al repositorio los **16 GLB** definitivos en `game/assets-v4/`. La integración del elenco y los vehículos ya existe en el juego modular. Para los detalles y pruebas actuales, consultar [ESTADO_MODELOS_V4.md](ESTADO_MODELOS_V4.md).
+
 # Elenco Nicaragua v4 — preparación segura
 
 **Solo diez modelos principales:** Mateo (protagonista) y Ernesto, Daniel, Luis,
