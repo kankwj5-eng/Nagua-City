@@ -92,6 +92,11 @@ const server=http.createServer((req,res)=>{
   }
   for(const id of [...modelIds,...vehicleIds]){
     assert(packaged.includes('id="v4-original-'+id+'"'),"Falta GLB final: "+id);
+    // La versión WEB debe entregar los modelos en .glb.gz por separado.
+    const pattern=new RegExp('id="v4-original-'+id+'" data-src="\\./assets/stream/([^"]+\\.glb\\.gz)" data-format="glb-gzip"');
+    const match=packaged.match(pattern);
+    assert(match,"GLB V4 no separado o sin enlace: "+id);
+    assert(fs.existsSync(path.join(site,"assets/stream",match[1])),"GLB V4 no publicado: "+id);
   }
   console.log("V4_RUNTIME_OK "+JSON.stringify(v4));
   assert(first.startup.remoteRequests>0,"Expected remote downloads for split resources");
