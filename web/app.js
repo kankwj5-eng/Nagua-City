@@ -45,7 +45,6 @@
       });
     });
   }
-}
   // Guía interactiva de la portada: no modifica ni simula el estado del motor 3D.
   const guideTrigger = document.getElementById("guide-trigger");
   const guide = document.getElementById("guide");
