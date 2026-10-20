@@ -118,6 +118,7 @@ const server=http.createServer((req,res)=>{
     return {found:true,mounted:n.driving,visible:n.player.root.isEnabled(),
       attached:n.player.root.parent===v.root,seatHeight:n.player.root.position.y};
   });
+  console.log("V4_CAPONERA_DIAGNOSTIC "+JSON.stringify(caponera));
   assert(caponera.found&&caponera.mounted&&caponera.visible&&caponera.attached&&caponera.seatHeight>.5,
     "Mateo debe mostrarse sentado en la caponera al subir");
   console.log("V4_CAPONERA_OK "+JSON.stringify(caponera));
