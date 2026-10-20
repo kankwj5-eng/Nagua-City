@@ -30,7 +30,7 @@ window.__handling13={
   if(driving)throw Error('Cannot exit previous vehicle');
   renderRestore=renderPrevious=null;frameClock.reset();
   const v=fleet.find(v=>v.garage&&v.name===name);if(!v)throw Error('Missing model '+name);
-  for(const other of fleet){other.motion13=null;other.traffic=false;other.retired28=other!==v;if(other!==v)other.root.position.set(2000+other.id*10,0,2000);}
+  for(const other of fleet){other.motion13=null;other.traffic=false;other.retired28=other!==v;other.streamV4=false;if(other!==v)other.root.position.set(2000+other.id*10,0,2000);}
   v.root.position.set(-37,groundAt(-37,90),90);v.root.rotation.set(0,0,0);v.heading=0;v.spin=0;v.condition32=100;
   homeMode=false;playing=true;nearest=v;changeDrive(true);if(!driving||current!==v)throw Error('Entry failed');
   clearInput();camera._track=camera._offset=null;last=performance.now();
@@ -44,5 +44,5 @@ window.__handling13={
  },
  frame(dt=1/120){last=performance.now()-dt*1000;engine.beginFrame();window.__handlingFrame13();engine.endFrame();},
  pause(value){pause(value);},
- snapshot(){const v=current;return {name:v.name,driving,playing,state:{...state},root:v.root.position.asArray(),rotation:v.root.rotation.asArray(),parts:Object.fromEntries(Object.entries(v.parts).map(([k,p])=>[k,p.rotation.asArray()])),spin:v.spin,condition:v.condition32,contacts:stage40.contacts,playerParent:player.root.parent?.name??null,meshes:scene.meshes.length};}
+ snapshot(){const v=current;return {name:v.name,driving,playing,state:{...state},root:v.root.position.asArray(),rotation:v.root.rotation.asArray(),parts:Object.fromEntries(Object.entries(v.parts).map(([k,p])=>[k,p.rotation.asArray()])),spin:v.v4?.roll??v.spin,steerAngle:state.steer,glbClips:v.v4?.groups.size??0,condition:v.condition32,contacts:stage40.contacts,playerParent:player.root.parent?.name??null,playerVisible:player.root.isEnabled(),meshes:scene.meshes.length};}
 };

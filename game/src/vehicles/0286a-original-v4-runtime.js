@@ -118,6 +118,9 @@ const originalV4=(()=>{
   const {instance,groups}=instantiate(pack.container,index);
   const root=new B.TransformNode("persona_v4_"+index,scene),visual=new B.TransformNode("personaje_original_v4",scene);
   visual.parent=root;
+  // Los GLB humanos V4 miran en dirección contraria al avance (-Z) del
+  // controlador. Rotar solo el visual mantiene intactas cámaras y colisiones.
+  visual.rotation.y=Math.PI;
   for(const node of instance.rootNodes)node.parent=visual;
   const nearMeshes=root.getChildMeshes();
   for(const mesh of nearMeshes){mesh.isPickable=false;mesh.receiveShadows=true;}
@@ -148,7 +151,7 @@ const originalV4=(()=>{
   const meta={radius:info.radius,width,length,wheelbase,mass,seat:[0,1,0],
     steeringPivot:[0,1,0],hands:[.4,1,0]};
   const v={name,id,root,visual,heading,meta,radius:info.radius,wheelbase,width,length,
-    maxSpeed,bike,bus:false,bicycle:false,parts:{steering,body:visual},traffic:false,garage:false,
+    maxSpeed,bike,caponera:info.type==="caponera",bus:false,bicycle:false,parts:{steering,body:visual},traffic:false,garage:false,
     spin:0,phase:0,distance:0,profile:{runningMassKg:mass},
     v4:{id:name,info,groups,instance,roll:0,lastPosition:root.position.clone(),lastDirection:null}};
   v.contact=contactShadow("Sombra vehículo V4 "+id,width*1.12,length*.85);
