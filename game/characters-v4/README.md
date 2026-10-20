@@ -1,3 +1,5 @@
+> **Estado actualizado (20 de octubre de 2026).** Este archivo describe el adaptador aislado de una fase anterior. Los **10 GLB definitivos**, incluido Mateo, ahora sí están versionados en `game/assets-v4/`, con hashes en `specifications.json`. El juego modular los utiliza mediante `game/src/vehicles/0286a-original-v4-runtime.js`, `prepareHumans` y `makeHuman`. La entrega web elimina del HTML los paquetes de humanos y animaciones anteriores. Las pruebas de Chromium y Android físico deben determinar si cada rig y animación se ven correctamente; no equivale a una certificación visual.
+
 # Motor del elenco Nicaragua v4
 
 Código aislado y comprobable antes de retirar las dependencias originales.
