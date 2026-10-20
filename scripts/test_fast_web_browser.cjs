@@ -39,9 +39,9 @@ const server=http.createServer((req,res)=>{
   assert(assetRequests>0,"No on-demand assets requested");
   if(errors.length){
     const html=fs.readFileSync(path.join(site,"Managua.html"),"utf8");
-    const lines=html.split("\\n");
+    const lines=html.split("\n");
     for(const error of errors){
-      const match=error.match(/Managua\\.html:(\\d+):(\\d+)/);
+      const match=error.match(/Managua\.html:(\d+):(\d+)/);
       if(!match)continue;
       const row=Number(match[1])-1,col=Number(match[2])-1,line=lines[row]||"";
       console.error("RUNTIME_SOURCE_CONTEXT "+JSON.stringify({row:row+1,col:col+1,lineLength:line.length,snippet:line.slice(Math.max(0,col-450),col+450)}));
