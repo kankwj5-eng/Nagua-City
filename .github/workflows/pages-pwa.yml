@@ -40,6 +40,8 @@ jobs:
         run: |
           python3 scripts/package_original_v4.py --source dist/Managua-portable.html --output dist/Managua-v4.html
           mv dist/Managua-v4.html dist/Managua-portable.html
+      - name: Probar que el arranque no pide humanos antiguos eliminados
+        run: python3 -m unittest discover -s tests -p 'test_v4_bootstrap.py' -v
       - name: Preparar portada, manifiesto, iconos y service worker
         run: python3 scripts/build_pwa.py --game dist/Managua-portable.html --output dist/site
       - name: Validar que la PWA dividió sus recursos sin modificar el archivo portátil
