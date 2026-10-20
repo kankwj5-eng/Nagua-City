@@ -40,6 +40,10 @@ jobs:
         run: |
           python3 scripts/package_original_v4.py --source dist/Managua-portable.html --output dist/Managua-v4.html
           mv dist/Managua-v4.html dist/Managua-portable.html
+      - name: Verificar orientación de Mateo, conductores y streaming urbano
+        run: |
+          node tests/v4-city-life.cjs
+          node tests/motorcycle-rider-lod.cjs
       - name: Probar que el arranque no pide humanos antiguos eliminados
         run: python3 -m unittest discover -s tests -p 'test_v4_bootstrap.py' -v
       - name: Evitar carrera de análisis HTML al buscar modelos en Android
