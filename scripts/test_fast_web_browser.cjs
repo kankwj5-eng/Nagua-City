@@ -37,6 +37,16 @@ const server=http.createServer((req,res)=>{
   assert(first.startup.remoteRequests>0,"Expected remote downloads for split resources");
   assert(first.startup.zoneReadsAtEntry<=4,"Too many world zones loaded at entry");
   assert(assetRequests>0,"No on-demand assets requested");
+  if(errors.length){
+    const html=fs.readFileSync(path.join(site,"Managua.html"),"utf8");
+    const lines=html.split("\\n");
+    for(const error of errors){
+      const match=error.match(/Managua\\.html:(\\d+):(\\d+)/);
+      if(!match)continue;
+      const row=Number(match[1])-1,col=Number(match[2])-1,line=lines[row]||"";
+      console.error("RUNTIME_SOURCE_CONTEXT "+JSON.stringify({row:row+1,col:col+1,lineLength:line.length,snippet:line.slice(Math.max(0,col-450),col+450)}));
+    }
+  }
   assert.deepEqual(errors,[],"Unexpected JavaScript errors");
   assert.deepEqual(failures,[],"Network failures");
   const report={navigationToPlayableMs:Date.now()-t,htmlBytes:fs.statSync(path.join(site,"Managua.html")).size,assetRequests,requests,bytesServed,firstPlayableMs:first.startup.firstPlayableMs,bootStages:first.boot.stages,remoteRequests:first.startup.remoteRequests,remoteBytes:first.startup.remoteBytes,zonesAtEntry:first.startup.zonesAtEntry,errors,failures,passed:true};
