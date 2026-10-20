@@ -18,6 +18,14 @@ BLOCK = re.compile(
     rb'((?:zone48|image48|resource48)-[a-zA-Z0-9-]+)'
     rb'">)([^<]*)(</script>)'
 )
+V4_BLOCK = re.compile(
+    rb'(<script type="application/octet-stream" id="(v4-original-(?!specifications)[a-z0-9_-]+)">)([^<]*)(</script>)'
+)
+V4_EXPECTED = {
+    "01_mateo", "02_ernesto", "03_daniel", "04_luis", "05_rafael",
+    "06_valeria", "07_marisol", "08_xiomara", "09_rosa", "10_elena",
+    "hilux", "landcruiser", "pulsar", "taypan", "mototaxi-roja", "canonera-abierta",
+}
 IMAGE_DATA_URL = re.compile(rb'^data:(image/(?:png|jpeg|webp));base64,', re.I)
 EXTENSIONS = {b"image/png": ".png", b"image/jpeg": ".jpg", b"image/webp": ".webp"}
 
@@ -103,6 +111,36 @@ def split_web_game(path: Path, assets: Path) -> dict:
         ).encode("ascii")
 
     rewritten, total = BLOCK.subn(replace, source)
+    v4_found = set()
+    v4_bytes = 0
+
+    def replace_v4(match: re.Match[bytes]) -> bytes:
+        nonlocal v4_bytes
+        identifier = match.group(2).decode("ascii")
+        key = identifier.removeprefix("v4-original-")
+        if key not in V4_EXPECTED or key in v4_found:
+            raise ValueError("ID V4 desconocido o duplicado: " + key)
+        packed = match.group(3)
+        compressed = base64.b64decode(packed, validate=True)
+        if compressed[:2] != bytes((31, 139)):
+            raise ValueError("Modelo V4 no está comprimido: " + key)
+        raw = gzip.decompress(compressed)
+        if len(raw) < 20 or raw[:4] != b"glTF" or int.from_bytes(raw[8:12], "little") != len(raw):
+            raise ValueError("Modelo V4 GLB inválido: " + key)
+        digest = hashlib.sha256(compressed).hexdigest()[:16]
+        filename = f"{identifier}-{digest}.glb.gz"
+        (assets / filename).write_bytes(compressed)
+        v4_found.add(key)
+        v4_bytes += len(compressed)
+        return (
+            f'<script type="application/octet-stream" id="{identifier}" '
+            f'data-src="./assets/stream/{filename}" data-format="glb-gzip"></script>'
+        ).encode("ascii")
+
+    rewritten, v4_count = V4_BLOCK.subn(replace_v4, rewritten)
+    # Rechazar un catálogo parcial en lugar de publicar una ciudad rota.
+    if v4_count and v4_found != V4_EXPECTED:
+        raise ValueError("Catálogo V4 incompleto: " + ", ".join(sorted(V4_EXPECTED - v4_found)))
     if total < 100 or not types["zone48"] or not types["image48"] or not types["resource48"]:
         raise ValueError("Web streaming found an incomplete catalog; refusing to publish")
     if len(rewritten) >= len(source) * .85:
@@ -110,6 +148,9 @@ def split_web_game(path: Path, assets: Path) -> dict:
     path.write_bytes(rewritten)
     report = {
         "originalHtmlBytes": len(source),
+        "v4ModelsExternalized": v4_count,
+        "v4CompressedBytes": v4_bytes,
+        "v4Ids": sorted(v4_found),
         "fastHtmlBytes": len(rewritten),
         "htmlBytesRemoved": len(source) - len(rewritten),
         "resources": total,
