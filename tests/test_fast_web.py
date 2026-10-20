@@ -62,6 +62,50 @@ class TestFastWeb(unittest.TestCase):
             image = next(data.glob("image48-world-0-*.png"))
             self.assertEqual(image.read_bytes()[:8], bytes((137, 80, 78, 71, 13, 10, 26, 10)))
 
+    def test_streams_all_16_v4_models_as_versioned_gzip(self):
+        """La PWA no debe incorporar 16 cadenas base64 enormes al HTML móvil."""
+        from build_fast_web import V4_EXPECTED
+        glb = (
+            b"glTF" + (2).to_bytes(4, "little") +
+            (20).to_bytes(4, "little") + (0).to_bytes(4, "little") +
+            b"JSON"
+        )
+        packed = gzip.compress(glb, mtime=0)
+        tags = b"".join(
+            f'<script type="application/octet-stream" id="v4-original-{key}">'.encode()
+            + base64.b64encode(packed) + b"</script>"
+            for key in sorted(V4_EXPECTED)
+        )
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            portable = root / "portable.html"
+            portable.write_bytes(self.fixture().replace(b"</body>", tags + b"</body>"))
+            portable_hash = hashlib.sha256(portable.read_bytes()).hexdigest()
+            web = root / "Managua.html"
+            web.write_bytes(portable.read_bytes())
+            assets = root / "assets"
+            result = split_web_game(web, assets)
+            html = web.read_text()
+            self.assertEqual(result["v4ModelsExternalized"], 16)
+            self.assertEqual(result["v4CompressedBytes"], len(packed) * 16)
+            self.assertEqual(len(list(assets.glob("v4-original-*.glb.gz"))), 16)
+            for key in V4_EXPECTED:
+                self.assertIn(f'id="v4-original-{key}" data-src="./assets/stream/', html)
+                self.assertIn(f'v4-original-{key}-', html)
+                self.assertEqual(gzip.decompress(next(assets.glob(f"v4-original-{key}-*.glb.gz")).read_bytes()), glb)
+            self.assertNotIn(base64.b64encode(packed).decode(), html)
+            self.assertEqual(hashlib.sha256(portable.read_bytes()).hexdigest(), portable_hash)
+
+    def test_rejects_incomplete_v4_catalog(self):
+        glb=b"glTF"+(2).to_bytes(4,"little")+(20).to_bytes(4,"little")+(0).to_bytes(4,"little")+b"JSON"
+        tag=(b'<script type="application/octet-stream" id="v4-original-hilux">'
+             +base64.b64encode(gzip.compress(glb,mtime=0))+b"</script>")
+        with tempfile.TemporaryDirectory() as folder:
+            html=Path(folder)/"Managua.html"
+            html.write_bytes(self.fixture().replace(b"</body>",tag+b"</body>"))
+            with self.assertRaisesRegex(ValueError,"Catálogo V4 incompleto"):
+                split_web_game(html,Path(folder)/"assets")
+
     def test_refuses_missing_blocks_and_invalid_gzip(self):
         with tempfile.TemporaryDirectory() as folder:
             folder = Path(folder)
