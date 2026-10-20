@@ -1,0 +1,429 @@
+{
+  "characters": [
+    {
+      "id": "01_mateo",
+      "nombre": "Mateo",
+      "protagonista": true,
+      "archivo": "01_mateo.glb",
+      "bytes": 2835052,
+      "sha256": "4b3222d5005802e8f91bbcd5316ef0b868640033cccbb8f6b93ec3e62a732385",
+      "huesos": 79,
+      "animaciones": [
+        "Crouch",
+        "CrouchWalk",
+        "Dodge_L",
+        "Dodge_R",
+        "FallBack",
+        "GetUp",
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Jump",
+        "JumpLoop",
+        "JumpStart",
+        "Kick_L",
+        "Kick_R",
+        "Land",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Run_RootMotion",
+        "RunTurn_L",
+        "RunTurn_R",
+        "Sprint",
+        "Sprint_RootMotion",
+        "StartRun",
+        "StartWalk",
+        "StepOver",
+        "StopRun",
+        "StopWalk",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Walk_RootMotion",
+        "WalkTurn_L",
+        "WalkTurn_R",
+        "Wave"
+      ]
+    },
+    {
+      "id": "02_ernesto",
+      "nombre": "Ernesto",
+      "protagonista": false,
+      "archivo": "02_ernesto.glb",
+      "bytes": 1198732,
+      "sha256": "42c8daa3a4b4d8b6aa121760cd903eff30bbdae84c3b93eb521d0ec8758b1071",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "03_daniel",
+      "nombre": "Daniel",
+      "protagonista": false,
+      "archivo": "03_daniel.glb",
+      "bytes": 1336160,
+      "sha256": "486a03da78407376e767cf6655468b05759b6e345eb5e70f09661759c8d1129b",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "04_luis",
+      "nombre": "Luis",
+      "protagonista": false,
+      "archivo": "04_luis.glb",
+      "bytes": 1186808,
+      "sha256": "b94b1b42a9223384a0c3bfcf8d46a878dadca2de5f2cc74473335ec5f4abd14a",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "05_rafael",
+      "nombre": "Rafael",
+      "protagonista": false,
+      "archivo": "05_rafael.glb",
+      "bytes": 1334032,
+      "sha256": "db1de19000fb378e1a6803e566633e8e1725ac8f864321db42c74bb8bd1bc6f5",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "06_valeria",
+      "nombre": "Valeria",
+      "protagonista": false,
+      "archivo": "06_valeria.glb",
+      "bytes": 1318400,
+      "sha256": "ce9a474f32deb7b770dd5a512ea47cdbb0485d0a7c6a6d7ce0204118c25d830e",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "07_marisol",
+      "nombre": "Marisol",
+      "protagonista": false,
+      "archivo": "07_marisol.glb",
+      "bytes": 1354836,
+      "sha256": "d59c843c92c7fd6d552874ab77cc1ffb6b0121e92774149541b19d1d50c99149",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "08_xiomara",
+      "nombre": "Xiomara",
+      "protagonista": false,
+      "archivo": "08_xiomara.glb",
+      "bytes": 1355316,
+      "sha256": "ce6f55682dd9c88d94ba8f13d3f3c49dde053f1622402fb7ed33c5584c1e9b60",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "09_rosa",
+      "nombre": "Rosa",
+      "protagonista": false,
+      "archivo": "09_rosa.glb",
+      "bytes": 1462284,
+      "sha256": "9b2dc3e9beb16f36231f330732fa90151b9767eecb74d5a4d486990fc548fd6e",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    },
+    {
+      "id": "10_elena",
+      "nombre": "Elena",
+      "protagonista": false,
+      "archivo": "10_elena.glb",
+      "bytes": 1331068,
+      "sha256": "9a59d58cb5f73d49f334f60544a6ded32bfab1a2ac01f3afc96d830dbff38bfc",
+      "huesos": 52,
+      "animaciones": [
+        "Guard",
+        "HitReaction",
+        "Idle",
+        "Punch_L",
+        "Punch_R",
+        "Recover",
+        "Run",
+        "Talk",
+        "Turn_L",
+        "Turn_R",
+        "Walk",
+        "Wave"
+      ]
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "hilux",
+      "name": "Toyota Hilux grafito",
+      "file": "Hilux-grafito.glb",
+      "bytes": 2990916,
+      "sha256": "e30564ea6f88b05a74e39780d476290e1b02a08bf7977ad36ab4ed96e7a7bf17",
+      "type": "camioneta",
+      "radius": 0.413,
+      "animations": [
+        "Mover_Compuerta_trasera",
+        "Rodar_Delantera_Der",
+        "Rodar_Delantera_Izq",
+        "Mover_Puerta_Delantera_Der",
+        "Mover_Puerta_Delantera_Izq",
+        "Mover_Puerta_Trasera_Der",
+        "Mover_Puerta_Trasera_Izq",
+        "Rodar_Trasera_Der",
+        "Rodar_Trasera_Izq",
+        "Direccion_Izquierda",
+        "Direccion_Derecha"
+      ],
+      "wheels": [
+        "Delantera_Der",
+        "Delantera_Izq",
+        "Trasera_Der",
+        "Trasera_Izq"
+      ],
+      "steering": [
+        "Direccion_Delantera_Der",
+        "Direccion_Delantera_Izq"
+      ],
+      "forward": "-X",
+      "up": "Y"
+    },
+    {
+      "id": "landcruiser",
+      "name": "Toyota Land Cruiser roja",
+      "file": "Land-Cruiser-roja.glb",
+      "bytes": 2655268,
+      "sha256": "8156505b11acd2486a0e94b2d62adce74a2929e31001fed30828f52c904b2e80",
+      "type": "camioneta",
+      "radius": 0.426,
+      "animations": [
+        "Mover_Compuerta_trasera",
+        "Rodar_Delantera_Der",
+        "Rodar_Delantera_Izq",
+        "Mover_Puerta_Delantera_Der",
+        "Mover_Puerta_Delantera_Izq",
+        "Rodar_Trasera_Der",
+        "Rodar_Trasera_Izq",
+        "Direccion_Izquierda",
+        "Direccion_Derecha"
+      ],
+      "wheels": [
+        "Delantera_Der",
+        "Delantera_Izq",
+        "Trasera_Der",
+        "Trasera_Izq"
+      ],
+      "steering": [
+        "Direccion_Delantera_Der",
+        "Direccion_Delantera_Izq"
+      ],
+      "forward": "-X",
+      "up": "Y"
+    },
+    {
+      "id": "pulsar",
+      "name": "Pulsar NS200",
+      "file": "Pulsar-NS200.glb",
+      "bytes": 1422516,
+      "sha256": "3ff5beeb4a06714fbc27adaa6c99e3435242fa622cb54145c67dc14f803b90aa",
+      "type": "moto",
+      "radius": 0.3,
+      "animations": [
+        "Mover_Direccion",
+        "Rodar_Rueda_Delantera",
+        "Rodar_Rueda_Trasera",
+        "Direccion_Izquierda",
+        "Direccion_Derecha"
+      ],
+      "wheels": [
+        "Rueda_Delantera",
+        "Rueda_Trasera"
+      ],
+      "steering": [
+        "Direccion"
+      ],
+      "forward": "-X",
+      "up": "Y"
+    },
+    {
+      "id": "taypan",
+      "name": "Serpento Taypan 150",
+      "file": "Serpento-Taypan-150.glb",
+      "bytes": 1424352,
+      "sha256": "c8c6793fb0646fec716aadd9c12112b9f5a0d30ecfb5cebe46cfdaba39f356f6",
+      "type": "moto",
+      "radius": 0.296,
+      "animations": [
+        "Mover_Direccion",
+        "Rodar_Rueda_Delantera",
+        "Rodar_Rueda_Trasera",
+        "Direccion_Izquierda",
+        "Direccion_Derecha"
+      ],
+      "wheels": [
+        "Rueda_Delantera",
+        "Rueda_Trasera"
+      ],
+      "steering": [
+        "Direccion"
+      ],
+      "forward": "-X",
+      "up": "Y"
+    },
+    {
+      "id": "mototaxi-roja",
+      "name": "Mototaxi roja",
+      "file": "01-Mototaxi-roja.glb",
+      "type": "caponera",
+      "radius": 0.3,
+      "wheels": [
+        "Rueda_Delantera",
+        "Rueda_Trasera_Der",
+        "Rueda_Trasera_Izq"
+      ],
+      "steering": [
+        "Direccion"
+      ],
+      "animations": [
+        "Rodar_Rueda_Delantera",
+        "Rodar_Rueda_Trasera_Der",
+        "Rodar_Rueda_Trasera_Izq",
+        "Rodar_y_Doblar",
+        "Direccion_Derecha",
+        "Direccion_Izquierda"
+      ],
+      "bytes": 1899432,
+      "sha256": "0c44bcb82b9eb20e1a935ea89a04b175b587c11d0d2c1133fb10a06d6364489f"
+    },
+    {
+      "id": "canonera-abierta",
+      "name": "Caponera abierta",
+      "file": "02-Canonera-abierta.glb",
+      "type": "caponera",
+      "radius": 0.3,
+      "wheels": [
+        "Rueda_Frontal_Der",
+        "Rueda_Frontal_Izq",
+        "Rueda_Trasera"
+      ],
+      "steering": [
+        "Direccion_Frontal_Der",
+        "Direccion_Frontal_Izq",
+        "Manubrio"
+      ],
+      "animations": [
+        "Rodar_Rueda_Frontal_Der",
+        "Rodar_Rueda_Frontal_Izq",
+        "Rodar_Rueda_Trasera",
+        "Direccion_Derecha",
+        "Direccion_Izquierda",
+        "Rodar_y_Doblar"
+      ],
+      "bytes": 1291572,
+      "sha256": "c881332feddd5b8f4bf8928bb389b3b6960dc1b9dab27156d5c4784ce9e18142"
+    }
+  ]
+}

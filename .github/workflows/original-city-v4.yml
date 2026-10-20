@@ -1,0 +1,94 @@
+name: Verificar mapa original con elenco V4
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - scripts/build_original_city_v4.py
+      - game/v4/official-city.js
+      - tests/test_original_city_v4.py
+      - tests/v4-original-city-nullengine.cjs
+      - .github/workflows/original-city-v4.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  city-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Confirmar archivo original LFS
+        run: |
+          git lfs pull
+          test "$(wc -c < 'Managua_Del_taller_al_lago(1).html')" -gt 100000000
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verificar sintaxis de constructor y renderizador
+        run: |
+          python3 -m py_compile scripts/build_original_city_v4.py
+          node --check game/v4/official-city.js
+      - name: Probar contratos de datos originales sin incluir modelos viejos
+        run: |
+          python3 -m unittest discover -s tests -p 'test_original_city_v4.py' -v
+      - name: Inspeccionar catálogos REALES del mapa
+        run: |
+          python3 - <<'PY'
+          import sys
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from build_original_city_v4 import source_assets,scripts_from_catalogs
+          raw=source_assets(Path('Managua_Del_taller_al_lago(1).html'))
+          tags,counts,sizes=scripts_from_catalogs(raw)
+          assert counts['world']['zones']==81
+          assert counts['extensions']['zones']==38
+          assert counts['world']['images']==37
+          assert counts['extensions']['images']==31
+          assert counts['terrain']['surfaces']==4436
+          assert counts['terrain']['colliders']==4559
+          assert len(tags)==81+38+37+31+3
+          assert all('asset-humans' not in t and 'asset-vehicles' not in t for t in tags)
+          print({'originalMapZones':119,'textures':68,'terrainTriangles':4436,'colliders':4559,'oldHumanResources':0,'oldVehicleResources':0})
+          PY
+      - name: Extraer motor Babylon y dos sectores 3D auténticos para la prueba
+        run: |
+          python3 - <<'PY'
+          import sys,re,base64,gzip,json
+          from pathlib import Path
+          sys.path.insert(0,'scripts')
+          from build_original_city_v4 import source_assets
+          source=Path('Managua_Del_taller_al_lago(1).html')
+          raw=source.read_bytes()
+          match=re.search(rb'<script[^>]*id="asset-babylon"[^>]*>(.*?)</script>',raw,re.S)
+          assert match,'Falta el motor original'
+          folder=Path('dist/v4-null');folder.mkdir(parents=True,exist_ok=True)
+          (folder/'asset-babylon.js').write_bytes(gzip.decompress(base64.b64decode(match[1])))
+          catalogs=source_assets(source)
+          world=catalogs['world'];extensions=catalogs['extensions']
+          w=None;e=None
+          for i,z in enumerate(world['zones']):
+           data=z.pop('data')
+           if i==71:w=data
+          for i,z in enumerate(extensions['zones']):
+           data=z.pop('data')
+           if i==5:e=data
+          assert w and e
+          world['images']=[{'stored':True} for image in world['images']]
+          for image in extensions['images']:image.pop('data',None)
+          fixture={
+           'city-meta-world':json.dumps(world),
+           'city-meta-extensions':json.dumps(extensions),
+           'city-data':json.dumps({'boxes':catalogs['data']['boxes'],'surfaces':catalogs['data']['surfaces']}),
+           'city-zone-world-71':w,'city-zone-extensions-5':e
+          }
+          (folder/'fixture.json').write_text(json.dumps(fixture))
+          print({'fixtureEntries':len(fixture),'coreBytes':(folder/'asset-babylon.js').stat().st_size})
+          PY
+      - name: Renderizar ciudad original con Babylon.js real sin WebGL
+        run: node tests/v4-original-city-nullengine.cjs

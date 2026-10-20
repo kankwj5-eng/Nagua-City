@@ -1,0 +1,59 @@
+name: Empaquetar laboratorio V4 táctil
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - game/v4/**
+      - game/characters-v4/**
+      - game/vehicles-v4/**
+      - tests/v4-zip-loader.cjs
+      - tests/v4-city-bridge.cjs
+      - .github/workflows/laboratorio-v4.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lab:
+    name: Comprobar y entregar visor de modelos V4
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Validar motores y puente de jugabilidad
+        run: |
+          node --check game/v4/zip-loader.js
+          node --check game/v4/city-bridge.js
+          node tests/v4-zip-loader.cjs
+          node tests/v4-city-bridge.cjs
+      - name: Preparar visor independiente
+        run: |
+          mkdir -p dist/visor-v4/game/v4 dist/visor-v4/game/characters-v4 dist/visor-v4/game/vehicles-v4
+          cp game/v4/preview.html game/v4/zip-loader.js dist/visor-v4/game/v4/
+          cp game/characters-v4/cast-runtime.js dist/visor-v4/game/characters-v4/
+          cp game/vehicles-v4/vehicle-runtime.js dist/visor-v4/game/vehicles-v4/
+          cat > dist/visor-v4/LEEME.txt <<'TXT'
+          Laboratorio Nagua City V4 (NO ES TODAVÍA EL JUEGO COMPLETO)
+
+          1. Descomprimí el ZIP de este visor.
+          2. Abrí game/v4/preview.html en Chromium o Chrome.
+          3. Seleccioná Nagua-City-V4-14-Modelos-Nuevos.zip cuando te lo pida.
+          4. Elegí personajes y vehículos y probá sus animaciones.
+          5. Se necesita internet para cargar Babylon.js, pero los GLB del
+             paquete permanecen locales: el visor no los sube a internet.
+
+          Si Chrome bloquea archivos locales, ejecutá el visor desde un
+          servidor HTTP local; no se necesita cuenta ni API externa.
+          TXT
+      - name: Adjuntar visor de prueba para descargar
+        uses: actions/upload-artifact@v4
+        with:
+          name: nagua-v4-visor-14-modelos
+          path: dist/visor-v4
+          retention-days: 30

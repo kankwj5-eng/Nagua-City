@@ -1,1 +1,2 @@
-function applyCityOutfit(){const variant=city.state.outfit%wardrobe[0].length;for(const m of [...player.nearMeshes,...player.lodMeshes])if(m.material?.name.includes('CitizenAtlas')||m.material?.name.includes('Ropa de calle')||m.material?.name.includes('Ropa del protagonista')){const key='heroCity'+variant;const mat=outfitMaterials[key]||(outfitMaterials[key]=m.material.clone('Ropa del protagonista '+variant));mat.albedoTexture=wardrobe[0][variant];m.material=mat;}}
+// Mateo ya viene completamente vestido y texturizado en su GLB.
+function applyCityOutfit(){}

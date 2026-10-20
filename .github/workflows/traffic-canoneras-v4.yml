@@ -1,0 +1,37 @@
+name: Probar caponeras y tráfico V4
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - game/v4/traffic-canoneras.js
+      - tests/traffic-canoneras-v4.cjs
+      - tests/test_build_traffic_canoneras_v4.py
+      - scripts/build_traffic_canoneras_v4.py
+      - docs/CANONERAS_TRAFICO_V4.md
+      - .github/workflows/traffic-canoneras-v4.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  traffic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          lfs: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verificar importador de caponeras
+        run: |
+          python3 -m py_compile scripts/build_traffic_canoneras_v4.py
+          python3 -m unittest discover -s tests -p 'test_build_traffic_canoneras_v4.py' -v
+      - name: Comprobar integridad del controlador
+        run: node --check game/v4/traffic-canoneras.js
+      - name: Comprobar circulación, clonación y animaciones de los 6 modelos nuevos
+        run: node tests/traffic-canoneras-v4.cjs

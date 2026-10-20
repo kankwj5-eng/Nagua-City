@@ -35,5 +35,7 @@ assert(read("game/src/engine/0179-update-combat29.js").includes("c.aim=false"));
 assert(read("game/src/interface/0323-refresh-equipment-ui.js").includes("button.hidden=!allowed"));
 const fights=read("game/src/engine/0264-install-combat38.js");
 assert(fights.includes("Combat29.strike"),"Preserve stamina and fist combat");
-assert(fights.includes("sampleHuman(p,clip,progress,1)"),"Preserve punch animations");
+assert(fights.includes("originalV4.seekClip(person,clip,progress)"),"New V4 GLB punch clips must be sampled");
+assert(fights.includes("Punch_L")&&fights.includes("Punch_R"),"Both new punch animations remain active");
+assert(!fights.includes("sampleHuman("),"Retired procedural rig must not be called");
 console.log("MELEE_ONLY_NO_FIREARMS_OK "+JSON.stringify({equipment:Object.keys(items),firearms:0,shop:"Ferretería del Barrio",punchAnimation:true}));

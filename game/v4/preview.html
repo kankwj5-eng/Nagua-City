@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Nagua City V4 · Laboratorio de modelos</title>
+<style>
+:root{font-family:system-ui,Roboto,Arial,sans-serif;color-scheme:dark;color:#f0f4f4;background:#0d1921}
+*{box-sizing:border-box}body{margin:0;overflow:hidden}
+#render{width:100vw;height:100dvh;display:block;touch-action:none}
+.panel{position:absolute;left:12px;top:12px;width:min(380px,calc(100vw - 24px));background:#0d1921e9;border:1px solid #63848b88;border-radius:16px;padding:15px;box-shadow:0 12px 35px #0009;max-height:min(540px,calc(100dvh - 24px));overflow:auto}
+h1{font-size:18px;margin:0 0 3px}p{font-size:12px;color:#b9c8ce;line-height:1.5;margin:4px 0 12px}
+label{font-size:12px;display:block;margin:10px 0 4px}
+input[type=file],select,button{width:100%;background:#203541;border:1px solid #587078;border-radius:8px;color:white;padding:9px;font-size:14px}
+input[type=range]{width:100%}button{cursor:pointer}button:disabled{opacity:.5;cursor:default}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+small{font-size:11px;color:#a4c6c1}
+#status{font-size:12px;padding:8px 10px;border-radius:8px;background:#182b34;color:#c4e8dd;margin:9px 0;overflow-wrap:anywhere}
+#status.error{background:#432626;color:#ffc2ae}
+.help{position:absolute;bottom:12px;right:12px;background:#10212bcc;padding:8px;border-radius:8px;font-size:11px}
+</style>
+<script src="https://cdn.babylonjs.com/babylon.js"></script>
+<script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+<script src="../characters-v4/cast-runtime.js"></script>
+<script src="../vehicles-v4/vehicle-runtime.js"></script>
+<script src="zip-loader.js"></script>
+</head><body>
+<canvas id="render"></canvas>
+<section class="panel" aria-label="Laboratorio de los modelos nuevos">
+<h1>Nagua City · elenco y vehículos V4</h1>
+<p>Prueba aislada de los archivos 3D nuevos. No es el juego completo ni utiliza personajes o vehículos anteriores.</p>
+<label for="archive">Seleccioná tu ZIP «Nagua-City-V4-14-Modelos-Nuevos.zip»</label>
+<input id="archive" type="file" accept=".zip,application/zip">
+<div id="status" role="status">Esperando el paquete de 14 modelos nuevos…</div>
+<label for="model">Modelo que querés inspeccionar</label>
+<select id="model" disabled></select>
+<div class="row">
+<button type="button" id="previous" disabled>← Anterior</button>
+<button type="button" id="next" disabled>Siguiente →</button>
+</div>
+<label for="action">Animación del personaje</label>
+<select id="action" disabled></select>
+<div id="vehicleControls" hidden>
+<label for="speed">Velocidad simulada: <output id="speedNumber">0</output> km/h</label>
+<input type="range" id="speed" min="-12" max="90" value="0">
+<label for="steer">Dirección: <output id="steerNumber">0</output>%</label>
+<input type="range" id="steer" min="-100" max="100" value="0">
+</div>
+<p>Los movimientos se reproducen desde los clips GLB originales. Los controles de velocidad y giro son de prueba y no sustituyen la física del juego.</p>
+<small>Los 14 GLB se mantienen en tu dispositivo. Solo se descomprime el modelo que seleccionás. Para verlos se necesita acceso a Babylon.js por internet.</small>
+</section>
+<div class="help">Arrastrá para girar la cámara · pellizcá para acercar</div>
+<script>
+"use strict";
+const $=id=>document.getElementById(id),status=(message,error=false)=>{$("status").textContent=message;$("status").classList.toggle("error",error);};
+let archive=null,manifest=null,container=null,visual=null,activeGroup=null,selected=null;
+let totalDistance=0,last=performance.now(),currentGroups=new Map();
+const renderer=$("render");
+if(!window.BABYLON||!window.NaguaV4Archive){status("Falta Babylon.js o el cargador del paquete. Conectate a internet y volvé a abrir esta página.",true);throw Error("Dependencias no disponibles");}
+const B=window.BABYLON,engine=new B.Engine(renderer,true,{antialias:true,stencil:true,powerPreference:"high-performance"});
+const scene=new B.Scene(engine);scene.useRightHandedSystem=true;scene.clearColor=new B.Color4(.045,.105,.14,1);
+const camera=new B.ArcRotateCamera("cam",Math.PI*1.3,1.15,5.2,new B.Vector3(0,.9,0),scene);
+camera.attachControl(renderer,true);camera.lowerRadiusLimit=1.8;camera.upperRadiusLimit=26;camera.wheelPrecision=60;camera.pinchPrecision=100;
+const sun=new B.HemisphericLight("ambient",new B.Vector3(.3,1,.2),scene);sun.intensity=1.3;
+const dir=new B.DirectionalLight("sun",new B.Vector3(-.5,-1,-.6),scene);dir.intensity=1.5;
+const floor=B.MeshBuilder.CreateGround("suelo",{width:200,height:200},scene);
+const floorMat=new B.StandardMaterial("suelo_mat",scene);floorMat.diffuseColor=new B.Color3(.12,.18,.20);floorMat.specularColor=new B.Color3(.01,.02,.02);floor.material=floorMat;
+let modelNames=[];
+function setEnabledUI(on){for(const id of ["model","previous","next"])$(id).disabled=!on;}
+async function unload(){
+ if(activeGroup){activeGroup.stop();activeGroup=null;}
+ if(container){container.animationGroups.forEach(g=>g.stop());container.dispose();container=null;}
+ if(visual){visual.dispose();visual=null;}
+ currentGroups=new Map();totalDistance=0;
+}
+function play(name){
+ if(activeGroup)activeGroup.stop();
+ const group=currentGroups.get(name);
+ if(!group){activeGroup=null;return;}
+ group.start(!name.startsWith("Punch")&&!name.startsWith("Hit"),1,group.from,group.to,false);
+ activeGroup=group;
+}
+function setSlider(){
+ $("speedNumber").value=$("speed").value;$("steerNumber").value=$("steer").value;
+}
+async function show(index){
+ if(!archive)return;
+ $("model").disabled=true;await unload();
+ const item=modelNames[index];if(!item)throw Error("Modelo fuera de catálogo");
+ selected=item;
+ status("Verificando SHA256 y cargando "+item.title+"…");
+ const bytes=await archive.verified(item.path,item.sha);
+ container=await B.SceneLoader.LoadAssetContainerAsync("",bytes,scene,null,".glb");
+ container.addAllToScene();
+ visual=new B.TransformNode("visual_v4",scene);
+ for(const root of container.rootNodes)if(root!==visual)root.parent=visual;
+ visual.rotation.y=item.vehicle?-Math.PI/2:0;
+ for(const group of container.animationGroups){group.stop();currentGroups.set(group.name,group);}
+ $("action").replaceChildren();
+ for(const name of [...currentGroups.keys()]){
+  const el=document.createElement("option");el.value=name;el.textContent=name;$("action").append(el);
+ }
+ $("action").disabled=item.vehicle;
+ $("vehicleControls").hidden=!item.vehicle;
+ if(!item.vehicle){const idle=currentGroups.has("Walk")?"Walk":"Idle";$("action").value=idle;play(idle);}
+ camera.radius=item.vehicle?9:4.1;
+ camera.target.set(0,item.vehicle?1:1,0);
+ $("model").selectedIndex=index;
+ $("model").disabled=false;
+ status(item.title+" · "+currentGroups.size+" animaciones originales · modelo "+(index+1)+"/14");
+}
+$("archive").addEventListener("change",async()=>{
+ const file=$("archive").files?.[0];if(!file)return;
+ try{
+  await unload();setEnabledUI(false);status("Leyendo el ZIP sin subirlo a internet…");
+  archive=window.NaguaV4Archive.readZip(await file.arrayBuffer());
+  manifest=await archive.metadata();
+  window.NaguaCastV4.validateCast(manifest.cast);
+  window.NaguaVehiclesV4.validate(manifest.vehicles);
+  modelNames=[
+   ...manifest.cast.personajes.map(p=>({title:p.nombre,path:"characters-v4/"+p.archivo,sha:p.sha256,vehicle:false})),
+   ...manifest.vehicles.vehicles.map(p=>({title:p.name||p.id,path:"vehicles-v4/"+p.file,sha:p.sha256,vehicle:true,radius:p.radius,wheels:p.wheels}))
+  ];
+  if(modelNames.length!==14)throw Error("Se esperaban 14 modelos");
+  $("model").replaceChildren();
+  for(const item of modelNames){const e=document.createElement("option");e.textContent=item.title;$("model").append(e);}
+  setEnabledUI(true);await show(0);
+ }catch(error){status("No se pudo importar el ZIP: "+(error?.message||error),true);console.error(error);}
+});
+$("model").addEventListener("change",()=>show($("model").selectedIndex).catch(e=>status(String(e),true)));
+$("previous").addEventListener("click",()=>show(($("model").selectedIndex+13)%14).catch(e=>status(String(e),true)));
+$("next").addEventListener("click",()=>show(($("model").selectedIndex+1)%14).catch(e=>status(String(e),true)));
+$("action").addEventListener("change",()=>play($("action").value));
+$("speed").addEventListener("input",setSlider);
+$("steer").addEventListener("input",setSlider);
+setSlider();
+engine.runRenderLoop(()=>{
+ const now=performance.now(),dt=Math.min(.07,(now-last)/1000);last=now;
+ if(selected?.vehicle&&container){
+  const speed=Number($("speed").value)/3.6,turn=Number($("steer").value)/100;
+  const spec=selected;
+  totalDistance+=speed*dt;
+  const phase=(totalDistance/(2*Math.PI*spec.radius)%1+1)%1;
+  for(const wheel of spec.wheels){
+   const group=currentGroups.get("Rodar_"+wheel);
+   if(group)window.NaguaVehiclesV4.seek(group,phase);
+  }
+  const direction=currentGroups.get(turn>=0?"Direccion_Derecha":"Direccion_Izquierda");
+  if(direction)window.NaguaVehiclesV4.seek(direction,Math.abs(turn)*.5);
+ }
+ scene.render();
+});
+window.addEventListener("resize",()=>engine.resize());
+window.NaguaV4Preview={get selected(){return selected?.title||null;},get manifest(){return manifest;},get scene(){return scene;}};
+</script>
+</body></html>

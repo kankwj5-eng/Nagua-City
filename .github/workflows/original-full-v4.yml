@@ -1,0 +1,36 @@
+name: Construir base original V4
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/original-full-v4.yml
+      - scripts/build_full_original_v4.py
+      - tests/test_full_original_v4.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - run: git lfs pull
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Verificar conservación del motor gráfico y los 16 GLB nuevos
+        run: python3 -m unittest discover -s tests -p 'test_full_original_v4.py' -v
+      - run: python3 scripts/build_modular.py
+      - name: Ensamblar el juego original con dieciséis GLB y borrar las mallas antiguas
+        run: |
+          python3 scripts/package_original_v4.py --source dist/Managua.html --output dist/Managua-v4.html
+          mv dist/Managua-v4.html dist/Managua.html
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nagua-base-original
+          path: dist/Managua.html
+          retention-days: 1

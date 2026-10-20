@@ -1,5 +1,5 @@
 async function install42(){
- status('Bloque uno · preparando materiales y sombras…',79);await maps42();finishSurfaces42();vegetation42();vehicleFinish42();locomotion42();
+ status('Bloque uno · preparando materiales y sombras…',79);await maps42();finishSurfaces42();vegetation42();vehicleFinish42();
  updateShadowList=shadowList42;const beforeLight=lightSettings;lightSettings=function(){beforeLight();light42();};
  const beforeSettings=settings;settings=function(){beforeSettings();light42();shadowSettings42();ao42();for(const r of [...stage42.trees,...stage42.palms])r.metadata.r31=quality==='low'?65:quality==='high'?140:105;};
  const beforeFollow=follow;follow=function(dt){beforeFollow(dt);anchorShadow42();};

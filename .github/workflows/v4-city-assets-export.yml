@@ -1,0 +1,44 @@
+name: Entregar datos urbanos originales a integración V4
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/v4-city-assets-export.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Descargar ciudad original desde Git LFS
+        run: |
+          git lfs pull
+          test "$(wc -c < 'Managua_Del_taller_al_lago(1).html')" -gt 100000000
+      - name: Extraer sólo mapa, extensiones y datos de colisión
+        run: |
+          python3 - <<'PY'
+          import re,gzip,pathlib,hashlib,base64,json
+          source=pathlib.Path('Managua_Del_taller_al_lago(1).html').read_bytes()
+          wanted=[b'asset-world',b'asset-extensions',b'asset-data']
+          parts=[]
+          for key in wanted:
+           pattern=rb'<script\b[^>]*id="'+key+rb'"[^>]*>.*?</script>'
+           found=re.search(pattern,source,re.S|re.I)
+           if not found:raise SystemExit('No encontrado: '+str(key))
+           parts.append(found.group(0))
+          target=pathlib.Path('dist/v4-map-assets');target.mkdir(parents=True,exist_ok=True)
+          out=target/'mapa-urbano-original.html.gz'
+          out.write_bytes(gzip.compress(b'<html><body>'+b'\\n'.join(parts)+b'</body></html>',compresslevel=7,mtime=0))
+          print({'bytes':out.stat().st_size,'sha256':hashlib.sha256(out.read_bytes()).hexdigest()})
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nagua-city-catalogos-originales-v4
+          path: dist/v4-map-assets/mapa-urbano-original.html.gz
+          retention-days: 3

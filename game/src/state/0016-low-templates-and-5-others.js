@@ -1,1 +1,1 @@
-const lowTemplates={},lowPeople={},frameClock=new FixedStepClock(),wardrobe=[],outfitMaterials={},soleCurves=[];
+const frameClock=new FixedStepClock(),wardrobe=[],outfitMaterials={};

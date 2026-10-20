@@ -1,0 +1,74 @@
+name: Validar limpieza del elenco y flota antiguos
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - scripts/clean_legacy_media.py
+      - scripts/audit_legacy_fleet.py
+      - tests/test_audit_legacy_fleet.py
+      - tests/test_clean_legacy_media.py
+      - docs/LIMPIEZA_PERSONAJES_VEHICULOS.md
+      - .github/workflows/clean-stage.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-staging:
+    name: Verificar extracción sin modificar la versión publicada
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Descargar proyecto original con Git LFS
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Verificar recursos originales completos
+        run: |
+          git lfs pull
+          test "$(wc -c < 'Managua_Del_taller_al_lago(1).html')" -gt 100000000
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Probar extracciones de muestra
+        run: python3 -m unittest discover -s tests -p 'test_clean_legacy_media.py' -v
+      - name: Verificar auditoría del parque vehicular obsoleto
+        run: |
+          python3 -m unittest discover -s tests -p 'test_audit_legacy_fleet.py' -v
+          python3 scripts/audit_legacy_fleet.py | python3 -c 'import json,sys; d=json.load(sys.stdin); print({k:v for k,v in d.items() if k != "detalles"})'
+      - name: Crear copia de juego modular (sin publicarla)
+        run: python3 scripts/build_modular.py --output dist/Managua-portable.html
+      - name: Extraer paquetes obsoletos en staging
+        run: |
+          python3 scripts/clean_legacy_media.py \
+            --input dist/Managua-portable.html \
+            --output dist/clean-stage/Managua-sin-elenco-flota.html \
+            --staging-only
+      - name: Verificar catálogo y bytes de la limpieza real
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          original=Path('dist/Managua-portable.html')
+          staged=Path('dist/clean-stage/Managua-sin-elenco-flota.html')
+          report=json.loads(Path(str(staged)+'.clean-report.json').read_text())
+          ids={o['id'] for o in report['removed']}
+          for required in ('pack48-humans','asset-vehicles','asset-animation38','asset-actor-motion'):
+              assert required in ids, f'No eliminado: {required}'
+          assert any(i.startswith('resource48-humans-') for i in ids), 'GLB/human textures remain'
+          assert report['originalRuntimeStillNeedsReplacement'] is True
+          assert report['target']=='staging-only-not-playable'
+          assert original.stat().st_size > staged.stat().st_size
+          assert hashlib.sha256(original.read_bytes()).hexdigest()==report['sourceSha256']
+          assert hashlib.sha256(staged.read_bytes()).hexdigest()==report['cleanSha256']
+          print({'removedResources':len(ids),'removedMB':round(report['removedBytes']/1e6,2),'stagingOnly':True})
+          PY
+      - name: Guardar únicamente el informe; no distribuir una build incompleta
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-limpieza-elenco-y-flota
+          path: dist/clean-stage/*.clean-report.json
+          retention-days: 14

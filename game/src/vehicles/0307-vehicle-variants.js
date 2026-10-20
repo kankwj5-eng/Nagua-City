@@ -1,1 +1,2 @@
-const vehicleVariants={discover:'boxer',trail:'boxer',delivery:'boxer',suv:'pickup',pickup4x4:'pickup',hatch:'sedan',taxi:'sedan'};
+// La flota contiene solamente seis GLB nuevos; no se fabrican variantes antiguas.
+const vehicleVariants=Object.freeze({});

@@ -1,7 +1,11 @@
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),zlib=require('node:zlib'),assert=require('node:assert/strict'),readScript=require('./html-script.cjs');
 const root=path.resolve(__dirname,'..'),fixture=JSON.parse(fs.readFileSync(path.join(__dirname,'streaming-zones.fixture.json'))),report={block:2,source:'real zone metadata / deterministic planner and cache simulation',physicalAndroid:false,scenarios:[]};
 function make(app){
- let code=app.slice(app.indexOf('// Technical-only changes:'),app.indexOf('function houseBytes44(',app.indexOf('// Technical-only changes:')));
+ const start=app.includes('// Technical-only changes:')?app.indexOf('// Technical-only changes:'):app.indexOf('const technical44=');
+ assert(start>=0,'streaming technical state must exist');
+ const stop=app.indexOf('function houseBytes44(',start);
+ assert(stop>start,'streaming boundary must exist');
+ let code=app.slice(start,stop);
  const optimized=code.includes('near.push({z,d});');code=optimized?code.replace('near.push({z,d});','near.push((planObjects++,{z,d}));'):code.replace('.map(z=>({z,d:Math.hypot(','.map(z=>(planObjects++,{z,d:Math.hypot(');
  const counts={hypot:0,inflate:0},math=Object.create(Math);math.hypot=(...a)=>{counts.hypot++;return Math.hypot(...a);};
  const catalog={zones:fixture.world.map(z=>({...z,data:zlib.gzipSync(JSON.stringify(z)).toString('base64')}))},extensions={zones:fixture.extensions.map(z=>({...z,data:zlib.gzipSync(JSON.stringify(z)).toString('base64')}))};

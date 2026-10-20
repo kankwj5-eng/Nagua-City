@@ -23,7 +23,7 @@ const server=http.createServer((req,res)=>{
  try{
   const page=await browser.newPage({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
   await page.addInitScript(()=>{const report=console.error.bind(console);console.error=(...args)=>{(window.__caughtBootErrors||(window.__caughtBootErrors=[])).push(args.map(x=>x?.stack||String(x)).join(" | "));report(...args);};});
-  page.on("pageerror",err=>errors.push(String(err)));const consoleErrors=[];page.on("console",msg=>{if(msg.type()==="error")consoleErrors.push(msg.text());});
+  page.on("pageerror",err=>errors.push(err?.stack||String(err)));const consoleErrors=[];page.on("console",msg=>{if(msg.type()==="error")consoleErrors.push(msg.text());});
   page.on("requestfailed",req=>failures.push(req.url()+": "+req.failure()?.errorText));
   const t=Date.now();
   await page.goto("http://127.0.0.1:"+port+"/Managua.html",{waitUntil:"domcontentloaded",timeout:180000});
