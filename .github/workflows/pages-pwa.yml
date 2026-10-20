@@ -69,6 +69,16 @@ jobs:
         run: |
           npm install --no-save --package-lock=false playwright@1.49.1
           npx playwright install --with-deps chromium
+      - name: Auditar portada real en Chromium y comprobar enlace público
+        run: node scripts/audit_site_browser.cjs
+      - name: Adjuntar capturas e informe de la página web
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nagua-auditoria-web-chromium
+          path: dist/site-audit/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Entrar al juego PWA sobre HTTP y comprobar descargas progresivas
         run: node scripts/test_fast_web_browser.cjs
       - name: Adjuntar informe de arranque web
