@@ -10,7 +10,65 @@ const pedestrianTurnValues25=[
 const pedestrianTurnOptions25Odd=[pedestrianTurnValues25[0],pedestrianTurnValues25[1],pedestrianTurnValues25[2],pedestrianTurnValues25[3],pedestrianTurnValues25[4]];
 const pedestrianTurnOptions25Even=[pedestrianTurnValues25[0],pedestrianTurnValues25[2],pedestrianTurnValues25[1],pedestrianTurnValues25[3],pedestrianTurnValues25[4]];
 
-function updatePeople25(dt){if(!playing||dt<=0)return;const hero=driving?current.root.position:player.root.position;const all=stage39.pool;let count39=0;for(const p of pedestrians)if(!p.downUntil){let rec=all[count39];if(!rec)rec=all[count39]={p,x:0,z:0};rec.p=p;rec.x=p.root.position.x;rec.z=p.root.position.z;count39++;}all.length=count39;simulation25.spatial.build(all);for(const p of pedestrians){if(p.downUntil){p.root.setEnabled(false);p.contact.setEnabled(false);if(gameplayTime>=p.downUntil){p.downUntil=0;p.hp=100;}else continue;}const d=B.Vector3.DistanceSquared(p.root.position,hero);p.root.setEnabled(d<140*140);if(!p.root.isEnabled())continue;const detailed=d<(quality==='high'?65:quality==='low'?32:45)**2;p.far=!detailed;for(const m of p.nearMeshes)m.setEnabled(detailed);for(const m of p.lodMeshes)m.setEnabled(!detailed);const q=p.brain25,pause=q.wait>0;q.wait=Math.max(0,q.wait-dt);let gx=q.lane,gz=q.goal,desired=pause?0:q.pace;
+// Un grupo limitado de peatones V4 acompaña al jugador: los mismos GLB
+// se reubican en aceras de barrios cercanos, lejos del campo de visión.
+let peopleStreamClockV4=0;
+function streamPeopleV4(dt){
+ if(typeof inWorld!=="function"||typeof groundAt!=="function")return;
+ peopleStreamClockV4+=dt;
+ if(peopleStreamClockV4<1.1)return;
+ peopleStreamClockV4=0;
+ const hero=driving?current.root.position:player.root.position;
+ const roads=[-111,-37,37,111];
+ const cap=quality==='low'?12:18;
+ for(let i=0;i<pedestrians.length;i++){
+  const p=pedestrians[i];
+  if(p.trafficRider26)continue;
+  if(i>=cap){
+   p.lifeV4Active=false;p.root.setEnabled(false);p.contact?.setEnabled(false);
+   continue;
+  }
+  const distance=Math.hypot(p.root.position.x-hero.x,p.root.position.z-hero.z);
+  if(distance<115&&!p.lifeV4NeedsPlace){
+   p.lifeV4Active=true;continue;
+  }
+  if(distance<120&&!p.lifeV4NeedsPlace)continue;
+  if(p.downUntil>gameplayTime)continue;
+  let placed=false;
+  const lanes=roads.map(x=>({axis:'z',center:x,near:Math.abs(hero.x-x)}))
+   .concat(roads.map(z=>({axis:'x',center:z,near:Math.abs(hero.z-z)})))
+   .sort((a,b)=>a.near-b.near);
+  for(let j=0;j<lanes.length&&!placed;j++){
+   const lane=lanes[(i+j)%lanes.length];
+   if(lane.near>95)continue;
+   const side=(i+j)%2?1:-1;
+   const pavement=lane.center+side*(7.8+(i%3)*.9);
+   const along=(lane.axis==='z'?hero.z:hero.x)+((i+j)%2?1:-1)*(25+(i%7)*9+j*3);
+   const x=lane.axis==='z'?pavement:along,z=lane.axis==='z'?along:pavement;
+   if(!inWorld(x,z)||blocked(x,z,.31,null,true))continue;
+   if(Math.hypot(x-hero.x,z-hero.z)<22)continue;
+   if(pedestrians.some(o=>o!==p&&o.lifeV4Active&&Math.hypot(o.root.position.x-x,o.root.position.z-z)<2.1))continue;
+   p.root.position.set(x,groundAt(x,z),z);
+   p.root.rotation.y=lane.axis==='z'?side>0?0:Math.PI:side*Math.PI/2;
+   p.direction=(i+j)%2?1:-1;p.speed=0;
+   const xPath=lane.axis==='z'?x:x,zPath=lane.axis==='z'?z:z;
+   p.path={x:xPath,z:zPath,min:(lane.axis==='z'?z:x)-15,max:(lane.axis==='z'?z:x)+15};
+   // El cerebro de peatones actual camina por Z; en calles este-oeste
+   // dejamos un paseo corto por la misma acera evitando reconstruir el motor.
+   p.brain25.lane=x;
+   p.brain25.goal=p.direction>0?p.path.max:p.path.min;
+   p.brain25.wait=(i%4)*.15;p.brain25.stuck=0;p.brain25.animation=0;
+   p.lifeV4Active=true;p.lifeV4NeedsPlace=false;
+   p.root.setEnabled(true);
+   placed=true;
+  }
+  if(!placed){
+   p.lifeV4Active=false;p.lifeV4NeedsPlace=true;
+   p.root.setEnabled(false);p.contact?.setEnabled(false);
+  }
+ }
+}
+function updatePeople25(dt){if(!playing||dt<=0)return;streamPeopleV4(dt);const hero=driving?current.root.position:player.root.position;const all=stage39.pool;let count39=0;for(const p of pedestrians)if(!p.downUntil&&p.lifeV4Active!==false){let rec=all[count39];if(!rec)rec=all[count39]={p,x:0,z:0};rec.p=p;rec.x=p.root.position.x;rec.z=p.root.position.z;count39++;}all.length=count39;simulation25.spatial.build(all);for(const p of pedestrians){if(p.lifeV4Active===false){p.root.setEnabled(false);p.contact?.setEnabled(false);continue;}if(p.downUntil){p.root.setEnabled(false);p.contact.setEnabled(false);if(gameplayTime>=p.downUntil){p.downUntil=0;p.hp=100;}else continue;}const d=B.Vector3.DistanceSquared(p.root.position,hero);p.root.setEnabled(d<140*140);if(!p.root.isEnabled())continue;const detailed=d<(quality==='high'?65:quality==='low'?32:45)**2;p.far=!detailed;for(const m of p.nearMeshes)m.setEnabled(detailed);for(const m of p.lodMeshes)m.setEnabled(!detailed);const q=p.brain25,pause=q.wait>0;q.wait=Math.max(0,q.wait-dt);let gx=q.lane,gz=q.goal,desired=pause?0:q.pace;
  // Frenado anticipado: la animación y el desplazamiento comparten una
  // desaceleración gradual; el detector comprueba vehículos antes del cruce.
  if(!pause&&pedestrianCrossing27(p)){desired=0;q.state='crossing-wait';}if(p.fleeUntil>gameplayTime){q.state='flee';const away=p.root.position.subtract(hero);away.y=0;if(away.length()<.01)away.z=1;away.normalize();gx=p.root.position.x+away.x*4;gz=p.root.position.z+away.z*4;desired=3.25;}else if(pause){q.state=p.index>=230?'browse':'wait';}else{q.state=desired===0?'crossing-wait':'walk';if(Math.abs(p.root.position.z-q.goal)<.48&&Math.abs(p.root.position.x-q.lane)<.45){p.direction*=-1;q.goal=p.direction>0?p.path.max:p.path.min;q.wait=.6+(p.index%4)*.38;desired=0;}}
