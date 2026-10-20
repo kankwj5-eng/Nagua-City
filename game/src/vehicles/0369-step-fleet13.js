@@ -33,7 +33,8 @@ function streamTrafficV4(dt){
    const x=route.axis==='x'?along:lane,z=route.axis==='z'?along:lane;
    const angle=route.axis==='x'?(dir>0?-Math.PI/2:Math.PI/2):(dir>0?Math.PI:0);
    if(!inWorld(x,z)||blocked(x,z,v.width*.53,v,true))continue;
-   if(Math.hypot(x-hero.x,z-hero.z)<56)continue;
+   const localDistance=Math.hypot(x-hero.x,z-hero.z);
+   if(localDistance<56||localDistance>118)continue;
    if(pool.some(other=>other!==v&&Math.hypot(other.root.position.x-x,other.root.position.z-z)<8))continue;
    v.root.position.set(x,roadSurface50(x,z,false),z);
    v.root.rotation.set(0,angle,0);
