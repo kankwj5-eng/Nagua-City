@@ -59,6 +59,8 @@ jobs:
         run: node tests/module-source.cjs dist/site/Managua.html
       - name: Probar instalación y archivos PWA
         run: python3 -m unittest discover -s tests -p 'test_pwa.py' -v
+      - name: Verificar guía interactiva y navegación accesible
+        run: node tests/pwa-launcher-interaction.cjs
       - name: Validar JavaScript del lanzador
         run: |
           node --check web/app.js
