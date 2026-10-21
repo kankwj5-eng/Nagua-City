@@ -99,6 +99,7 @@ jobs:
             dist/v4-browser-ciudad.png
             dist/v4-rider-caponera.png
             dist/v4-rider-caponera-lado2.png
+            dist/v4-rider-pulsar.png
           if-no-files-found: warn
           retention-days: 14
       - name: Configurar Pages
