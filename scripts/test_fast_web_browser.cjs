@@ -112,7 +112,7 @@ const server=http.createServer((req,res)=>{
   console.log("V4_LOCAL_LIFE_OK "+JSON.stringify(life));
   // Se comprueba también la caponera del garaje con un conductor visible.
   const caponera=await page.evaluate(()=>{
-    const n=Nicaragua,v=n.fleet.find(v=>v.garage&&v.caponera);
+    const n=Nicaragua,v=n.fleet.find(v=>v.garage&&v.name==='canonera-abierta');
     if(!v)return {found:false};
     n.inspectDrive40(v);
     const pose=n.player.ridePoseV4;
@@ -141,7 +141,12 @@ const server=http.createServer((req,res)=>{
   const center=caponera.hips[0].map((n,i)=>(n+caponera.hips[1][i])*.5);
   assert(Math.hypot(...center.map((n,i)=>n-seat[i]))<.08,"Pelvis no está sobre el asiento físico");
   console.log("V4_CAPONERA_OK "+JSON.stringify(caponera));
+  await page.evaluate(()=>Nicaragua.inspectView31(Math.PI/2,-.12,.74));
+  await page.waitForTimeout(700);
   await page.screenshot({path:path.resolve(__dirname,"../dist/v4-rider-caponera.png")}).catch(()=>{});
+  await page.evaluate(()=>Nicaragua.inspectView31(-Math.PI/2,-.12,.74));
+  await page.waitForTimeout(700);
+  await page.screenshot({path:path.resolve(__dirname,"../dist/v4-rider-caponera-lado2.png")}).catch(()=>{});
   const people=await page.evaluate(()=>{
     const n=Nicaragua;
     return n.fleet.filter(v=>v.trafficRider26).map(v=>({
