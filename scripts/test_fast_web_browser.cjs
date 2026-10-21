@@ -141,7 +141,7 @@ const server=http.createServer((req,res)=>{
   const center=caponera.hips[0].map((n,i)=>(n+caponera.hips[1][i])*.5);
   assert(Math.hypot(...center.map((n,i)=>n-seat[i]))<.08,"Pelvis no está sobre el asiento físico");
   console.log("V4_CAPONERA_OK "+JSON.stringify(caponera));
-  await page.screenshot({path:path.join(root,"dist/v4-rider-caponera.png")}).catch(()=>{});
+  await page.screenshot({path:path.resolve(__dirname,"../dist/v4-rider-caponera.png")}).catch(()=>{});
   const people=await page.evaluate(()=>{
     const n=Nicaragua;
     return n.fleet.filter(v=>v.trafficRider26).map(v=>({
