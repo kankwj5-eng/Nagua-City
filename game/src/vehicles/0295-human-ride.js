@@ -24,7 +24,7 @@ function rideJointsV4(person){
   knee:lookup('lowerarm01.'+side),
   ankle:lookup('wrist.'+side)
  }));
- person.rideJointsV4={legs,arms};
+ person.rideJointsV4={legs,arms,torso:lookup('spine04')||lookup('spine03')};
  return person.rideJointsV4;
 }
 function rideAimV4(bone,oldVector,wantedVector){
@@ -58,6 +58,19 @@ function rideTwoBoneV4(chain,target,bend){
  rideAimV4(aNode,b.subtract(a),joint.subtract(a));
  b=point(bNode);c=point(cNode);
  rideAimV4(bNode,c.subtract(b),target.subtract(b));
+ return true;
+}
+// La postura anterior dejaba las manos suspendidas delante del manubrio.
+ // Adelantar hombros desde la cintura aumenta el alcance sin desplazar la cadera.
+function rideLeanTorsoV4(joints,vehicle){
+ const n=joints.torso,left=joints.arms[0].hip,right=joints.arms[1].hip;
+ if(!n||!left||!right)return false;
+ vehicle.root.computeWorldMatrix(true);
+ const point=b=>{b.computeWorldMatrix(true);return b.getAbsolutePosition().clone();};
+ const from=point(n),shoulders=point(left).add(point(right)).scale(.5);
+ const distance=vehicle.bike?.20:.10;
+ const ahead=B.Vector3.TransformNormal(V(0,0,-distance),vehicle.root.getWorldMatrix());
+ rideAimV4(n,shoulders.subtract(from),shoulders.add(ahead).subtract(from));
  return true;
 }
 function rideFreezeIdleV4(person){
@@ -95,6 +108,7 @@ function humanRide(person,vehicle){
   profile.seat[1]-(l.y+r.y)*.5,
   profile.seat[2]-(l.z+r.z)*.5);
  person.root.computeWorldMatrix(true);
+ const torsoLean=rideLeanTorsoV4(joints,vehicle);
  const worldLocal=(x,y,z)=>B.Vector3.TransformCoordinates(V(x,y,z),vehicle.root.getWorldMatrix());
  let posedLegs=0,posedArms=0;
  for(let i=0;i<2;i++){
@@ -104,6 +118,6 @@ function humanRide(person,vehicle){
   if(rideTwoBoneV4(joints.legs[i],foot,worldLocal(side*.17,.57,profile.seat[2]-.37).subtract(foot)))posedLegs++;
   if(rideTwoBoneV4(joints.arms[i],hand,worldLocal(side*.48,hy-.22,(hz+profile.seat[2])*.5).subtract(hand)))posedArms++;
  }
- person.ridePoseV4={vehicle:vehicle.name,seat:profile.seat.slice(),posedLegs,posedArms};
+ person.ridePoseV4={vehicle:vehicle.name,seat:profile.seat.slice(),posedLegs,posedArms,torsoLean};
  return posedLegs===2&&posedArms===2;
 }
