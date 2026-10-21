@@ -158,6 +158,31 @@ const server=http.createServer((req,res)=>{
   assert(people.length>=8&&people.every(p=>p.posedArms===2&&p.posedLegs===2&&p.active==='Riding'),
     "Los pilotos NPC deben tener pose articulada completa");
   console.log("V4_RIDER_NPCS_OK "+JSON.stringify(people));
+  // Prueba de la Pulsar CON Mateo, no solo pilotos NPC. Usar una zona de
+  // carretera despejada para bajar de la caponera y cambiar de vehículo.
+  const motorcycle=await page.evaluate(()=>{
+    const n=Nicaragua;
+    const previous=n.current;
+    previous.root.position.set(-37,n.groundAt(-37,90),90);
+    previous.root.rotation.y=0;previous.heading=0;
+    n.inspectDrive40(previous);
+    if(n.driving)return {mounted:false,reason:'failed-to-exit-caponera'};
+    const v=n.fleet.find(x=>x.garage&&x.name==='pulsar');
+    if(!v)return {mounted:false,reason:'missing-pulsar'};
+    v.root.position.set(-37,n.groundAt(-37,90),90);
+    v.root.rotation.y=0;v.heading=0;
+    n.inspectDrive40(v);
+    return {mounted:n.driving,visible:n.player.root.isEnabled(),
+      attached:n.player.root.parent===v.root,pose:n.player.ridePoseV4};
+  });
+  console.log("V4_MATEO_PULSAR "+JSON.stringify(motorcycle));
+  assert(motorcycle.mounted&&motorcycle.visible&&motorcycle.attached&&
+    motorcycle.pose?.vehicle==='pulsar'&&motorcycle.pose.posedLegs===2&&
+    motorcycle.pose.posedArms===2,
+    "Mateo debe conducir la Pulsar con caderas y extremidades colocadas");
+  await page.evaluate(()=>Nicaragua.inspectView31(-Math.PI/2,-.12,.78));
+  await page.waitForTimeout(700);
+  await page.screenshot({path:path.resolve(__dirname,"../dist/v4-rider-pulsar.png")}).catch(()=>{});
   // Validación estática extra: los paquetes humanos y animaciones viejos no viajan.
   const packaged=fs.readFileSync(path.join(site,"Managua.html"),"utf8");
   for(const deleted of ['asset-humans','asset-animation38','asset-actor-motion','pack48-humans']){
