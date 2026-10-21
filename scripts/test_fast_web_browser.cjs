@@ -128,13 +128,13 @@ const server=http.createServer((req,res)=>{
     const hands=joint?.arms.map(x=>local(x.ankle))||[];
     return {found:true,mounted:n.driving,visible:n.player.root.isEnabled(),
       attached:n.player.root.parent===v.root,seatHeight:n.player.root.position.y,
-      pose:pose?{name:pose.vehicle,seat:pose.seat,posedLegs:pose.posedLegs,posedArms:pose.posedArms}:null,
+      pose:pose?{name:pose.vehicle,seat:pose.seat,posedLegs:pose.posedLegs,posedArms:pose.posedArms,torsoLean:pose.torsoLean}:null,
       hips,ankles,hands};
   });
   console.log("V4_CAPONERA_DIAGNOSTIC "+JSON.stringify(caponera));
   assert(caponera.found&&caponera.mounted&&caponera.visible&&caponera.attached,
     "Mateo debe mostrarse sentado en la caponera al subir");
-  assert(caponera.pose?.posedLegs===2&&caponera.pose?.posedArms===2,
+  assert(caponera.pose?.posedLegs===2&&caponera.pose?.posedArms===2&&caponera.pose?.torsoLean,
     "La caponera requiere las cuatro extremidades en pose de conductor");
   const seat=caponera.pose.seat;
   assert(caponera.hips.every(p=>p&&p.every(Number.isFinite)),"Rig GLB carece de caderas accesibles");
@@ -152,10 +152,11 @@ const server=http.createServer((req,res)=>{
     return n.fleet.filter(v=>v.trafficRider26).map(v=>({
       id:v.name,posedArms:v.trafficRider26.ridePoseV4?.posedArms,
       posedLegs:v.trafficRider26.ridePoseV4?.posedLegs,
+      torsoLean:v.trafficRider26.ridePoseV4?.torsoLean,
       active:v.trafficRider26.v4.active
     }));
   });
-  assert(people.length>=8&&people.every(p=>p.posedArms===2&&p.posedLegs===2&&p.active==='Riding'),
+  assert(people.length>=8&&people.every(p=>p.posedArms===2&&p.posedLegs===2&&p.torsoLean&&p.active==='Riding'),
     "Los pilotos NPC deben tener pose articulada completa");
   console.log("V4_RIDER_NPCS_OK "+JSON.stringify(people));
   // Prueba de la Pulsar CON Mateo, no solo pilotos NPC. Usar una zona de
@@ -178,7 +179,7 @@ const server=http.createServer((req,res)=>{
   console.log("V4_MATEO_PULSAR "+JSON.stringify(motorcycle));
   assert(motorcycle.mounted&&motorcycle.visible&&motorcycle.attached&&
     motorcycle.pose?.vehicle==='pulsar'&&motorcycle.pose.posedLegs===2&&
-    motorcycle.pose.posedArms===2,
+    motorcycle.pose.posedArms===2&&motorcycle.pose.torsoLean,
     "Mateo debe conducir la Pulsar con caderas y extremidades colocadas");
   await page.evaluate(()=>Nicaragua.inspectView31(-Math.PI/2,-.12,.78));
   await page.waitForTimeout(700);
