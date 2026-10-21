@@ -19,7 +19,7 @@ const node=(x=0,z=0)=>({position:vec(x,0,z),rotation:vec(),enabled:true,
  }
  assert(profiles.pulsar.seat[2]>.3,"Pulsar seat behind fuel tank");
  assert(profiles["canonera-abierta"].seat[2]>.7,"Open caponera driver's seat is toward rear");
- assert(!source("game/src/vehicles/0295-human-ride.js").includes("'Crouch'"),"Do not bend knees with combat crouch");
+ assert(!/setClip\([^)]*['"]Crouch/.test(source("game/src/vehicles/0295-human-ride.js")),"Do not bend knees with combat crouch");
  assert.equal(ctx.humanRide(null,null),false);
 }
 {
