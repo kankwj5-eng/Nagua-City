@@ -42,6 +42,20 @@ def inspect(name):
     print("ROOTS",json.dumps([{"name":nodes[i].get("name"),
         "t":nodes[i].get("translation"),"r":nodes[i].get("rotation")}
         for sc in info.get("scenes",[]) for i in sc.get("nodes",[])],ensure_ascii=False))
+    for i, node in enumerate(nodes):
+        if not any(key in node.get("name","").lower() for key in
+                   ("asiento", "saddle", "manub", "direccion", "tanque", "foot", "pedal", "seat", "root", "upperleg01", "lowerleg01", "spine05")):
+            continue
+        mi = node.get("mesh")
+        if mi is None:
+            continue
+        bounds = []
+        for p in info["meshes"][mi].get("primitives",[]):
+            a=p["attributes"].get("POSITION")
+            if a is not None:
+                acc=info["accessors"][a]
+                bounds.append([acc.get("min"),acc.get("max")])
+        print("MESH_BOUNDS",name,node.get("name"),json.dumps({"t":node.get("translation"),"bounds":bounds},ensure_ascii=False))
     print("ENDMODEL",name)
 
 if __name__ == "__main__":
