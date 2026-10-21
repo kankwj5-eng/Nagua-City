@@ -7,13 +7,20 @@ const vec=(x=0,y=0,z=0)=>({x,y,z,set(a,b,c){this.x=a;this.y=b;this.z=c;}});
 const node=(x=0,z=0)=>({position:vec(x,0,z),rotation:vec(),enabled:true,
   setEnabled(v){this.enabled=v;},isEnabled(){return this.enabled;}});
 {
- const clip=[],p={root:node(),visual:{position:vec()},hero:true},v={root:node(),bike:true};
- const ctx={originalV4:{setClip(p,name){clip.push(name);}}};
- vm.createContext(ctx);vm.runInContext(source("game/src/vehicles/0295-human-ride.js"),ctx);
- ctx.humanRide(p,v);assert.equal(p.root.parent,v.root);assert(p.root.position.y>.6);assert.equal(clip.at(-1),"Crouch");
- v.bike=false;v.caponera=true;ctx.humanRide(p,v);assert(p.root.position.y>.55);assert(p.root.position.z<0);
- const npc={root:node(),visual:{position:vec()},hero:false};ctx.humanRide(npc,v);
- assert.equal(clip.at(-1),"Idle","Los nueve NPC no contienen Crouch");
+ // El GLB no contiene clip sentado: nunca usar el Crouch de combate.
+ const ctx={};
+ vm.createContext(ctx);
+ vm.runInContext(source("game/src/vehicles/0295-human-ride.js"),ctx);
+ const profiles=vm.runInContext("rideProfilesV4",ctx);
+ for(const id of ["pulsar","taypan","mototaxi-roja","canonera-abierta"]){
+  const p=profiles[id];
+  assert(p&&p.seat.length===3&&p.hand.length===3&&p.foot.length===3);
+  assert(p.seat[1]>.7&&p.seat[1]<1.1,"Seat height V4 derived from actual GLB");
+ }
+ assert(profiles.pulsar.seat[2]>.3,"Pulsar seat behind fuel tank");
+ assert(profiles["canonera-abierta"].seat[2]>.7,"Open caponera driver's seat is toward rear");
+ assert(!source("game/src/vehicles/0295-human-ride.js").includes("'Crouch'"),"Do not bend knees with combat crouch");
+ assert.equal(ctx.humanRide(null,null),false);
 }
 {
  const classes=["hilux","landcruiser","pulsar","taypan","mototaxi-roja","canonera-abierta"];
