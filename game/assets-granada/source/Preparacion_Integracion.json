@@ -1,0 +1,15 @@
+{
+  "unidad": "metros",
+  "origen_WGS84": [
+    11.92982,
+    -85.95324
+  ],
+  "coordenadas": "Modelo Blender Z arriba; GLB exportado con conversion estandar a Y arriba",
+  "colliders": 266,
+  "suelo_muestras": 479,
+  "alcance": "Suelo del paseo, casas originales, catedral, escalinata, quiosco, troncos, postes y bancas del recorrido principal. Fondos, mesas, sillas y patios no verificados.",
+  "importacion": "Leer extras.role=collision_proxy y collision_shape; crear cuerpos estaticos en el motor. GLB no activa fisica automaticamente.",
+  "pendiente": "Version visual para el motor con materiales horneados, LOD y particion por zonas; pruebas de FPS, memoria y caminata dentro del juego.",
+  "revision_visual": 8,
+  "revision_colisiones": "Alturas de naves central y lateral actualizadas en V8; fachada nueva sin colisiones detalladas."
+}

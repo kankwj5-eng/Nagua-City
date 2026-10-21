@@ -1,0 +1,104 @@
+[
+  {
+    "archivo": "Recorrido_01_Paseo.png",
+    "vista": "Caminando por el paseo",
+    "altura_m": 1.7,
+    "posicion": [
+      140,
+      32.393362831858404,
+      1.7
+    ],
+    "objetivo": [
+      220,
+      30.0737,
+      2.1
+    ],
+    "focal_mm": 27,
+    "version_modelo": 8
+  },
+  {
+    "archivo": "Recorrido_02_Hacia_Catedral.png",
+    "vista": "Regreso hacia la catedral",
+    "altura_m": 1.7,
+    "posicion": [
+      99,
+      33.851946902654866,
+      1.7
+    ],
+    "objetivo": [
+      -20,
+      22,
+      4.8
+    ],
+    "focal_mm": 25,
+    "version_modelo": 8
+  },
+  {
+    "archivo": "Recorrido_03_Bancas_y_Faroles.png",
+    "vista": "Junto a las bancas y los faroles",
+    "altura_m": 1.7,
+    "posicion": [
+      125,
+      32.22699115044247,
+      1.7
+    ],
+    "objetivo": [
+      119,
+      29.540442477876105,
+      2.8
+    ],
+    "focal_mm": 24,
+    "version_modelo": 8
+  },
+  {
+    "archivo": "Recorrido_04_Frente_Catedral.png",
+    "vista": "Frente a la catedral",
+    "altura_m": 1.7,
+    "posicion": [
+      -65,
+      -5,
+      1.7
+    ],
+    "objetivo": [
+      -37,
+      1.5,
+      13
+    ],
+    "focal_mm": 19,
+    "version_modelo": 8
+  },
+  {
+    "archivo": "Recorrido_05_Costado_Catedral.png",
+    "vista": "Por el costado de la catedral",
+    "altura_m": 1.7,
+    "posicion": [
+      28,
+      31.5,
+      1.7
+    ],
+    "objetivo": [
+      -12,
+      17,
+      8.5
+    ],
+    "focal_mm": 23,
+    "version_modelo": 8
+  },
+  {
+    "archivo": "Recorrido_06_Desde_Parque.png",
+    "vista": "Desde el extremo del parque",
+    "altura_m": 1.7,
+    "posicion": [
+      -65,
+      -36,
+      1.7
+    ],
+    "objetivo": [
+      -37,
+      1.5,
+      12.5
+    ],
+    "focal_mm": 22,
+    "version_modelo": 8
+  }
+]
