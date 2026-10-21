@@ -8,8 +8,11 @@ function humanRide(person,vehicle){
  const seat=moto?{x:0,y:.76,z:.16}:caponera?{x:0,y:.65,z:-.40}:{x:-.36,y:.45,z:-.34};
  person.root.position.set(seat.x,seat.y,seat.z);
  person.root.rotation.set(0,0,0);
- person.visual.position.y=0;
+ // Al caminar, el visual lleva un giro de 180° para compensar el rig GLB.
+ // Ese giro no vale sentado: se elimina dentro del marco del vehículo.
+ person.visual.rotation.y=0;
+ person.visual.position.set(0,0,0);
  person.root.setEnabled(true);
- // Mateo sí tiene Crouch; los NPC V4 tienen Idle pero no Crouch.
- originalV4.setClip(person,person.hero?'Crouch':'Idle');
+ // Crouch es una postura de agacharse, no de conducir; no debe usarse como asiento.
+ originalV4.setClip(person,'Idle');
 }
