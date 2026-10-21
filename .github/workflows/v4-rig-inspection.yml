@@ -1,0 +1,21 @@
+name: Inspeccionar rigs de asientos V4
+on:
+  pull_request:
+    paths:
+      - 'scripts/inspect_v4_rig.py'
+      - 'game/assets-v4/**'
+      - 'game/src/vehicles/0295-human-ride.js'
+      - '.github/workflows/v4-rig-inspection.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: false
+      - name: Analizar jerarquías GLB sin alterarlas
+        run: python3 scripts/inspect_v4_rig.py
