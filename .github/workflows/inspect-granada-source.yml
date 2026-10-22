@@ -1,0 +1,187 @@
+name: Auditar fuente de Granada con Blender 4.3.2
+
+on:
+  push:
+    branches:
+      - integration/granada-continuous-world
+    paths:
+      - .github/workflows/inspect-granada-source.yml
+      - game/assets-granada/source/Granada_Video.blend
+      - game/assets-granada/source/Colisiones_Granada.glb
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-granada:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Obtener fuentes y archivo Blender LFS
+        uses: actions/checkout@v4
+        with:
+          ref: integration/granada-continuous-world
+          lfs: true
+          persist-credentials: false
+
+      - name: Verificar que Git LFS entregó el archivo real
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE="game/assets-granada/source/Granada_Video.blend"
+          if grep -aq "version https://git-lfs.github.com/spec/v1" "$FILE"; then
+            echo "::error::Granada_Video.blend sigue siendo un puntero LFS; el objeto original no se descargó."
+            exit 1
+          fi
+          echo "Archivo real recibido:"
+          ls -lh "$FILE"
+          sha256sum "$FILE"
+
+      - name: Descargar Blender 4.3.2 publicado en Releases
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://github.com/kankwj5-eng/Nagua-City/releases/download/blender-4.3.2-linux-x64/blender-4.3.2-linux-x64.zip"
+          EXPECTED="0cdd145fccbb05ae24096777c449e23a5a2891788d791b23676bb3e83673e14a"
+          curl -fL --retry 3 --retry-delay 2 "$URL" -o "$RUNNER_TEMP/blender-4.3.2-linux-x64.zip"
+          echo "$EXPECTED  $RUNNER_TEMP/blender-4.3.2-linux-x64.zip" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/blender-dist"
+          unzip -q "$RUNNER_TEMP/blender-4.3.2-linux-x64.zip" -d "$RUNNER_TEMP/blender-dist"
+          BLENDER_BIN="$(find "$RUNNER_TEMP/blender-dist" -type f -name blender -print -quit)"
+          if [ -z "$BLENDER_BIN" ]; then
+            echo "::error::No se encontró el ejecutable Blender dentro del ZIP."
+            find "$RUNNER_TEMP/blender-dist" -maxdepth 3 -type f | head -40
+            exit 1
+          fi
+          chmod +x "$BLENDER_BIN"
+          echo "BLENDER_BIN=$BLENDER_BIN" >> "$GITHUB_ENV"
+          "$BLENDER_BIN" --version | head -3
+
+      - name: Inspeccionar la escena original sin guardar ni modificarla
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/inspect_granada.py" <<'PY'
+          import bpy
+          import json
+          import os
+          from mathutils import Vector
+
+          blend_path = bpy.data.filepath
+          mesh_objects = [obj for obj in bpy.data.objects if obj.type == "MESH"]
+          total_vertices = sum(len(obj.data.vertices) for obj in mesh_objects)
+          total_polygons = sum(len(obj.data.polygons) for obj in mesh_objects)
+          total_loops = sum(len(obj.data.loops) for obj in mesh_objects)
+
+          mins = [float("inf")] * 3
+          maxs = [float("-inf")] * 3
+          bounded_meshes = 0
+          for obj in mesh_objects:
+              try:
+                  for corner in obj.bound_box:
+                      p = obj.matrix_world @ Vector(corner)
+                      for i in range(3):
+                          mins[i] = min(mins[i], float(p[i]))
+                          maxs[i] = max(maxs[i], float(p[i]))
+                  bounded_meshes += 1
+              except Exception:
+                  pass
+
+          def collection_summary(col):
+              objects = list(col.objects)
+              all_objects = set(objects)
+              def descend(child):
+                  for obj in child.objects:
+                      all_objects.add(obj)
+                  for nested in child.children:
+                      descend(nested)
+              for child in col.children:
+                  descend(child)
+              return {
+                  "name": col.name,
+                  "objects_in_collection": len(objects),
+                  "objects_including_nested": len(all_objects),
+                  "mesh_objects_including_nested": sum(1 for o in all_objects if o.type == "MESH"),
+                  "hidden_viewport": bool(col.hide_viewport),
+                  "hidden_render": bool(col.hide_render),
+              }
+
+          object_details = []
+          for obj in sorted(bpy.data.objects, key=lambda item: item.name):
+              item = {
+                  "name": obj.name,
+                  "type": obj.type,
+                  "collections": sorted(c.name for c in obj.users_collection),
+                  "hidden_viewport": bool(obj.hide_viewport),
+                  "hidden_render": bool(obj.hide_render),
+                  "dimensions_m": [round(float(v), 4) for v in obj.dimensions],
+              }
+              if obj.type == "MESH":
+                  item.update({
+                      "vertices": len(obj.data.vertices),
+                      "polygons": len(obj.data.polygons),
+                      "materials": [m.name if m else None for m in obj.data.materials],
+                  })
+              object_details.append(item)
+
+          report = {
+              "file": os.path.basename(blend_path),
+              "blender_version": bpy.app.version_string,
+              "scene_names": [scene.name for scene in bpy.data.scenes],
+              "active_scene": bpy.context.scene.name if bpy.context.scene else None,
+              "unit_system": bpy.context.scene.unit_settings.system if bpy.context.scene else None,
+              "length_unit": bpy.context.scene.unit_settings.length_unit if bpy.context.scene else None,
+              "object_count": len(bpy.data.objects),
+              "mesh_object_count": len(mesh_objects),
+              "vertices_total": total_vertices,
+              "polygons_total": total_polygons,
+              "loops_total": total_loops,
+              "material_count": len(bpy.data.materials),
+              "images_count": len(bpy.data.images),
+              "cameras": [o.name for o in bpy.data.objects if o.type == "CAMERA"],
+              "lights": [o.name for o in bpy.data.objects if o.type == "LIGHT"],
+              "world_bounds_m": {
+                  "min": [round(v, 4) for v in mins] if bounded_meshes else None,
+                  "max": [round(v, 4) for v in maxs] if bounded_meshes else None,
+                  "size": [round(maxs[i] - mins[i], 4) for i in range(3)] if bounded_meshes else None,
+                  "meshes_with_bounds": bounded_meshes,
+              },
+              "collections": [collection_summary(c) for c in sorted(bpy.data.collections, key=lambda c: c.name)],
+              "objects": object_details,
+              "materials": [{
+                  "name": m.name,
+                  "use_nodes": bool(m.use_nodes),
+                  "node_types": sorted({n.type for n in m.node_tree.nodes}) if m.use_nodes and m.node_tree else [],
+              } for m in sorted(bpy.data.materials, key=lambda m: m.name)],
+          }
+          out = os.environ.get("GRANADA_REPORT", "granada-scene-report.json")
+          with open(out, "w", encoding="utf-8") as f:
+              json.dump(report, f, ensure_ascii=False, indent=2)
+          print("GRANADA_SCENE_REPORT_BEGIN")
+          print(json.dumps({
+              k: report[k] for k in (
+                  "file", "blender_version", "scene_names", "object_count",
+                  "mesh_object_count", "vertices_total", "polygons_total",
+                  "material_count", "images_count", "cameras", "lights", "world_bounds_m"
+              )
+          }, ensure_ascii=False))
+          print("GRANADA_COLLECTIONS_BEGIN")
+          print(json.dumps(report["collections"], ensure_ascii=False))
+          print("GRANADA_SCENE_REPORT_END")
+          PY
+          mkdir -p artifacts/granada-audit
+          GRANADA_REPORT="$GITHUB_WORKSPACE/artifacts/granada-audit/granada-scene-report.json" \
+            "$BLENDER_BIN" --background "game/assets-granada/source/Granada_Video.blend" \
+            --python "$RUNNER_TEMP/inspect_granada.py" 2>&1 | tee artifacts/granada-audit/blender-inspection.log
+          cp game/assets-granada/source/LEEME.md artifacts/granada-audit/
+          cp game/assets-granada/source/Preparacion_Integracion.json artifacts/granada-audit/
+          cp game/assets-granada/source/Colisiones_Granada.glb artifacts/granada-audit/
+
+      - name: Publicar informe de auditoría
+        uses: actions/upload-artifact@v4
+        with:
+          name: auditoria-fuente-granada-blender-4.3.2
+          path: artifacts/granada-audit/
+          if-no-files-found: error
+          retention-days: 14
