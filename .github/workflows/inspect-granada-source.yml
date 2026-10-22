@@ -178,6 +178,110 @@ jobs:
           cp game/assets-granada/source/Preparacion_Integracion.json artifacts/granada-audit/
           cp game/assets-granada/source/Colisiones_Granada.glb artifacts/granada-audit/
 
+      - name: Exportar escena completa y versión visual GLB
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > "$RUNNER_TEMP/export_granada.py" <<'PY'
+          import bpy, json, os
+
+          out_dir = os.path.join(os.getcwd(), "artifacts", "granada-audit")
+          os.makedirs(out_dir, exist_ok=True)
+
+          # Exportación integral: no se limita a los objetos visibles.
+          # Incluye objetos ocultos, cámaras, luces y proxies presentes en la escena.
+          full_path = os.path.join(out_dir, "Granada_Escena_Completa.glb")
+          result_full = bpy.ops.export_scene.gltf(
+              filepath=full_path,
+              export_format='GLB',
+              use_selection=False,
+              use_visible=False,
+              export_apply=True,
+              export_materials='EXPORT',
+              export_image_format='AUTO',
+              export_cameras=True,
+              export_lights=True,
+              export_extras=True,
+              export_yup=True,
+          )
+          if 'FINISHED' not in result_full or not os.path.isfile(full_path) or os.path.getsize(full_path) == 0:
+              raise RuntimeError("No se pudo crear la exportación GLB completa")
+          print("FULL_GLB", full_path, os.path.getsize(full_path))
+
+          # Exportación visual adicional: omite objetos pertenecientes directamente
+          # a colecciones de colisión para evitar que las cajas proxy se vean en el juego.
+          # La escena original no se guarda ni se altera permanentemente.
+          old_selected = list(bpy.context.selected_objects)
+          old_active = bpy.context.view_layer.objects.active
+          for obj in bpy.context.selected_objects:
+              obj.select_set(False)
+
+          visual_objects = []
+          excluded = []
+          for obj in bpy.data.objects:
+              collision_membership = any(
+                  ("COLISION" in col.name.upper() or "COLLISION" in col.name.upper())
+                  for col in obj.users_collection
+              )
+              if collision_membership:
+                  excluded.append(obj.name)
+              else:
+                  visual_objects.append(obj)
+
+          for obj in visual_objects:
+              try:
+                  obj.select_set(True)
+              except Exception:
+                  pass
+          if visual_objects:
+              bpy.context.view_layer.objects.active = visual_objects[0]
+
+          visual_path = os.path.join(out_dir, "Granada_Visual.glb")
+          result_visual = bpy.ops.export_scene.gltf(
+              filepath=visual_path,
+              export_format='GLB',
+              use_selection=True,
+              use_visible=False,
+              export_apply=True,
+              export_materials='EXPORT',
+              export_image_format='AUTO',
+              export_cameras=True,
+              export_lights=True,
+              export_extras=True,
+              export_yup=True,
+          )
+          if 'FINISHED' not in result_visual or not os.path.isfile(visual_path) or os.path.getsize(visual_path) == 0:
+              raise RuntimeError("No se pudo crear la exportación GLB visual")
+          print("VISUAL_GLB", visual_path, os.path.getsize(visual_path))
+          with open(os.path.join(out_dir, "export-summary.json"), "w", encoding="utf-8") as f:
+              json.dump({
+                  "blender_version": bpy.app.version_string,
+                  "complete_glb": os.path.basename(full_path),
+                  "complete_bytes": os.path.getsize(full_path),
+                  "visual_glb": os.path.basename(visual_path),
+                  "visual_bytes": os.path.getsize(visual_path),
+                  "scene_object_count": len(bpy.data.objects),
+                  "visual_selected_count": len(visual_objects),
+                  "collision_excluded_count": len(excluded),
+                  "collision_excluded_objects": excluded,
+                  "note": "Exportación directa de la escena fuente; no implica todavía validación visual ni integración en el motor."
+              }, f, ensure_ascii=False, indent=2)
+          # Restore the in-memory selection state for a clean shutdown.
+          for obj in bpy.context.selected_objects:
+              obj.select_set(False)
+          for obj in old_selected:
+              try:
+                  obj.select_set(True)
+              except Exception:
+                  pass
+          try:
+              bpy.context.view_layer.objects.active = old_active
+          except Exception:
+              pass
+          PY
+          "$BLENDER_BIN" --background "game/assets-granada/source/Granada_Video.blend" --python "$RUNNER_TEMP/export_granada.py" 2>&1 | tee artifacts/granada-audit/blender-export.log
+          ls -lh artifacts/granada-audit/*.glb
+
       - name: Publicar informe de auditoría
         uses: actions/upload-artifact@v4
         with:
